@@ -1,0 +1,26 @@
+#get gstudio
+
+require(gstudio)
+update.packages(ask = FALSE)
+
+# Read in the file
+
+file <- system.file("data", "Wolf.csv", package = "gstudio")
+
+# characterise the file
+
+data <- read_population(file, type = "column", locus.column = 5:6)
+
+# check the data
+data
+summary(data)
+
+# get ggmap & ggplot2
+
+require(ggplot2)
+require(ggmap)
+
+
+CH <- get_map(location = c(lon = 8.371714, lat = 46.703314), color = "color", source = "google", maptype = "satellite", zoom = 8)
+
+ggmap(CH) + geom_point(aes(x = Longitude, y = Latitude), data = coords, size = 5) + xlab("Longitude") + ylab("Latitude")
