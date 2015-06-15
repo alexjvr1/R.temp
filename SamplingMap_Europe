@@ -9,7 +9,7 @@ http://www.molecularecologist.com/2012/09/making-maps-with-r/
 
 ##1. Draw a map of Europe
 
->library(maps)
+'''library(maps)
 library(mapdata)
 map(database="world", xlim=c(-20,59), ylim=c(35,71), col="gray90", fill=TRUE)
-
+'''
