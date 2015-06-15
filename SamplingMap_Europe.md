@@ -37,7 +37,9 @@ Or change the country code to `<SE>` for Sweden, and change the country in line 
 [CH_alt]: https://cloud.githubusercontent.com/assets/12142475/8160284/a5d19b84-136e-11e5-8d58-e30d28a3b42d.png
 
 ![alt txt][SE_alt]
-[SE_alt]:
+[SE_alt]:https://cloud.githubusercontent.com/assets/12142475/8160326/efc2bb2e-136e-11e5-915e-7868f7c6c90c.png
+
+
 
 
 
