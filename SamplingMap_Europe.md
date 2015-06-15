@@ -59,8 +59,7 @@ To map on the elevation map:
 A coordinate file would look something like this:
 
 
-
-
+https://cloud.githubusercontent.com/assets/12142475/8162714/5781b6e2-137f-11e5-847d-b9721ca49c4b.png
 
 
 ```
