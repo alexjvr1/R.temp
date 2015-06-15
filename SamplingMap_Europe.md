@@ -63,11 +63,43 @@ https://cloud.githubusercontent.com/assets/12142475/8162714/5781b6e2-137f-11e5-8
 
 
 ```
-CH_coords<-SampledLocalities_coords_CH_20150615 #rename the file you just read into R
-plot(CH_coords, pch = 20, cex = 1, col = "black") #plots the points. Symbol = pch, size = cex
-plot(elevation, col = rainbow(25, alpha = 0.3), add = TRUE) #plot the elevation
+#rename the file you just read into R
+CH_coords<-SampledLocalities_coords_CH_20150615 
+#plot the elevation in colour
+plot(elevation, col = rainbow(25, alpha = 0.3)) 
+
+#plots the points. Symbol = pch, size = cex, add will add the plot on top of what is already there
+plot(CH_coords, pch = 20, cex = 1, col = "black", add = TRUE) 
 ```
 
+And for the Swedish map
+
+```
+SE_coords <-SampledLocalities_coords_SE_20150615
+coordinates(SE_coords) <- c("Long.", "Lat.")  # set spatial coordinates
+plot(SE_coords)
+plot(SE_coords, pch = 20, cex = 1, col = "black")
+crs.geo <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84")  # geographical, datum WGS84
+proj4string(SE_coords) <- crs.geo  # define projection system of our data
+summary(SE_coords)
+
+
+require(spatial.tools)
+elevation<-getData("alt", country = "SE")
+x <- terrain(elevation, opt = c("slope", "aspect"), unit = "degrees", xlim = 10)
+plot(x)
+slope <- terrain(elevation, opt = "slope")
+aspect <- terrain(elevation, opt = "aspect")
+hill <- hillShade(slope, aspect, 40, 270)
+plot(hill, col = grey(0:100/100, alpha = 0.3), legend = FALSE, main = "Sweden")
+plot(elevation, col = rainbow(25, alpha = 0.3), main = "Sweden", add = TRUE)
+plot(SE_coords, pch = 20, cex = 1, col = "black", add = TRUE)
+
+
+```
+
+But the size is still wrong for the Swedish map.
+And we'd like the elevational scales to be the same for the two maps. 
 
 
 
