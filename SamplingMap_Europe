@@ -1,0 +1,15 @@
+#Maps in R
+1. Drawing basic maps
+2. Drawing maps with elevation
+3. Samples on map
+
+###Good tutorials here: 
+http://www.milanor.net/blog/?p=534
+http://www.molecularecologist.com/2012/09/making-maps-with-r/
+
+##1. Draw a map of Europe
+
+>library(maps)
+library(mapdata)
+map(database="world", xlim=c(-20,59), ylim=c(35,71), col="gray90", fill=TRUE)
+
