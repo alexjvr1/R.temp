@@ -29,10 +29,9 @@ map(database="world", xlim=c(-10,40), ylim=c(29,75), col="gray90", fill=TRUE)
 
 
 ###2. Draw colour map of Switzerland and Sweden with elevation
-Install packages as needed (I needed to install rasterVis, rgdal, and rgeos)
-require(spatial.tools)
 
 ```
+require(spatial.tools)
 elevation<-getData("alt", country = "CH")
 x <- terrain(elevation, opt = c("slope", "aspect"), unit = "degrees")
 plot(x)
