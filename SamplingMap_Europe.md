@@ -5,18 +5,20 @@
 
 ###Good tutorials here: 
 http://www.milanor.net/blog/?p=534
-http://www.molecularecologist.com/2012/09/making-maps-with-r/
-http://pakillo.github.io/R-GIS-tutorial/#intro   **good for raster data
+**MolecularEcologist Tutorial:  http://www.molecularecologist.com/2012/09/making-maps-with-r/  
+**good for raster data: http://pakillo.github.io/R-GIS-tutorial/#intro   
 
-##1. Draw a map of Europe
+###1. Draw a map of Europe
 
-library(maps)
+'library(maps)
 library(mapdata)
-map(database="world", xlim=c(-10,40), ylim=c(29,75), col="gray90", fill=TRUE)
+map(database="world", xlim=c(-10,40), ylim=c(29,75), col="gray90", fill=TRUE)'
 
-##2. Draw colour map of Switzerland and Sweden with elevation
-#Install packages as needed (I needed to install rasterVis, rgdal, and rgeos)
+
+###2. Draw colour map of Switzerland and Sweden with elevation
+Install packages as needed (I needed to install rasterVis, rgdal, and rgeos)
 require(spatial.tools)
+
 elevation<-getData("alt", country = "CH")
 x <- terrain(elevation, opt = c("slope", "aspect"), unit = "degrees")
 plot(x)
