@@ -31,6 +31,7 @@ hill <- hillShade(slope, aspect, 40, 270)
 plot(hill, col = grey(0:100/100), legend = FALSE, main = "Switzerland")
 plot(elevation, col = rainbow(25, alpha = 0.35), add = TRUE)
 ```
+Or change the country code to `<SE>` for Sweden, and change the country in line 7. 
 
 ![alt txt][CH_alt]
 [CH_alt]: http://127.0.0.1:30789/graphics/plot_zoom_png?width=588&height=685
