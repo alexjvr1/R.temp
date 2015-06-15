@@ -8,6 +8,17 @@
 2. **MolecularEcologist Tutorial:  http://www.molecularecologist.com/2012/09/making-maps-with-r/  
 3. **good for raster data: http://pakillo.github.io/R-GIS-tutorial/#intro   
 
+###Install the following packages:
+
+```
+library(sp)  # classes for spatial data
+library(raster)  # grids, rasters
+library(rasterVis)  # raster visualisation
+library(maptools)
+library(rgeos)
+# and their dependencies
+```
+
 ###1. Draw a map of Europe
 
 ```
