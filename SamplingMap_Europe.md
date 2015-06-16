@@ -106,7 +106,17 @@ plot(SE_coords, pch = 20, cex = 1, col = "black", add = TRUE)
 ```
 
 But the size is still wrong for the Swedish map.
+- The size cannot be changed. The problem seems to be Sweden's dimensions.. 
+
 And we'd like the elevational scales to be the same for the two maps. 
+ - The easiest way to have similar bars is to scale Sweden's bar within the plot. 
+ - Perhaps for other plots, there can be a single bar graph for the variable. But the scaling would still need to be done within the plot 
+
+```
+plot(elevation, col = (rainbow(99, start=0, end=0.375, alpha = 0.3)), legend = TRUE, main = "Sweden")
+```
+
+
 
 
 
