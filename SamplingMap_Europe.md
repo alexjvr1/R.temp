@@ -113,7 +113,7 @@ And we'd like the elevational scales to be the same for the two maps.
  - Perhaps for other plots, there can be a single bar graph for the variable. But the scaling would still need to be done within the plot 
 
 ```
-plot(elevation, col = (rainbow(99, start=0, end=0.375, alpha = 0.3)), legend = TRUE, main = "Sweden")
+plot(elevation, col = (rainbow(25, start=0, end=0.375, alpha = 0.3)), legend = TRUE, main = "Sweden")
 ```
 
 
