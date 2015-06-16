@@ -116,7 +116,34 @@ And we'd like the elevational scales to be the same for the two maps.
 plot(elevation, col = (rainbow(25, start=0, end=0.375, alpha = 0.3)), legend = TRUE, main = "Sweden")
 ```
 
+##Map of Sweden -> scaled and .pdf
+This should be the script needed to:
+1. Read in data
+2. Draw the Sweden map with a scaled (elevation) graph (0.375*CH)
+3. write to .pdf which will be easier to work with in Adobe Illustrator
 
+```
+SESNPs_coords <-SampledLocalities_coords_SERAD_20150616
+coordinates(SESNPs_coords) <- c("Long.", "Lat.")  # set spatial coordinates
+plot(SESNPs_coords)
+plot(SESNPs_coords, pch = 20, cex = 1, col = "black")
+crs.geo <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84")  # geographical, datum WGS84
+proj4string(SESNPs_coords) <- crs.geo  # define projection system of our data
+summary(SESNPs_coords)
+
+require(spatial.tools)
+elevation<-getData("alt", country = "SE")
+x <- terrain(elevation, opt = c("slope", "aspect"), unit = "degrees")
+plot(x)
+slope <- terrain(elevation, opt = "slope")
+aspect <- terrain(elevation, opt = "aspect")
+hill <- hillShade(slope, aspect, 40, 270)
+pdf("SERAD.pdf")
+plot(hill, col = grey(0:100/100, alpha = 0.3), legend = FALSE, main = "Sweden")
+plot(elevation, col = rainbow(25, start=0, end=0.375, alpha = 0.5), main = "Sweden", add = TRUE)
+plot(SE_coords, pch = 20, cex = 1, col = "black", add = TRUE)
+dev.off()
+```
 
 
 
