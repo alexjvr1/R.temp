@@ -64,7 +64,14 @@ https://cloud.githubusercontent.com/assets/12142475/8162714/5781b6e2-137f-11e5-8
 
 ```
 #rename the file you just read into R
-CH_coords<-SampledLocalities_coords_CH_20150615 
+CH_coords<-SampledLocalities_coords_CH_20150615
+coordinates(CH_coords) <- c("Long.", "Lat.")  # set spatial coordinates
+plot(CH_coords)
+plot(CH_coords, pch = 20, cex = 1, col = "black")
+crs.geo <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84")  # geographical, datum WGS84
+proj4string(CH_coords) <- crs.geo  # define projection system of our data
+summary(CH_coords)
+
 #plot the elevation in colour
 plot(elevation, col = rainbow(25, alpha = 0.3)) 
 
@@ -86,7 +93,7 @@ summary(SE_coords)
 
 require(spatial.tools)
 elevation<-getData("alt", country = "SE")
-x <- terrain(elevation, opt = c("slope", "aspect"), unit = "degrees", xlim = 10)
+x <- terrain(elevation, opt = c("slope", "aspect"), unit = "degrees")
 plot(x)
 slope <- terrain(elevation, opt = "slope")
 aspect <- terrain(elevation, opt = "aspect")
