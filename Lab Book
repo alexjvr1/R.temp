@@ -19,7 +19,7 @@ I'm losing a lot of reads with process_radtags, so I will try a different method
 > ./configure && make && make install
 '''
 
-I get an error:
+>I get an error:
 
 '''
 configure: error: The pkg-config script could not be found or is too old.  Make sure it
