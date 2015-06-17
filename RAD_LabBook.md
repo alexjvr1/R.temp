@@ -10,15 +10,16 @@ I'm losing a lot of reads with process_radtags, so I will try a different method
 
 Install FASTX Toolkit
 
-fastx_toolkit-0.0.14 from http://hannonlab.cshl.edu/fastx_toolkit/download.html
+-fastx_toolkit-0.0.14 from http://hannonlab.cshl.edu/fastx_toolkit/download.html
+-check that libgtextutils-0.7 is installed (or latest version)
 
+```
+./configure && make && make install
+```
 
-#check that libgtextutils-0.7 is installed (or latest version)
+I get an error
 
-> ./configure && make && make install
-
-##I get an error
-
+```
 configure: error: The pkg-config script could not be found or is too old.  Make sure it
 is in your PATH or set the PKG_CONFIG environment variable to the full
 path to pkg-config.
@@ -26,77 +27,74 @@ path to pkg-config.
 Alternatively, you may set the environment variables GTEXTUTILS_CFLAGS
 and GTEXTUTILS_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
+```
 
-#Download latest version from here: http://pkgconfig.freedesktop.org/releases/
-#There is some catch22 with pkgconfig dependant on glib, and vice versa.. 
+- Download latest version from here: http://pkgconfig.freedesktop.org/releases/
+- There is some catch22 with pkgconfig dependant on glib, and vice versa.. 
+
 
 Check on the server to find FASTX: 
+```
 /usr/local/ngseq/stow/fastx-toolkit_0.0.13s
+```
 
-
-# 1: Uncompress tarball
+*1: Uncompress tarball*
 
 To uncompress them, execute the following command(s) depending on the extension:
+```
 $ tar zxf file.tar.gz
 $ tar zxf file.tgz
 $ tar jxf file.tar.bz2
 $ tar jxf file.tbz2
+```
 
 
-
-Barcode splitting with FASTX toolkit
+###Barcode splitting with FASTX toolkit
 
 test for H1 
 
-#Decompress files
+1. Decompress files
+```
 pigz -dc 20150225.A-H1_R1.fastq.gz > H1.fastq
+```
 
-#send to fast_barcode_splitter
+2. send to fast_barcode_splitter
+```
+cat H1.fastq | /usr/local/ngseq/stow/fastx_toolkit-0.0.13/bin/fastx_barcode_splitter.pl --bcfile barcodes_fastx_H1 --prefix H1_fastx --bol --mismatches 1
+```
 
->cat H1.fastq | /usr/local/ngseq/stow/fastx_toolkit-0.0.13/bin/fastx_barcode_splitter.pl --bcfile barcodes_fastx_H1 --prefix H1_fastx --bol --mismatches 1
+*process_radtags*
 
+-what could the problem be with the process with process_radtags? 
+-most of the loss (avg = 26%) is from “no ragtag”. Which I think means no restriction site.. 
 
+-> reprocess H1 with process_radtags, but remove the enzyme check and include the cut site in the barcode. (If your enzyme is not yet supported by Stacks use the --disable_rad_check option)
 
-
-process_radtags
-
-#what could the problem be with the process with process_radtags? 
-# most of the loss (avg = 26%) is from “no ragtag”. Which I think means no restriction site.. 
-
-#reprocess H1 with process_radtags, but remove the enzyme check and include the cut site in the barcode. (If your enzyme is not yet supported by Stacks use the --disable_rad_check option)
-
-> /usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz -o ./H1 -y fastq -b ~/barcodes -e ecoRI -r -c -q
-
+```
+/usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz -o ./H1 -y fastq -b ~/barcodes -e ecoRI -r -c -q
+```
 
 
 Compared with Simone’s example: 
 
+##insert table here..
 
-
-#but don’t specify an enzyme, and use the modified barcode file:
-> mkdir H1 
-> /usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz -o ./H1 -y fastq -b ~/barcodes_RE --disable_rad_check -r -c -q -D
-
-#this takes a few mins to run (>30min per lane)
-
-
-
-
-
-
-
-
+but don’t specify an enzyme, and use the modified barcode file:
+```
+mkdir H1 
+/usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz -o ./H1 -y fastq -b ~/barcodes_RE --disable_rad_check -r -c -q -D
+```
+this takes a few mins to run (>30min per lane)
 
 
 So there is very little differences between these two options of processing. Both remove ~35%, of which 20% is PhiX. So around 15% filtered based on barcodes.. 
 
-#repeat allowing 2 mismatches
+-> repeat allowing 2 mismatches
 
->> mkdir H1.2 
-> /usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz -o ./H1.2 -y fastq -b ~/barcodes_RE --disable_rad_check -r -c -q -D —barcode_dist_1 2
-
-
-
+```
+mkdir H1.2 
+/usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz -o ./H1.2 -y fastq -b ~/barcodes_RE --disable_rad_check -r -c -q -D —barcode_dist_1 2
+```
 
 
 So, a 6% gain in sequences. But the % of sequences filtered for quality has increased. Why? 
@@ -104,9 +102,7 @@ So, a 6% gain in sequences. But the % of sequences filtered for quality has incr
 To check whether the 2mm might be resulting in an excess loss or gain between barcodes, I plot a regression between the read counts of 1mm vs 2mm. 
 
 
-
-
-
+###insert plot here
 
 
 
@@ -121,45 +117,54 @@ To check whether the 2mm might be resulting in an excess loss or gain between ba
 
 And looked at the table of sequence counts: if some samples are losing sequences, while others gain, then these sequences are likely incorrectly assigned to the new barcode. This is indeed the case with my data: 
 
+##insert table here
+
+
+*Optimal mm: 1*
 
 
 
-Optimal mm: 1
+###Secure copy files onto and from the server
+```
+scp -r alexjvr@gdcsrv1.ethz.ch:popgts_c94d6_20150525/* .
+```
 
-
-
-##Secure copy files onto and from the server
-
->scp -r alexjvr@gdcsrv1.ethz.ch:popgts_c94d6_20150525/* .
-
-
-Filter for Adapters
+##Filter for Adapters
 
 Christine recommends AdapterRemoval. This is her example code
 
->AdapterRemoval --file1 <(zcat $wGBS/$R1) --file2 <(zcat $wGBS/$R2)  --trimns --trimqualities --minquality 20 --collapse --minlength 50 --qualitybase 33 --pcr1 AGATCGGAAGAGCGGTTCAGCAGGAATGCCGAG --pcr2 AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT --basename $COLL/$trunk >& $wGBS/logfiles/AdRem_$trunk.log
+```
+AdapterRemoval --file1 <(zcat $wGBS/$R1) --file2 <(zcat $wGBS/$R2)  --trimns --trimqualities --minquality 20 --collapse --minlength 50 --qualitybase 33 --pcr1 AGATCGGAAGAGCGGTTCAGCAGGAATGCCGAG --pcr2 AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT --basename $COLL/$trunk >& $wGBS/logfiles/AdRem_$trunk.log
+```
 
+set up barcode and raw data file on the mac: 
+```
+/NGSpipelines/Filter1
+```
 
-set up barcode and raw data file on the mac: /NGSpipelines/Filter1
 Run process_radtags (only -r: rescue radtags. -c -q filters removed, since data will be cleaned downstream): 
->process_radtags -i fastq -f 20141219.B-p276_h2_R1.fastq -o . -y fastq -b barcode_H2 -e ecoRI -r
-
+```
+process_radtags -i fastq -f 20141219.B-p276_h2_R1.fastq -o . -y fastq -b barcode_H2 -e ecoRI -r
 
 215305263 total sequences;
   17389044 ambiguous barcode drops;
   0 low quality read drops;
   30108440 ambiguous RAD-Tag drops;
 167807779 retained reads.
+```
 
 This means a loss of only ~3% of the reads. 
 
-3. Run AdapterRemoval on demultiplexed data
->adapterremoval --file1 csee_02.fq --basename AdRem_$.trunk --trimns --trimqualities --minquality 20 --adapter1 AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT
+##3. Run AdapterRemoval on demultiplexed data
+```
+adapterremoval --file1 csee_02.fq --basename AdRem_$.trunk --trimns --trimqualities --minquality 20 --adapter1 AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT
+```
 
 Some of the removed sequences were part of the AATT EcoRI cutsite. So rerun the demultiplexing and remove the cutsite: 
 
 Redo this with the disable_rad_check option selected (barcode file should be updated to include the cutsite) 
 
+```
 GCATGAATT       shwe_09
 AACCAAATT       shwe_11
 CGATCAATT       csee_02
@@ -174,56 +179,63 @@ AATTAAATT       csee_10
 ACGGTAATT       csee_11
 ACTGGAATT       csee_12
 ACTTCAATT       csee_13
-
->process_radtags -i fastq -f 20141219.B-p276_h2_R1.fastq -o . -y fastq -b barcode_H2 --disable_rad_check -r -D
+```
+```
+process_radtags -i fastq -f 20141219.B-p276_h2_R1.fastq -o . -y fastq -b barcode_H2 --disable_rad_check -r -D
 
 215305263 total sequences;
   47501389 ambiguous barcode drops;
   0 low quality read drops;
   0 ambiguous RAD-Tag drops;
 167803874 retained reads.
+```
 
 20% PhiX
 ~2.5% lost sequences
 
->adapterremoval --file1 csee_02.fq --basename AdRem --trimns --trimqualities --minquality 20 --adapter1 AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT
+```
+adapterremoval --file1 csee_02.fq --basename AdRem --trimns --trimqualities --minquality 20 --adapter1 AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT
+```
 
 And batch script: 
->for x in *.fq
->do adapterremoval --file1 ${x} --basename AdRem_${x} --trimns --trimqualities --minquality 20 --adapter1 AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT
->done
+```
+for x in *.fq
+do adapterremoval --file1 ${x} --basename AdRem_${x} --trimns --trimqualities --minquality 20 --adapter1 AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT
+done
+```
 
-
-2. PyRAD tests     
+##PyRAD tests     
 TEST pyRAD with SE ddRAD test data on server 
 
-Tutorial from
+Tutorial from:
  http://nbviewer.ipython.org/gist/dereneaton/dc6241083c912519064e/tutorial_ddRAD_3.0.4.ipynb
 
+```
 %%bash
 ## download the data
 wget -q http://www.dereneaton.com/downloads/simddrads.zip
 ## unzip the data
 unzip simddrads.zip
 
-
-
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -n
 
-	new params.txt file created
+	#new params.txt file created
 
 %%bash
 nano params.txt
+```
 
-##change the path to vsearch: /usr/local/ngseq/src/vsearch-1.1.3/vsearch
-##change the path to muscle: /usr/local/ngseq/src/muscle-3.8.31/muscle
+-> change the path to vsearch: /usr/local/ngseq/src/vsearch-1.1.3/vsearch
+->change the path to muscle: /usr/local/ngseq/src/muscle-3.8.31/muscle
+```
 %%bash
 sed -i '/## 4. /c\/usr/local/ngseq/src/vsearch-1.1.3/vsearch    ## 4. vsearch... ' ./params.txt
 sed -i '/## 5. /c\/usr/local/ngseq/src/muscle-3.8.31/muscle    ## 5. muscle... ' ./params.txt
+```
 
-
-Change the other parameters:
+->Change the other parameters:
+```
 %%bash
 sed -i '/## 6. /c\TGCAG,AATT                 ## 6. cutsites... ' ./params.txt
 sed -i '/## 10. /c\.85                       ## 10. lowered clust thresh' ./params.txt
@@ -232,50 +244,62 @@ sed -i '/## 14. /c\c85d6m4p3                 ## 14. prefix name ' ./params.txt
 sed -i '/## 19./c\0                     ## 19. errbarcode... ' ./params.txt
 sed -i '/## 24./c\10                    ## 24. maxH... ' ./params.txt
 sed -i '/## 30./c\*                     ## 30. outformats... ' ./params.txt
+```
 
-##Demultiplexing step
+###Demultiplexing step
+```
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 1
+```
 
-Follow the tutorial… 2. Quality filtering. 
+Follow the tutorial… 
 
+*2. Quality filtering* 
+```
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 2
+```
 
-3. Within-sample clustering
+*3. Within-sample clustering*
+```
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 3
+```
 
-Steps 4 & 5: Consensus base calling
+*Steps 4 & 5: Consensus base calling*
+```
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 4
 
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 5
+```
 
-Step 6: Across-sample clustering
-
+*Step 6: Across-sample clustering*
+```
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 6
+```
 
-Step 7: Statistics and output files
-
+*Step 7: Statistics and output files*
+```
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 7
+```
 
 
 
-
-H1 pyRAD with SE ddRAD test run on server 
+###H1 pyRAD with SE ddRAD test run on server 
 
 Tutorial from http://nbviewer.ipython.org/gist/dereneaton/dc6241083c912519064e/tutorial_ddRAD_3.0.4.ipynb
 
-%%bash
-## symlink to my data in /srv/kenlab/alexjvr_p1795/pyrad$
->ln -s /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz
+symlink to my data in /srv/kenlab/alexjvr_p1795/pyrad$
+```
+ln -s /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz
+```
 
-##update barcode file for the run (insert sample names): 
-
+update barcode file for the run (insert sample names): 
+```
 oalp01  GCATG
 oalp02  AACCA
 oalp03  CGATC
@@ -287,27 +311,29 @@ oalp08  AAGGA
 oalp09  AGCTA
 oalp10  ACACA
 tals01  AATTA
+```
 
-
+create new params.txt file
+```
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -n
+```
 
-	new params.txt file created
-
-##change the path to vsearch: /usr/local/ngseq/src/vsearch-1.1.3/vsearch
-##change the path to muscle: /usr/local/ngseq/src/muscle-3.8.31/muscle
-
+change the path to vsearch: /usr/local/ngseq/src/vsearch-1.1.3/vsearch
+change the path to muscle: /usr/local/ngseq/src/muscle-3.8.31/muscle
+```
 %%bash
 nano params.txt
-
+```
  OR 
-
+```
 %%bash
 sed -i '/## 4. /c\/usr/local/ngseq/src/vsearch-1.1.3/vsearch    ## 4. vsearch... ' ./params.txt
 sed -i '/## 5. /c\/usr/local/ngseq/src/muscle-3.8.31/muscle    ## 5. muscle... ' ./params.txt
-
+```
 
 Change the other parameters:
+```
 %%bash
 
 sed -i '/## 1. /c\./	                ## 1. working directory ' ./params.txt
@@ -327,46 +353,52 @@ sed -i '/## 21./c\10                    ## 21. check for adapter... ' ./params.t
 sed -i '/## 24./c\10                    ## 24. maxH... ' ./params.txt
 sed -i '/## 30./c\*                     ## 30. outformats... ' ./params.txt
 sed -i '/## 34./c\2                     ## 34. excludesingletons... ' ./params.txt
+```
 
-##Demultiplexing step
+Demultiplexing step
+```
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 1
-
+```
 OR 
 
-#demultiplex with process radtags and refer to demultiplexed files in params.txt
+demultiplex with process radtags and refer to demultiplexed files in params.txt
 
+```
 sed -i '/## 18. /c\/srv/kenlab/alexjvr_p1795/Seqcount_processRadtags_20150316/H1.1/*.fq                     ## 18.demultiplexed H1(1mm)  ' ./params.txt
+```
 
-Follow the tutorial… 2. Quality filtering. 
+Follow the tutorial… 
 
+```
+#2. Quality filtering. 
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 2
 
-3. Within-sample clustering (~2hrs/lane)
+#3. Within-sample clustering (~2hrs/lane)
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 3
 
-Steps 4 & 5: Consensus base calling (step 4 <9hrs, 5 <1.5hrs)
+#Steps 4 & 5: Consensus base calling (step 4 <9hrs, 5 <1.5hrs)
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 4
 
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 5
 
-Step 6: Across-sample clustering
+#Step 6: Across-sample clustering
 
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 6
 
-Step 7: Statistics and output files
+#Step 7: Statistics and output files
 
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 7
+```
 
-
-H1.2 - less stringent filtering
-
+###H1.2 - less stringent filtering
+```
 sed -i '/## 1. /c\./	                ## 1. working directory ' ./params.txt
 sed -i '/## 2. /c\/srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz                ## 2. Raw data H1 ' ./params.txt
 sed -i '/## 3. /c\barcodesH1                 ## 3. barcodes ' ./params.txt
@@ -385,10 +417,11 @@ sed -i '/## 24./c\10                    ## 24. maxH... ' ./params.txt
 sed -i '/## 30./c\*                     ## 30. outformats... ' ./params.txt
 sed -i '/## 32./c\50                    ## 32. keeptrimmed >50... ' ./params.txt
 sed -i '/## 34./c\2                     ## 34. excludesingletons... ' ./params.txt
+```
 
-
-12 April - H1.3 (started 18:00)
-
+*12 April 2015*
+###H1.3 (started 18:00)
+```
 ==** parameter inputs for pyRAD version 3.0.4  **======================== affected step ==
 ./                ## 1. working directory 
                   ## 2. raw data
@@ -429,7 +462,7 @@ H1.3                 ## 14. prefix name
                        ## 36.opt.: repeat masking (def.=1='dust' method, 0=no)      (s3,s6)
                        ## 37.opt.: vsearch max threads per job (def.=6; see docs)   (s3,s6)
 ==== optional: list group/clade assignments below this line (see docs) ==================
-
+```
 
 Slightly more SNPs, but still much lower than expected: 5363 unlinked SNPs
 
@@ -437,9 +470,10 @@ Slightly more SNPs, but still much lower than expected: 5363 unlinked SNPs
 — Remember to plot heterozygosity to test this. 
 
 
-Within population pyrad
+##Within population pyrad
 
 I ran pyrad on shwe and wdji independently
+```
 ==** parameter inputs for pyRAD version 3.0.4  **======================== affected step ==
 ./                ## 1. working directory 
                   ## 2. raw data
@@ -480,9 +514,10 @@ wdji                 ## 14. prefix name
                        ## 36.opt.: repeat masking (def.=1='dust' method, 0=no)      (s3,s6)
                        ## 37.opt.: vsearch max threads per job (def.=6; see docs)   (s3,s6)
 
+```
 
 Final SNPs for 
-wdji: 
+*wdji*: 
 
 total var= 32712
 total pis= 19752
@@ -502,7 +537,7 @@ wdji_11 105577  6.251   34.371  22655   19.313  72.696  0
 wdji_14 84905   5.749   41.297  16106   18.997  93.649  0
 
 
-stls: 
+*stls*: 
 
 total var= 35813
 total pis= 21241
@@ -523,11 +558,11 @@ stls_16 100956  6.327   30.649  22385   19.051  63.444  0
 
 
 
-H1.5
+###H1.5
 
-I will rerun H01 samples together, with the same params.txt file as in H1.4, but with less samples for the minimum clustering > decreased from 20 to 8. 
+I will rerun H01 samples together, with the same params.txt file as in H1.4, but with less samples for the minimum clustering -> decreased from 20 to 8. 
 Note. I am still excluding singletons in my runs. I will test the hierarchical search next.
-
+```
 ==** parameter inputs for pyRAD version 3.0.4  **======================== affected step ==
 ./                ## 1. working directory 
                   ## 2. raw data
@@ -579,11 +614,11 @@ sampled unlinked SNPs= 15766
 sampled unlinked bi-allelic SNPs= -56114
 
 Avg depth 5.3-8.6x
+```
 
-
-H1.6
+###H1.6
 Decrease the mincov, and include singletons, to get an idea of all the loci at different levels of coverage. 
-
+```
 .80                       ## 10. clust thresh ~5bpmm
 2                     ## 12. high mincov 
                      ## 34. include singletons... 
@@ -595,9 +630,12 @@ total pis= 124847
 sampled unlinked SNPs= 79092
 sampled unlinked bi-allelic SNPs= -139816
 
-Avg depth Formal pyrad tests
+Avg depth 
+```
 
-Aim:
+##Formal pyrad tests
+
+*Aim*:
 
 To test optimal clustering conditions (85 - 99%)
 To test sensitivity do depth (6-10)
@@ -607,7 +645,7 @@ Tests will be set up with the following parameters. First I will vary the covera
 ETHZ servers: pyrad v. 3.0.3 - max 20 cores
 FGCZ servers: pyrad v. 3.0.4 - max 8 cores
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 3
-
+```
 ==** parameter inputs for pyRAD version 3.0.3  **======================== affected step ==
 ./                          ## 1. Working directory                                 (all)
                ## 2. Loc. of non-demultiplexed files (if not line 16)  (s1)
@@ -645,13 +683,13 @@ c88d6m4p3                   ## 14. Prefix name for final output (no spaces)     
                        ## 33.opt.: max stack size (int), def= max(500,mean+2*SD)    (s3)
 2                       ## 34.opt.: minDerep: exclude dereps with <= N copies, def=1 (s3)
                        ## 35.opt.: use hierarchical clustering (def.=0, 1=yes)      (s6)
-
+```
 
 
 
 I will use 2 samples each from the following 14 populations: 
 
-
+##insert map here
 
 
 
@@ -662,19 +700,21 @@ C88d8  - fgcz (8cores) started: 17:05 19April2015
 C88d10 - fgcz (8cores) started: 10:50 19April2015 - 17:00 19April2015
 
 
-(20150423)
+*23 April 2015*
 Rerun wdji at c94d6 (on fgcz)
 
 location of demultiplexed wdji samples
->/srv/kenlab/alexjvr_p1795/Seqcount_processRadtags_20150316/H1.1
-> /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 3
+```
+/srv/kenlab/alexjvr_p1795/Seqcount_processRadtags_20150316/H1.1
+/usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 3
+```
 
+####Start the first big pyRAD run to see how long it will take: 
+*23 April 2015 @ 19:23*
 
-**Start the first big pyRAD run to see how long it will take: 
-20150423 @ 19:23
 
 All demultiplexed samples from H1-9
-
+```
 ==** parameter inputs for pyRAD version 3.0.3  **======================== affected step ==
 ./                          ## 1. Working directory                                 (all)
                 ## 2. Loc. of non-demultiplexed files (if not line 16)  (s1)
@@ -714,42 +754,54 @@ H1-9_c94d6m4                   ## 14. Prefix name for final output (no spaces)  
                        ## 35.opt.: use hierarchical clustering (def.=0, 1=yes)      (s6)
                        ## 36.opt.: repeat masking (def.=1='dust' method, 0=no)      (s3,s6)
                        ## 37.opt.:  max threads per job (def.=6; see docs)   (s3,s6)
+```
 
-Follow the tutorial… 2. Quality filtering.  (23 April, 19:25-23:21  4hours)
-
+Follow the tutorial… 
+2. Quality filtering.  (23 April, 19:25-23:21  4hours)
+```
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 2
+```
 
 3. Within-sample clustering (~2hrs/lane)   (23:21- 10:34, 24apr, 11hours)
+```
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 3
+```
 
 Steps 4: Joint estimate of H and error (~9hrs/lane) (4:15 26Apr,    42hrs)
+```
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 4
+```
 
 Steps 5: Consensus base calling (~1.5hrs/lane) (26Apr, 14:41;   10.5hrs)
+```
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 5  
+```
 
 Step 6: Across-sample clustering  (22:30, 26Apr;   8hrs)
+```
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 6
+```
 
 >>>Note that there was a bug with pyrad, so that s7 would not work. I had to wait for the bug fix before I could run it. 
 Herbert updated pyrad on the fgcz server first. I have transferred the folder (c94d6H1.9) to fgcz to run s7. 
 
-5May2015
+*5 May 2015*
 The bug fix didn’t work. I’m not sure what the problem is now. 
 I ran one of the earlier versions of pyrad since it was run on the gdcsrv1. I could try to run the latest  version of pyrad on the gdc server, as Stefan has just updated it. 
 
 Waiting for Tim’s run to finish.. Should be in a few hours time. 
 
-Step 7: Statistics and output files
 
+###Step 7: Statistics and output files
+```
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 7
-
+```
 
 Reruns of pyrad
 I can’t find the problem with the pyrad run. But it has been updated to v3.0.6 on the GDC and FGCZ servers. 
@@ -769,17 +821,19 @@ I’ve set this ridiculously high, since I’m worried that I’ll be losing loc
 Next step: 
 SNP filtering with VCFtools. 
 
-SNP filtering
+##SNP filtering
 I’m using VCFtools for filtering. v. 1.12b is on the gdcserver. 
-Documentation for VCFtools: http://vcftools.sourceforge.net/perl_module.html#vcf-filter
-For VCFtools filtering options: http://vcftools.sourceforge.net/man_0112b.html
 
-For the initial run, I will use the ddocent tutorial: https://github.com/jpuritz/dDocent/blob/master/tutorials/Filtering%20Tutorial.md
+- Documentation for VCFtools: http://vcftools.sourceforge.net/perl_module.html#vcf-filter
+- For VCFtools filtering options: http://vcftools.sourceforge.net/man_0112b.html
+
+For the initial run, I will use the ###ddocent tutorial: https://github.com/jpuritz/dDocent/blob/master/tutorials/Filtering%20Tutorial.md
 
 
-##To make this file more manageable. Let's start by a three step filter. We are going to only keep variants that have been successfully genotyped in 50% of individuals, a minimum quality score of 30, and a minor allele count of 3.
+To make this file more manageable. Let's start by a three step filter. We are going to only keep variants that have been successfully genotyped in 50% of individuals, a minimum quality score of 30, and a minor allele count of 3.
 
->vcftools --vcf outfiles/H1-9_c94d6.vcf --max-missing 0.5 --mac 3 --recode --recode-INFO-all --out raw.g5mac3
+```
+vcftools --vcf outfiles/H1-9_c94d6.vcf --max-missing 0.5 --mac 3 --recode --recode-INFO-all --out raw.g5mac3
 
 Parameters as interpreted:
 	--vcf outfiles/H1-9_c94d6.vcf
@@ -794,9 +848,10 @@ After filtering, kept 432 out of 432 Individuals
 Outputting VCF file...
 After filtering, kept 55356 out of a possible 504183 Sites
 Run Time = 149.00 seconds
+```
 
-
->vcftools --vcf raw.g5mac3.recode.vcf --minDP 3 --recode --recode-INFO-all --out raw.g5mac3dp3 
+```
+vcftools --vcf raw.g5mac3.recode.vcf --minDP 3 --recode --recode-INFO-all --out raw.g5mac3dp3 
 
 Parameters as interpreted:
 	--vcf raw.g5mac3.recode.vcf
@@ -809,17 +864,23 @@ After filtering, kept 432 out of 432 Individuals
 Outputting VCF file...
 After filtering, kept 55356 out of a possible 55356 Sites
 Run Time = 41.00 seconds
+```
 
->vcftools --vcf raw.g5mac3dp3.recode.vcf --missing-indv 
-##this creates a .imiss file with missing data per individual. 
+Creates a .imiss file with missing data per individual. 
+```
+vcftools --vcf raw.g5mac3dp3.recode.vcf --missing-indv 
+```
 
-20150610
-##to draw a histogram of this: 
-	#first make a file with only the missing data proportions included
->mawk ‘!/IN/‘ out.imiss | cut -f5 > totalmissing
+*10 June 2015*
+to draw a histogram of this: 
+	1. first make a file with only the missing data proportions included
 
-	#plot using gnuplot
->gnuplot << \EOF 
+```
+mawk ‘!/IN/‘ out.imiss | cut -f5 > totalmissing
+```
+	2. plot using gnuplot
+```
+gnuplot << \EOF 
 set terminal dumb size 120, 30
 set autoscale 
 unset label
@@ -832,47 +893,63 @@ bin(x,width)=width*floor(x/width) + binwidth/2.0
 plot 'totalmissing' using (bin( $1,binwidth)):(1.0) smooth freq with boxes
 pause -1
 EOF
+```
+
+For H1-9 the data looks like this: 
+##insert graph here
 
 
-##For H1-9 the data looks like this: 
 
 
-#So this means that most of the missing data is below 50%. I’ll make 50% my cut-off for now. Some individuals have dropped out completely. 
+So this means that most of the missing data is below 50%. I’ll make 50% my cut-off for now. Some individuals have dropped out completely. 
 
-#First, make a list of all the individuals with >50% missing data
->mawk ‘$5 > 0.5’ out.imiss | cut -f1 > lowDP.indiv
 
-#count the number of indivs in the file
->wc -l lowDP.indiv
+1. First, make a list of all the individuals with >50% missing data
+```
+mawk ‘$5 > 0.5’ out.imiss | cut -f1 > lowDP.indiv
+```
+
+2. count the number of indivs in the file
+```
+wc -l lowDP.indiv
 26
+```
 
-#Calculate the % 
-	#scale tells you how many decimal places
->(echo scale=3; echo "26/430") | bc
+3Calculate the % 
+	-scale tells you how many decimal places
+```
+(echo scale=3; echo "26/430") | bc
 0.060
+```
 
-##So if I filter for 50% missingness, I lose 26/430 indivs = 6%
-
-
-#Now we use vcf tools to filter out these individuals. 
->vcftools --vcf raw.g5mac3.recode.vcf --remove lowDP.indiv --recode --recode-INFO-all --out raw.g5mac3dplm
+So if I filter for 50% missingness, I lose 26/430 indivs = 6%
 
 
-#make a file with population information
-	#cut all the individual names into a file
->mawk ‘$1’ out.imiss | cut -f1 > popmap
+Now we use *vcf tools* to filter out these individuals. 
+```
+vcftools --vcf raw.g5mac3.recode.vcf --remove lowDP.indiv --recode --recode-INFO-all --out raw.g5mac3dplm
+```
 
-	#for the second column cut the population name out of the individual name
-	#and add this as a second column in popmap
->cut -c-4 out.imiss > pop
+1. make a file with population information
+	-cut all the individual names into a file
+```
+mawk ‘$1’ out.imiss | cut -f1 > popmap
+```
+	- for the second column cut the population name out of the individual name
+	and add this as a second column in popmap
+```
+cut -c-4 out.imiss > pop
 	**useful info about cut here: http://www.thegeekstuff.com/2013/06/cut-command-examples/
->paste popmap pop > popfile
-
-	#but now the headings for both columns is INDIV. To change this
->awk '$1=="INDV"{$2="POP"}1' popfile > popfile2
+paste popmap pop > popfile
+```
+	but now the headings for both columns is INDIV. To change this
+```
+awk '$1=="INDV"{$2="POP"}1' popfile > popfile2
+```
 
 #Now according to the tutorial, we should filter for loci with >10% missing data. I will try this and see how many loci are left. 
->vcftools --vcf raw.g5mac3dplm.recode.vcf --max-missing 0.10 --maf 0.05 --recode --recode-INFO-all --out DP3g95maf05 --min-meanDP 20
+```
+vcftools --vcf raw.g5mac3dplm.recode.vcf --max-missing 0.10 --maf 0.05 --recode --recode-INFO-all --out DP3g95maf05 --min-meanDP 20
 
 Parameters as interpreted:
 	--vcf raw.g5mac3dplm.recode.vcf
@@ -888,16 +965,21 @@ Outputting VCF file...
 After filtering, kept 0 out of a possible 55356 Sites
 No data left for analysis!
 Run Time = 5.00 seconds
+```
 
-#Okay, so I have more than 10% missing data across all loci. So perhaps I can do a similar graph of the proportion of missing data as for the per individual missing data. 
+Okay, so I have more than 10% missing data across all loci. So perhaps I can do a similar graph of the proportion of missing data as for the per individual missing data. 
 But this is a bit more difficult, because it’s something I’ll have to calculate. And I’m not sure how missing data is coded. (N?)
 
-#Changed the max missing data to 40% and then to 60%, but I’m still filtering out all of the loci. So something else is wrong here. 
-#Actually I think it was the Min-DP 20 flag that was probably filtering everything out. 
-#Yep
-#So filtering for 5% missing data: (this is the same up to 40% missing, since I filtered for this during the pyrad run)
+->Changed the max missing data to 40% and then to 60%, but I’m still filtering out all of the loci. So something else is wrong here. 
 
->vcftools --vcf raw.g5mac3dplm.recode.vcf --max-missing 0.05 --maf 0.05 --recode --recode-INFO-all --out DP3g95maf05
+->Actually I think it was the Min-DP 20 flag that was probably filtering everything out. 
+
+->Yep
+
+->So filtering for 5% missing data: (this is the same up to 40% missing, since I filtered for this during the pyrad run)
+
+```
+vcftools --vcf raw.g5mac3dplm.recode.vcf --max-missing 0.05 --maf 0.05 --recode --recode-INFO-all --out DP3g95maf05
 
 VCFtools - v0.1.12b
 (C) Adam Auton and Anthony Marcketta 2009
@@ -914,36 +996,44 @@ After filtering, kept 407 out of 407 Individuals
 Outputting VCF file...
 After filtering, kept 26289 out of a possible 55356 Sites
 Run Time = 15.00 seconds
+```
+
+I end up with #~26000 SNPs
+(pretty good!) This means one locus every ~140Mb. Not amazing resolution, but still alright. 
+
+->so most of the rest of the filters in the tutorial were already applied during the pyrad run (depth, quality.. ) and the rest are for paired sequences, so are irrelevant. 
+
+->Final filter is for HWE. This needs to be per population (although this assumes a priori knowledge of population structure.. )
+
+*PCA*
+-I will fist do a PCA on the SNPs that I have and then run the filter for HWE
 
 
-##I end up with ~26000 SNPs (pretty good!). This means one locus every ~140Mb. Not amazing resolution, but still alright. 
 
-#so most of the rest of the filters in the tutorial were already applied during the pyrad run (depth, quality.. ) and the rest are for paired sequences, so are irrelevant. 
-
-#Final filter is for HWE. This needs to be per population (although this assumes a priori knowledge of population structure.. )
-
-#I will fist do a PCA on the SNPs that I have and then run the filter for HWE
-#For sampling with low depth and many individuals, it makes sense to incorporate probabilistic models into calling loci rather than hard filters. This can be applied to data from de Novo assembly or from mapping. Some packages from the Nielsen lab have recently been released: 
+-For sampling with low depth and many individuals, it makes sense to incorporate probabilistic models into calling loci rather than hard filters. This can be applied to data from de Novo assembly or from mapping. Some packages from the Nielsen lab have recently been released: 
 ngsTools and ANGSD
 
-#I’ve done the basic filtering which they require: i.e. remove bad individuals and spurious loci - apart from the HWE filter. 
-#So now I will use the ngsTools to run some basic pop stats. 
+->I’ve done the basic filtering which they require: i.e. remove bad individuals and spurious loci - apart from the HWE filter. 
+->So now I will use the ngsTools to run some basic pop stats. 
 
-#After deNovo assembly (or mapping) and basic filtering, use the program ANGSD to calculate genotype likelihoods. 
+After deNovo assembly (or mapping) and basic filtering, use the program ANGSD to calculate genotype likelihoods. 
 
-#ANGSDwebsites: https://github.com/ANGSD/angsd
-#Tutorial: http://cgrlucb.wikispaces.com/file/view/CGRL_SNP_workshop.pdf
-#ngsTools: https://github.com/mfumagalli/ngsTools/blob/master/TUTORIAL.md
+ANGSDwebsites: https://github.com/ANGSD/angsd
+Tutorial: http://cgrlucb.wikispaces.com/file/view/CGRL_SNP_workshop.pdf
+ngsTools: https://github.com/mfumagalli/ngsTools/blob/master/TUTORIAL.md
 
-		I have no idea how to make this work with de novo data or with .vcf files!!
+		###I have no idea how to make this work with de novo data or with .vcf files!!
 
-#So, I will just try to get pair-wise Fst using vcftools for now. I need a file with individual names for each population
-#First, split the population file (with indivs + pops) by population into different files
-> awk '{print > $2}' popfile 
-
-#no need to remove population names. 
-#run the Fst e.g. for 2 pops:
->vcftools --vcf DP3g95maf05.recode.vcf --weir-fst-pop stba --weir-fst-pop bela --out stba_vs_bela
+So, I will just try to get pair-wise Fst using vcftools for now. I need a file with individual names for each population
+->First, split the population file (with indivs + pops) by population into different files
+```
+awk '{print > $2}' popfile 
+```
+no need to remove population names. 
+run the Fst e.g. for 2 pops:
+```
+vcftools --vcf DP3g95maf05.recode.vcf --weir-fst-pop stba --weir-fst-pop bela --out stba_vs_bela
+```
 
 So, I can get this to work for 2 populations, but it just calculates an average fst when I input more pops. 
 Still have no idea how to get from the filtered SNPs to basic summary stats… 
@@ -958,150 +1048,186 @@ Still have no idea how to get from the filtered SNPs to basic summary stats…
 
 
 
-Sensitivity analyses: 
-SNPs vs nr of individuals (sensitivity analysis)
-Nucleotide diversity vs nr individuals
-Fst vs nr of individuals 
+##Sensitivity analyses: 
+1. SNPs vs nr of individuals (sensitivity analysis)
+2. Nucleotide diversity vs nr individuals
+3. Fst vs nr of individuals 
 
 
 Basic comparisons: 
-Average and range of depth
-Depth across lanes
-Depth across populations
-SNPs per population
-Missing data per population
+- Average and range of depth
+- Depth across lanes
+- Depth across populations
+- SNPs per population
+- Missing data per population
 
 
-Statistics
-PCA
-Hierarchical PCA
-Fst between these populations
-nucleotide diversity per population
-Nucleotide diversity per elevation
+###Statistics
+- PCA
+- Hierarchical PCA
+- Fst between these populations
+- nucleotide diversity per population
+- Nucleotide diversity per elevation
 
 
 
-3. Mapping tests
+##3. Mapping tests
 
-3April 2013
+*3 April 2013*
 
 Received the R.temporaria draft genome from Alan. This is the information he sent me: 
 
-The genome itself is pretty rough; it amounts to 35% of the expected genome size, and the scaffold n50 is only 924 bp. On the other hand, 98% of the CEGMA core genes are at least partially represented, so I think it includes most of the non-repetitive part of the genome, and the missing 3 Gbp is enriched for repeats. About 10% of the genome assembly can be assigned to a position in X. tropicalis.
+*The genome itself is pretty rough; it amounts to 35% of the expected genome size, and the scaffold n50 is only 924 bp. On the other hand, 98% of the CEGMA core genes are at least partially represented, so I think it includes most of the non-repetitive part of the genome, and the missing 3 Gbp is enriched for repeats. About 10% of the genome assembly can be assigned to a position in X. tropicalis.
 
-Assembling the genome took quite a bit of time and effort, so if you decide to use it, I would like to be included as a coauthor on one paper. Is this something you and Josh are open to?
+Assembling the genome took quite a bit of time and effort, so if you decide to use it, I would like to be included as a coauthor on one paper. Is this something you and Josh are open to?*
 
-File name: Rtk43.fa.gz (473Mb)
+File name: 
+####Rtk43.fa.gz (473Mb)
 
 
 I will run a test alignment with H2 on my mac laptop: 
 
 Using information from http://ged.msu.edu/angus/tutorials-2013/bwa-tutorial.html
 
-##bwa
+###bwa
+```
+brew install bwa
+mkdir ~/NGSpipelines/mapping/bwaH2
+cd ~/NGSpipelines/mapping/bwaH2
+cp ~/phd_20150212/2_Data/Rtk43.fa.gz .
+```
 
->brew install bwa
->mkdir ~/NGSpipelines/mapping/bwaH2
->cd ~/NGSpipelines/mapping/bwaH2
->cp ~/phd_20150212/2_Data/Rtk43.fa.gz .
+index the genome (this took 2342.221 sec - 39min)
+```
+bwa index Rtk43.fa.gz
+```
 
-#index the genome (this took 2342.221 sec - 39min)
->bwa index Rtk43.fa.gz
+Align (this took 245012.827 sec - 68hrs for 215Mil reads)
+```
+bwa aln Rtk43.fa.gz ~/phd_20150212/2_Data/20141219.B-p276_h2_R1.fastq > Rt.H2.sai
+```
 
-#align (this took 245012.827 sec - 68hrs for 215Mil reads)
->bwa aln Rtk43.fa.gz ~/phd_20150212/2_Data/20141219.B-p276_h2_R1.fastq > Rt.H2.sai
-
-##convert the .sai file to SAM format
->bwa samse Rtk43.fa.gz Rt.H2.sai ~/phd_20150212/2_Data/20141219.B-p276_h2_R1.fastq > Rt.H2.sai.sam
-
+Convert the .sai file to SAM format
+```
+bwa samse Rtk43.fa.gz Rt.H2.sai ~/phd_20150212/2_Data/20141219.B-p276_h2_R1.fastq > Rt.H2.sai.sam
+```
 
 
-Processing the BWA and Bowtie output for use with Samtools
+####Processing the BWA and Bowtie output for use with Samtools
 
 Even the SAM file isn’t very useful unless we can get it into a program that generates more readable output or lets us visualize things in a more intuitive way. For now, we’ll get the output into a sorted BAM file so we can look at it using Samtools later.
 
-**Problems with brew. permission errors when symlinking to files. 
+*Problems with brew. permission errors when symlinking to files.* 
 
-Solution: http://developpeers.com/blogs/fix-for-homebrew-permission-denied-issues
+####Solution: http://developpeers.com/blogs/fix-for-homebrew-permission-denied-issues
 
+```
 ~ phabi$ sudo chown -R `whoami` /usr/local
 Password:
 ~ phabi$ brew link --overwrite node
 Linking /usr/local/Cellar/node/0.10.4... 5 symlinks created
+```
 
+Install samtools: 
+```
+brew install samtools
+```
 
-###Install samtools: 
->brew install samtools
+Like bwa, Samtools also requires us to go through several steps before we have our data in usable form. First, we need to have Samtools generate its own index of the reference genome:
+```
+gunzip Rtk43.fa.gz
+mkdir samtools
+cd samtools
+```
 
-##Like bwa, Samtools also requires us to go through several steps before we have our data in usable form. First, we need to have Samtools generate its own index of the reference genome:
->gunzip Rtk43.fa.gz
->mkdir samtools
->cd samtools
+Index the genome using samtools -this took 2985.120 sec i.e. 50min
+```
+samtools faidx  ~/NGSpipelines/mapping/bwaH2/Rtk43.fa
+```
 
-##index the genome using samtools -this took 2985.120 sec i.e. 50min
->samtools faidx  ~/NGSpipelines/mapping/bwaH2/Rtk43.fa
+Next, we need to convert the SAM file into a BAM file. (A BAM file is just a binary version of a SAM file.)  - ~40min
+```
+samtools import Rtk43.fa.fai Rt.H2.sai.sam Rt.H2.bam
+```
 
-##Next, we need to convert the SAM file into a BAM file. (A BAM file is just a binary version of a SAM file.)  - ~40min
->samtools import Rtk43.fa.fai Rt.H2.sai.sam Rt.H2.bam
+Now, we need to sort the BAM file (time: 1h15)
+```
+samtools sort Rt.H2.bam Rt.H2.bam.sorted
+```
 
-##Now, we need to sort the BAM file (time: 1h15)
->samtools sort Rt.H2.bam Rt.H2.bam.sorted
+And last, we need Samtools to index the BAM file (3min)
+```
+samtools index Rt.H2.bam.sorted.bam
+```
 
-##And last, we need Samtools to index the BAM file (3min)
->samtools index Rt.H2.bam.sorted.bam
-
-
-Optimise mapping parameters: 
-
+###Optimise mapping parameters: 
 
 Map individuals to the genome 26 - 28 May 2015
  
 Tutorial from: http://2013-caltech-workshop.readthedocs.org/en/latest/bwa_mapping.html
-Aim: mapping success per individual
+*Aim:* mapping success per individual
 
-map using bwa
-call SNPs using GATK/FreeBayes
+1. map using bwa
+2. call SNPs using GATK/FreeBayes
 
-##I will map wdji11 and stls03 to Rt genome
+*I will map wdji11 and stls03 to Rt genome*
 
+```
 mkdir /gdc_home4/alexjvr/mapping/wdji11_map_20150524
+```
 
-#index the reference (00.25-01:23)
+Index the reference (00.25-01:23)
+```
 bwa index -a bwtsw Rtk43.fa
+```
 
-#transfer wdji11.fq to the folder (demultiplexed file)
-#start bwa alignment using 2 cores (-t 2)  (9:17-9:47)
- >bwa aln -t 2 Rtk43.fa wdji_11.fq > wdji11_RtAln.sai
-#generate sam file (10:30-10:32)
->bwa samse Rtk43.fa wdji1_RtAln.sai wdji_11.fq > wdji11_RtAln.sam
+transfer wdji11.fq to the folder (demultiplexed file)
+start bwa alignment using 2 cores (-t 2)  (9:17-9:47)
+```
+bwa aln -t 2 Rtk43.fa wdji_11.fq > wdji11_RtAln.sai
+```
 
-#now use samtools to process the output into useful information
-#samtools needs to make it’s own index of the genome
->samtools faidx Rtk43.fa
+generate sam file (10:30-10:32)
+```
+bwa samse Rtk43.fa wdji1_RtAln.sai wdji_11.fq > wdji11_RtAln.sam
+```
 
-#this outputs a samtools indexed genome: Rtk43.fa.fai
+now use samtools to process the output into useful information
+samtools needs to make it’s own index of the genome
+```
+samtools faidx Rtk43.fa
+```
+this outputs a samtools indexed genome: Rtk43.fa.fai
 
-#convert the .sam output from bwa to a bam file
->samtools import Rtk43.fa.fai wdji11_RtAln.sam wdji11_RtAln.bam
+convert the .sam output from bwa to a bam file
+```
+samtools import Rtk43.fa.fai wdji11_RtAln.sam wdji11_RtAln.bam
+```
 
-#sort the .bam file (this step takes a while.. be patient)
->samtools sort wdji11_RtAln.bam wdji11_RtAln.sorted.bam
+sort the .bam file (this step takes a while.. be patient)
+```
+samtools sort wdji11_RtAln.bam wdji11_RtAln.sorted.bam
+```
 
-#and index the .bam file (takes 2sec - output is xx.bai)
->samtools index wdji11_RtAln.sorted.bam
+and index the .bam file (takes 2sec - output is xx.bai)
+```
+samtools index wdji11_RtAln.sorted.bam
+```
 
+##Variant calling
+now we have the aligned and indexed genome, we have to call SNPs. Christine uses GATK. Others use FreeBayes… 
 
-Variant calling
-#now we have the aligned and indexed genome, we have to call SNPs. Christine uses GATK. Others use FreeBayes… 
 According to this FreeBayes is currently the better variant caller:
 http://bcb.io/2013/10/21/updated-comparison-of-variant-detection-methods-ensemble-freebayes-and-minimal-bam-preparation-pipelines/
 
 And here is a FreeBayes tutorial: 
 http://clavius.bc.edu/~erik/CSHL-advanced-sequencing/freebayes-tutorial.html
 
-#I will try FreeBayes with default settings first
- >freebayes -f genome.fa \ alignment.sorted.bam >output.FB.vcf
->freebayes -f Rtk43.fa \ wdji11_RtAln.sorted.bam >wdji11.Rtk.FB.vcf 
+I will try FreeBayes with default settings first
+```
+freebayes -f genome.fa \ alignment.sorted.bam >output.FB.vcf
+freebayes -f Rtk43.fa \ wdji11_RtAln.sorted.bam >wdji11.Rtk.FB.vcf 
+```
 
 
 
@@ -1113,16 +1239,17 @@ http://clavius.bc.edu/~erik/CSHL-advanced-sequencing/freebayes-tutorial.html
 
 
 
-
-2. map called SNPs to genome 
+###2. map called SNPs to genome 
 ***https://docs.google.com/presentation/d/1ShbbQ-Y0umYRcHEgqiWDTy4l-E5qH0oZtz97ln52J5k/edit#slide=id.p9
 Variant calling presentation with useful figures
-Aim: to see how much of the variation in my SNPs if mappable (i.e. useful) 
+
+*Aim*: to see how much of the variation in my SNPs if mappable (i.e. useful) 
 
 I haven’t optimised mapping parameters yet, but just to get an indication of mapping success, I will use the same protocol as before. 
 I will use the output from c94d6 and from the within population results (
 
-7 April 2015
+
+*7 April 2015*
 
 I now have access to the S3IT cluster: 
 ssh alexjvr@130.60.24.131 
@@ -1131,18 +1258,16 @@ ssh alexjvr@130.60.24.131 
 I will test the Alignment pipeline here using bowtie. 
 
 Demultiplex H1 using process_radtags (no quality filtering)
-
-> /usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz -o ./H1 -y fastq -b ~/barcodes_RE --disable_rad_check -r -D
-
-
-
+```
+/usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz -o ./H1 -y fastq -b ~/barcodes_RE --disable_rad_check -r -D
+```
 
 68% of reads kept. 
 With ~20% PhiX. So 10% of reads lost due to multiple mutations..
 
 
-2. Rename files using the ddocent script:
-
+###2. Rename files using the ddocent script:
+```
 rename.for.dDocent
 
 if [ -z "$1" ]
@@ -1165,8 +1290,10 @@ mv sample_${BARCODES[$i]}.1.fq ${NAMES[$i]}.F.fq
 mv sample_${BARCODES[$i]}.2.fq ${NAMES[$i]}.R.fq
 done
 fi
-Modify this code for SE:
+```
 
+Modify this code for SE:
+```
 if [ -z "$1" ]
 then
 echo "No file with barcodes and sample names specified."
@@ -1187,10 +1314,10 @@ mv sample_${BARCODES[$i]}.1.fq ${NAMES[$i]}.F.fq
 mv sample_${BARCODES[$i]}.2.fq ${NAMES[$i]}.R.fq
 done
 fi
-
+```
 
 Make a file for renaming the barcodes with the following format: 
-
+```
 pop_sample  barcode 
 
 eg:
@@ -1204,36 +1331,42 @@ oalp_07	GGTTGAATT
 oalp_08	AAGGAAATT
 oalp_09	AGCTAAATT
 oalp_10	ACACAAATT
-
+```
 Run the script:
->perl rename.for.dDocent barcodefile
-
+```
+perl rename.for.dDocent barcodefile
+```
 eg:
->perl rename.for.dDocent H1.barcodesRE.samplenames
+```
+perl rename.for.dDocent H1.barcodesRE.samplenames
+```
 
-
-3. Mapping
+##3. Mapping
 
 After reading Hatem et al. 2013, I decided to try Bowtie2 for mapping. This is similar in mapping to BWA, but should run slightly faster. 
 
 Using tutorial from here: http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#performance-tuning
 
-##Index the genome
->mkdir H1_bowtie2
->cd H1_bowtie2
->gunzip Rtk43.fa.gz
->/usr/local/ngseq/bin/bowtie2-build ~/Rtk43.fa Rtemp43_indexed
+Index the genome
+```
+mkdir H1_bowtie2
+cd H1_bowtie2
+gunzip Rtk43.fa.gz
+/usr/local/ngseq/bin/bowtie2-build ~/Rtk43.fa Rtemp43_indexed
+```
 
 start 22:56
 
-##Read alignment (and for loop to align all sequences in the demultiplexed folder. Run this from the home directory with:
+
+Read alignment (and for loop to align all sequences in the demultiplexed folder. Run this from the home directory with:
 a folder containing all the renamed demultiplexed files (e.g. H1/oalp_01.fq…)
 a folder containing the indexed genome with 4 files from the bowtie2 indexing output (here H1_bowtie2/Rtemp43_indexed)
 fastq is the default file format, so -q not neccessary
+```
+for x in H1/*.fq; do /usr/local/ngseq/bin/bowtie2 -x H1_bowtie2/Rtemp43_indexed -U ${x} -S ${x}.sam; done
+```
 
->for x in H1/*.fq; do /usr/local/ngseq/bin/bowtie2 -x H1_bowtie2/Rtemp43_indexed -U ${x} -S ${x}.sam; done
-
-Started 10April 15:20
+Started *10 April 15:20*
 Runs ~25min per sample on the S3IT server. So, for 48 samples ~20hours
 
 Moved everything to the gdc server after S3IT ran out of space. 
@@ -1242,50 +1375,57 @@ Moved everything to the gdc server after S3IT ran out of space.
 Once all .sam files have been generated, process with samtools: 
 
 Index genome with samtools
->mkdir samtoolsH1
->mv Rtk43.fa samtoolsH1/
->cd samtoolsH1/
->samtools faidx Rtk43.fa
+```
+mkdir samtoolsH1
+mv Rtk43.fa samtoolsH1/
+cd samtoolsH1/
+samtools faidx Rtk43.fa
+```
 
 Convert all .sam to .bam
->for x in ~/mapping/H1/done/*sam; do samtools import Rtk43.fa.fai ${x} ${x}.bam ; done
+```
+for x in ~/mapping/H1/done/*sam; do samtools import Rtk43.fa.fai ${x} ${x}.bam ; done
+```
 
 Sort files (move to directory containing .sam.bam files)
->for x in *.sam.bam
-> do samtools sort ${x} ${x}.sorted
-> done
+```
+for x in *.sam.bam
+do samtools sort ${x} ${x}.sorted
+done
+```
 
 Index the reads
-> for x in *.sorted.bam; do samtools index ${x}; done
+```
+for x in *.sorted.bam; do samtools index ${x}; done
+```
 
 
 
-
-Pyrad optimisation
+##Pyrad optimisation
 
 Optimal clustering threshold (Ilut et al. 2014) e.g. Barley et al. 2015
 Sensitivity analysis for 
-min percentage indivs in a population with the locus
-min number of pops to have a locus
-minimum stack depth
+1. min percentage indivs in a population with the locus
+2. min number of pops to have a locus
+3. minimum stack depth
 
 
 
 
 
-Prep for meeting with Josh 25 May 2015
+###Prep for meeting with Josh 25 May 2015
 
-pyrad optimization
+1. pyrad optimization
 
-map of samples chosen for optimisation
+2. map of samples chosen for optimisation
 
-2. pop genetics
+3. pop genetics
 I will use the output from the c94d6 run found here: /gdc_home4/alexjvr/pyradOpt/c94d6_done
 This has the 28 indivs from 14 populations from the pyrad optimisation run 
 
 I will try to do a PCA using Eigensoft. 
 Info from Tim: 
-[25/05/15 11:56:50] braytc: use PGDSpider to convert from vcf to eigen
+*[25/05/15 11:56:50] braytc: use PGDSpider to convert from vcf to eigen
 all three eigen input files are necessary (.ind .geno .snp)
 then use eigenfiles directly
 (be careful of reorder of individuals)
@@ -1294,27 +1434,29 @@ inside the POP... folder you need to have the .perl and the .example altered to 
 you will need to work from the examples given
 as long as eigensoft is added to path you can then just call your modified perlscript;
 ./filename.perl
-[25/05/15 11:57:59] braytc: if you have trouble then send me the vcf and i can try to do it
+[25/05/15 11:57:59] braytc: if you have trouble then send me the vcf and i can try to do it*
 
 
-#convert vcf output file to eigen using PGDSpider
-Population Genetics
+convert vcf output file to eigen using PGDSpider
 
-Structure
+
+###Population Genetics
+
+####Structure
 
 Command line Structure needs the mainparams and extraparams files to run. Here all the run parameters are specified. 
 
 Several K’s can be run simultaneously: 
-
->structure -K 1 -o output_1.1.txt; structure -K 1 -o output_1.2.txt; structure -K 1 -o output_1.3.txt; structure -K 1 -o output_1.4.txt; structure -K 1 -o output_1.5.txt; structure -K 2 -o output_2.1.txt; structure -K 2 -o output_2.2.txt; structure -K 2 -o output_2.3.txt; structure -K 2 -o output_2.4.txt; structure -K 2 -o output_2.5.txt; structure -K 3 -o output_3.1.txt; structure -K 3 -o output_3.2.txt; structure -K 3 -o output_3.3.txt; structure -K 3 -o output_3.4.txt; structure -K 3 -o output_3.5.txt; structure -K 4 -o output_4.1.txt; structure -K 4 -o output_4.2.txt; structure -K 4 -o output_4.3.txt; structure -K 4 -o output_4.4.txt; structure -K 4 -o output_4.5.txt
-
+```
+structure -K 1 -o output_1.1.txt; structure -K 1 -o output_1.2.txt; structure -K 1 -o output_1.3.txt; structure -K 1 -o output_1.4.txt; structure -K 1 -o output_1.5.txt; structure -K 2 -o output_2.1.txt; structure -K 2 -o output_2.2.txt; structure -K 2 -o output_2.3.txt; structure -K 2 -o output_2.4.txt; structure -K 2 -o output_2.5.txt; structure -K 3 -o output_3.1.txt; structure -K 3 -o output_3.2.txt; structure -K 3 -o output_3.3.txt; structure -K 3 -o output_3.4.txt; structure -K 3 -o output_3.5.txt; structure -K 4 -o output_4.1.txt; structure -K 4 -o output_4.2.txt; structure -K 4 -o output_4.3.txt; structure -K 4 -o output_4.4.txt; structure -K 4 -o output_4.5.txt
+```
 
 
 Download the output and open in Structure gui
 
 Templates: 
 mainparams: 
-
+```
 #KEY PARAMETERS FOR THE PROGRAM structure.  YOU WILL NEED TO SET THESE
 #IN ORDER TO RUN THE PROGRAM.  VARIOUS OPTIONS CAN BE ADJUSTED IN THE
 #FILE extraparams.
@@ -1489,3 +1631,5 @@ MISCELLANEOUS
                            (Proposal for each q^(i) sampled from prior.  The 
                            goal is to improve mixing for small alpha.)
 #define REPORTHITRATE 0 //(B) report hit rate if using METROFREQ
+```
+
