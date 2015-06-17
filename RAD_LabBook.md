@@ -701,6 +701,7 @@ C88d10 - fgcz (8cores) started: 10:50 19April2015 - 17:00 19April2015
 
 
 *23 April 2015*
+
 Rerun wdji at c94d6 (on fgcz)
 
 location of demultiplexed wdji samples
@@ -710,6 +711,7 @@ location of demultiplexed wdji samples
 ```
 
 ####Start the first big pyRAD run to see how long it will take: 
+
 *23 April 2015 @ 19:23*
 
 
@@ -791,6 +793,7 @@ Step 6: Across-sample clustering  (22:30, 26Apr;   8hrs)
 Herbert updated pyrad on the fgcz server first. I have transferred the folder (c94d6H1.9) to fgcz to run s7. 
 
 *5 May 2015*
+
 The bug fix didn’t work. I’m not sure what the problem is now. 
 I ran one of the earlier versions of pyrad since it was run on the gdcsrv1. I could try to run the latest  version of pyrad on the gdc server, as Stefan has just updated it. 
 
@@ -850,6 +853,7 @@ After filtering, kept 55356 out of a possible 504183 Sites
 Run Time = 149.00 seconds
 ```
 
+
 ```
 vcftools --vcf raw.g5mac3.recode.vcf --minDP 3 --recode --recode-INFO-all --out raw.g5mac3dp3 
 
@@ -872,6 +876,7 @@ vcftools --vcf raw.g5mac3dp3.recode.vcf --missing-indv
 ```
 
 *10 June 2015*
+
 to draw a histogram of this: 
 	1. first make a file with only the missing data proportions included
 
