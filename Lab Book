@@ -1,23 +1,27 @@
-Index
+##RADseq
+This is my lab book for optimising the RADdata pre-processing and filtering until I get to SNPs
 
-Demultiplexing, Quality filter, Adapter removal
-Pyrad tests
-Mapping tests1. Demultiplexing, Quality filter, Adapter removal
+###Index
 
-Monday 23March 2014
+1. Demultiplexing, Quality filter, Adapter removal
+2. Pyrad tests (de novo assembly)
+3. Mapping tests1. Demultiplexing, Quality filter, Adapter removal
 
-##I'm losing a lot of reads with process_radtags, so I will try a different method of barcode splitting and filtering. Christine Grossen suggests splitting barcodes first, and less stringent filtering before running the SNPcalling pipeline. I will install fastx-barcode splitter.
+###Monday 23March 2014
 
-Install FASTX Toolkit
+I'm losing a lot of reads with process_radtags, so I will try a different method of barcode splitting and filtering. Christine Grossen suggests splitting barcodes first, and less stringent filtering before running the SNPcalling pipeline. I will install fastx-barcode splitter.
 
-#fastx_toolkit-0.0.14 from http://hannonlab.cshl.edu/fastx_toolkit/download.html
+1. Install FASTX Toolkit
+ - fastx_toolkit-0.0.14 from http://hannonlab.cshl.edu/fastx_toolkit/download.html
+ - check that libgtextutils-0.7 is installed (or latest version)
 
-#check that libgtextutils-0.7 is installed (or latest version)
-
+'''
 > ./configure && make && make install
+'''
 
-##I get an error
+I get an error:
 
+'''
 configure: error: The pkg-config script could not be found or is too old.  Make sure it
 is in your PATH or set the PKG_CONFIG environment variable to the full
 path to pkg-config.
@@ -25,78 +29,75 @@ path to pkg-config.
 Alternatively, you may set the environment variables GTEXTUTILS_CFLAGS
 and GTEXTUTILS_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
+'''
 
-#Download latest version from here: http://pkgconfig.freedesktop.org/releases/
-#There is some catch22 with pkgconfig dependant on glib, and vice versa.. 
+Download latest version from here: http://pkgconfig.freedesktop.org/releases/
+	-There is some catch22 with pkgconfig dependant on glib, and vice versa.. 
 
 Check on the server to find FASTX: 
 /usr/local/ngseq/stow/fastx-toolkit_0.0.13s
 
 
-# 1: Uncompress tarball
+## 1: Uncompress tarball
 
 To uncompress them, execute the following command(s) depending on the extension:
+'''
 $ tar zxf file.tar.gz
 $ tar zxf file.tgz
 $ tar jxf file.tar.bz2
 $ tar jxf file.tbz2
+'''
 
 
-
-Barcode splitting with FASTX toolkit
+##Barcode splitting with FASTX toolkit
 
 test for H1 
 
-#Decompress files
+Decompress files
+'''
 pigz -dc 20150225.A-H1_R1.fastq.gz > H1.fastq
+'''
 
-#send to fast_barcode_splitter
+send to fast_barcode_splitter
+'''
+cat H1.fastq | /usr/local/ngseq/stow/fastx_toolkit-0.0.13/bin/fastx_barcode_splitter.pl --bcfile barcodes_fastx_H1 --prefix H1_fastx --bol --mismatches 1
+'''
 
->cat H1.fastq | /usr/local/ngseq/stow/fastx_toolkit-0.0.13/bin/fastx_barcode_splitter.pl --bcfile barcodes_fastx_H1 --prefix H1_fastx --bol --mismatches 1
 
 
+##process_radtags
 
+- what could the problem be with the process with process_radtags? 
+- most of the loss (avg = 26%) is from “no ragtag”. Which I think means no restriction site.. 
 
-process_radtags
+- reprocess H1 with process_radtags, but remove the enzyme check and include the cut site in the barcode. (If your enzyme is not yet supported by Stacks use the --disable_rad_check option)
 
-#what could the problem be with the process with process_radtags? 
-# most of the loss (avg = 26%) is from “no ragtag”. Which I think means no restriction site.. 
-
-#reprocess H1 with process_radtags, but remove the enzyme check and include the cut site in the barcode. (If your enzyme is not yet supported by Stacks use the --disable_rad_check option)
-
-> /usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz -o ./H1 -y fastq -b ~/barcodes -e ecoRI -r -c -q
-
+'''
+/usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz -o ./H1 -y fastq -b ~/barcodes -e ecoRI -r -c -q
+'''
 
 
 Compared with Simone’s example: 
 
 
 
-#but don’t specify an enzyme, and use the modified barcode file:
-> mkdir H1 
-> /usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz -o ./H1 -y fastq -b ~/barcodes_RE --disable_rad_check -r -c -q -D
+but don’t specify an enzyme, and use the modified barcode file:
+'''
+mkdir H1 
+/usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz -o ./H1 -y fastq -b ~/barcodes_RE --disable_rad_check -r -c -q -D
+'''
 
-#this takes a few mins to run (>30min per lane)
-
-
-
-
-
-
-
-
+this takes a few mins to run (>30min per lane)
 
 
 So there is very little differences between these two options of processing. Both remove ~35%, of which 20% is PhiX. So around 15% filtered based on barcodes.. 
 
-#repeat allowing 2 mismatches
 
->> mkdir H1.2 
-> /usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz -o ./H1.2 -y fastq -b ~/barcodes_RE --disable_rad_check -r -c -q -D —barcode_dist_1 2
-
-
-
-
+repeat allowing 2 mismatches
+'''
+mkdir H1.2 
+/usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz -o ./H1.2 -y fastq -b ~/barcodes_RE --disable_rad_check -r -c -q -D —barcode_dist_1 2
+'''
 
 So, a 6% gain in sequences. But the % of sequences filtered for quality has increased. Why? 
 
@@ -121,39 +122,45 @@ To check whether the 2mm might be resulting in an excess loss or gain between ba
 And looked at the table of sequence counts: if some samples are losing sequences, while others gain, then these sequences are likely incorrectly assigned to the new barcode. This is indeed the case with my data: 
 
 
-
-
-Optimal mm: 1
+##Optimal mm: 1
 
 
 
 ##Secure copy files onto and from the server
+'''
+scp -r alexjvr@gdcsrv1.ethz.ch:popgts_c94d6_20150525/* .
+'''
 
->scp -r alexjvr@gdcsrv1.ethz.ch:popgts_c94d6_20150525/* .
 
-
-Filter for Adapters
+##Filter for Adapters
 
 Christine recommends AdapterRemoval. This is her example code
-
+'''
 >AdapterRemoval --file1 <(zcat $wGBS/$R1) --file2 <(zcat $wGBS/$R2)  --trimns --trimqualities --minquality 20 --collapse --minlength 50 --qualitybase 33 --pcr1 AGATCGGAAGAGCGGTTCAGCAGGAATGCCGAG --pcr2 AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT --basename $COLL/$trunk >& $wGBS/logfiles/AdRem_$trunk.log
-
+'''
 
 set up barcode and raw data file on the mac: /NGSpipelines/Filter1
 Run process_radtags (only -r: rescue radtags. -c -q filters removed, since data will be cleaned downstream): 
->process_radtags -i fastq -f 20141219.B-p276_h2_R1.fastq -o . -y fastq -b barcode_H2 -e ecoRI -r
+'''
+process_radtags -i fastq -f 20141219.B-p276_h2_R1.fastq -o . -y fastq -b barcode_H2 -e ecoRI -r
+'''
 
+gives the following output:
 
+'''
 215305263 total sequences;
   17389044 ambiguous barcode drops;
   0 low quality read drops;
   30108440 ambiguous RAD-Tag drops;
 167807779 retained reads.
+'''
 
 This means a loss of only ~3% of the reads. 
 
-3. Run AdapterRemoval on demultiplexed data
->adapterremoval --file1 csee_02.fq --basename AdRem_$.trunk --trimns --trimqualities --minquality 20 --adapter1 AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT
+###3. Run AdapterRemoval on demultiplexed data
+'''
+adapterremoval --file1 csee_02.fq --basename AdRem_$.trunk --trimns --trimqualities --minquality 20 --adapter1 AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT
+'''
 
 Some of the removed sequences were part of the AATT EcoRI cutsite. So rerun the demultiplexing and remove the cutsite: 
 
@@ -174,31 +181,41 @@ ACGGTAATT       csee_11
 ACTGGAATT       csee_12
 ACTTCAATT       csee_13
 
->process_radtags -i fastq -f 20141219.B-p276_h2_R1.fastq -o . -y fastq -b barcode_H2 --disable_rad_check -r -D
-
+'''
+process_radtags -i fastq -f 20141219.B-p276_h2_R1.fastq -o . -y fastq -b barcode_H2 --disable_rad_check -r -D
+'''
+Gives this output:
+'''
 215305263 total sequences;
   47501389 ambiguous barcode drops;
   0 low quality read drops;
   0 ambiguous RAD-Tag drops;
 167803874 retained reads.
+'''
 
 20% PhiX
 ~2.5% lost sequences
 
->adapterremoval --file1 csee_02.fq --basename AdRem --trimns --trimqualities --minquality 20 --adapter1 AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT
+'''
+adapterremoval --file1 csee_02.fq --basename AdRem --trimns --trimqualities --minquality 20 --adapter1 AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT
+'''
 
 And batch script: 
->for x in *.fq
->do adapterremoval --file1 ${x} --basename AdRem_${x} --trimns --trimqualities --minquality 20 --adapter1 AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT
->done
+
+'''
+for x in *.fq
+do adapterremoval --file1 ${x} --basename AdRem_${x} --trimns --trimqualities --minquality 20 --adapter1 AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT
+done
+'''
 
 
-2. PyRAD tests     
+##2. PyRAD tests     
 TEST pyRAD with SE ddRAD test data on server 
 
 Tutorial from
- http://nbviewer.ipython.org/gist/dereneaton/dc6241083c912519064e/tutorial_ddRAD_3.0.4.ipynb
+ - http://nbviewer.ipython.org/gist/dereneaton/dc6241083c912519064e/tutorial_ddRAD_3.0.4.ipynb
 
+'''
 %%bash
 ## download the data
 wget -q http://www.dereneaton.com/downloads/simddrads.zip
@@ -231,37 +248,48 @@ sed -i '/## 14. /c\c85d6m4p3                 ## 14. prefix name ' ./params.txt
 sed -i '/## 19./c\0                     ## 19. errbarcode... ' ./params.txt
 sed -i '/## 24./c\10                    ## 24. maxH... ' ./params.txt
 sed -i '/## 30./c\*                     ## 30. outformats... ' ./params.txt
+'''
 
 ##Demultiplexing step
+'''
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 1
+'''
 
 Follow the tutorial… 2. Quality filtering. 
 
+'''
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 2
+'''
 
 3. Within-sample clustering
+
+'''
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 3
+'''
 
 Steps 4 & 5: Consensus base calling
+'''
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 4
 
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 5
+'''
 
 Step 6: Across-sample clustering
-
+'''
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 6
+'''
 
 Step 7: Statistics and output files
-
+'''
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 7
-
+'''
 
 
 
@@ -269,11 +297,13 @@ H1 pyRAD with SE ddRAD test run on server
 
 Tutorial from http://nbviewer.ipython.org/gist/dereneaton/dc6241083c912519064e/tutorial_ddRAD_3.0.4.ipynb
 
+'''
 %%bash
 ## symlink to my data in /srv/kenlab/alexjvr_p1795/pyrad$
 >ln -s /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz
+'''
 
-##update barcode file for the run (insert sample names): 
+*update barcode file for the run (insert sample names):* 
 
 oalp01  GCATG
 oalp02  AACCA
@@ -287,7 +317,7 @@ oalp09  AGCTA
 oalp10  ACACA
 tals01  AATTA
 
-
+'''
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -n
 
@@ -304,9 +334,10 @@ nano params.txt
 %%bash
 sed -i '/## 4. /c\/usr/local/ngseq/src/vsearch-1.1.3/vsearch    ## 4. vsearch... ' ./params.txt
 sed -i '/## 5. /c\/usr/local/ngseq/src/muscle-3.8.31/muscle    ## 5. muscle... ' ./params.txt
-
+'''
 
 Change the other parameters:
+'''
 %%bash
 
 sed -i '/## 1. /c\./	                ## 1. working directory ' ./params.txt
@@ -326,8 +357,10 @@ sed -i '/## 21./c\10                    ## 21. check for adapter... ' ./params.t
 sed -i '/## 24./c\10                    ## 24. maxH... ' ./params.txt
 sed -i '/## 30./c\*                     ## 30. outformats... ' ./params.txt
 sed -i '/## 34./c\2                     ## 34. excludesingletons... ' ./params.txt
+'''
 
 ##Demultiplexing step
+'''
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 1
 
@@ -336,36 +369,42 @@ OR
 #demultiplex with process radtags and refer to demultiplexed files in params.txt
 
 sed -i '/## 18. /c\/srv/kenlab/alexjvr_p1795/Seqcount_processRadtags_20150316/H1.1/*.fq                     ## 18.demultiplexed H1(1mm)  ' ./params.txt
+'''
 
-Follow the tutorial… 2. Quality filtering. 
+Follow the tutorial… 
+
+'''
+#2. Quality filtering. 
 
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 2
 
-3. Within-sample clustering (~2hrs/lane)
+#3. Within-sample clustering (~2hrs/lane)
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 3
 
-Steps 4 & 5: Consensus base calling (step 4 <9hrs, 5 <1.5hrs)
+#Steps 4 & 5: Consensus base calling (step 4 <9hrs, 5 <1.5hrs)
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 4
 
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 5
 
-Step 6: Across-sample clustering
+#Step 6: Across-sample clustering
 
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 6
 
-Step 7: Statistics and output files
+#Step 7: Statistics and output files
 
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 7
+'''
 
 
-H1.2 - less stringent filtering
+H1.2 - less stringent filtering:
 
+'''
 sed -i '/## 1. /c\./	                ## 1. working directory ' ./params.txt
 sed -i '/## 2. /c\/srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz                ## 2. Raw data H1 ' ./params.txt
 sed -i '/## 3. /c\barcodesH1                 ## 3. barcodes ' ./params.txt
@@ -384,10 +423,10 @@ sed -i '/## 24./c\10                    ## 24. maxH... ' ./params.txt
 sed -i '/## 30./c\*                     ## 30. outformats... ' ./params.txt
 sed -i '/## 32./c\50                    ## 32. keeptrimmed >50... ' ./params.txt
 sed -i '/## 34./c\2                     ## 34. excludesingletons... ' ./params.txt
-
+'''
 
 12 April - H1.3 (started 18:00)
-
+'''
 ==** parameter inputs for pyRAD version 3.0.4  **======================== affected step ==
 ./                ## 1. working directory 
                   ## 2. raw data
@@ -428,7 +467,7 @@ H1.3                 ## 14. prefix name
                        ## 36.opt.: repeat masking (def.=1='dust' method, 0=no)      (s3,s6)
                        ## 37.opt.: vsearch max threads per job (def.=6; see docs)   (s3,s6)
 ==== optional: list group/clade assignments below this line (see docs) ==================
-
+'''
 
 Slightly more SNPs, but still much lower than expected: 5363 unlinked SNPs
 
@@ -436,9 +475,10 @@ Slightly more SNPs, but still much lower than expected: 5363 unlinked SNPs
 — Remember to plot heterozygosity to test this. 
 
 
-Within population pyrad
+###Within population pyrad
 
-I ran pyrad on shwe and wdji independently
+I ran pyrad on shwe and wdji independently:
+'''
 ==** parameter inputs for pyRAD version 3.0.4  **======================== affected step ==
 ./                ## 1. working directory 
                   ## 2. raw data
@@ -478,10 +518,10 @@ wdji                 ## 14. prefix name
                        ## 35.opt.: use hierarchical clustering (def.=0, 1=yes)      (s6)
                        ## 36.opt.: repeat masking (def.=1='dust' method, 0=no)      (s3,s6)
                        ## 37.opt.: vsearch max threads per job (def.=6; see docs)   (s3,s6)
+'''
 
-
-Final SNPs for 
-wdji: 
+####Final SNPs for 
+*wdji:* 
 
 total var= 32712
 total pis= 19752
@@ -501,7 +541,7 @@ wdji_11 105577  6.251   34.371  22655   19.313  72.696  0
 wdji_14 84905   5.749   41.297  16106   18.997  93.649  0
 
 
-stls: 
+*stls:* 
 
 total var= 35813
 total pis= 21241
@@ -522,11 +562,11 @@ stls_16 100956  6.327   30.649  22385   19.051  63.444  0
 
 
 
-H1.5
+###H1.5
 
 I will rerun H01 samples together, with the same params.txt file as in H1.4, but with less samples for the minimum clustering > decreased from 20 to 8. 
 Note. I am still excluding singletons in my runs. I will test the hierarchical search next.
-
+'''
 ==** parameter inputs for pyRAD version 3.0.4  **======================== affected step ==
 ./                ## 1. working directory 
                   ## 2. raw data
@@ -578,11 +618,11 @@ sampled unlinked SNPs= 15766
 sampled unlinked bi-allelic SNPs= -56114
 
 Avg depth 5.3-8.6x
+'''
 
-
-H1.6
+###H1.6
 Decrease the mincov, and include singletons, to get an idea of all the loci at different levels of coverage. 
-
+'''
 .80                       ## 10. clust thresh ~5bpmm
 2                     ## 12. high mincov 
                      ## 34. include singletons... 
@@ -593,10 +633,12 @@ total var= 348706
 total pis= 124847
 sampled unlinked SNPs= 79092
 sampled unlinked bi-allelic SNPs= -139816
+'''
+Avg depth 
 
-Avg depth Formal pyrad tests
+##Formal pyrad tests
 
-Aim:
+*Aim:*
 
 To test optimal clustering conditions (85 - 99%)
 To test sensitivity do depth (6-10)
@@ -605,8 +647,12 @@ Tests will be set up with the following parameters. First I will vary the covera
 
 ETHZ servers: pyrad v. 3.0.3 - max 20 cores
 FGCZ servers: pyrad v. 3.0.4 - max 8 cores
+'''
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 3
+'''
 
+Parameter Set:
+'''
 ==** parameter inputs for pyRAD version 3.0.3  **======================== affected step ==
 ./                          ## 1. Working directory                                 (all)
                ## 2. Loc. of non-demultiplexed files (if not line 16)  (s1)
@@ -645,7 +691,7 @@ c88d6m4p3                   ## 14. Prefix name for final output (no spaces)     
 2                       ## 34.opt.: minDerep: exclude dereps with <= N copies, def=1 (s3)
                        ## 35.opt.: use hierarchical clustering (def.=0, 1=yes)      (s6)
 
-
+'''
 
 
 I will use 2 samples each from the following 14 populations: 
@@ -669,11 +715,11 @@ location of demultiplexed wdji samples
 > /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 3
 
 
-**Start the first big pyRAD run to see how long it will take: 
+####Start the first big pyRAD run to see how long it will take: 
 20150423 @ 19:23
 
 All demultiplexed samples from H1-9
-
+'''
 ==** parameter inputs for pyRAD version 3.0.3  **======================== affected step ==
 ./                          ## 1. Working directory                                 (all)
                 ## 2. Loc. of non-demultiplexed files (if not line 16)  (s1)
@@ -714,41 +760,42 @@ H1-9_c94d6m4                   ## 14. Prefix name for final output (no spaces)  
                        ## 36.opt.: repeat masking (def.=1='dust' method, 0=no)      (s3,s6)
                        ## 37.opt.:  max threads per job (def.=6; see docs)   (s3,s6)
 
-Follow the tutorial… 2. Quality filtering.  (23 April, 19:25-23:21  4hours)
+#Follow the tutorial… 2. Quality filtering.  (23 April, 19:25-23:21  4hours)
 
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 2
 
-3. Within-sample clustering (~2hrs/lane)   (23:21- 10:34, 24apr, 11hours)
+#3. Within-sample clustering (~2hrs/lane)   (23:21- 10:34, 24apr, 11hours)
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 3
 
-Steps 4: Joint estimate of H and error (~9hrs/lane) (4:15 26Apr,    42hrs)
 %%bash
+#Steps 4: Joint estimate of H and error (~9hrs/lane) (4:15 26Apr,    42hrs)
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 4
 
-Steps 5: Consensus base calling (~1.5hrs/lane) (26Apr, 14:41;   10.5hrs)
+#Steps 5: Consensus base calling (~1.5hrs/lane) (26Apr, 14:41;   10.5hrs)
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 5  
 
-Step 6: Across-sample clustering  (22:30, 26Apr;   8hrs)
+#Step 6: Across-sample clustering  (22:30, 26Apr;   8hrs)
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 6
+''''
 
 >>>Note that there was a bug with pyrad, so that s7 would not work. I had to wait for the bug fix before I could run it. 
 Herbert updated pyrad on the fgcz server first. I have transferred the folder (c94d6H1.9) to fgcz to run s7. 
 
-5May2015
+####5May2015
 The bug fix didn’t work. I’m not sure what the problem is now. 
 I ran one of the earlier versions of pyrad since it was run on the gdcsrv1. I could try to run the latest  version of pyrad on the gdc server, as Stefan has just updated it. 
 
 Waiting for Tim’s run to finish.. Should be in a few hours time. 
 
 Step 7: Statistics and output files
-
+'''
 %%bash
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 7
-
+'''
 
 Reruns of pyrad
 I can’t find the problem with the pyrad run. But it has been updated to v3.0.6 on the GDC and FGCZ servers. 
@@ -765,7 +812,8 @@ The problem was that #13 wasn’t set properly. This is a mandatory parameter - 
 
 I’ve set this ridiculously high, since I’m worried that I’ll be losing loci due to population structure. 
 
-Next step: 
+
+###Next step: 
 SNP filtering with VCFtools. 
 
 SNP filtering
@@ -1296,24 +1344,26 @@ as long as eigensoft is added to path you can then just call your modified perls
 [25/05/15 11:57:59] braytc: if you have trouble then send me the vcf and i can try to do it
 
 
-#convert vcf output file to eigen using PGDSpider
-Population Genetics
+convert vcf output file to eigen using PGDSpider
 
-Structure
+
+##Population Genetics
+
+####Structure
 
 Command line Structure needs the mainparams and extraparams files to run. Here all the run parameters are specified. 
 
 Several K’s can be run simultaneously: 
-
->structure -K 1 -o output_1.1.txt; structure -K 1 -o output_1.2.txt; structure -K 1 -o output_1.3.txt; structure -K 1 -o output_1.4.txt; structure -K 1 -o output_1.5.txt; structure -K 2 -o output_2.1.txt; structure -K 2 -o output_2.2.txt; structure -K 2 -o output_2.3.txt; structure -K 2 -o output_2.4.txt; structure -K 2 -o output_2.5.txt; structure -K 3 -o output_3.1.txt; structure -K 3 -o output_3.2.txt; structure -K 3 -o output_3.3.txt; structure -K 3 -o output_3.4.txt; structure -K 3 -o output_3.5.txt; structure -K 4 -o output_4.1.txt; structure -K 4 -o output_4.2.txt; structure -K 4 -o output_4.3.txt; structure -K 4 -o output_4.4.txt; structure -K 4 -o output_4.5.txt
-
+'''
+structure -K 1 -o output_1.1.txt; structure -K 1 -o output_1.2.txt; structure -K 1 -o output_1.3.txt; structure -K 1 -o output_1.4.txt; structure -K 1 -o output_1.5.txt; structure -K 2 -o output_2.1.txt; structure -K 2 -o output_2.2.txt; structure -K 2 -o output_2.3.txt; structure -K 2 -o output_2.4.txt; structure -K 2 -o output_2.5.txt; structure -K 3 -o output_3.1.txt; structure -K 3 -o output_3.2.txt; structure -K 3 -o output_3.3.txt; structure -K 3 -o output_3.4.txt; structure -K 3 -o output_3.5.txt; structure -K 4 -o output_4.1.txt; structure -K 4 -o output_4.2.txt; structure -K 4 -o output_4.3.txt; structure -K 4 -o output_4.4.txt; structure -K 4 -o output_4.5.txt
+'''
 
 
 Download the output and open in Structure gui
 
 Templates: 
 mainparams: 
-
+'''
 #KEY PARAMETERS FOR THE PROGRAM structure.  YOU WILL NEED TO SET THESE
 #IN ORDER TO RUN THE PROGRAM.  VARIOUS OPTIONS CAN BE ADJUSTED IN THE
 #FILE extraparams.
@@ -1488,3 +1538,4 @@ MISCELLANEOUS
                            (Proposal for each q^(i) sampled from prior.  The 
                            goal is to improve mixing for small alpha.)
 #define REPORTHITRATE 0 //(B) report hit rate if using METROFREQ
+'''
