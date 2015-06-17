@@ -1,3 +1,7 @@
+##How to map pie-charts in R
+I used this to map haplotypes on a map of Switzerland
+
+
 require(ggplot2)
 require(ggmap)
 require(RgoogleMaps)
