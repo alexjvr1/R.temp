@@ -22,15 +22,16 @@ CHgray = RGB2GRAY(CH)
 PlotOnStaticMap(CHgray,destfile=map1.n)
 ```
 draw pie chart
+  - the addition (+0.00...1) is because R doesn't like it if the first column is empty (0). 
 ```
 new.coords<-LatLon2XY.centered(CH,lat=cytb$lat,lon=cytb$long,zoom=zoom) #calculates new coordinates for all points
 cytb$newX<-as.vector(new.coords$newX) #slightly messy way of adding new coordinates to your dataframe
 cytb$newY<-as.vector(new.coords$newY)
 PlotOnStaticMap(CH,destfile=map1.n)
-colours<-c(col2alpha("mediumpurple3",alpha=0.75),col2alpha("mediumseagreen",alpha=0.75))
+colours<-c(col2alpha("violetred1",alpha=0.75),col2alpha("violet",alpha=0.75),col2alpha("mediumseagreen",alpha=0.75),col2alpha("mediumspringgreen",alpha=0.75)) #colours are read in order
 for (i in 1:dim(cytb)[1])
 {
-floating.pie(xpos=cytb$newX[i],ypos=cytb$newY[i],x=c(cytb$H1[i]+0.000000000001,cytb$H2[i]),
-radius=cytb$Num[i]*2,col=colours)
-}
+  floating.pie(xpos=cytb$newX[i],ypos=cytb$newY[i],x=c(cytb$H1[i]+0.000000000001,cytb$H1.2[i]+0.000000000001,cytb$H2[i]+0.000000000001,cytb$H2.2[i]),
+               radius=cytb$Num[i]*2,col=colours)
+} #add more slices to the pie in the bracket
 ```
