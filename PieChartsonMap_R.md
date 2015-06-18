@@ -17,7 +17,7 @@ set up map
 ```
 map1.n<-paste(path,"/","map1",".png",sep="")
 zoom<-8 ; lonc<-8.371714 ; latc<-46.703317 ; center<-c(latc,lonc) ; maptype<-"satellite" ; GRAYSCALE = TRUE
-CH <- GetMap(center=center, zoom=zoom, maptype=satellite,destfile=map1.n, GRAYSCALE = TRUE)
+CH <- GetMap(center=center, zoom=zoom, maptype='satellite', destfile=map1.n, GRAYSCALE = TRUE)
 CHgray = RGB2GRAY(CH)
 PlotOnStaticMap(CHgray,destfile=map1.n)
 ```
