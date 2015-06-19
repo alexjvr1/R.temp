@@ -27,7 +27,7 @@ SampledLocalities_coords_20150615.xlsx (up to date as of 17 June 2015)
 All sequences were aligned and cleaned using BioEdit and CLCBio. 
 The final dataset comprises:
 - 448bp cytb for 173 CH (44 pops) and 34 SE (9 pops) samples
-- 628bp COX for 154 CH (41 pops) 33 SE (9 pops) samples 
+- 628bp COX for 154 CH (41 pops) 33 SE (9 pops) samples  
 
 All data are stored on my HP laptop, and can be found here: 
 - C:/hp_1_PhD_AJvR_20130101/1_Thesis/Chapter2_Phylogeography/Analyses/mtDNA_Datasets (Datasets: see next section)
@@ -57,12 +57,19 @@ I found a N/S split across the alps in my data, so I am naming the Haplotypes H1
 In each case .1 is the common haplotype, and .2...n are the derived haplotypes (as determined by the haplotype network)
 
 
-Haplotype names and assignment for COX1
-
+Haplotype names and assignment for COX1 & cytb
+```
 1. COX1 sequences (SE+CH) with those from Vences *et al.* 2014
-2. 
+2. Convert to nexus format using MEGA6
+3. Import into dnaSP and run: Generate -> Haplotype data file
+    This will provide a breakdown of all the haplotypes and which individuals they are assigned to
+4. Work out which haplotypes are H1 and H2 and put the information in Table 1
 
-
+Do the same for cytb
+```
+**I have found 2 SE COX1 sequences that seem to have been incorrectly named during sequencing.
+    - nord12: I have one sequence with the common SE haplotype and one with a CH haplotype. I will use the SE haplotype and remove the CH nord12 sample
+    - mjos07: same haplotype as gruu01, so a derived CH-N haplotype. This is probably incorrect, so I will remove mjos07 from further analyses. 
 
 
 ##Demographic Analyes
