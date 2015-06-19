@@ -72,6 +72,38 @@ Do the same for cytb
     - mjos07: same haplotype as gruu01, so a derived CH-N haplotype. This is probably incorrect, so I will remove mjos07 from further analyses. 
 
 
+Draw a haplotype network of the combined datasets using TCS
+```
+Input for TCS: 
+Need Nexus file which can be obtained from dnaSP. Export as Nexus (Options Nexus old version, CR+LF(PC))
+    - Have to manually delete all the returns from the file. I haven't yet figured out how to get the correct file format. 
+    - TCS is very finicky with it's input format. 
+    
+Final file for COXI (full dataset): 11_COX1_CH_SE_Vences_20150619.nex (this already has the nord12 & mjos07 samples deleted)
+And the graph is saved under the same name. 
+#I still have to draw the map and the haplotype network for this figure. 
+
+Final file for the cytb (full dataset): 
+#I need to redraw the haplotype network for this and adapt the figure using the map from Vences et al. 2014
+
+```
+
+Now that I've identified the samples assigned to CH-N and CH-S, I can complete Table 1
+```
+Import the Nexus file into dnaSP
+To assign individuals to specific groups: 
+    Data -> Define Sequence sets
+        *And now you can select the individuals in the different groups
+        
+To calculate haplotype diversity
+    
+    
+To calculate nucleotide diversity
+    
+    
+```
+
+
 ##Demographic Analyes
 
 1. Mismatch distribution: Arlequin
