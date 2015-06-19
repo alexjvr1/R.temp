@@ -49,6 +49,22 @@ I am comparing my data with that available in Vences *et al.* 2014. He has cytb 
 ###Haplotype networks
 
 
+###Table 1
+This table is for comparison with Stefani *et al.* 2012
+This should contain the number & names of haplotypes in each population for each gene, the Haplotype diversity, and nucleotide diversity
+
+I found a N/S split across the alps in my data, so I am naming the Haplotypes H1 (South) and H2 (North). 
+In each case .1 is the common haplotype, and .2...n are the derived haplotypes (as determined by the haplotype network)
+
+
+Haplotype names and assignment for COX1
+
+1. COX1 sequences (SE+CH) with those from Vences *et al.* 2014
+2. 
+
+
+
+
 ##Demographic Analyes
 
 1. Mismatch distribution: Arlequin
