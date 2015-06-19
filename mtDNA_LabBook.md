@@ -70,6 +70,10 @@ Do the same for cytb
 **I have found 2 SE COX1 sequences that seem to have been incorrectly named during sequencing.
     - nord12: I have one sequence with the common SE haplotype and one with a CH haplotype. I will use the SE haplotype and remove the CH nord12 sample
     - mjos07: same haplotype as gruu01, so a derived CH-N haplotype. This is probably incorrect, so I will remove mjos07 from further analyses. 
+    
+    
+**For the cytb sequences:
+    - I've sequenced ~500bp for my samples, but this overlaps with only ~330bp of Vences *et al.* sequences. So there are 2 data sets. 
 
 
 Draw a haplotype network of the combined datasets using TCS
@@ -79,9 +83,9 @@ Need Nexus file which can be obtained from dnaSP. Export as Nexus (Options Nexus
     - Have to manually delete all the returns from the file. I haven't yet figured out how to get the correct file format. 
     - TCS is very finicky with it's input format. 
     
-Final file for COXI (full dataset): 11_COX1_CH_SE_Vences_20150619.nex (this already has the nord12 & mjos07 samples deleted)
+Final file for COXI (full dataset): 11_COX1_CH_SE_Vences_full_20150619.nex (this already has the nord12 & mjos07 samples deleted, and has samples after rusc06 - samples after rusc06 were omitted in many of the COX1 files)
 And the graph is saved under the same name. 
-#I still have to draw the map and the haplotype network for this figure. 
+#I still have to draw the map and the haplotype network for this figure.  (TCS figure saved as 11_...figure.nex.graph
 
 Final file for the cytb (full dataset): 
 #I need to redraw the haplotype network for this and adapt the figure using the map from Vences et al. 2014
@@ -95,12 +99,11 @@ To assign individuals to specific groups:
     Data -> Define Sequence sets
         *And now you can select the individuals in the different groups
         
-To calculate haplotype diversity
+To calculate haplotype diversity & nucleotide diversity (Pi)
+    -Calculate polymorphism data (Overview -> Polymorphism data)
     
-    
-To calculate nucleotide diversity
-    
-    
+    - I'm using the haplotype diversity (with SD)
+    - And nucleotide diversity (with SD)
 ```
 
 
