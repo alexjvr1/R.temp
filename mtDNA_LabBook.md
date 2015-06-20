@@ -72,16 +72,18 @@ Do the same for cytb
     - mjos07: same haplotype as gruu01, so a derived CH-N haplotype. This is probably incorrect, so I will remove mjos07 from further analyses. 
     
     
-####Note
-For the cytb sequences:
+
+***For the cytb sequences:
+
     - I've sequenced ~500bp for my samples, but this overlaps with only ~330bp of Vences *et al.* sequences. So there are 2 data sets. 
     1.1 cytb CH (173indivs, 480bp): 5_cytb_CH_20150215.meg
     1.2 cytb CH haplotypes only: 5_cytb_CH_Haplotypes_20150215.nex
-    2.1 cytb CH + SE (xxindivs, xxbp): 6_cytb_SE_CH_20150215.meg
+    2.1 cytb CH + SE (205 (172+33)indivs, 448bp): cytb_CH_SE_448_20150620.nex
     2.2
 
-####Note
-The cytb sequence of *stir02* falls in with one of the major SE haplogroups. I think this is probably a mistake, so stir02 will be removed from all the rest of the analyses. (from the cytb dataset). 
+
+***The cytb sequence of *stir02* falls in with one of the major SE haplogroups. I think this is probably a mistake, so stir02 will be removed from all the rest of the analyses. (from the cytb dataset). 
+***nord18 is really divergent to the other sequences. I think there is probably some mistake. I'm removing the sequence from all further analyses. 
 
 Draw a haplotype network of the combined datasets using TCS
 ```
