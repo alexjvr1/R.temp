@@ -74,6 +74,9 @@ Do the same for cytb
     
 **For the cytb sequences:
     - I've sequenced ~500bp for my samples, but this overlaps with only ~330bp of Vences *et al.* sequences. So there are 2 data sets. 
+    1. cytb CH (173indivs, 480bp): 5_cytb_CH_20150215.meg
+    2. cytb CH haplotypes only: 5_cytb_CH_Haplotypes_20150215.nex
+    3. cytb CH + SE (xxindivs, xxbp): 6_cytb_SE_CH_20150215.meg
 
 
 Draw a haplotype network of the combined datasets using TCS
