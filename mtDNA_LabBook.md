@@ -2,8 +2,21 @@
 
 *Aim*
 
-1. Reconstruct colonisation history of Switzerland
-2. Characterise geographic distribution of genetic diversity
+But to study the adaptibility of species across environmental gradients, we should understand the underlying distribution of genetic diversity across the gradient. 
+Here we implement a comparative phylogeographic approach to describe the colonisation history of Rana temporaria across an elevational and latitudinal gradient corresponding to the same change in environmental parameters. 
+
+Our focal species is Rana temporaria, one of the most wide-spread anurans. 
+This makes them an ideal candidate for studying adaptation 
+We know that there is a deep divergence between the Eastern and Western R. temporaria clades, which is likely to have occurred during the onset of the current cycle of climatic oscillations (0.7mya) (Palo et al. 2004). This is the same time that the R. temporaria radiation occurred (Veith et al. 2003?? is this the right ref?).
+The Western clade is characterised by high genetic diversity and population structure (Palo et al. 2004). It is suggested that much of this is due to cryptic refugia in central Europe during the last glacial maximum (ref). 
+In contrast, the Eastern clade is depauperate of genetic diversity. 
+
+
+1. Reconstruct the fine-scale re-colonisation history of Switzerland and Sweden
+2. Characterise geographic distribution of genetic diversity across these similar environmental gradients. 
+
+
+
 
 
 Drew a map of the sampling locations using R & Adobe Illustrator. 
@@ -137,7 +150,10 @@ For tree prior:
 For time calibration
 - When there's a biogeographical calibration point, use a normal distribution 
 
-
+- possible calibration points for me:
+    - Biogeographical: E/W lineage split after last ice age
+    - Fossil? R. arvalis and R. temporaria split (Veith et al. 2003)
+    - 
 
 
 
