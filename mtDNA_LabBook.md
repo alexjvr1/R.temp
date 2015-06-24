@@ -130,6 +130,13 @@ To calculate haplotype diversity & nucleotide diversity (Pi)
   - Using a fossil calibration
   
 
+For tree prior: 
+- Populations -> coalescent
+- across genera -> Birth-Death model
+
+For time calibration
+- When there's a biogeographical calibration point, use a normal distribution 
+
 
 
 
