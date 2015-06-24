@@ -1,6 +1,8 @@
 ##*R.temp* Phylogeography
 
 *Aim*
+Three major factors determine the current distribution of amphibian species: 1)biogeographic history, 2)fine scale connectivity between populations (landscape genetics), 3)and survival in their current environments (adaptation to local environments/landscape genomics). 
+To obtain a holistic view of the enviro-evolutionary processes that determine the persistance 
 
 But to study the adaptibility of species across environmental gradients, we should understand the underlying distribution of genetic diversity across the gradient. 
 Here we implement a comparative phylogeographic approach to describe the colonisation history of Rana temporaria across an elevational and latitudinal gradient corresponding to the same change in environmental parameters. 
@@ -11,6 +13,7 @@ We know that there is a deep divergence between the Eastern and Western R. tempo
 The Western clade is characterised by high genetic diversity and population structure (Palo et al. 2004). It is suggested that much of this is due to cryptic refugia in central Europe during the last glacial maximum (ref). 
 In contrast, the Eastern clade is depauperate of genetic diversity. 
 
+The aim of this study is to study the distribution of genetic variation in Rana temporaria at a fine-scale across Sweden and Switzerland, in order to understand the processes that have resulted in the current spatial genetic variation across the two temperature gradients. 
 
 1. Reconstruct the fine-scale re-colonisation history of Switzerland and Sweden
 2. Characterise geographic distribution of genetic diversity across these similar environmental gradients. 
