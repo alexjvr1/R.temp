@@ -94,7 +94,7 @@ Do the same for cytb
     - I've sequenced ~500bp for my samples, but this overlaps with only ~330bp of Vences *et al.* sequences. So there are 2 data sets. 
     1.1 cytb CH (173indivs, 480bp): 5_cytb_CH_20150215.meg
     1.2 cytb CH haplotypes only: 5_cytb_CH_Haplotypes_20150215.nex
-    2.1 cytb CH + SE (205 (172+33)indivs, 448bp): cytb_CH_SE_448_20150620.nex
+    2.1 cytb CH + SE (205 (172+33)indivs, 448bp): cytb_CH_SE_448_20150623.nex
     2.2
 
 
