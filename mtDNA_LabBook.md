@@ -61,6 +61,7 @@ I am comparing my data with that available in Vences *et al.* 2014. He has cytb 
     - I am generating a table (Table 1 in MS) with genetic diversity and basic statistics
 3. AMOVA
 4. Phylogenetic Trees
+5. Basic statistics
 
 ###Haplotype networks
 
@@ -160,5 +161,16 @@ For time calibration
 
 
 
+##Basic Statistics
 
+Is the region under selection?
+
+1. Define coding region
+```
+I aligned my cyt b sequence to an available R.t.parvipalmata from NCBI and found the ORF by comparing the region they suggest is an ORF, and translating the fragment using web.expasy.org/cgi-bin/translate/dna_aa
+For COX1, I just translated with the website to find the most likely ORF
+
+For cytb: ORF starts on position 1. 
+COX1: ORF starts on position 1.
+```
 
