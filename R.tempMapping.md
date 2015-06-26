@@ -18,6 +18,15 @@ SNP calling when mapping is possible using low coverage sequencing when using a 
 
 ##Pipeline
 
+Overview of a pipeline is here: 
+
+http://www.ebi.ac.uk/training/sites/ebi.ac.uk.training/files/materials/2014/140217_AgriOmics/dan_bolser_snp_calling.pdf
+
+1. Align
+  - Index genome
+  - 
+2. SNP calling
+3. Filter SNPs
 
 ```
 ```
