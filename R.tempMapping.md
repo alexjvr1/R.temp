@@ -30,12 +30,16 @@ http://www.ebi.ac.uk/training/sites/ebi.ac.uk.training/files/materials/2014/1402
 
 ###1. Align to the genome
 
-Start 13:24 end 
-
+Start 13:24 end 14:37 
 ```
 bwa index Rtk43.fa
 ```
+output: 
+Rtk43.fa.amb  Rtk43.fa.ann  Rtk43.fa.bwt  Rtk43.fa.pac  Rtk43.fa.sa
 
 
+
+Align the demultiplexed individuals to the indexed genome
 ```
+
 ```
