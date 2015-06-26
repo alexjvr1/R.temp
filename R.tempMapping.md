@@ -28,5 +28,14 @@ http://www.ebi.ac.uk/training/sites/ebi.ac.uk.training/files/materials/2014/1402
 2. SNP calling
 3. Filter SNPs
 
+###1. Align to the genome
+
+Start 13:24 end 
+
+```
+bwa index Rtk43.fa
+```
+
+
 ```
 ```
