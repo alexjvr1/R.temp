@@ -18,3 +18,6 @@ SNP calling when mapping is possible using low coverage sequencing when using a 
 
 ##Pipeline
 
+
+```
+```
