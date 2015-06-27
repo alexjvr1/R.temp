@@ -46,6 +46,9 @@ bwa aln Rtk43.fa demultiplexed/abnd_01_H4.fq.gz > Rt.abnd01.sai
 ```
 
 To align all the individuals
+This is for all 451 individuals. 
+Start 23:52
 ```
+bwa aln Rtk43.fa demultiplexed/*.fq.gz > Rt.*.sai
 ```
 
