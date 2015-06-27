@@ -41,7 +41,7 @@ Rtk43.fa.amb  Rtk43.fa.ann  Rtk43.fa.bwt  Rtk43.fa.pac  Rtk43.fa.sa
 
 Align the demultiplexed individuals to the indexed genome. 
 This is for one individual
-Start: 14:50 end 
+Start: 14:50 end 23:52
 ```
 bwa aln Rtk43.fa demultiplexed/abnd_01_H4.fq.gz > Rt.abnd01.sai
 ```
