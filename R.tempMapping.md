@@ -24,7 +24,6 @@ http://www.ebi.ac.uk/training/sites/ebi.ac.uk.training/files/materials/2014/1402
 
 1. Align
   - Index genome
-  - 
 2. SNP calling
 3. Filter SNPs
 
