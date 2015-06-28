@@ -52,3 +52,29 @@ Start 23:52
 bwa aln Rtk43.fa demultiplexed/*.fq.gz > Rt.*.sai
 ```
 
+Convert to sam format
+```
+bwa samse Rtk43.fa Rt.abnd09.sai demultiplexed/abnd_09_H5.fq.gz > Rt.abnd09.sai.sam
+
+#I got an error message when running this for all abnd01-09. And all the files are exactly the same size. I'm not sure whether this is right or not
+
+[bwa_aln_core] convert to sequence coordinate... 3.17 sec
+[bwa_aln_core] refine gapped alignments... 0.89 sec
+[bwa_aln_core] print alignments... 0.56 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 3.11 sec
+[bwa_aln_core] refine gapped alignments... 0.89 sec
+[bwa_aln_core] print alignments... 0.55 sec
+[bwa_aln_core] 524288 sequences have been processed.
+[fread] Unexpected end of file
+```
+
+Now I have to use samtools
+
+First, index the genome (this only needs to be done once) (~2min)
+```
+samtools faidx Rtk43.fa
+```
+
+Next 
+
