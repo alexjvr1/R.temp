@@ -108,7 +108,9 @@ samtools idxstats Rt.abnd03.sai.bam.sorted.bam
 ```
 
 ###Problem
-I'm only getting ~100 000 sequences mapped. For some reason only ~500 000 reads were used to start with (this is already 1/5 of the 2.5mil reads). And then I'm only mapping 19% of these reads.. 
+I'm only getting ~100 000 sequences mapped. For some reason only ~500 000 reads were used to start with (this is already 1/7 of the 3.5mil reads). And then I'm only mapping 19% of these reads..   
+
+So I need to relax the initial parameters.
 
 And then I need to call SNPs
 
