@@ -76,5 +76,42 @@ First, index the genome (this only needs to be done once) (~2min)
 samtools faidx Rtk43.fa
 ```
 
-Next 
+Next, convert SAM to BAM files. (A BAM file is just a binary version of a SAM files) (1min)
+```
+samtools import Rtk43.fa.fai Rt.abnd01.sai.sam Rt.abnd01.sai.bam
+```
+
+And then sort the BAM file (1min)
+```
+samtools sort Rt.H2.bam Rt.H2.bam.sorted
+```
+
+And last, we need Samtools to index the BAM file (10s)
+```
+samtools index Rt.H2.bam.sorted.bam
+```
+
+Now I need to check the output of the alignments. 
+1. What proportion of the sequences mapped?
+2. What's the comparison between samples?
+3. 
+
+For basic statistics use the flagstat command
+```
+samtools flagstat Rt.abnd03.sai.bam.sorted.bam
+```
+
+OR
+the idxstats command
+```
+samtools idxstats Rt.abnd03.sai.bam.sorted.bam
+```
+
+###Problem
+I'm only getting ~100 000 sequences mapped. For some reason only ~500 000 reads were used to start with (this is already 1/5 of the 2.5mil reads). And then I'm only mapping 19% of these reads.. 
+
+And then I need to call SNPs
+
+I will use FreeBayes
+
 
