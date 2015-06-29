@@ -112,6 +112,8 @@ I'm only getting ~100 000 sequences mapped. For some reason only ~500 000 reads 
 
 So I need to relax the initial parameters.
 
+BUT my demultiplexed files seem much smaller than they're supposed to be. I should have ~3.5mil reads per sample, but there is only ~500 000 in each. So on top of getting a low mapping success, I'm starting with far fewer reads than I should! What went wrong with the demultiplexing? I will have to redo this step to check what the problem is. 
+
 And then I need to call SNPs
 
 I will use FreeBayes
