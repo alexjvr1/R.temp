@@ -42,8 +42,32 @@ SampledLocalities_coords_20150615.xlsx (up to date as of 17 June 2015)
 ###Sequence alignments
 All sequences were aligned and cleaned using BioEdit and CLCBio. 
 The final dataset comprises:
+cytb:
+- Sequences from Vences *et al.* 2013 for comparison: 
+- Outgroups: 
+    - *R. pyrenica*:
+    - *R.t.parvipalmata*
+    - *R.a.arvalis*
+    - *R.iberica/italica*
+
 - 448bp cytb for 173 CH (44 pops) and 34 SE (9 pops) samples
+- 
+
+*Final cytb Datasets*
+
+
+
+COX1:
+- Sequences from Vences *et al.* 2013 for comparison: KC977228.1-50.1 from NCBI
+- Outgroups: 
+    - R. pyrenica: KC977251.1 (Vences *et al.* 2013
+    - R.t.parvipalmata
+    - R.a.arvalis
+    - R.iberica/italica
+
+*Final COX1 Datasets*    
 - 628bp COX for 154 CH (41 pops) 33 SE (9 pops) samples  
+- 
 
 All data are stored on my HP laptop, and can be found here: 
 - C:/hp_1_PhD_AJvR_20130101/1_Thesis/Chapter2_Phylogeography/Analyses/mtDNA_Datasets (Datasets: see next section)
