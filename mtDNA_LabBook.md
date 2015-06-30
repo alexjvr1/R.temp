@@ -73,6 +73,11 @@ This should contain the number & names of haplotypes in each population for each
 I found a N/S split across the alps in my data, so I am naming the Haplotypes H1 (South) and H2 (North). 
 In each case .1 is the common haplotype, and .2...n are the derived haplotypes (as determined by the haplotype network)
 
+Samples that fall into N & S depending on whether they were cytb or COX1 sequences will be removed. They need to be resequenced, but I don't have time before the data analysis: 
+
+- arce 02
+- fada 02
+- fuor 01
 
 Haplotype names and assignment for COX1 & cytb
 ```
