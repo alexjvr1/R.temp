@@ -45,10 +45,11 @@ The final dataset comprises:
 cytb:
 - Sequences from Vences *et al.* 2013 for comparison: 
 - Outgroups: 
-    - *R. pyrenica*:
-    - *R.t.parvipalmata*
-    - *R.a.arvalis*
-    - *R.iberica/italica*
+    - *R. pyrenaica*: 
+    - *R.t.parvipalmata*: 
+    - *R.a.arvalis*: KC800123
+    - *R.iberica*: KC799485
+    - *R.italica*: KC799493
 
 - 448bp cytb for 173 CH (44 pops) and 34 SE (9 pops) samples
 - 
