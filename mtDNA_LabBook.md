@@ -58,6 +58,8 @@ cytb:
 
 - 448bp cytb for 169 CH (44 pops), 32 SE (9 pops)
 - 331bp cytb for 169 CH (44 pops), 32 SE (9 pops), 601 Vences et al. (106 pops)
+- Haplotypes: xx bp, xx haplotypes
+
 
 COX1:
 - Sequences from Vences *et al.* 2013 for comparison: KC977228.1-50.1 from NCBI
