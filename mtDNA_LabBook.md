@@ -45,9 +45,9 @@ SampledLocalities_coords_20150615.xlsx (up to date as of 17 June 2015)
 All sequences were aligned and cleaned using BioEdit and CLCBio. 
 The final dataset comprises:
 cytb:
-- Sequences from Vences *et al.* 2013 for comparison: 
+- Sequences from Vences *et al.* 2013 for comparison: KC799522.1 - KC800122.1
 - Outgroups: 
-    - *R. pyrenaica*: 
+    - *R. pyrenaica*: KC799521.1
     - *R.t.parvipalmata*: 
     - *R.a.arvalis*: KC800123
     - *R.iberica*: KC799485
@@ -228,7 +228,7 @@ group | n | positions | stat | P
 :---: | :---: | :---: | :---: | :---:
 CHN | 69 | 149 | -1.591 | 0.114
 CHS | 100 | 149 | -2.932 | *0.004* 
-CHall |  | 149 |  | 
+CHall | 169 | 149 | -3.197 | *0.002* 
 SE |32 | 149 |-1.465 | 0.146
 
 
