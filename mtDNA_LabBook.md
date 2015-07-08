@@ -182,17 +182,24 @@ To calculate haplotype diversity & nucleotide diversity (Pi)
 
 ##Demographic Analyes
 
-1. Mismatch distribution: Arlequin
+1. Mismatch distribution: dnaSP
+     - Remember to set Data -> Format to the right settings
+     - Analysis -> Population Size Changes -> mismatch distribution & Constant Population Size
+    
+
 2. Bayesian Skyline Plot: BEAST
+
+
+####*cytb*
 
 
 ##Phylogenetics
 
-1. Model Selection using jModelTest
+1. Model Selection using jModelTest2 on Cipres
 2. ML tree using RXML
 3. Bayesian tree using MrBayes
 
-###*cytb*
+####*cytb*
 
 Generate a dataset with a representative each of the haplotypes from Vences et al, and from my own data.
 As outgroups, I'm using R.italica, R.iberica, R.arvalis, R.pyrenaica sequences from Vences et al.
@@ -201,11 +208,28 @@ I aligned 60 sequences (57 haplotypes + 2CH and 1SE representatives of the Vence
 
 
 *jModelTest*
-Read the fasta alignment file into jModelTest
-Test 88 models against each other
 
-The most likely model using AIC: 
+- Read the fasta alignment file into jModelTest2 on Cipres online platform
+- Test 88 models against each other
 
+The most likely model using AIC for cytb with outgroups: 
+
+Model = TIM3+I+G
+partition = 0.12032
+-lnL = 1369.6723
+K = 126
+freqA = 0.2435
+freqC = 0.3402
+freqG = 0.1084
+freqT = 0.3079
+R(a) [AC] = 0.3124 
+R(a) [AG] = 34.8455
+R(a) [AT] = 1.0000
+R(a) [CG] = 0.3124
+R(a) [CT] = 15.4882
+R(a) [GT] = 1.0000
+p-inv = 0.4510
+gamma shape = 0.7200
 
 
 ##Date Divergence
