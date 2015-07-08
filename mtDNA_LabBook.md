@@ -207,11 +207,30 @@ For cytb: ORF starts on position 1.
 COX1: ORF starts on position 1.
 ```
 
-To check for selection I'm doing a codon-based test of neutrality for analyses averaging over all sequence pairs within each group. The probability of rejecting the null hypothesis of strict neutrality (dN = dS) is shown. P < 0.05 are considered significant. The test statistic dN-dS is shown in the stat column. dS and dN are the numbers of synonymous and nonsynonymous substitutions per site, respectively. The variance of the difference is computed using the bootstrap method (1000 replicates). Analyses were conducted using the Nei-Gojobori method (Jukes-Cantor). All positions with less than 95% site coverage were eliminated. That is, fewer than 5% alignment gaps, missing data, and ambiguous bases were allowed at any position. Analyses were conducted in MEGA6. 
+To check for selection I'm doing a codon-based test of neutrality for analyses averaging over all sequence pairs within each group. 
+```
+1. Load data into Mega6
+2. Define groups (Data -> Select Taxa and Groups)
+3. Selection test (Selection -> Codon-based Z-test of selection)
+              Scope: Average within groups
+              Test Hypothesis: Neutrality (HA: dN =/= dS)
+              Variance estimation method: Bootstrap, 1000 reps
+              Model: Nei-Gojobori method
+              Gaps/missing data: Partial deletion, 95% cutoff
+```
+
+
+Results & Caption
+```
+group | n | positions | stat | P
+:---: | :---: | :---: | :---: | :---:
+CHN | 69 | 149 | -1.591 | 0.114
+
+
+The probability of rejecting the null hypothesis of strict neutrality (dN = dS) is shown. P < 0.05 are considered significant. The test statistic dN-dS is shown in the stat column. dS and dN are the numbers of synonymous and nonsynonymous substitutions per site, respectively. The variance of the difference is computed using the bootstrap method (1000 replicates). Analyses were conducted using the Nei-Gojobori method (Jukes-Cantor). All positions with less than 95% site coverage were eliminated. That is, fewer than 5% alignment gaps, missing data, and ambiguous bases were allowed at any position. Analyses were conducted in MEGA6. 
+```
 
 Ref for MEGA6: 
 
 Tamura K, Stecher G, Peterson D, Filipski A, Kumar S (2013) MEGA6: Molecular Evolutionary Genetics Analysis version 6.0. *Molecular Biology and Evolution*, 30, 2725-2729.
 
-group | n | positions | stat | P
-CHN | 69 | 149 | -1.591 | 0.114
