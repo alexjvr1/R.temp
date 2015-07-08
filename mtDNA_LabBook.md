@@ -222,11 +222,25 @@ To check for selection I'm doing a codon-based test of neutrality for analyses a
 ```
 
 
-Results & Caption
+Results & Caption: cytb
 
 group | n | positions | stat | P
 :---: | :---: | :---: | :---: | :---:
 CHN | 69 | 149 | -1.591 | 0.114
+CHS | 100 | 149 | -2.932 | *0.004* 
+CHall |  | 149 |  | 
+SE |32 | 149 |-1.465 | 0.146
+
+
+COX1
+
+group | n | positions | stat | P
+:---: | :---: | :---: | :---: | :---:
+CHN |  |  | | 
+CHS |  | |  |  
+CHall |  |  |  | 
+SE | |  |  | 
+
 
 ```
 The probability of rejecting the null hypothesis of strict neutrality (dN = dS) is shown. P < 0.05 are considered significant. The test statistic dN-dS is shown in the stat column. dS and dN are the numbers of synonymous and nonsynonymous substitutions per site, respectively. The variance of the difference is computed using the bootstrap method (1000 replicates). Analyses were conducted using the Nei-Gojobori method (Jukes-Cantor). All positions with less than 95% site coverage were eliminated. That is, fewer than 5% alignment gaps, missing data, and ambiguous bases were allowed at any position. Analyses were conducted in MEGA6. 
