@@ -60,7 +60,19 @@ cytb:
 
 - 448bp cytb for 169 CH (44 pops), 32 SE (9 pops)
 - 331bp cytb for 169 CH (44 pops), 32 SE (9 pops), 601 Vences et al. (106 pops)
-- Haplotypes: xx bp, xx haplotypes
+- Haplotypes: 331 bp, 59 haplotypes (concatenated with Vences et al. data)
+
+For the Haplotype data: 
+
+Vences et al. report 47 haplotypes for the cytb data. However, with the data available on NCBI and supplementary table S3, I can assign only 40 of these to haplotypes, and there is one haplotype (ALC02, XAL01 - Spain) for which the samples are not reported in table S3. 
+
+My own data will be named H48-59. 
+
+The naming assignments are kept in: cytb+COX1_HaplotypeAssignments_20150618.xlsx
+
+
+
+
 
 
 COX1:
