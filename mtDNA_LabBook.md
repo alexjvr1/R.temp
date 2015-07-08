@@ -1,5 +1,7 @@
 ##*R.temp* Phylogeography
 
+
+
 *Aim*
 Three major factors determine the current distribution of amphibian species: 1)biogeographic history, 2)fine scale connectivity between populations (landscape genetics), 3)and survival in their current environments (adaptation to local environments/landscape genomics). 
 To obtain a holistic view of the enviro-evolutionary processes that determine the persistance 
@@ -221,12 +223,12 @@ To check for selection I'm doing a codon-based test of neutrality for analyses a
 
 
 Results & Caption
-```
+
 group | n | positions | stat | P
 :---: | :---: | :---: | :---: | :---:
 CHN | 69 | 149 | -1.591 | 0.114
 
-
+```
 The probability of rejecting the null hypothesis of strict neutrality (dN = dS) is shown. P < 0.05 are considered significant. The test statistic dN-dS is shown in the stat column. dS and dN are the numbers of synonymous and nonsynonymous substitutions per site, respectively. The variance of the difference is computed using the bootstrap method (1000 replicates). Analyses were conducted using the Nei-Gojobori method (Jukes-Cantor). All positions with less than 95% site coverage were eliminated. That is, fewer than 5% alignment gaps, missing data, and ambiguous bases were allowed at any position. Analyses were conducted in MEGA6. 
 ```
 
