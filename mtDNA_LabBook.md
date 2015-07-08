@@ -186,6 +186,27 @@ To calculate haplotype diversity & nucleotide diversity (Pi)
 2. Bayesian Skyline Plot: BEAST
 
 
+##Phylogenetics
+
+1. Model Selection using jModelTest
+2. ML tree using RXML
+3. Bayesian tree using MrBayes
+
+###*cytb*
+
+Generate a dataset with a representative each of the haplotypes from Vences et al, and from my own data.
+As outgroups, I'm using R.italica, R.iberica, R.arvalis, R.pyrenaica sequences from Vences et al.
+
+I aligned 60 sequences (57 haplotypes + 2CH and 1SE representatives of the Vences haplotypes), and cut them down to 331bp alignment. 
+
+
+*jModelTest*
+Read the fasta alignment file into jModelTest
+Test 88 models against each other
+
+The most likely model using AIC: 
+
+
 
 ##Date Divergence
 
