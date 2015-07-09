@@ -103,12 +103,22 @@ I am comparing my data with that available in Vences *et al.* 2014. He has cytb 
     - I am generating a table (Table 1 in MS) with genetic diversity and basic statistics
 3. AMOVA
 4. Phylogenetic Trees: ML, MrBayes
-5. Basic statistics
+5. Basic statistics (test for selection, Fst)
 6. IBD
 7. Demographic analyses: BSP, Mismatch distribution
 8. BEAST: dating the split
 
 ###Haplotype networks
+
+1. Export Phylip format from dnaSP
+2. Import into TCS
+3. Draw haplotype network with 100step connection limit
+4. Update the mtDNA data file to show which individuals have which haplotypes
+5. Take note of the number of individuals in each haplotype
+6. Draw haplotype networks in Adobe Illustrator
+
+And secondly map the proportion of CHN and CHS on a map of Switzerland
+See the 
 
 
 ###Table 1
