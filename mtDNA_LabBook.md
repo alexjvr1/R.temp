@@ -83,9 +83,10 @@ COX1:
     - R.a.arvalis
     - R.iberica/italica
 
-*Final COX1 Datasets*    
-- 628bp COX for 154 CH (41 pops) 33 SE (9 pops) samples  
-- 
+*Final COX1 Datasets*
+
+- 628bp COX1 for 92 CHN and 59 CHS (53 pops) 33 SE (9 pops) samples  
+- 628bp COX1 as above + sequences from Vences et al. 2013
 
 All data are stored on my HP laptop, and can be found here: 
 - C:/hp_1_PhD_AJvR_20130101/1_Thesis/Chapter2_Phylogeography/Analyses/mtDNA_Datasets (Datasets: see next section)
