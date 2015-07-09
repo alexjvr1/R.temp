@@ -228,12 +228,27 @@ Source of Variation | d.f. | Sum of Squares | Variance Component | Percentage of
 Among Groups |1|259.399|3.16511 Va| 88.35
 Among Pops Within Groups |52|45.113|0.21287 Vb| 5.94
 Within Pops |115|23.500|0.20435 Vc| 5.70
-####Total|168|328.012|3.58233
+Total|168|328.012|3.58233
 
 Significance tests:
 
 All 0.00000
 
+For (2): 
+
+1. Define all the populations in dnaSP for CH (i.e. don't split CHN and CHS). 
+2. Results were as follows: 
+
+Source of Variation | d.f. | Sum of Squares | Variance Component | Percentage of Variation
+:---:|:---:|:---:|:---:|:---:
+Among Groups |1|249.977|4.68678 Va| 72.60 
+Among Pops Within Groups |49|245.252|1.16675 Vb|18.47
+Within Pops |143|80.750|0.56469 Vc|8.94
+Total|193|575.979|6.31821
+
+Significance tests:
+
+All 0.00000
 
 ##Demographic Analyes
 
