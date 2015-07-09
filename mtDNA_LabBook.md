@@ -98,12 +98,15 @@ All data are stored on my HP laptop, and can be found here:
 I am comparing my data with that available in Vences *et al.* 2014. He has cytb and COX1 sequences available that overlap with mine, and the data provides a Europe-wide context within which to explore my data. 
 
 
-1. Haplotype networks
+1. Haplotype networks ####(Still need the figures)
 2. Table 1
     - I am generating a table (Table 1 in MS) with genetic diversity and basic statistics
 3. AMOVA
-4. Phylogenetic Trees
+4. Phylogenetic Trees: ML, MrBayes
 5. Basic statistics
+6. IBD
+7. Demographic analyses: BSP, Mismatch distribution
+8. BEAST: dating the split
 
 ###Haplotype networks
 
