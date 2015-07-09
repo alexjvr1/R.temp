@@ -179,6 +179,61 @@ To calculate haplotype diversity & nucleotide diversity (Pi)
     - And nucleotide diversity (with SD)
 ```
 
+##AMOVA
+
+AMOVA determines where the most genetic diversity occurs: within or between groups. 
+
+This analysis is run in Arlequin
+
+*I had some problems with Arlequin: Make sure the WinArl folder is located in the C drive on Windows (I think it doesn't like spaces in folder names). And make sure to save the settings after specifying the analyses (arl_run.ars).*
+
+####*Input*####
+
+Arlequin input files can be exported from dnaSP.
+
+1. Export the .arp and the .hap file from dnaSP
+2. copy the haplotypes from the .hap file
+3. Below [[Haplotype Definition]] type: HaplList={
+4. Paste the haplotypes
+5. Below the haplotypes, close the bracket }
+6. Save as .arp
+
+
+####*Run AMOVA*####
+
+1. Load the data into the Arlequin GUI
+2. Make sure to specify the text editor
+3. Assign groups in Structure Editor
+4. Under the Settings tab, select AMOVA, 1000 permutations
+5. Save
+6. Start
+7. Output is in a new folder with the name of the input file (.xml file) and can be opened with textpad or similar
+
+
+####*cytb*####
+
+For cyt be I want to know
+
+1. Whether most of the CH variation is within populations or between CHN and CHS
+2. Whether most of the overall variation is within populations or between SE and CH
+
+For (1):
+
+1. Define all the populations in dnaSP as N or S. For this analysis I made the a priori decision based on the haplotype network. So if a population has 1CHN and 3CHS, there were two groups called in dnaSP with 1 and 3 samples respectively. 
+
+2. Results were as follows: 
+
+Source of Variation | d.f. | Sum of Squares | Variance Component | Percentage of Variation
+:---:|:---:|:---:|:---:|:---:
+Among Groups |1|259.399|3.16511 Va| 88.35
+Among Pops Within Groups |52|45.113|0.21287 Vb| 5.94
+Within Pops |115|23.500|0.20435 Vc| 5.70
+####Total|168|328.012|3.58233
+
+Significance tests:
+
+All 0.00000
+
 
 ##Demographic Analyes
 
@@ -192,6 +247,21 @@ To calculate haplotype diversity & nucleotide diversity (Pi)
 
 ####*cytb*
 
+*Mismatch Distribution*
+
+CHall
+
+
+CHS
+
+
+CHN
+
+
+SE
+
+
+*Bayesian Skyline Plot*
 
 ##Phylogenetics
 
