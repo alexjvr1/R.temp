@@ -78,7 +78,7 @@ The naming assignments are kept in: cytb+COX1_HaplotypeAssignments_20150618.xlsx
 COX1:
 - Sequences from Vences *et al.* 2013 for comparison: KC977228.1-50.1 from NCBI
 - Outgroups: 
-    - R. pyrenica: KC977251.1 (Vences *et al.* 2013
+    - R. pyrenica: KC977251.1 (Vences *et al.* 2013)
     - R.t.parvipalmata
     - R.a.arvalis
     - R.iberica/italica
@@ -212,7 +212,7 @@ Arlequin input files can be exported from dnaSP.
 
 ####*cytb*####
 
-For cyt be I want to know
+For cytb I want to know
 
 1. Whether most of the CH variation is within populations or between CHN and CHS
 2. Whether most of the overall variation is within populations or between SE and CH
@@ -249,6 +249,47 @@ Total|193|575.979|6.31821
 Significance tests:
 
 All 0.00000
+
+####*COX1*####
+
+For COXI I want to know the same as for cytb:
+
+1. Whether most of the CH variation is within populations or between CHN and CHS
+2. Whether most of the overall variation is within populations or between SE and CH
+
+For (1):
+
+1. Define all the populations in dnaSP as N or S. For this analysis I made the a priori decision based on the haplotype network. So if a population has 1CHN and 3CHS, there were two groups called in dnaSP with 1 and 3 samples respectively. 
+
+2. Results were as follows: 
+
+Source of Variation | d.f. | Sum of Squares | Variance Component | Percentage of Variation
+:---:|:---:|:---:|:---:|:---:
+Among Groups ||| Va|
+Among Pops Within Groups ||| Vb|
+Within Pops ||| Vc|
+Total|||
+
+Significance tests:
+
+All 0.00000
+
+For (2): 
+
+1. Define all the populations in dnaSP for CH (i.e. don't split CHN and CHS). 
+2. Results were as follows: 
+
+Source of Variation | d.f. | Sum of Squares | Variance Component | Percentage of Variation
+:---:|:---:|:---:|:---:|:---:
+Among Groups ||| Va| 
+Among Pops Within Groups ||| Vb|
+Within Pops ||| Vc|
+Total|||
+
+Significance tests:
+
+All 0.00000
+
 
 ##Demographic Analyes
 
