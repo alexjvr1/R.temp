@@ -118,7 +118,7 @@ I am comparing my data with that available in Vences *et al.* 2014. He has cytb 
 6. Draw haplotype networks in Adobe Illustrator
 
 And secondly map the proportion of CHN and CHS on a map of Switzerland
-See the 
+See the PieChartsonMap_R.md on my GitHub page for a tutorial
 
 
 ###Table 1
