@@ -343,10 +343,10 @@ For (2):
 
 Source of Variation | d.f. | Sum of Squares | Variance Component | Percentage of Variation
 :---:|:---:|:---:|:---:|:---:
-Among Groups |1|| Va|
-Among Pops Within Groups ||| Vb|
-Within Pops ||| Vc|
-Total  |||
+Among Groups |1|577.971|12.47750 Va|80.14
+Among Pops Within Groups |58|482.161|2.79242 Vb|17.94
+Within Pops |113|33.833|0.29941 Vc|1.92
+Total  |172|1093.965|15.56933
 
 Significance tests:
 
