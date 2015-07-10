@@ -367,16 +367,43 @@ All 0.00000
 
 *Mismatch Distribution*
 
-CHall
+Sudden expansion model tested
+
+Results in:  CHAllPops.xml
+
+#####*CHall*
+
+Test of goodness-of-fit | Values
+:---:|:---:
+Sum of Squared Deviations | 0.12740512
+P(Sim. Ssd >= Obs. Ssd) | 0.004000
+Harpending's Raggedness index | 0.22447845
+P(Sim. Rag. >= Obs. Rag.) | 0.00630000
+
+#####*CHS*
+
+Test of goodness-of-fit | Values
+:---:|:---:
+Sum of Squared Deviations | 0.15219882
+P(Sim. Ssd >= Obs. Ssd) | 0.02740000
+Harpending's Raggedness index | 0.54809296
+P(Sim. Rag. >= Obs. Rag.) | 0.00850000
 
 
-CHS
+#####*CHN*
+
+Test of goodness-of-fit | Values
+:---:|:---:
+Sum of Squared Deviations | 0.00463243
+P(Sim. Ssd >= Obs. Ssd) | 0.02050000
+Harpending's Raggedness index | 0.16260941
+P(Sim. Rag. >= Obs. Rag.) | 0.730000
+
+#####*SEall*
+
+Error: Least-square procedure to fit expected and observed mismatch distribution did not converge after 2000 steps
 
 
-CHN
-
-
-SE
 
 
 *Bayesian Skyline Plot*
@@ -387,13 +414,46 @@ SE
 
 *Mismatch Distribution*
 
-CHall
+Parameters estimated under the sudden expansion model
 
-CHS
+Results in COX1_MM
 
-CHN
+#####*CHall*
 
-SE
+
+
+Test of goodness-of-fit | Values
+:---:|:---:
+Sum of Squared Deviations | 0.13675574
+P(Sim. Ssd >= Obs. Ssd) | 0.02780000
+Harpending's Raggedness index | 0.22561598
+P(Sim. Rag. >= Obs. Rag.) | 0.08760000
+
+
+
+#####*CHS*
+
+Results in COX1_MM
+
+Test of goodness-of-fit | Values
+:---:|:---:
+Sum of Squared Deviations | 0.00005236
+P(Sim. Ssd >= Obs. Ssd) | 0.9999
+Harpending's Raggedness index | 0.09079252
+P(Sim. Rag. >= Obs. Rag.) | 0.03300000
+
+
+#####*CHN*
+
+Error: Least-square procedure to fit expected and observed mismatch distribution did not converge after 2000 steps
+
+#####*SEall*
+
+Error: Least-square procedure to fit expected and observed mismatch distribution did not converge after 2000 steps
+
+
+
+
 
 *BSP*
 
@@ -401,6 +461,38 @@ SE
 ####*Concatenated Dataset*
 
 *Mismatch Distribution*
+
+Test for sudden expansion
+
+Results in WinArl35/Concat_allPopsNamed_test1.res folder
+
+#####*CHS*
+
+Test of goodness-of-fit | Values
+:---:|:---:
+Sum of Squared Deviations | 0.03382908
+P(Sim. Ssd >= Obs. Ssd) | 0.1940000
+Harpending's Raggedness index | 0.10279010
+P(Sim. Rag. >= Obs. Rag.) | 0.31200000
+
+
+#####*CHall*
+
+Test of goodness-of-fit | Values
+:---:|:---:
+Sum of Squared Deviations | 0.09724376
+P(Sim. Ssd >= Obs. Ssd) | 0.003
+Harpending's Raggedness index | 0.08403806
+P(Sim. Rag. >= Obs. Rag.) | 0.044000
+
+#####*CHN*
+
+Error: Least-square procedure to fit expected and observed mismatch distribution did not converge after 2000 steps
+
+#####*SEall*
+
+Error: Least-square procedure to fit expected and observed mismatch distribution did not converge after 2000 steps
+
 
 
 *BSP*
