@@ -327,10 +327,10 @@ For (1):
 
 Source of Variation | d.f. | Sum of Squares | Variance Component | Percentage of Variation
 :---:|:---:|:---:|:---:|:---:
-Among Groups |1||Va|
-Among Pops Within Groups ||| Vb|
-Within Pops ||| Vc|
-Total   |||
+Among Groups |1|426.010|6.15297 Va| 91.18
+Among Pops Within Groups |49|53.178|0.26588 Vb|3.94
+Within Pops |95|31.250|0.32895 Vc|4.87
+Total   |145|510.438|6.74779
 
 Significance tests:
 
@@ -355,8 +355,8 @@ All 0.00000
 ##Demographic Analyes
 
 1. Mismatch distribution: Arlequin
-     - 
-
+     - See AMOVA section above for details to load data file into Arlequin
+     - Under settings, choose Mismatch distribution -> Estimate parameters of demographic expansion + 1000 bootstrap replicates
 
     
 
@@ -380,6 +380,32 @@ SE
 
 
 *Bayesian Skyline Plot*
+
+
+
+####*COX1
+
+*Mismatch Distribution*
+
+CHall
+
+CHS
+
+CHN
+
+SE
+
+*BSP*
+
+
+####*Concatenated Dataset*
+
+*Mismatch Distribution*
+
+
+*BSP*
+
+
 
 ##Phylogenetics
 
