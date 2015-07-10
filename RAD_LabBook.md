@@ -1638,3 +1638,23 @@ MISCELLANEOUS
 #define REPORTHITRATE 0 //(B) report hit rate if using METROFREQ
 ```
 
+###10 July 2015
+
+I just recieved the next flowcell of data: 
+
+H10, H13, H14, H16, H17, H18, H19, H21
+
+Fastqc has been fun for me by the FGCZ bioinformaticians: http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
+
+Library | Number of Sequences
+:--:|:--:
+H10 | 103020694
+H13 | 218264182
+H14 | 217765320
+H16 | 237732001
+H17 | 220987734
+H18 | 222052040
+H19 | 189469463
+H21 | 104792211
+
+
