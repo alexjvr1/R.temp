@@ -79,20 +79,27 @@ COX1:
 - Sequences from Vences *et al.* 2013 for comparison: KC977228.1-50.1 from NCBI
 - Outgroups: 
     - R. pyrenica: KC977251.1 (Vences *et al.* 2013)
-    - R.t.parvipalmata
-    - R.a.arvalis
-    - R.iberica/italica
+    - R.t.parvipalmata - none available
+    - R.a.arvalis: JN871596.1 
+    - R.iberica/italica - none available 
 
 *Final COX1 Datasets*
 
 - 628bp COX1 for 92 CHN and 59 CHS (53 pops) 33 SE (9 pops) samples  
 - 628bp COX1 as above + sequences from Vences et al. 2013
+- 628bp COX1 CH + SE + Vences + outgroups (R.arvalis + R.pyrenica)
 
 All data are stored on my HP laptop, and can be found here: 
 - C:/hp_1_PhD_AJvR_20130101/1_Thesis/Chapter2_Phylogeography/Analyses/mtDNA_Datasets (Datasets: see next section)
 - C:/hp_1_PhD_AJvR_20130101/1_Thesis/Chapter2_Phylogeography/Analyses/1_* (raw data)
 
 
+*Concatenated Datasets*
+
+448bp cytb + 628bp COX1. Both cytb and COX1 are in frame, but 2 bases need to be added in between to keep COX1 in frame. 
+
+- 1076bp cytb+COX1 CHN (90), CHS (56), + SE (27)
+- 1076bp as above + R.arvalis + R.pyrenica
 
 ##Exploring the data
 
@@ -305,11 +312,52 @@ Significance tests:
 All 0.00000
 
 
+####*Concatenated Dataset*####
+
+Same questions as above:
+
+1. Whether most of the CH variation is within populations or between CHN and CHS
+2. Whether most of the overall variation is within populations or between SE and CH
+
+For (1):
+
+1. Define all the populations in dnaSP as N or S. For this analysis I made the a priori decision based on the haplotype network. So if a population has 1CHN and 3CHS, there were two groups called in dnaSP with 1 and 3 samples respectively. 
+
+2. Results were as follows: 
+
+Source of Variation | d.f. | Sum of Squares | Variance Component | Percentage of Variation
+:---:|:---:|:---:|:---:|:---:
+Among Groups |1||Va|
+Among Pops Within Groups ||| Vb|
+Within Pops ||| Vc|
+Total   |||
+
+Significance tests:
+
+All 0.00000
+
+For (2): 
+
+1. Define all the populations in dnaSP for CH (i.e. don't split CHN and CHS). 
+2. Results were as follows: 
+
+Source of Variation | d.f. | Sum of Squares | Variance Component | Percentage of Variation
+:---:|:---:|:---:|:---:|:---:
+Among Groups |1|| Va|
+Among Pops Within Groups ||| Vb|
+Within Pops ||| Vc|
+Total  |||
+
+Significance tests:
+
+All 0.00000
+
 ##Demographic Analyes
 
-1. Mismatch distribution: dnaSP
-     - Remember to set Data -> Format to the right settings
-     - Analysis -> Population Size Changes -> mismatch distribution & Constant Population Size
+1. Mismatch distribution: Arlequin
+     - 
+
+
     
 
 2. Bayesian Skyline Plot: BEAST
