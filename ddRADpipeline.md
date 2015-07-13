@@ -117,7 +117,7 @@ Demultiplex using the output from the HiSeq.
 Results from *R.temp* libraries
 
 Library | Total Reads | Ambiguous Barcode drops |%| Low-quality reads dropped |%| Retained reads|%
-:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:
 H01|251376944||||||
 H02|215305263||||||
 H03|246670582||||||
