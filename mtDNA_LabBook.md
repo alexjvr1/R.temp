@@ -521,21 +521,73 @@ I aligned 60 sequences (57 haplotypes + 2CH and 1SE representatives of the Vence
 The most likely model using AIC for cytb with outgroups: 
 
 Model = TIM3+I+G
+
 partition = 0.12032
+
 -lnL = 1369.6723
+
 K = 126
+
 freqA = 0.2435
+
 freqC = 0.3402
+
 freqG = 0.1084
+
 freqT = 0.3079
+
 R(a) [AC] = 0.3124 
+
 R(a) [AG] = 34.8455
+
 R(a) [AT] = 1.0000
+
 R(a) [CG] = 0.3124
+
 R(a) [CT] = 15.4882
+
 R(a) [GT] = 1.0000
+
 p-inv = 0.4510
+
 gamma shape = 0.7200
+
+
+
+####*COX1*
+
+Generate a dataset with a representative each of the haplotypes from Vences et al, and from my own data.
+As outgroups, I'm using R.arvalis & R.pyrenica sequences from NCBI (JN871596.1 + ZUR02 from Vences et al. 2013, respectively). 
+
+I aligned xx sequences (xx haplotypes), and cut them down to xxbp alignment. 
+
+
+*jModelTest*
+
+- Read the fasta alignment file into jModelTest2 on Cipres online platform
+- Test 88 models against each other
+
+The most likely model using AIC for *COX1* with outgroups: 
+
+
+####*Concatenated Dataset*
+
+Generate a dataset with a representative each of the haplotypes from Vences et al. 2013, and from my own data.
+As outgroups, I'm using R.arvalis & R.pyrenica sequences from NCBI (JN871596.1 + ZUR02 from Vences et al. 2013, respectively). 
+
+I aligned xx sequences (xx haplotypes), and cut them down to xxbp alignment. 
+
+
+*jModelTest*
+
+- Read the fasta alignment file into jModelTest2 on Cipres online platform
+- Test 88 models against each other
+
+The most likely model using AIC for the Concated Dataset with outgroups: 
+
+
+
+
 
 
 ##Date Divergence
