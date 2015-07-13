@@ -103,6 +103,39 @@ Demultiplex using the output from the HiSeq.
 /usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150703_RUN199/20150703.A-H10_R1.fastq.gz  -o ./demultiplexed/H10 -y fastq -b ./barcodes/H10_barcodes --disable_rad_check -r -c -q -D
 ```
 
+Results from *R.temp* libraries
+
+Library | Total Reads | Ambiguous Barcode drops | Low-quality reads dropped | Retained reads
+:---:|:---:|:---:|:---:|:---:
+H01||||
+H02||||
+H03||||
+H04||||
+H05||||
+H06||||
+H07||||
+H08||||
+H09||||
+H10 | 103020694 | 23130351|11076359|68813984
+H11||||
+H12||||
+H13 ||||
+H14 ||||
+H15||||
+H16||||
+H17||||
+H18||||
+H19||||
+H20||||
+H21||||
+H22||||
+H23||||
+H24||||
+H25||||
+H26||||
+H27||||
+H28||||
+
 
 
 
