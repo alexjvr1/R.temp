@@ -55,7 +55,12 @@ This is the final pipeline I'm using to process the ddRAD data from raw reads to
 ##1. Quality check & filter raw data
   
 *FastQC check*
-  
+
+FastQC can be run directly on the raw data output from HiSeq or MiSeq. The compressed file can be used. 
+```
+```
+
+
 
 *Demultiplex*
 
@@ -68,8 +73,14 @@ In order to test how many mismatches are best, run the demultiplexing with 1 and
 ```
 ```
 
+Plot number of reads per sample mm1 vs mm2
+
+If some samples are losing and others are gaining reads, this means reads are moving between samples. 
+
 
 For the *Rana temporaria* data set, the optimal is to allow 1 mismatch in the barcode + Restriction site: 
+
+- graph of mm1 vs mm2
 
 Demultiplex samples using 5bp barcode + RE
 
@@ -105,36 +116,36 @@ Demultiplex using the output from the HiSeq.
 
 Results from *R.temp* libraries
 
-Library | Total Reads | Ambiguous Barcode drops | Low-quality reads dropped | Retained reads
-:---:|:---:|:---:|:---:|:---:
-H01||||
-H02||||
-H03||||
-H04||||
-H05||||
-H06||||
-H07||||
-H08||||
-H09||||
-H10 | 103020694 | 23130351|11076359|68813984
-H11||||
-H12||||
-H13 ||||
-H14 ||||
-H15||||
-H16||||
-H17||||
-H18||||
-H19||||
-H20||||
-H21||||
-H22||||
-H23||||
-H24||||
-H25||||
-H26||||
-H27||||
-H28||||
+Library | Total Reads | Ambiguous Barcode drops |%| Low-quality reads dropped |%| Retained reads|%
+:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+H01|||||||
+H02|||||||
+H03|||||||
+H04|||||||
+H05|||||||
+H06|||||||
+H07|||||||
+H08|||||||
+H09|||||||
+H10 | 103020694 | 23130351||11076359||68813984|
+H11|||||||
+H12|||||||
+H13 |||||||
+H14 |||||||
+H15|||||||
+H16|||||||
+H17|||||||
+H18|||||||
+H19|||||||
+H20|||||||
+H21|||||||
+H22|||||||
+H23|||||||
+H24|||||||
+H25|||||||
+H26|||||||
+H27|||||||
+H28|||||||
 
 
 
@@ -148,6 +159,12 @@ H28||||
   - Filter for read length
   - QC: nr of reads/sample (& draw graph comparison)
   
+1. Bar graph of the number of reads per library
+2. Bar graph of average & SD of reads per barcode across libraries
+3. Bar graph of low quality reads dropped
+
+
+
 ##2.1 Denovo assembly (using pyrad)
   - Optimisation of depth
   - Optimisation of clustering threshold
