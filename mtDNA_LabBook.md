@@ -513,6 +513,7 @@ As outgroups, I'm using R.italica, R.iberica, R.arvalis, R.pyrenaica sequences f
 I aligned 60 sequences (57 haplotypes + 2CH and 1SE representatives of the Vences haplotypes), and cut them down to 331bp alignment. 
 
 
+
 *jModelTest*
 
 - Read the fasta alignment file into jModelTest2 on Cipres online platform
