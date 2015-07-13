@@ -559,7 +559,7 @@ gamma shape = 0.7200
 Generate a dataset with a representative each of the haplotypes from Vences et al, and from my own data.
 As outgroups, I'm using R.arvalis & R.pyrenica sequences from NCBI (JN871596.1 + ZUR02 from Vences et al. 2013, respectively). 
 
-I aligned xx sequences (xx haplotypes), and cut them down to xxbp alignment. 
+I aligned 207 sequences (25 haplotypes + 2 outgroups), 628bp alignment. 
 
 
 *jModelTest*
@@ -569,13 +569,45 @@ I aligned xx sequences (xx haplotypes), and cut them down to xxbp alignment.
 
 The most likely model using AIC for *COX1* with outgroups: 
 
+TIM2 + I + G
+
+partition = 010232
+
+-lnL = 1675.0138
+
+K = 60
+
+freqA = 0.2486
+
+freqC = 0.3103
+
+freqG = 0.1673
+
+freqT = 0.2738
+
+R(a) [AC] = 11240.8349
+ 
+R(b) [AG] = 266004.9035
+
+R(c) [AT] = 11240.8349
+
+R(d) [CG] = 1.00000
+
+R(e) [CT] = 152291.8345
+
+R(f) [GT] = 1.00000
+
+p-inv = 0.5300
+
+gamma shape = 0.4410
+
 
 ####*Concatenated Dataset*
 
 Generate a dataset with a representative each of the haplotypes from Vences et al. 2013, and from my own data.
 As outgroups, I'm using R.arvalis & R.pyrenica sequences from NCBI (JN871596.1 + ZUR02 from Vences et al. 2013, respectively). 
 
-I aligned xx sequences (xx haplotypes), and cut them down to xxbp alignment. 
+I aligned 175 sequences (xx haplotypes + 2outgroups), 1076bp (448+628bp) alignment. 
 
 
 *jModelTest*
