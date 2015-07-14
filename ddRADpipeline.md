@@ -2,7 +2,7 @@
 
 This is the final pipeline I'm using to process the ddRAD data from raw reads to basic population statistics
 
-###1. Quality check & filter raw data
+##1. Quality check & filter raw data
   - FastQC check
   - Demultiplex 
       - Optimisation
@@ -12,22 +12,22 @@ This is the final pipeline I'm using to process the ddRAD data from raw reads to
   - Filter for read length
   - QC: nr of reads/sample (& draw graph comparison)
   
-###2.1 Denovo assembly (using pyrad)
+##2.1 Denovo assembly (using pyrad)
   - Optimisation of depth
   - Optimisation of clustering threshold
   - Within & between sample clustering
   - Call SNPs
   - QC: sample dropout, missingness, nr loci, comparison between lanes, comparison between populations
   
-###2.2 Mapping to a genome
+##2.2 Mapping to a genome
   - Optimisation of parameters
   - QC: mapping proportion, distribution across the genome
   - SNPcalling **Using probabilistic models 
     -FreeBayes
     -Other
   - QC: sample dropout, missingness, nr loci, comparison between lanes, comparison between populations
-  
-###3. SNP filtering (VCFtools)
+
+##3. SNP filtering (VCFtools)
   - Optimisation of parameters
     - QC: sample dropout
   - Variatinos in SNP filtering based on analyses
@@ -39,7 +39,7 @@ This is the final pipeline I'm using to process the ddRAD data from raw reads to
       - SNPs within populations
       - SNPs across populations
       
-###4. Basic statistics
+##4. Basic statistics
   - PCA
   - Structure
   - Map of population diversity
@@ -54,7 +54,7 @@ This is the final pipeline I'm using to process the ddRAD data from raw reads to
   
 ##1. Quality check & filter raw data
   
-*FastQC check*
+###*FastQC check*
 
 FastQC is a quick and easy way to check the data qualtiy as soon as it comes back from the sequencing facility. 
 
@@ -80,9 +80,13 @@ H1-9: http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-
 H10,H13-14,H16-19,H21: http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
 
 
-*Demultiplex*
+###*Demultiplex*
 
-1. Optimisation
+I'm using process_radtags for demutliplexing. This is recommended by J.Puritz. 
+
+Documentation: http://catchenlab.life.illinois.edu/stacks/comp/process_radtags.php
+
+####1. *Optimisation*
 
 Depending on the length of the barcode, it may make sense to allow more or less mismatches in the barcode. 
 Similarly, it may make sense to include the restriction recognition site as part of the barcode to increase the length of the barcode that will be searched for. 
@@ -114,6 +118,11 @@ ACACAAATT	ellw_13
 
 Then, in order to test how many mismatches are best, run the demultiplexing with 1 and with 2 mismatches: 
 ```
+/usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz -o ./H1 -y fastq -b ~/barcodes -e ecoRI -r -c -q -D
+
+OR
+
+
 ```
 
 In the case above, I used only the 5bp barcode, and specified the EcoRI recognition site. If the restriction site is incorporated in the barcode (to increase the length of the "barcode" to search for) the following code is used. 
@@ -131,7 +140,7 @@ For the *Rana temporaria* data set, the optimal is to allow 1 mismatch in the ba
 
 - graph of mm1 vs mm2
 
-*Demultiplex samples using 5bp barcode + RE*
+####2. *Demultiplex samples using 5bp barcode + RE*
 
 (As before) Make a directory 
 ```
@@ -198,14 +207,21 @@ H28||||||||
 
 
 
-
-      - check discard file for recovery of sequences)
-
+####3. *Check discard file for recovery of sequences*
 
 
-  - Filter for quality
-  - Filter for adapter dimer
-  - Filter for read length
+####4. *Filter for quality*
+
+
+####5. *Filter for adapter dimer*
+
+
+####6. *Filter for read length*
+
+
+####7. *QC*
+
+
   - QC: nr of reads/sample (& draw graph comparison)
   
 1. Bar graph of the number of reads per library
@@ -215,32 +231,49 @@ H28||||||||
 
 
 ##2.1 Denovo assembly (using pyrad)
-  - Optimisation of depth
-  - Optimisation of clustering threshold
-  - Within & between sample clustering
-  - Call SNPs
-  - QC: sample dropout, missingness, nr loci, comparison between lanes, comparison between populations
+
+####1. *Optimisation of depth*
+####2. *Optimisation of clustering threshold*
+####3. *Within & between sample clustering*
+####4. *Call SNPs*
+####5. *QC* 
+
+sample dropout, missingness, nr loci, comparison between lanes, comparison between populations
+  
+  
+  
   
 ##2.2 Mapping to a genome
-  - Optimisation of parameters
-  - QC: mapping proportion, distribution across the genome
-  - SNPcalling **Using probabilistic models 
+
+####1. *Optimisation of parameters*
+####2. *QC*
+    mapping proportion, distribution across the genome
+####3. *SNPcalling*
+**Using probabilistic models 
     -FreeBayes
     -Other
-  - QC: sample dropout, missingness, nr loci, comparison between lanes, comparison between populations
+####4. *QC*
+sample dropout, missingness, nr loci, comparison between lanes, comparison between populations
+
+
   
 ##3. SNP filtering (VCFtools)
-  - Optimisation of parameters
-    - QC: sample dropout
-  - Variatinos in SNP filtering based on analyses
+
+####1. *Optimisation of parameters*
+####2. *QC: sample dropout*
+
+####3. *Variatinos in SNP filtering based on analyses*
     - phylo, pop gts, outliers
-  - QC: 
+
+####4. *QC*: 
       - total nr of SNPS
       - distribution across individuals (and dropout rate)
       - SNPs across lanes (and dropout rate - correlate with library length)
       - SNPs within populations
       - SNPs across populations
-      
+
+
+
 ##4. Basic statistics
   - PCA
   - Structure
