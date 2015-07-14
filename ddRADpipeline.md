@@ -73,11 +73,38 @@ fastqc file.fastq.gz
 
 The FGCZ ran FastQC on all my libraries. The results can be found here: 
 
-H2: http://fgcz-gstore.uzh.ch/projects/p1795/HiSeq_20141219_RUN159/
+Library | Date of run | FastQC results
+:--:|:--:|:--:
+H01 |28 Feb 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
+H02 |23 Dec 2014| http://fgcz-gstore.uzh.ch/projects/p1795/HiSeq_20141219_RUN159/
+H03 |28 Feb 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
+H04 |28 Feb 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
+H05 |28 Feb 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
+H06 |28 Feb 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
+H07 |28 Feb 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
+H08 |28 Feb 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
+H09 |28 Feb 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
+H10 |7 Jul 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
+H11 ||
+H12 ||
+H13 |7 Jul 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
+H14|7 Jul 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
+H15||
+H16 |7 Jul 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
+H17 |7 Jul 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
+H18 |7 Jul 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
+H19 |7 Jul 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
+H20 ||
+H21 |7 Jul 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
+H22 ||
+H23||
+H24||
+H25||
+H26||
+H27||
+H28||
 
-H1-9: http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
 
-H10,H13-14,H16-19,H21: http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
 
 
 ###*Demultiplex*
@@ -116,12 +143,13 @@ AGCTAAATT	mart_04
 ACACAAATT	ellw_13
 ```
 
-Then, in order to test how many mismatches are best, run the demultiplexing with 1 and with 2 mismatches: 
+Then, in order to test how many mismatches are best, run the demultiplexing with 1 and with 2 mismatches (default is 1): 
 ```
 /usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz -o ./H1 -y fastq -b ~/barcodes -e ecoRI -r -c -q -D
 
 OR
 
+/usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150225_RUN171/20150225.A-H1_R1.fastq.gz -o ./H1 -y fastq -b ~/barcodes --adapter_mm 2 -e ecoRI -r -c -q -D
 
 ```
 
@@ -131,17 +159,15 @@ In the case above, I used only the 5bp barcode, and specified the EcoRI recognit
 ```
 
 
-####Number of reads per sample mm1 vs mm2
+
 ![alt txt][mm12]
 [mm12]:https://cloud.githubusercontent.com/assets/12142475/8669041/60e2f46e-2a11-11e5-8567-872465ad11d4.png
 
-If some samples are losing and others are gaining reads, this means reads are moving between samples. 
+####Figure 1: Number of reads per sample mm1 vs mm2
+If some samples are losing and others are gaining reads (as in this graph), this means reads are moving between samples. This should be avoided, and indicates the threshold at which mm should be set. In this case (*Rana temporaria* H01), 2mm are too many. 
 
 
-For the *Rana temporaria* data set, the optimal is to allow 1 mismatch in the barcode + Restriction site: 
-
-- graph of mm1 vs mm2
-
+*For the Rana temporaria data set, I will use 5bp barcode + Restriction recognition site (9bp total) for demultiplexing, and allow 1mm. 
 
 
 ####2. *Demultiplex samples using 5bp barcode + RE*
@@ -176,7 +202,7 @@ Demultiplex using the output from the HiSeq.
 /usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150703_RUN199/20150703.A-H10_R1.fastq.gz  -o ./demultiplexed/H10 -y fastq -b ./barcodes/H10_barcodes --disable_rad_check -r -c -q -D
 ```
 
-Results from *R.temp* libraries 2014-2015
+Results from *R.temp* libraries Dec 2014-2015
 
 Library | Total Reads |%PhiX| Ambiguous Barcode drops |%| Low-quality reads dropped |%| Retained reads|%
 :---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:
@@ -195,7 +221,7 @@ H12||||||||
 H13 |218264182|15%|72124541|33%|5463292|2.5%|140676349|64.5%
 H14 |217765320|15%|65872858|30.2%|8037169|3.7%|143855293|66.1%
 H15||||||||
-H16|237732001|15%||||||
+H16|237732001|15%|70441917|29.6%|5241921|2.2%|162048163|68.2%
 H17|220987734|15%||||||
 H18|222052040|15%||||||
 H19|189469463|15%||||||
