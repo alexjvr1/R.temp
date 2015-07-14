@@ -266,7 +266,20 @@ Here I've filtered for Q20 because the data overall looks really good. I'm filte
 
 This is really important, even if the BioAnalyzer peak looks clean. Adapters can form very large dimers that co-migrate with the main library. 
 
-I'm using 
+I'm using AdapterRemoval, as recommended by Christine Grossen
+
+AdapterRemoval: https://github.com/slindgreen/AdapterRemoval
+
+```
+adapterremoval --file1 csee_02.fq --basename AdRem --trimns --trimqualities --minquality 20 --adapter1 AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT
+```
+
+And batch script: 
+```
+for x in *.fq
+do adapterremoval --file1 ${x} --basename AdRem_${x} --trimns --trimqualities --minquality 20 --adapter1 AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT
+done
+```
 
 
 ####6. *Filter for read length*
