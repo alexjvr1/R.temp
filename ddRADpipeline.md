@@ -131,7 +131,8 @@ In the case above, I used only the 5bp barcode, and specified the EcoRI recognit
 ```
 
 
-Plot number of reads per sample mm1 vs mm2
+####Number of reads per sample mm1 vs mm2
+https://cloud.githubusercontent.com/assets/12142475/8669041/60e2f46e-2a11-11e5-8567-872465ad11d4.png
 
 If some samples are losing and others are gaining reads, this means reads are moving between samples. 
 
