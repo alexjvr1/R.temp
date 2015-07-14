@@ -264,8 +264,51 @@ H28||||||||
   - QC: nr of reads/sample (& draw graph comparison)
   
 1. Bar graph of the number of reads per library
+
+
+R code: 
+```
+```
+
+My data: 
+
+
+
+
+#####Figure3 
+Number of raw reads per library
+
 2. Bar graph of average & SD of reads per barcode across libraries
+
+Draw a bar graph in R. 
+Data file should look like this: 
+
+R code: 
+```
+```
+
+My data: 
+
+
+
+
+#####Figure4 
+Average and range of the number of reads per sample per library
+
+
 3. Bar graph of low quality reads dropped
+
+R code: 
+```
+```
+
+My data: 
+
+
+
+
+#####Figure5
+% reads filtered during demultiplexing. This is due to lack of barcode (PhiX) or ambiguous barcodes (too many mismatches), or quality (Phred <Q20)
 
 
 
