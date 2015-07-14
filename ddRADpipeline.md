@@ -207,9 +207,19 @@ Demultiplex using the output from the HiSeq.
 
 -D : capture discarded reads to a file
 
+
+For *R.temp* data I ran process_radtags (only -r: rescue radtags. -c -q filters removed, since data will be cleaned downstream): 
+
 ```
-/usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150703_RUN199/20150703.A-H10_R1.fastq.gz  -o ./demultiplexed/H10 -y fastq -b ./barcodes/H10_barcodes --disable_rad_check -r -c -q -D
+/usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150703_RUN199/20150703.A-H10_R1.fastq.gz  -o ./demultiplexed/H10 -y fastq -b ./barcodes/H10_barcodes --disable_rad_check -r -D
 ```
+
+Batch script
+```
+for x in /srv/gstore4users/p1795/HiSeq_20150703_RUN199/0150703.A-*_R1.fastq.gz
+do /usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150703_RUN199/20150703.A-${x}_R1.fastq.gz  -o ./demultiplexed/${x} -y fastq -b ./barcodes/${x}_barcodes --disable_rad_check -r -D
+```
+
 
 Results from *R.temp* libraries Dec 2014-2015
 
