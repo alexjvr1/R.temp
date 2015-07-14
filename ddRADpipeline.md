@@ -163,11 +163,11 @@ In the case above, I used only the 5bp barcode, and specified the EcoRI recognit
 ![alt txt][mm12]
 [mm12]:https://cloud.githubusercontent.com/assets/12142475/8669041/60e2f46e-2a11-11e5-8567-872465ad11d4.png
 
-####Figure 1: Number of reads per sample mm1 vs mm2
-If some samples are losing and others are gaining reads (as in this graph), this means reads are moving between samples. This should be avoided, and indicates the threshold at which mm should be set. In this case (*Rana temporaria* H01), 2mm are too many. 
+      ####Figure 1: Number of reads per sample mm1 vs mm2
+      If some samples are losing and others are gaining reads (as in this graph), this means reads are moving between samples.       This   should be avoided, and indicates the threshold at which mm should be set. In this case (*Rana temporaria* H01),         2mm are too    many. 
 
 
-*For the Rana temporaria data set, I will use 5bp barcode + Restriction recognition site (9bp total) for demultiplexing, and allow 1mm. 
+*For the Rana temporaria data set, I will use 5bp barcode + Restriction recognition site (9bp total) for demultiplexing, and allow 1mm.* 
 
 
 ####2. *Demultiplex samples using 5bp barcode + RE*
@@ -248,11 +248,25 @@ H28||||||||
 
 ####3. *Check discard file for recovery of sequences*
 
+If there is an insertion at the start of the sequence, the demultiplexing algorith will not recognise the barcode, and discard it. (Debbie Leigh found this in her data set). 
+
+Check whether there are obvious problems causing usable data to be filtered. 
+
+This is particularly important if a much larger proportion of sequences are filtered for "ambiguous barcodes" than expected from the amount of PhiX added. 
+
 
 ####4. *Filter for quality*
 
+The quality filter is not really necessary at this point, and can instead be done during mapping/de novo assembly or even SNP calling. This approach is recommmended by some (e.g. Christine Grossen), so that as much of the data as possible is used. Filtering after SNP calling is faster and gives more control over the ready data sets. 
+
+Here I've filtered for Q20 because the data overall looks really good. I'm filtering <4% of the reads out in this step. 
+
 
 ####5. *Filter for adapter dimer*
+
+This is really important, even if the BioAnalyzer peak looks clean. Adapters can form very large dimers that co-migrate with the main library. 
+
+I'm using 
 
 
 ####6. *Filter for read length*
