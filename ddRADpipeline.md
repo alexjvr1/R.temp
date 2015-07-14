@@ -198,6 +198,15 @@ ACACAAATT	ellw_13
 
 Demultiplex using the output from the HiSeq. 
 --disable_rad_check will allow the inclusion of the restriction site in the barcode
+
+-r : rescue barcodes and radtags
+
+-c : clean data, remove and read with an uncalled base
+
+-q : discard reads with low quality scores (Q20)
+
+-D : capture discarded reads to a file
+
 ```
 /usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150703_RUN199/20150703.A-H10_R1.fastq.gz  -o ./demultiplexed/H10 -y fastq -b ./barcodes/H10_barcodes --disable_rad_check -r -c -q -D
 ```
