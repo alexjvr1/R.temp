@@ -141,6 +141,8 @@ For the *Rana temporaria* data set, the optimal is to allow 1 mismatch in the ba
 
 - graph of mm1 vs mm2
 
+
+
 ####2. *Demultiplex samples using 5bp barcode + RE*
 
 (As before) Make a directory 
