@@ -49,8 +49,42 @@ This is the final pipeline I'm using to process the ddRAD data from raw reads to
   - Fst decrease with nr of samples
   - Fst/1/Fst vs Geographic distance
   
-  
-  
+
+####Note
+
+Sequencing for the *Rana temporaria* project was all conducted throught the FGCZ at UZH, Irchel. 
+
+Contact person: Catharine Aquino (Wet lab) & Hubert Rehrauer (Bioinformatics)
+
+Lab work was all conducted at the GDC, ETH, Zürich
+
+Contact person: Aria Minder (Lab Manager), Silvia Skobel (Technician), & Stefan Zoller (Bioinformatcian)
+
+All raw sequencing data is stored on the FGCZ server: /srv/gstore4users/p1795
+
+I also have access to one of the nodes (arranged through Ken Shimitzu) for computing: /srv/kenlab/alexjvr_p1795 
+
+        ssh alexjvr@fgcz-transfer.uzh.ch
+        ssh alexjvr@fgcz-c-047
+        pwd Platypu&6.
+
+Most of the computing power is at the GDC. I have access to the servers there for data storage and computing for a nominal fee. 
+        ssh alexjvr@gdcsrv1.ethz.ch
+        pwd jk.W3.mm
+
+
+####To secure copy files
+
+1. From FGCZ server to the GDC server: 
+``` 
+```
+2. From a server onto my computer:
+```
+```
+3. From my computer onto the server:
+```
+```
+
   
 ##1. Quality check & filter raw data
   
