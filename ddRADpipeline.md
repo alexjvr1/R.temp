@@ -75,15 +75,36 @@ Most of the computing power is at the GDC. I have access to the servers there fo
 
 ####To secure copy files
 
-1. From FGCZ server to the GDC server: 
+1. From FGCZ server to the GDC server: Stefan suggests rsync for this. The following command syncs the raw data folder from FGCZ to my home directory on the GDC server 1. This is run from the FGCZ side
 ``` 
+rsync -av -e "ssh -l alexjvr"  /srv/gstore4users/p1795 gdcsrv1.ethz.ch:/gdc_home4/alexjvr/
 ```
 2. From a server onto my computer:
 ```
+scp -r alexjvr@gdcsrv1.ethz.ch:popgts_c94d6_20150525/* .
 ```
 3. From my computer onto the server:
 ```
+scp -r folder/*.txt alexjvr@gdcsrv1.ethz.ch:~/
 ```
+
+####Screen options
+If anything runs for more than a few mins, it is useful to run it through "screen". 
+e.g. the following command will start a new screen 
+
+-L automatically log
+-S name the screen session
+
+```
+screen -S rsyncp1795 -L
+```
+"cntrlAD" will detach from the screen
+
+screen help: 
+```
+screen man
+```
+
 
   
 ##1. Quality check & filter raw data
