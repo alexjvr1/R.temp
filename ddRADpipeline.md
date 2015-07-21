@@ -275,7 +275,7 @@ Results from *R.temp* libraries Dec 2014-2015 (without any filters)
 
 Library | Total Reads |%PhiX| Ambiguous Barcode drops |%| Low-quality reads dropped |%| Retained reads|%
 :---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:
-H01|251376944|20%|||||161591671|64.3%
+H01|251376944|20%|79670378|31.7%||||68.3%
 H02|215305263|20%|||||162140179|75.3%
 H03|246670582|20%|||||156520226|63.5%
 H04|240547023|20%|||||146085735|60.7%
@@ -326,7 +326,7 @@ Here I've filtered for Q20 because the data overall looks really good. I'm filte
 
 This is really important, even if the BioAnalyzer peak looks clean. Adapters can form very large dimers that co-migrate with the main library. 
 
-I'm using AdapterRemoval, as recommended by Christine Grossen
+I am using AdapterRemoval, as recommended by Christine Grossen
 
 AdapterRemoval: https://github.com/slindgreen/AdapterRemoval
 
@@ -417,11 +417,27 @@ sample dropout, missingness, nr loci, comparison between lanes, comparison betwe
   
 ##2.2 Mapping to a genome
 
-Basic pipeline: 
 
-Starting from demultiplexed sequences with adapter dimer removed: 
+Received the R.temporaria draft genome from Alan Brelsford. This is the information he sent me:
 
-1. 
+*The genome itself is pretty rough; it amounts to 35% of the expected genome size, and the scaffold n50 is only 924 bp. On the other hand, 98% of the CEGMA core genes are at least partially represented, so I think it includes most of the non-repetitive part of the genome, and the missing 3 Gbp is enriched for repeats. About 10% of the genome assembly can be assigned to a position in X. tropicalis.
+
+Assembling the genome took quite a bit of time and effort, so if you decide to use it, I would like to be included as a coauthor on one paper. Is this something you and Josh are open to?*
+
+File name:
+Rtk43.fa.gz (473Mb)
+
+Basic pipeline starting from demultiplexed sequences with adapter dimer removed: 
+
+1. index the genome. 
+
+This only needs to be done once. 
+
+```
+bwa index Rtk43.fa.gz
+```
+
+2. 
 
 ####1. *Optimisation of parameters*
 
