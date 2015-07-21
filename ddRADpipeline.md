@@ -269,14 +269,9 @@ For *R.temp* data I ran process_radtags (only -r: rescue radtags. -c -q filters 
 /usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150703_RUN199/20150703.A-H10_R1.fastq.gz  -o ./demultiplexed/H10 -y fastq -b ./barcodes/H10_barcodes --disable_rad_check -r -D
 ```
 
-Batch script
-```
-for x in /srv/gstore4users/p1795/HiSeq_20150703_RUN199/0150703.A-*_R1.fastq.gz
-do /usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150703_RUN199/20150703.A-${x}_R1.fastq.gz  -o ./demultiplexed/${x} -y fastq -b ./barcodes/${x}_barcodes --disable_rad_check -r -D
-```
 
 
-Results from *R.temp* libraries Dec 2014-2015
+Results from *R.temp* libraries Dec 2014-2015 (without any filters)
 
 Library | Total Reads |%PhiX| Ambiguous Barcode drops |%| Low-quality reads dropped |%| Retained reads|%
 :---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:
@@ -350,6 +345,9 @@ done
 ####6. *Filter for read length*
 
 
+This can be done within process_radtags, using the -t option
+
+
 ####7. *QC*
 
 
@@ -419,13 +417,30 @@ sample dropout, missingness, nr loci, comparison between lanes, comparison betwe
   
 ##2.2 Mapping to a genome
 
+Basic pipeline: 
+
+Starting from demultiplexed sequences with adapter dimer removed: 
+
+1. 
+
 ####1. *Optimisation of parameters*
+
+
+
+
 ####2. *QC*
     mapping proportion, distribution across the genome
+
+
+
 ####3. *SNPcalling*
 **Using probabilistic models 
     -FreeBayes
     -Other
+
+
+
+
 ####4. *QC*
 sample dropout, missingness, nr loci, comparison between lanes, comparison between populations
 
