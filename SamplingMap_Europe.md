@@ -147,7 +147,62 @@ dev.off()
 
 
 
+##Draw maps with different coloured samples
+
+If the different classes of samples need to be different colours (e.g. elevation or population)
+
+This is a good tutorial: https://sites.google.com/site/manabusakamoto/home/r-tutorials/r-tutorial-3
 
 
 
+##Sampling map mtDNA - grayscale
+```
+library(sp)  # classes for spatial data
+library(raster)  # grids, rasters
+library(rasterVis)  # raster visualisation
+library(maptools)
+library(rgeos)
+# and their dependencies
 
+
+require(spatial.tools)
+elevation<-getData("alt", country = "CH")
+x <- terrain(elevation, opt = c("slope", "aspect"), unit = "degrees")
+plot(x)
+slope <- terrain(elevation, opt = "slope")
+aspect <- terrain(elevation, opt = "aspect")
+hill <- hillShade(slope, aspect, 40, 270)
+plot(hill, col = grey(0:100/100), legend = FALSE, main = "Switzerland")
+```
+
+
+Read in the data file with an additional column specifying the colours 
+
+R colours: http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
+
+```
+#rename the file you just read into R
+CH_coords<-CH_ddRAD_sequencedMap_Min5_20150721
+coordinates(CH_coords) <- c("Long.", "Lat.")  # set spatial coordinates
+plot(CH_coords)
+plot(CH_coords, pch = 20, cex = 1, col = "black")
+crs.geo <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84")  # geographical, datum WGS84
+proj4string(CH_coords) <- crs.geo  # define projection system of our data
+summary(CH_coords)
+
+#recognise the colours column as R characters
+Colour <- as.character(CH_coords$Colours)
+
+#plots the points. Symbol = pch, size = cex, add will add the plot on top of what is already there
+plot(CH_coords, pch = 20, cex = 1, col=Colour, add = TRUE) 
+```
+
+##add text
+
+And if you want to add labels to the sites, use the text() option
+
+Manual can be found here: https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/text.html
+
+```
+text(CH_coords, labels=CH_coords$Site, cex=0.6)
+```
