@@ -79,6 +79,12 @@ Most of the computing power is at the GDC. I have access to the servers there fo
 ``` 
 rsync -av -e "ssh -l alexjvr"  /srv/gstore4users/p1795 gdcsrv1.ethz.ch:/gdc_home4/alexjvr/
 ```
+
+and GDC to FGCZ
+```
+rsync -av -e "ssh -l alexjvr"   subsetRAD_gdc/ fgcz-transfer.uzh.ch:subset_gdc
+```
+
 2. From a server onto my computer:
 ```
 scp -r alexjvr@gdcsrv1.ethz.ch:popgts_c94d6_20150525/* .
