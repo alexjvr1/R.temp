@@ -257,3 +257,4 @@ text(CH_coords, labels=CH_coords$Site, cex=0.6)
 ```
 
 ![alt txt][subset_alt]
+[subset_alt]:https://cloud.githubusercontent.com/assets/12142475/8824708/94418bfa-3078-11e5-8bbd-c087297f808a.png
