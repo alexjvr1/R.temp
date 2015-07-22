@@ -355,9 +355,17 @@ This can be done within process_radtags, using the -t option
   
 1. Bar graph of the number of reads per library
 
+Excel input for my data is called: RAD_QC_Rawreads_20150722.csv
+
+
 
 R code: 
 ```
+#BarGraph of number of raw reads per library
+
+Table <- RAD_QC_Rawreads_20150722
+summary(RawReads)
+barplot(Table$RawReads, names=Table$Library, main="Number of raw reads per Illumina HiSeq library", xlab="Library", ylab="Read Count")
 ```
 
 My data: 
