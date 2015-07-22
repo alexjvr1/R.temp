@@ -198,7 +198,7 @@ plot(CH_coords, pch = 20, cex = 1, col=Colour, add = TRUE)
 ```
 
 ![alt txt][sequenced_20150722_alt]
-
+[sequenced_20150722_alt]:https://cloud.githubusercontent.com/assets/12142475/8824560/3fea82c4-3077-11e5-8cea-74ec31c7c34a.png
 
 
 ##add text
