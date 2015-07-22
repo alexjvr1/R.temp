@@ -358,14 +358,11 @@ This can be done within process_radtags, using the -t option
 Excel input for my data is called: RAD_QC_Rawreads_20150722.csv
 
 
-
-R code: 
-```
-#BarGraph of number of raw reads per library
-
-My data is here: RAD_QC_Rawreads_20150722.csv
-
 And the input looks like this: 
+
+![alt txt][input]
+[input]:https://cloud.githubusercontent.com/assets/12142475/8831179/e9b70664-30a0-11e5-8364-7320fc1b5ff7.png
+
 
 R-code. las turns the labels perpendicular. cex.names changes the font size.
 ```
@@ -373,10 +370,6 @@ Table <- RAD_QC_Rawreads_20150722
 summary(Table)
 barplot(Table$RawReadsMil, names=Table$Library, main="Number of raw reads per Illumina HiSeq library", xlab="Library", ylab="Read Count (Million)", cex.names=0.8, las=2)
 ```
-
-![alt txt][input]
-[input]:https://cloud.githubusercontent.com/assets/12142475/8831179/e9b70664-30a0-11e5-8364-7320fc1b5ff7.png
-
 
 #####Figure3 
 Number of raw reads per library
