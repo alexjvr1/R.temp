@@ -375,14 +375,14 @@ barplot(Table$RawReadsMil, names=Table$Library, main="Number of raw reads per Il
 ```
 
 ![alt txt][input]
-[input]:
+[input]:https://cloud.githubusercontent.com/assets/12142475/8831179/e9b70664-30a0-11e5-8364-7320fc1b5ff7.png
 
 
 #####Figure3 
 Number of raw reads per library
 
 ![alt txt][rawreads]
-[rawreads]:
+[rawreads]:https://cloud.githubusercontent.com/assets/12142475/8831205/12e8a4fc-30a1-11e5-88b0-d0e9cd066778.png
 
 
 2. Bar graph of average & SD of reads per barcode across libraries
