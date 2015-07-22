@@ -363,18 +363,27 @@ R code:
 ```
 #BarGraph of number of raw reads per library
 
+My data is here: RAD_QC_Rawreads_20150722.csv
+
+And the input looks like this: 
+
+R-code. las turns the labels perpendicular. cex.names changes the font size.
+```
 Table <- RAD_QC_Rawreads_20150722
-summary(RawReads)
-barplot(Table$RawReads, names=Table$Library, main="Number of raw reads per Illumina HiSeq library", xlab="Library", ylab="Read Count")
+summary(Table)
+barplot(Table$RawReadsMil, names=Table$Library, main="Number of raw reads per Illumina HiSeq library", xlab="Library", ylab="Read Count (Million)", cex.names=0.8, las=2)
 ```
 
-My data: 
-
-
+![alt txt][input]
+[input]:
 
 
 #####Figure3 
 Number of raw reads per library
+
+![alt txt][rawreads]
+[rawreads]:
+
 
 2. Bar graph of average & SD of reads per barcode across libraries
 
