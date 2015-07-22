@@ -88,6 +88,13 @@ scp -r alexjvr@gdcsrv1.ethz.ch:popgts_c94d6_20150525/* .
 scp -r folder/*.txt alexjvr@gdcsrv1.ethz.ch:~/
 ```
 
+####Count the number of files in a folder
+
+```
+ls -l arce* | wc -l
+```
+
+
 ####Screen options
 If anything runs for more than a few mins, it is useful to run it through "screen". 
 e.g. the following command will start a new screen 
@@ -339,6 +346,14 @@ And batch script:
 for x in *.fq
 do adapterremoval --file1 ${x} --basename AdRem_${x} --trimns --trimqualities --minquality 20 --adapter1 AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT
 done
+```
+
+But, neither FGCZ or GDC have AdapterRemoval installed. 
+
+FGCZ (Hubert) suggests Trimmomatic
+
+```
+java -jar /usr/local/ngseq/src/Trimmomatic-0.33/trimmomatic-0.33.jar
 ```
 
 
