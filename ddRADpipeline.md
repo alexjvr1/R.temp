@@ -407,20 +407,24 @@ At this point, I have decided to use only a subset of the data to set up the res
 
 The following is a map of the chosen sites, and a table with some information for each site. 
 
+![alt txt][RAD_subset]
+[RAD_subset]:https://cloud.githubusercontent.com/assets/12142475/8824708/94418bfa-3078-11e5-8bbd-c087297f808a.png
+
+
 Canton|Site|Name|Lat|Long|Elevation|n|libraries
 :--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:
-BE|kand|Kanderauen bei Mülenen	|46.63368|	7.69037|698|11|
-BE|tsee|Tschingelsee	|46.55400|	7.74653|1151|18|
-BE|meie|Meiefallsseeli	|46.58680|	7.58405|1900|15|
-SG|wise|Wisenfurt	|47.19467	|9.47862|445|6|
-SG|shwe|Schwendiseen|	47.18790|	9.32981|1159|10|
-SG|bide|Bi den Seen	|47.14247	|9.40407|1983|20|
-VS|orge|Lac de Mont dOrge|	46.23357|	7.33560|643|11|
-VS|lens|Etang de Lens|	46.29206	|7.45947|1338|19|
-VS|csan|Col du Sanetsch|	46.32276|	7.30013|2110|20|
-TI|arce|Arcegno Brumo |	46.15637	|8.74613|408|13|
-TI|gola|Gola di Lago|	46.10463	|8.96543|975|12|
-TI|star|Lago del Starlaresc da Sgiof	|46.27347|	8.77321|1892|20|
+BE|kand|Kanderauen bei Mülenen	|46.63368|	7.69037|698|11|H14
+BE|tsee|Tschingelsee	|46.55400|	7.74653|1151|18|H16 H17
+BE|meie|Meiefallsseeli	|46.58680|	7.58405|1900|15|H10 H17 H18 H19 H21
+SG|wise|Wisenfurt	|47.19467	|9.47862|445|6|H13
+SG|shwe|Schwendiseen|	47.18790|	9.32981|1159|10|H01 H02
+SG|bide|Bi den Seen	|47.14247	|9.40407|1983|20|H05
+VS|orge|Lac de Mont dOrge|	46.23357|	7.33560|643|11|H10 H13 H21
+VS|lens|Etang de Lens|	46.29206	|7.45947|1338|19|H18 H19
+VS|csan|Col du Sanetsch|	46.32276|	7.30013|2110|20|H18
+TI|arce|Arcegno Brumo |	46.15637	|8.74613|408|13|H10 H13 H21
+TI|gola|Gola di Lago|	46.10463	|8.96543|975|12|H13 H21
+TI|star|Lago del Starlaresc da Sgiof	|46.27347|	8.77321|1892|20|H17
 
 ##2.1 Denovo assembly (using pyrad)
 
