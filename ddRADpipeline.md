@@ -375,6 +375,22 @@ java -jar <path to trimmomatic jar> SE [-threads <threads>] [-phred33 |-phred64]
 ```
 And manual: http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf
 
+Code I used on the gdcsrv for the subset data
+
+```
+java -jar /usr/local/trimmomatic/trimmomatic-0.32.jar SE shwe_01.trimlog shwe_01.fq shwe_01.trim.fq ILLUMINACLIP:TruSeq3-SE:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 
+```
+
+- Phred encoding of my data is Phred33
+
+- I'm using TruSeq3 adapters (with Trimmomatic software) which is used in Illumina HiSeq SE sequencing
+
+Batch script to run this on all samples and save sequences in a new folder
+
+```
+mkdir 
+```
+
 
 
 ####6. *Filter for read length*
