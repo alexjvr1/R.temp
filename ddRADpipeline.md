@@ -530,6 +530,9 @@ TI|star|Lago del Starlaresc da Sgiof	|46.27347|	8.77321|1892|20|H07
 Distribution of the final numbers of reads per population
 
 - Ive removed samples with <1Mil reads
+- removed samples: kand_03, lens_06, meie_14, orge_03-05, wise_03 
+
+
 ![alt.txt][data]
 [data]:https://cloud.githubusercontent.com/assets/12142475/8852524/05e79870-3156-11e5-9edb-4f032c38175c.png
 
