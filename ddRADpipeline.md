@@ -387,8 +387,18 @@ java -jar /usr/local/trimmomatic/trimmomatic-0.32.jar SE shwe_01.trimlog shwe_01
 
 Batch script to run this on all samples and save sequences in a new folder
 
+Run from the folder containing the .fq files. 
+Run in screen and log output
+
 ```
-mkdir 
+screen -S TrimSubset -L
+
+for i in *.fq; do  java -jar /usr/local/trimmomatic/trimmomatic-0.32.jar SE $i $i.trim ILLUMINACLIP:/usr/local/trimmomatic/adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36; done
+```
+
+Copy over to a new folder 
+```
+mv *.trim pyrad/subsetTrim
 ```
 
 
@@ -486,6 +496,10 @@ VS|csan|Col du Sanetsch|	46.32276|	7.30013|2110|20|H18
 TI|arce|Arcegno Brumo |	46.15637	|8.74613|408|13|H10 H13 H21
 TI|gola|Gola di Lago|	46.10463	|8.96543|975|12|H13 H21
 TI|star|Lago del Starlaresc da Sgiof	|46.27347|	8.77321|1892|20|H07
+
+
+
+
 
 ##2.1 Denovo assembly (using pyrad)
 
