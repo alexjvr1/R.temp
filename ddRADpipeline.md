@@ -539,7 +539,32 @@ Distribution of the final numbers of reads per population
 ![alt.txt][subset_avgreads]
 [subset_avgreads]:https://cloud.githubusercontent.com/assets/12142475/8852785/6f951620-3157-11e5-8a7e-01a9be7a727b.png
 
+
+
+
 ##2.1 Denovo assembly (using pyrad)
+
+Location of pyrad: 
+
+- GDC: /usr/local/pyrad-3.0.6/pyrad
+
+- FGCZ: /usr/local/ngseq/src/pyrad-3.0.4/pyRAD
+
+First a params.txt file needs to be created. 
+
+Important things to note: 
+
+- indicate the location of vsearch and muscle
+- if samples are demultiplexed, start at s2 & indicate location of demultiplexed data
+- par 13 is mandatory. Set this really high
+
+Basic code to start a run (using parameters optimised for *R.temp* data H02)
+
+```
+/usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 23456
+```
+
+params.txt file as optimised for H02 *R.temp* data. 
 
 ####1. *Optimisation of depth*
 ####2. *Optimisation of clustering threshold*
