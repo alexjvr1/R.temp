@@ -463,25 +463,26 @@ Input data file
 
 
 R code: 
+- varwidth changes bar width accordign to the number of samples
+- par changes font size (cex.axis or cex.ylab..)
+- las changes orientation of x-axis labels
 
 ```
 #Boxplot for reads per population
-#Plots Mean + 1SD in the box
 
 #short name for the data matrix
 subset <-RADsubset_Trimmedreads_Milmore
 summary(subset)
 
-#write to .png
-png(Subset_avgreads.png)
+#write to png
+png("Subset_avgreads.png")
 
 #plot. varwidth changes the barplot width according to the number of samples
-boxplot(subset$RetainedMil~subset$Pop, data=subset, varwidth=T, main="Average reads per population (Million)", xlab="population", ylab="Reads (million)")
+boxplot(subset$RetainedMil~subset$Pop, data=subset, varwidth=T, par(cex.axis=0.8), las=2, main="Average reads per population (Million)", xlab="population", ylab="Reads (million)")
 
 #write to png(end)
 
 dev.off()
-
 ```
 
 
