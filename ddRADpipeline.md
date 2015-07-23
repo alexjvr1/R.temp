@@ -143,27 +143,27 @@ The FGCZ ran FastQC on all my libraries. The results can be found here:
 
 Library | Date of run | FastQC results
 :--:|:--:|:--:
-H01 |28 Feb 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
-H02 |23 Dec 2014| http://fgcz-gstore.uzh.ch/projects/p1795/HiSeq_20141219_RUN159/
-H03 |28 Feb 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
-H04 |28 Feb 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
-H05 |28 Feb 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
-H06 |28 Feb 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
-H07 |28 Feb 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
-H08 |28 Feb 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
-H09 |28 Feb 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
-H10 |7 Jul 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
+H01 |28.02.15|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
+H02 |23.12.14| http://fgcz-gstore.uzh.ch/projects/p1795/HiSeq_20141219_RUN159/
+H03 |28.02.15|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
+H04 |28.02.15|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
+H05 |28.02.15|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
+H06 |28.02.15|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
+H07 |28.02.15|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
+H08 |28.02.15|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
+H09 |28.02.15|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc_5027_2015-03-06--09-42-52/FastQC_Result/00index.html
+H10 |07.07.15|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
 H11 ||
 H12 ||
-H13 |7 Jul 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
-H14|7 Jul 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
+H13 |07.07.15|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
+H14|07.07.15|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
 H15||
-H16 |7 Jul 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
-H17 |7 Jul 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
-H18 |7 Jul 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
-H19 |7 Jul 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
+H16 |07.07.15|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
+H17 |07.07.15|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
+H18 |07.07.15|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
+H19 |07.07.15|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
 H20 ||
-H21 |7 Jul 2015|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
+H21 |07.07.15|http://fgcz-gstore.uzh.ch/projects/p1795/QC_Fastqc__2015-07-07--14-02-11/FastQC_Result/
 H22 ||
 H23||
 H24||
