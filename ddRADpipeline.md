@@ -358,9 +358,23 @@ But, neither FGCZ or GDC have AdapterRemoval installed.
 
 FGCZ (Hubert) suggests Trimmomatic
 
+Location on fgcz server
 ```
 java -jar /usr/local/ngseq/src/Trimmomatic-0.33/trimmomatic-0.33.jar
 ```
+
+and on the gdc server
+```
+java -jar /usr/local/trimmomatic/trimmomatic-0.32.jar 
+```
+
+General code:
+```
+java -jar <path to trimmomatic jar> SE [-threads <threads>] [-phred33 |-phred64] [-trimlog<logFile>] <input> <output> <step 1> 
+
+```
+And manual: http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf
+
 
 
 ####6. *Filter for read length*
