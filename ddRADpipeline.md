@@ -454,7 +454,35 @@ My data:
 
 
 #####Figure4 
-Average and range of the number of reads per sample per library
+Average and range of the number of final reads per population
+
+- These are the final reads after demultiplexing and Trimmomatic
+
+Input data file
+
+
+
+R code: 
+
+```
+#Boxplot for reads per population
+#Plots Mean + 1SD in the box
+
+#short name for the data matrix
+subset <-RADsubset_Trimmedreads_Milmore
+summary(subset)
+
+#write to .png
+png(Subset_avgreads.png)
+
+#plot. varwidth changes the barplot width according to the number of samples
+boxplot(subset$RetainedMil~subset$Pop, data=subset, varwidth=T, main="Average reads per population (Million)", xlab="population", ylab="Reads (million)")
+
+#write to png(end)
+
+dev.off()
+
+```
 
 
 3. Bar graph of low quality reads dropped
@@ -496,6 +524,11 @@ VS|csan|Col du Sanetsch|	46.32276|	7.30013|2110|20|H18
 TI|arce|Arcegno Brumo |	46.15637	|8.74613|408|13|H10 H13 H21
 TI|gola|Gola di Lago|	46.10463	|8.96543|975|12|H13 H21
 TI|star|Lago del Starlaresc da Sgiof	|46.27347|	8.77321|1892|20|H07
+
+
+Distribution of the final numbers of reads per population
+
+- Ive removed samples with <1Mil reads
 
 
 
