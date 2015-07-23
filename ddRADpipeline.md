@@ -530,10 +530,11 @@ TI|star|Lago del Starlaresc da Sgiof	|46.27347|	8.77321|1892|20|H07
 Distribution of the final numbers of reads per population
 
 - Ive removed samples with <1Mil reads
+![alt.txt][data]
+[data]:https://cloud.githubusercontent.com/assets/12142475/8852524/05e79870-3156-11e5-9edb-4f032c38175c.png
 
-
-
-
+![alt.txt][subset_avgreads]
+[subset_avgreads]:https://cloud.githubusercontent.com/assets/12142475/8852785/6f951620-3157-11e5-8a7e-01a9be7a727b.png
 
 ##2.1 Denovo assembly (using pyrad)
 
