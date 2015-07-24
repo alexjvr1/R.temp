@@ -658,7 +658,7 @@ Im using bowtie2 as an aligner, since it incorporates base quality in when mappi
 
 1. index the genome. 
 
-This only needs to be done once. This takes ~(12:46-
+This only needs to be done once. This takes ~(15:24-
 
 On the fgcz server: bowtie2-build <input reference (must be in fasta)> <prefix of output> 
 ```
@@ -673,65 +673,69 @@ Output (for future use):
 
 ####1. *Optimisation of parameters*
 
-See here for a good tutorial: http://sfg.stanford.edu/mapping.html
+See here for a good tutorial: https://wikis.utexas.edu/display/bioiteam/Mapping+with+bowtie2+Tutorial#Mappingwithbowtie2Tutorial-Mappingtoolssummary
 
 - For optimisation, use the fastq file of 3 samples (cleaned & trimmed), and vary the parameters. 
 
 - Evaluate the run based on the number and quality of reads output from each. 
 
-- The most important parameter to vary is the number of nucleotide differences (-n) allowed. This should match the expected number of differences between two sequences from your species. 
+- The most important parameter to vary is the number of nucleotide differences allowed. This should match the expected number of differences between two sequences from your species. 
 
-parameters to vary with the bwa-mem algorithm: 
+parameters to vary with the bowtie2 algorithm: 
 
--k *INT* Minimum seed length. Matches shorter than INT will be missed. The alignment speed is usually insensitive to this value unless it significantly deviates 20. [19]  (test 15; 20; 25)
+-D #seed extensions that can fail before moving on. (10;15;20)
 
--r *FLOAT* 	Trigger re-seeding for a MEM longer than minSeedLen*FLOAT. This is a key heuristic parameter for tuning the performance. Larger value yields fewer seeds, which leads to faster alignment speed but lower accuracy. [1.5]  (test 1.5; 2.0; 3.0)
+-R # of re-seeding attempts  (1;2;3)
 
--d *INT* 	Off-diagonal X-dropoff (Z-dropoff). Stop extension when the difference between the best and the current extension score is above |i-j|*A+INT, where i and j are the current positions of the query and reference, respectively, and A is the matching score. Z-dropoff is similar to BLAST’s X-dropoff except that it doesn’t penalize gaps in one of the sequences in the alignment. Z-dropoff not only avoids unnecessary extension, but also reduces poor alignments inside a long good alignment. [100] (test 50; 75; 100)
+-N number of mismatches in seed alignment (0;1)
 
+-L length of the seed (15;22;50)
 
 - The goal is to maximise the number of reads mapped singly, without increasing the mapping time to much. 
 
-Optimisation 
+####Optimisation 
 
-1. Parameter varied: k (seed length)
+1. Parameter varied: -L (seed length) 15;22;50
+```
+/usr/local/ngseq/bin/bowtie2 -U -q x.fq.trim --phred33 --end-to-end --time --threads 4 -D 15 -R 2 -N 0 -i S,1,1.15 -L 15  
+```
+
+Parameter value| number of singly mapped reads | time
+:---:|:---:|:---:
+15|
+22|
+50|
+
+2. Parameter varied: -N (#mismatches in seed alignment) 0;1
 ```
 ```
 
 Parameter value| number of singly mapped reads | time
 :---:|:---:|:---:
+0
+1
 
 
-2. Parameter varied: d
+3. Parameter varied: -R (#re-seeding attempts for repetitive seeds) 1;2;3
 ```
 ```
 
 Parameter value| number of singly mapped reads | time
 :---:|:---:|:---:
+1
+2
+3
 
-
-3. Parameter varied: R
+4. Parameter varied: -D (#seed extensions that can fail before moving on.) 10;15;20
 ```
 ```
 
 Parameter value| number of singly mapped reads | time
 :---:|:---:|:---:
+10
+15
+20
 
-
-4. Parameter varied: 
-```
-```
-
-Parameter value| number of singly mapped reads | time
-:---:|:---:|:---:
-
-
-5. Parameter varied: 
-```
-```
-
-Parameter value| number of singly mapped reads | time
-:---:|:---:|:---:
 
 
 
