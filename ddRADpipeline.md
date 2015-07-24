@@ -633,6 +633,7 @@ sample dropout, missingness, nr loci, comparison between lanes, comparison betwe
   
 ##2.2 Mapping to a genome
 
+- Nice treatment on mapping best practices: http://cgrlucb.wikispaces.com/file/view/readMapping.pdf
 
 Received the R.temporaria draft genome from Alan Brelsford. This is the information he sent me:
 
@@ -644,7 +645,7 @@ File name:
 Rtk43.fa.gz (473Mb)
 
 
-####bwa-mem
+####bowtie2
 
 Im using bowtie2 as an aligner, since it incorporates base quality in when mapping. See Hatem et al. 2013 for a treatment on different aligners. 
 
@@ -666,7 +667,10 @@ On the fgcz server: bowtie2-build <input reference (must be in fasta)> <prefix o
 ```
 
 Output (for future use): 
-/srv/kenlab/alexjvr_p1795/ddRADpipeline/mapping/Rtk43.*.bt2
+/srv/kenlab/alexjvr_p1795/ddRADpipeline/mapping/Rtk43.*
+
+Rtk43.1.bt2  Rtk43.2.bt2  Rtk43.3.bt2  Rtk43.4.bt2  Rtk43.rev.1.bt2  Rtk43.rev.2.bt2
+
 /srv/kenlab/alexjvr_p1795/ddRADpipeline/mapping/Rtk43.fa (1.8Gb)
 
 2. 
@@ -675,7 +679,7 @@ Output (for future use):
 
 See here for a good tutorial: https://wikis.utexas.edu/display/bioiteam/Mapping+with+bowtie2+Tutorial#Mappingwithbowtie2Tutorial-Mappingtoolssummary
 
-- For optimisation, use the fastq file of 3 samples (cleaned & trimmed), and vary the parameters. 
+- For optimisation, use the fastq file of 3 samples (cleaned & trimmed), and vary the parameters. To start, use default parameters for the --sensitive analysis
 
 - Evaluate the run based on the number and quality of reads output from each. 
 
@@ -750,8 +754,10 @@ Script for aligning multiple reads to the indexed genome
 bwa mem aln Rtk43.fa demultiplexed/*.fq.gz > Rt. *.sai
 ```
 
+Sort & index the alignments
+```
 
-
+```
 
 
 ####2. *QC*
@@ -767,10 +773,41 @@ bar graph: sequences mapped per population
 
 
 
+
 ####3. *SNPcalling*
 **Using probabilistic models 
     -FreeBayes
-    -Other
+
+
+Tutorial and information here: http://clavius.bc.edu/~erik/CSHL-advanced-sequencing/freebayes-tutorial.html 
+
+Freebayes is not on the fgcz server, but is on gdc server:
+```
+/usr/local/freebayes/bin/freebayes
+```
+- need an uncompressed reference genome in fasta format
+- alignment files (BAM format)
+
+
+Run freebayes:
+```
+/usr/local/freebayes/bin/freebayes -f <genome.fa> \ <input.bam> > <output.vcf>
+```
+
+Look at the output: 
+```
+/usr/local/freebayes/bin/vcfstats NA12878.chr20.freebayes.vcf
+```
+
+
+Parameters to optimise: 
+
+- 
+
+- 
+
+- 
+
 
 
 
