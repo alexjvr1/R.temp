@@ -699,14 +699,16 @@ parameters to vary with the bowtie2 algorithm:
 
 ####Optimisation 
 
+csan_05.fq.trim & meie_08.fq.trim for the optimisation
+
 1. Parameter varied: -L (seed length) 15;22;50
 ```
-/usr/local/ngseq/bin/bowtie2 -U -q x.fq.trim --phred33 --end-to-end --time --threads 4 -D 15 -R 2 -N 0 -i S,1,1.15 -L 15  
+/usr/local/ngseq/bin/bowtie2 -x Rtk43 -U /srv/kenlab/alexjvr_p1795/ddRADpipeline/subsetTrim/csan_05.fq.trim --phred33 --end-to-end --time --threads 4 -D 15 -R 2 -N 0 -i S,1,1.15 -L 15 -S csan_05.sam  
 ```
 
 Parameter value| number of singly mapped reads | time
 :---:|:---:|:---:
-15|
+15| |<28min
 22|
 50|
 
@@ -750,9 +752,27 @@ Final optimised parameters:
 
 
 Script for aligning multiple reads to the indexed genome
+
 ```
 bwa mem aln Rtk43.fa demultiplexed/*.fq.gz > Rt. *.sai
 ```
+
+To view the output:
+
+- the .sam files are not all the useful to look at, so we need to process them with samtools
+
+1. Index the genome with samtools (needs it's own indexed genome) - this takes about 1min, but only needs to be done once
+
+```
+/usr/local/ngseq/bin/samtools faidx  /srv/kenlab/alexjvr_p1795/ddRADpipeline/mapping/Rtk43.fa
+```
+
+
+2. Next, we need to convert the SAM file into a BAM file. (A BAM file is just a binary version of a SAM file.) - ~40min
+```
+/usr/local/ngseq/bin/samtools import Rtk43.fa.fai csan_05.sam csan_05.bam
+```
+
 
 Sort & index the alignments
 ```
