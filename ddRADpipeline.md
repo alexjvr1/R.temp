@@ -646,22 +646,26 @@ Rtk43.fa.gz (473Mb)
 
 ####bwa-mem
 
-Im using bwa-mem as an aligner. 
+Im using bowtie2 as an aligner. 
 
-http://arxiv.org/pdf/1303.3997.pdf
+http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml
 
-Performance is better than other aligners for 70-1000bp reads. Quite similar to bowtie2, so this could also be used. 
-
+This runs a bit more slowly than bwa, but it incorporates base quality in when mapping. 
 
 ####Basic pipeline starting from demultiplexed sequences with adapter dimer removed: 
 
 1. index the genome. 
 
-This only needs to be done once. 
+This only needs to be done once. This takes ~(12:46-
 
+On the fgcz server: (-p prefix of all output). 
 ```
-bwa index Rtk43.fa.gz
+/usr/local/ngseq/bin/bwa index -p Rtk43 /srv/gstore4users/p1795/references/Rtk43.fa.gz
 ```
+
+Output (for future use): 
+
+
 
 2. 
 
@@ -669,17 +673,26 @@ bwa index Rtk43.fa.gz
 
 See here for a good tutorial: http://sfg.stanford.edu/mapping.html
 
-- For optimisation, use the fastq file of one sample (cleaned & trimmed), and vary the parameters. 
+- For optimisation, use the fastq file of 3 samples (cleaned & trimmed), and vary the parameters. 
 
 - Evaluate the run based on the number and quality of reads output from each. 
 
 - The most important parameter to vary is the number of nucleotide differences (-n) allowed. This should match the expected number of differences between two sequences from your species. 
 
+parameters to vary with the bwa-mem algorithm: 
+
+-k *INT* Minimum seed length. Matches shorter than INT will be missed. The alignment speed is usually insensitive to this value unless it significantly deviates 20. [19]  (test 15; 20; 25)
+
+-r *FLOAT* 	Trigger re-seeding for a MEM longer than minSeedLen*FLOAT. This is a key heuristic parameter for tuning the performance. Larger value yields fewer seeds, which leads to faster alignment speed but lower accuracy. [1.5]  (test 1.5; 2.0; 3.0)
+
+-d *INT* 	Off-diagonal X-dropoff (Z-dropoff). Stop extension when the difference between the best and the current extension score is above |i-j|*A+INT, where i and j are the current positions of the query and reference, respectively, and A is the matching score. Z-dropoff is similar to BLAST’s X-dropoff except that it doesn’t penalize gaps in one of the sequences in the alignment. Z-dropoff not only avoids unnecessary extension, but also reduces poor alignments inside a long good alignment. [100] (test 50; 75; 100)
+
+
 - The goal is to maximise the number of reads mapped singly, without increasing the mapping time to much. 
 
 Optimisation 
 
-1. Parameter varied: 
+1. Parameter varied: k (seed length)
 ```
 ```
 
@@ -687,7 +700,7 @@ Parameter value| number of singly mapped reads | time
 :---:|:---:|:---:
 
 
-2. Parameter varied: 
+2. Parameter varied: d
 ```
 ```
 
@@ -695,7 +708,7 @@ Parameter value| number of singly mapped reads | time
 :---:|:---:|:---:
 
 
-3. Parameter varied: 
+3. Parameter varied: R
 ```
 ```
 
