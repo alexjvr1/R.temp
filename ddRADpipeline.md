@@ -643,7 +643,17 @@ Assembling the genome took quite a bit of time and effort, so if you decide to u
 File name:
 Rtk43.fa.gz (473Mb)
 
-Basic pipeline starting from demultiplexed sequences with adapter dimer removed: 
+
+####bwa-mem
+
+Im using bwa-mem as an aligner. 
+
+http://arxiv.org/pdf/1303.3997.pdf
+
+Performance is better than other aligners for 70-1000bp reads. Quite similar to bowtie2, so this could also be used. 
+
+
+####Basic pipeline starting from demultiplexed sequences with adapter dimer removed: 
 
 1. index the genome. 
 
@@ -657,11 +667,84 @@ bwa index Rtk43.fa.gz
 
 ####1. *Optimisation of parameters*
 
+See here for a good tutorial: http://sfg.stanford.edu/mapping.html
+
+- For optimisation, use the fastq file of one sample (cleaned & trimmed), and vary the parameters. 
+
+- Evaluate the run based on the number and quality of reads output from each. 
+
+- The most important parameter to vary is the number of nucleotide differences (-n) allowed. This should match the expected number of differences between two sequences from your species. 
+
+- The goal is to maximise the number of reads mapped singly, without increasing the mapping time to much. 
+
+Optimisation 
+
+1. Parameter varied: 
+```
+```
+
+Parameter value| number of singly mapped reads | time
+:---:|:---:|:---:
+
+
+2. Parameter varied: 
+```
+```
+
+Parameter value| number of singly mapped reads | time
+:---:|:---:|:---:
+
+
+3. Parameter varied: 
+```
+```
+
+Parameter value| number of singly mapped reads | time
+:---:|:---:|:---:
+
+
+4. Parameter varied: 
+```
+```
+
+Parameter value| number of singly mapped reads | time
+:---:|:---:|:---:
+
+
+5. Parameter varied: 
+```
+```
+
+Parameter value| number of singly mapped reads | time
+:---:|:---:|:---:
+
+
+
+Final optimised parameters: 
+```
+
+```
+
+
+Script for aligning multiple reads to the indexed genome
+```
+bwa mem aln Rtk43.fa demultiplexed/*.fq.gz > Rt. *.sai
+```
+
+
 
 
 
 ####2. *QC*
-    mapping proportion, distribution across the genome
+
+  mapping proportion, distribution across the genome
+
+
+
+bar graph: number of sequences mapped per sample
+
+bar graph: sequences mapped per population
+          proportion of mapped reads per population
 
 
 
