@@ -768,16 +768,27 @@ To view the output:
 ```
 
 
-2. Next, we need to convert the SAM file into a BAM file. (A BAM file is just a binary version of a SAM file.) - ~40min
+2. Next, we need to convert the SAM file into a BAM file. (A BAM file is just a binary version of a SAM file.) - ~2min on fgcz server
 ```
 /usr/local/ngseq/bin/samtools import Rtk43.fa.fai csan_05.sam csan_05.bam
 ```
 
-
-Sort & index the alignments
-```
+3. sort the .bam file
 
 ```
+/usr/local/ngseq/bin/samtools sort csan_05.bam csan_05.bam.sorted
+```
+
+4. Index the sorted .bam file. Output *.bam.bai
+
+```
+/usr/local/ngseq/bin/samtools index csan_05.bam.sorted.bam
+```
+
+Now we can look at the data: 
+
+
+
 
 
 ####2. *QC*
