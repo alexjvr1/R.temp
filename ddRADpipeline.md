@@ -646,11 +646,13 @@ Rtk43.fa.gz (473Mb)
 
 ####bwa-mem
 
-Im using bowtie2 as an aligner. 
+Im using bowtie2 as an aligner, since it incorporates base quality in when mapping. See Hatem et al. 2013 for a treatment on different aligners. 
 
-http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml
+- Manual: http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml
 
-This runs a bit more slowly than bwa, but it incorporates base quality in when mapping. 
+- Tutorial: http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#performance-tuning
+
+
 
 ####Basic pipeline starting from demultiplexed sequences with adapter dimer removed: 
 
@@ -658,14 +660,14 @@ This runs a bit more slowly than bwa, but it incorporates base quality in when m
 
 This only needs to be done once. This takes ~(12:46-
 
-On the fgcz server: (-p prefix of all output). 
+On the fgcz server: bowtie2-build <input reference (must be in fasta)> <prefix of output> 
 ```
-/usr/local/ngseq/bin/bwa index -p Rtk43 /srv/gstore4users/p1795/references/Rtk43.fa.gz
+/usr/local/ngseq/bin/bowtie2-build Rtk43.fa Rtk43
 ```
 
 Output (for future use): 
-
-
+/srv/kenlab/alexjvr_p1795/ddRADpipeline/mapping/Rtk43.*.bt2
+/srv/kenlab/alexjvr_p1795/ddRADpipeline/mapping/Rtk43.fa (1.8Gb)
 
 2. 
 
