@@ -701,16 +701,16 @@ parameters to vary with the bowtie2 algorithm:
 
 csan_05.fq.trim & meie_08.fq.trim for the optimisation
 
-1. Parameter varied: -L (seed length) 15;22;50
+1. Parameter varied: -L (seed length) 15;22;32 (max allowed is 32)
 ```
 /usr/local/ngseq/bin/bowtie2 -x Rtk43 -U /srv/kenlab/alexjvr_p1795/ddRADpipeline/subsetTrim/csan_05.fq.trim --phred33 --end-to-end --time --threads 4 -D 15 -R 2 -N 0 -i S,1,1.15 -L 15 -S csan_05.sam  
 ```
 
-Parameter value| number of singly mapped reads | time
-:---:|:---:|:---:
-15| |<28min
-22|
-50|
+Parameter value| total reads | unmapped | mapped once | aligned >1| overall alignment rate | time
+:---:|:---:|:---::---:|:---:|:---:|:---:
+15|||||
+22|3926405 |2071569 (52.76%)|1260294 (32.10%)|594542 (15.14%)|47.24%|9m36
+32|||||
 
 2. Parameter varied: -N (#mismatches in seed alignment) 0;1
 ```
