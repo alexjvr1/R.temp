@@ -703,18 +703,27 @@ csan_05.fq.trim & meie_08.fq.trim for the optimisation
 
 1. Parameter varied: -L (seed length) 15;22;32 (max allowed is 32)
 ```
-/usr/local/ngseq/bin/bowtie2 -x Rtk43 -U /srv/kenlab/alexjvr_p1795/ddRADpipeline/subsetTrim/csan_05.fq.trim --phred33 --end-to-end --time --threads 4 -D 15 -R 2 -N 0 -i S,1,1.15 -L 15 -S csan_05.sam  
+/usr/local/ngseq/bin/bowtie2 -x Rtk43 -U /srv/kenlab/alexjvr_p1795/ddRADpipeline/subsetTrim/csan_05.fq.trim --phred33 --end-to-end --time --threads 4 -D 15 -R 2 -N 0 -i S,1,1.15 -L 15 -S csan_05L15.sam  
 ```
 
 Parameter value| total reads | unmapped | mapped once | aligned >1| overall alignment rate | time
-:---:|:---:|:---::---:|:---:|:---:|:---:
-15|||||
+:---:|:---:|:---:|:---:|:---:|:---:|:---:
+15|3926405|2220143 (56.54%)|1199346 (30.55%)|506916 (12.91%)|43.46%|13m27
 22|3926405 |2071569 (52.76%)|1260294 (32.10%)|594542 (15.14%)|47.24%|9m36
-32|||||
+32|3926405| 2352654 (59.92%)|1172575 (29.86%)|401176 (10.22%)|40.08%|6m04
 
 2. Parameter varied: -N (#mismatches in seed alignment) 0;1
 ```
+/usr/local/ngseq/bin/bowtie2 -x Rtk43 -U /srv/kenlab/alexjvr_p1795/ddRADpipeline/subsetTrim/csan_05.fq.trim --phred33 --end-to-end --time --threads 4 -D 15 -R 2 -N 1 -i S,1,1.15 -L 22 -S csan_05L22N0.sam  
 ```
+
+Parameter value| total reads | unmapped | mapped once | aligned >1| overall alignment rate | time
+:---:|:---:|:---:|:---:|:---:|:---:|:---:
+L15N1||||||
+L15N0||||||
+L22N1||||||
+L22N0||||||
+
 
 Parameter value| number of singly mapped reads | time
 :---:|:---:|:---:
