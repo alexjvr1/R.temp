@@ -719,23 +719,23 @@ Parameter value| total reads | unmapped | mapped once | aligned >1| overall alig
 
 Parameter value| total reads | unmapped | mapped once | aligned >1| overall alignment rate | time
 :---:|:---:|:---:|:---:|:---:|:---:|:---:
-L15N1||||||
-L15N0|3926405|2220143 (56.54%)|1199346 (30.55%)|506916 (12.91%)|43.46%|13m27
+L15N1|3926405|3068902 (78.16%)|733650 (18.69%)|123853 (3.15%)|21.84%|01:12:13
+L15N0|3926405|2220143 (56.54%)|1199346 (30.55%)|506916 (12.91%)|43.46%|13:27
 L22N1||||||
-L22N0|3926405 |2071569 (52.76%)|1260294 (32.10%)|594542 (15.14%)|47.24%|9m13
+L22N0|3926405 |2071569 (52.76%)|1260294 (32.10%)|594542 (15.14%)|47.24%|9:13
 
 
 
 
-3. Parameter varied: -R (#re-seeding attempts for repetitive seeds) 1;2;3
+3. Parameter varied: -R (#re-seeding attempts for repetitive seeds) 1;2;3 (L22N0)
 ```
 ```
 
 Parameter value| total reads | unmapped | mapped once | aligned >1| overall alignment rate | time
 :---:|:---:|:---:|:---:|:---:|:---:|:---:
-L22N1R1||||||
-L22N1R2||||||
-L22N1R3||||||
+L22N0R1||||||
+L22N0R2|3926405 |2071569 (52.76%)|1260294 (32.10%)|594542 (15.14%)|47.24%|9:13
+L22N0R3||||||
 
 
 4. Parameter varied: -D (#seed extensions that can fail before moving on.) 10;15;20
@@ -744,9 +744,9 @@ L22N1R3||||||
 
 Parameter value| total reads | unmapped | mapped once | aligned >1| overall alignment rate | time
 :---:|:---:|:---:|:---:|:---:|:---:|:---:
-L22N1R1D10||||||
-L22N1R2D15||||||
-L22N1R3D20||||||
+L22N0R1D10||||||
+L22N0R2D15||||||
+L22N0R3D20||||||
 
 
 
@@ -754,7 +754,7 @@ L22N1R3D20||||||
 
 Final optimised parameters: 
 ```
-
+/usr/local/ngseq/bin/bowtie2 -x Rtk43 -U /srv/kenlab/alexjvr_p1795/ddRADpipeline/subsetTrim/csan_05.fq.trim --phred33 --end-to-end --time --threads 4 -D 15 -R 1 -N 0 -i S,1,1.15 -L 22 -S csan_05L22N0R1.sam
 ```
 
 
