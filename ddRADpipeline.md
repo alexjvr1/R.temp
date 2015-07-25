@@ -758,19 +758,17 @@ L22N0R2D20|meie_08||||||
 
 Final optimised parameters: 
 ```
-/usr/local/ngseq/bin/bowtie2 -x /srv/kenlab/alexjvr_p1795/ddRADpipeline/mapping/Rtk43 -U /srv/kenlab/alexjvr_p1795/ddRADpipeline/subsetTrim/csan_05.fq.trim --phred33 --end-to-end --time --threads 4 -D 15 -R 1 -N 0 -i S,1,1.15 -L 22 -S csan_05L22N0R2D15.sam
+/usr/local/ngseq/bin/bowtie2 -x /srv/kenlab/alexjvr_p1795/ddRADpipeline/mapping/Rtk43 -U /srv/kenlab/alexjvr_p1795/ddRADpipeline/subsetTrim/csan_05.fq.trim --phred33 --end-to-end --time --threads 4 -D 15 -R 2 -N 0 -i S,1,1.15 -L 22 -S csan_05L22N0R2D15.sam
 ```
-
-
-Script for aligning multiple reads to the indexed genome
+This is the same as the --sensitive setting in the --end-to-end mode, so the final script can be for aligning multiple reads:  
 
 ```
-/usr/local/ngseq/bin/bowtie2 -x /srv/kenlab/alexjvr_p1795/ddRADpipeline/mapping/Rtk43 -U /srv/kenlab/alexjvr_p1795/ddRADpipeline/subsetTrim/*.fq.trim --phred33 --end-to-end --time --threads 4 -D 15 -R 1 -N 0 -i S,1,1.15 -L 22 -S *.sam 
+/usr/local/ngseq/bin/bowtie2 -x /srv/kenlab/alexjvr_p1795/ddRADpipeline/mapping/Rtk43 -U /srv/kenlab/alexjvr_p1795/ddRADpipeline/subsetTrim/*.fq.trim --phred33 --end-to-end --time --threads 4 --sensitive -S *.sam 
 ```
 
 To view the output:
 
-- the .sam files are not all the useful to look at, so we need to process them with samtools
+- the .sam files are not all that useful to look at, so we need to process them with samtools
 
 1. Index the genome with samtools (needs it's own indexed genome) - this takes about 1min, but only needs to be done once
 
