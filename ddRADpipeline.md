@@ -725,31 +725,29 @@ L22N1||||||
 L22N0||||||
 
 
-Parameter value| number of singly mapped reads | time
-:---:|:---:|:---:
-0
-1
 
 
 3. Parameter varied: -R (#re-seeding attempts for repetitive seeds) 1;2;3
 ```
 ```
 
-Parameter value| number of singly mapped reads | time
-:---:|:---:|:---:
-1
-2
-3
+Parameter value| total reads | unmapped | mapped once | aligned >1| overall alignment rate | time
+:---:|:---:|:---:|:---:|:---:|:---:|:---:
+L22N1R1||||||
+L22N1R2||||||
+L22N1R3||||||
+
 
 4. Parameter varied: -D (#seed extensions that can fail before moving on.) 10;15;20
 ```
 ```
 
-Parameter value| number of singly mapped reads | time
-:---:|:---:|:---:
-10
-15
-20
+Parameter value| total reads | unmapped | mapped once | aligned >1| overall alignment rate | time
+:---:|:---:|:---:|:---:|:---:|:---:|:---:
+L22N1R1D10||||||
+L22N1R2D15||||||
+L22N1R3D20||||||
+
 
 
 
@@ -796,6 +794,9 @@ To view the output:
 
 Now we can look at the data: 
 
+```
+/usr/local/ngseq/bin/samtools flagstat csan_05.bam.sorted.bam
+```
 
 
 
