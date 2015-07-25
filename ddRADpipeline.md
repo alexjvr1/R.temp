@@ -729,39 +729,43 @@ L22N0|3926405 |2071569 (52.76%)|1260294 (32.10%)|594542 (15.14%)|47.24%|9:13
 
 3. Parameter varied: -R (#re-seeding attempts for repetitive seeds) 1;2;3 (L22N0)
 ```
+/usr/local/ngseq/bin/bowtie2 -x /srv/kenlab/alexjvr_p1795/ddRADpipeline/mapping/Rtk43 -U /srv/kenlab/alexjvr_p1795/ddRADpipeline/subsetTrim/csan_05.fq.trim --phred33 --end-to-end --time --threads 4 -D 15 -R 2 -N 0 -i S,1,1.15 -L 22 -S csan_05L22N0R2.sam
 ```
 
 Parameter value| total reads | unmapped | mapped once | aligned >1| overall alignment rate | time
 :---:|:---:|:---:|:---:|:---:|:---:|:---:
 L22N0R1|3926405|2072040 (52.77%)|1260170 (32.09%)|594195 (15.13%)|47.23% |00:08:33
 L22N0R2|3926405 |2071569 (52.76%)|1260294 (32.10%)|594542 (15.14%)|47.24%|9:13
-L22N0R3||||||
+L22N0R3|3926405 reads| 2071406 (52.76%)| 1260226 (32.10%)|594773 (15.15%)|47.24%|10:30
 
 
-4. Parameter varied: -D (#seed extensions that can fail before moving on.) 10;15;20
+4. Parameter varied: -D (#seed extensions that can fail before moving on.) 10;15;20 (L22N0R2)
 ```
+/usr/local/ngseq/bin/bowtie2 -x /srv/kenlab/alexjvr_p1795/ddRADpipeline/mapping/Rtk43 -U /srv/kenlab/alexjvr_p1795/ddRADpipeline/subsetTrim/meie_08.fq.trim --phred33 --end-to-end --time --threads 4 -D 10 -R 2 -N 0 -i S,1,1.15 -L 22 -S meie_08L22N0R2D10.sam
 ```
 
-Parameter value| total reads | unmapped | mapped once | aligned >1| overall alignment rate | time
-:---:|:---:|:---:|:---:|:---:|:---:|:---:
-L22N0R1D10||||||
-L22N0R2D15||||||
-L22N0R3D20||||||
-
+Parameter value| Sample|total reads | unmapped | mapped once | aligned >1| overall alignment rate | time
+:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:
+L22N0R2D10|csan_05|3926405|2173182 (55.35%)|1261317 (32.12%)|491906 (12.53%)|44.65%|08:15
+L22N0R2D10|meie_08|3428077| 1920452 (56.02%)| 1066464 (31.11%)|441161 (12.87%)|43.98%|07:36
+L22N0R2D15|csan_05|3926405 |2071569 (52.76%)|1260294 (32.10%)|594542 (15.14%)|47.24%|9:13
+L22N0R2D15|meie_08|3428077|1824343 (53.22%)|1066389 (31.11%)|537345 (15.67%)|46.78% |09:13
+L22N0R2D20|csan_05|3926405| 2010770 (51.21%)|1254768 (31.96%)|660867 (16.83%)|48.79%|11:37
+L22N0R2D20|meie_08||||||
 
 
 
 
 Final optimised parameters: 
 ```
-/usr/local/ngseq/bin/bowtie2 -x Rtk43 -U /srv/kenlab/alexjvr_p1795/ddRADpipeline/subsetTrim/csan_05.fq.trim --phred33 --end-to-end --time --threads 4 -D 15 -R 1 -N 0 -i S,1,1.15 -L 22 -S csan_05L22N0R1.sam
+/usr/local/ngseq/bin/bowtie2 -x /srv/kenlab/alexjvr_p1795/ddRADpipeline/mapping/Rtk43 -U /srv/kenlab/alexjvr_p1795/ddRADpipeline/subsetTrim/csan_05.fq.trim --phred33 --end-to-end --time --threads 4 -D 15 -R 1 -N 0 -i S,1,1.15 -L 22 -S csan_05L22N0R2D15.sam
 ```
 
 
 Script for aligning multiple reads to the indexed genome
 
 ```
-bwa mem aln Rtk43.fa demultiplexed/*.fq.gz > Rt. *.sai
+/usr/local/ngseq/bin/bowtie2 -x /srv/kenlab/alexjvr_p1795/ddRADpipeline/mapping/Rtk43 -U /srv/kenlab/alexjvr_p1795/ddRADpipeline/subsetTrim/*.fq.trim --phred33 --end-to-end --time --threads 4 -D 15 -R 1 -N 0 -i S,1,1.15 -L 22 -S *.sam 
 ```
 
 To view the output:
