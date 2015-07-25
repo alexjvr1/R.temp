@@ -720,9 +720,9 @@ Parameter value| total reads | unmapped | mapped once | aligned >1| overall alig
 Parameter value| total reads | unmapped | mapped once | aligned >1| overall alignment rate | time
 :---:|:---:|:---:|:---:|:---:|:---:|:---:
 L15N1||||||
-L15N0||||||
+L15N0|3926405|2220143 (56.54%)|1199346 (30.55%)|506916 (12.91%)|43.46%|13m27
 L22N1||||||
-L22N0||||||
+L22N0|3926405 |2071569 (52.76%)|1260294 (32.10%)|594542 (15.14%)|47.24%|9m13
 
 
 
