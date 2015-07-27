@@ -620,6 +620,15 @@ c96d6m4min50                 ## 14. Prefix name for final output (no spaces)    
 #####*run for subset started 23 July 2015, 17:14. This includes 175 individuals*
 
 
+Average number of retained reads per population after initial cleanup (demultiplex & adapter removal)
+
+https://cloud.githubusercontent.com/assets/12142475/8907222/e6c8823e-3474-11e5-9246-01635ab3e724.png
+
+
+Average number of within sample clusters from PyRAD output: 
+
+https://cloud.githubusercontent.com/assets/12142475/8907229/f0692474-3474-11e5-976a-1a7d370ebe38.png
+
 ####1. *Optimisation of depth*
 ####2. *Optimisation of clustering threshold*
 ####3. *Within & between sample clustering*
