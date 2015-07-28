@@ -618,6 +618,7 @@ c96d6m4min50                 ## 14. Prefix name for final output (no spaces)    
 ```
 
 #####*run for subset started 23 July 2015, 17:14. This includes 175 individuals*
+#####*complete 28 July 2015, 15:55. Total 5 days. ~2days/lane*
 
 
 Average number of retained reads per population after initial cleanup (demultiplex & adapter removal)
