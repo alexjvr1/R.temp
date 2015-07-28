@@ -636,8 +636,17 @@ https://cloud.githubusercontent.com/assets/12142475/8907229/f0692474-3474-11e5-9
 ####4. *Call SNPs*
 ####5. *QC* 
 
-sample dropout, missingness, nr loci, comparison between lanes, comparison between populations
-  
+1. Total nr of loci
+
+2. Missingness
+
+3. Sample dropout across lanes
+
+4. Sample dropout between populations
+
+
+
+
   
   
   
@@ -872,6 +881,10 @@ sample dropout, missingness, nr loci, comparison between lanes, comparison betwe
   
 ##3. SNP filtering (VCFtools)
 
+###1. Pyrad output
+
+
+
 ####1. *Optimisation of parameters*
 ####2. *QC: sample dropout*
 
@@ -888,11 +901,18 @@ sample dropout, missingness, nr loci, comparison between lanes, comparison betwe
 
 
 ##4. Basic statistics
-  - PCA
-  - Structure
-  - Map of population diversity
-  - HWE within populations
-  - He (sliding window??)
-  - Fst & Fis
-  - Fst decrease with nr of samples
-  - Fst/1/Fst vs Geographic distance
+  ### PCA
+  
+  ### Structure
+  
+  ### Map of population diversity
+  
+  ### HWE within populations
+
+  ### He (sliding window??)
+
+  ### Fst & Fis
+
+  ### Fst decrease with nr of samples
+
+  ### Fst/1-Fst vs Geographic distance
