@@ -892,10 +892,7 @@ I’m using VCFtools for filtering. v. 1.12b is on the gdcserver.
 
 For the initial run, I will use the ###ddocent tutorial: https://github.com/jpuritz/dDocent/blob/master/tutorials/Filtering%20Tutorial.md
 
-*To make this file more manageable. Let's start by a three step filter. We are going to only keep variants that have been successfully genotyped in 50% of individuals, and a minor allele count of 3.* (He also adds a quality filter of 30, but I'm removing this for now). 
-
-1. 
-
+1. To make this file more manageable. Let's start by a three step filter. We are going to only keep variants that have been successfully genotyped in 50% of individuals, and a minor allele count of 3. *(He also adds a quality filter of 30, but I'm removing this for now).* 
 ```
 vcftools --vcf c96d6m4min50.vcf --max-missing 0.5 --mac 3 --recode --recode-INFO-all --out subset.g5mac3
 ```
@@ -920,7 +917,7 @@ After filtering, kept 25932 out of a possible 129089 Sites
 Run Time = 13.00 seconds
 ```
 
-2. 
+2. Filter for a mean depth of 3
 ```
 vcftools --vcf subset.g5mac3.recode.vcf --minDP 3 --recode --recode-INFO-all --out subset.g5mac3dp3
 ```
