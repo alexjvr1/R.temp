@@ -446,10 +446,31 @@ Data file should look like this:
 
 R code: 
 ```
+#Boxplot for reads per population
+
+#short name for the data matrix
+subset <- RADsubset_Trimmedreads_Milmore
+summary(subset)
+
+#write to png
+#png("Subset_avgreads.png")
+
+#plot. varwidth changes the barplot width according to the number of samples
+boxplot(subset$RetainedMil~subset$Pop, data=subset, varwidth=T, par(cex.axis=0.8), las=2, main="Average number of retained reads per population", xlab="population", ylab="reads")
+
+#write to png(end)
+
+dev.off()
+
 ```
 
 My data: 
 
+![alt_txt][data]
+[data]:https://cloud.githubusercontent.com/assets/12142475/8955219/155099b2-35eb-11e5-9111-542584eae129.png
+
+![alt_txt][graph]
+[graph]:https://cloud.githubusercontent.com/assets/12142475/8955235/30177ff4-35eb-11e5-9d68-d76dd05ebbad.png
 
 
 
