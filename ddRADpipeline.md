@@ -636,6 +636,66 @@ https://cloud.githubusercontent.com/assets/12142475/8907229/f0692474-3474-11e5-9
 ####4. *Call SNPs*
 ####5. *QC* 
 
+Graphs of output as pyrad is running. (Drawn in R)
+
+```
+require(ggplot2)
+
+###Heterozygosity plot
+subset <- Pyrad_subset_HE_20150727
+
+qplot(Transect, H, fill=factor((Elevation), levels=c("Low","Mid","High")), data=subset, geom="boxplot", position="dodge") + scale_fill_manual(values=c("red","green","blue"))+theme_bw()
+
+
+###s5_polymorphismPlot
+
+subset <- pyrad_s5_subset_20150725
+
+qplot(Transect, polyfreq, fill=factor((Elevation), levels=c("Low","Mid","High")), data=subset, geom="boxplot", position="dodge") + scale_fill_manual(values=c("yellow","green","blue"))+theme_bw()+theme(legend.title=element_blank())
+
+##s5_FinalLociPlot
+
+subset <- pyrad_s5_subset_20150725
+
+qplot(Transect, FinalSites, fill=factor((Elevation), levels=c("Low","Mid","High")), data=subset, geom="boxplot", position="dodge") + scale_fill_manual(values=c("yellow","green","blue"))+theme_bw()+theme(legend.title=element_blank())
+
+##Corrolation: RawReads:FinalClusters
+
+subset<-pyrad_rawReads.FinalSites_subset_20150728
+
+ggplot(subset, aes(x=subset$RawReads, y=subset$FinalSites)) + geom_point(shape=1)
+
+##Corrolation: RawReads:polyfreq
+
+subset<-pyrad_rawReads.FinalSites_subset_20150728
+
+ggplot(subset, aes(x=subset$RawReads, y=subset$polyfreq)) + geom_point(shape=1)
+
+
+##Corrolation: FinalClusters:polyfreq
+
+subset<-pyrad_rawReads.FinalSites_subset_20150728
+
+ggplot(subset, aes(x=subset$FinalSites, y=subset$polyfreq)) + geom_point(shape=1)
+```
+
+
+![alt_txt][input]
+[input]:https://cloud.githubusercontent.com/assets/12142475/8954707/bccab1ea-35e7-11e5-82ae-95e67a4db2da.png
+
+
+![alt_txt][clusters]
+[clusters]:https://cloud.githubusercontent.com/assets/12142475/8954728/e718f0f6-35e7-11e5-9d34-7b212b24a1ee.png
+
+#####Average number of clusters per population across all transects. This is completely corrolated with the number of reads per individual. 
+
+![alt_txt][polyfreq]
+[polyfreq]:https://cloud.githubusercontent.com/assets/12142475/8954734/f0b2d938-35e7-11e5-9476-66a81859eb5c.png
+
+
+
+#####Average polymorphism per population across each transect. This is uncorrolated with read depth and number of clusters. 
+
 1. Total nr of loci
 
 2. Missingness
