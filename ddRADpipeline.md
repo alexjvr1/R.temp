@@ -883,7 +883,148 @@ sample dropout, missingness, nr loci, comparison between lanes, comparison betwe
 
 ###1. Pyrad output
 
+For the pyrad data, I will initially just use J.Puritz' filters in VCFtools: 
 
+I’m using VCFtools for filtering. v. 1.12b is on the gdcserver.
+
+    Documentation for VCFtools: http://vcftools.sourceforge.net/perl_module.html#vcf-filter
+    For VCFtools filtering options: http://vcftools.sourceforge.net/man_0112b.html
+
+For the initial run, I will use the ###ddocent tutorial: https://github.com/jpuritz/dDocent/blob/master/tutorials/Filtering%20Tutorial.md
+
+*To make this file more manageable. Let's start by a three step filter. We are going to only keep variants that have been successfully genotyped in 50% of individuals, and a minor allele count of 3.* (He also adds a quality filter of 30, but I'm removing this for now). 
+
+1. 
+
+```
+vcftools --vcf c96d6m4min50.vcf --max-missing 0.5 --mac 3 --recode --recode-INFO-all --out subset.g5mac3
+```
+
+Output for the subset: 
+```
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf c96d6m4min50.vcf
+	--recode-INFO-all
+	--mac 3
+	--max-missing 0.5
+	--out subset.g5mac3
+	--recode
+
+Eighth Header entry should be INFO: INFO    
+After filtering, kept 175 out of 175 Individuals
+Outputting VCF file...
+After filtering, kept 25932 out of a possible 129089 Sites
+Run Time = 13.00 seconds
+```
+
+2. 
+```
+vcftools --vcf subset.g5mac3.recode.vcf --minDP 3 --recode --recode-INFO-all --out subset.g5mac3dp3
+```
+
+Output for the subset: 
+```
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf subset.g5mac3.recode.vcf
+	--recode-INFO-all
+	--minDP 3
+	--out subset.g5mac3dp3
+	--recode
+
+After filtering, kept 175 out of 175 Individuals
+Outputting VCF file...
+After filtering, kept 25932 out of a possible 25932 Sites
+Run Time = 5.00 seconds
+```
+
+
+3. Create a .imiss file with missing data per individual.
+```
+vcftools --vcf subset.g5mac3dp3.recode.vcf --missing-indv
+```
+
+ draw a histogram of this: 
+
+- first make a file with only the missing data proportions included
+
+```
+mawk '!/IN/' out.imiss | cut -f5 > totalmissing
+```
+
+- Draw a historgram of this
+```
+gnuplot << \EOF 
+set terminal dumb size 120, 30
+set autoscale 
+unset label
+set title "Histogram of % missing data per individual"
+set ylabel "Number of Occurrences"
+set xlabel "% of missing data"
+#set yr [0:100000]
+binwidth=0.01
+bin(x,width)=width*floor(x/width) + binwidth/2.0
+plot 'totalmissing' using (bin( $1,binwidth)):(1.0) smooth freq with boxes
+pause -1
+EOF
+```
+
+
+Output for the subset: 
+
+![alt_txt][gnu]
+[gnu]:https://cloud.githubusercontent.com/assets/12142475/8952947/af188ea2-35db-11e5-8264-6a16d19271f8.png
+
+
+This means that most of the missing data is below 50%. 
+
+
+4. Filter for individuals with >50% missing data
+
+- make a list of all these individuals
+```
+mawk ‘$5 > 0.5’ out.imiss | cut -f1 > lowDP.indiv
+```
+
+- count the number of individuals in the file
+```
+wc -l lowDP.indiv
+```
+ 
+- And cat to see the individual names. 
+
+Results for the subset data: 
+
+39 individuals
+
+![alt_txt][lowDP]
+[lowDP]:https://cloud.githubusercontent.com/assets/12142475/8953065/6054396e-35dc-11e5-937d-0e4b934700be.png
+
+
+3. 
+```
+
+```
+
+Output for the subset: 
+```
+
+```
+
+3. 
+```
+
+```
+
+Output for the subset: 
+```
+
+```
 
 ####1. *Optimisation of parameters*
 ####2. *QC: sample dropout*
