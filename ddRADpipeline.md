@@ -1090,10 +1090,17 @@ Subset data:
 
 ##4. Basic statistics
 
+
 For this part, I will download the .vcf file onto my computer, since I'll be running most of the analyses in R. 
 
+```
+scp -r alexjvr@gdcsrv1.ethz.ch:/gdc_home4/alexjvr/ddRADpipeline/pyrad/SNPfiltering/subset.imiss50loci10.recode.vcf .
+```
 
   ### PCA
+  
+  
+
   
   ### Structure
   
