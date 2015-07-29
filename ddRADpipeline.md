@@ -1067,8 +1067,21 @@ Run Time = 3.00 seconds
     - phylo, pop gts, outliers
 
 ####4. *QC*: 
-      - total nr of SNPS
-      - distribution across individuals (and dropout rate)
+
+   #####*total nr of SNPS*
+      
+      This can be found when the vcf file is created. 
+      
+Subset data:
+```
+137 individuals
+16478 loci
+```
+
+      
+   #####*distribution across individuals (and dropout rate)*
+   
+   
       - SNPs across lanes (and dropout rate - correlate with library length)
       - SNPs within populations
       - SNPs across populations
@@ -1076,6 +1089,10 @@ Run Time = 3.00 seconds
 
 
 ##4. Basic statistics
+
+For this part, I will download the .vcf file onto my computer, since I'll be running most of the analyses in R. 
+
+
   ### PCA
   
   ### Structure
