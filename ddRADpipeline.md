@@ -998,7 +998,33 @@ wc -l lowDP.indiv
  
 - And cat to see the individual names. 
 
+
+- and then filter these individuals out
+ 
+```
+vcftools --vcf subset.g5mac3dp3.recode.vcf --remove lowDP.indiv --recode --recode-INFO-all --out subset.imiss50
+```
+
+
+
 Results for the subset data: 
+```
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf subset.g5mac3dp3.recode.vcf
+	--exclude lowDP.indiv
+	--recode-INFO-all
+	--out subset.imiss50
+	--recode
+
+Excluding individuals in 'exclude' list
+After filtering, kept 137 out of 175 Individuals
+Outputting VCF file...
+After filtering, kept 25932 out of a possible 25932 Sites
+Run Time = 4.00 seconds
+```
 
 39 individuals
 
@@ -1006,25 +1032,33 @@ Results for the subset data:
 [lowDP]:https://cloud.githubusercontent.com/assets/12142475/8953065/6054396e-35dc-11e5-937d-0e4b934700be.png
 
 
-3. 
-```
+The samples that are dropping out are all the ones with low raw read numbers & low clusters numbers. i.e. it is very important to have high numbers of reads per individual! 
 
-```
 
-Output for the subset: 
+5.Finally, filter loci with >10% missing data 
 ```
-
-```
-
-3. 
-```
-
+vcftools --vcf subset.imiss50.recode.vcf --max-missing 0.10 --maf 0.05 --recode --recode-INFO-all --out subset.imiss50loci10
 ```
 
 Output for the subset: 
 ```
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
 
+Parameters as interpreted:
+	--vcf subset.imiss50.recode.vcf
+	--recode-INFO-all
+	--maf 0.05
+	--max-missing 0.1
+	--out subset.imiss50loci10
+	--recode
+
+After filtering, kept 137 out of 137 Individuals
+Outputting VCF file...
+After filtering, kept 16478 out of a possible 25932 Sites
+Run Time = 3.00 seconds
 ```
+
 
 ####1. *Optimisation of parameters*
 ####2. *QC: sample dropout*
