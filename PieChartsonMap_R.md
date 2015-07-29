@@ -70,6 +70,14 @@ for (i in 1:dim(cytb)[1])
 
 ```
 
+![alt_txt][cytb]
+[cytb]:https://cloud.githubusercontent.com/assets/12142475/8955375/645f759a-35ec-11e5-98f9-0393510f3135.png
+
+
+
+
+
+
 Final Pie Charts for COX1
 ```
 ##Pie Charts cytb
