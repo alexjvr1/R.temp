@@ -1,4 +1,18 @@
-#Genotype-Environment association analyses
+#Analyses requiring spatial and climate data
+
+I want to do 3 main analyses requiring spatial and/or climate data
+
+1.Ecological niche model 
+      - The aim is to see whether there is an ecological difference between the eastern and the western lineages
+      - For the biogeography/phylo work, I want historic ENM for predictions of R.temp recolonisation of Europe, specifically CH and SE. 
+      
+2. Landscape genetics of *Rana temporaria*
+      - This project aims to determine the landscape effects on Rana temporaria connectivity. 
+      - The project will compare Swiss and Swedish populations and landscapes
+      
+3. Genotype-Environment association analysis.
+      - Find whether genotype is associated with any environmental/climate variables
+      - Comparison between CH and SE
 
 ##WorldClim data
 
@@ -37,6 +51,18 @@ plot(tminCM)
 [bio6]:https://cloud.githubusercontent.com/assets/12142475/8985981/2f9707d0-36da-11e5-8add-22e56497821f.png
 
 
+
+
+##Ecological Niche Models in R
+
+This is a really good resource: https://cran.r-project.org/web/packages/dismo/vignettes/sdm.pdf
+
+
+Install all the necessary packages
+
+```
+install.packages(c("raster", "rgdal", "dismo", "rJava"))
+```
 
 
 
