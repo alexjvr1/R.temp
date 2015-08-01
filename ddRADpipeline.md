@@ -728,6 +728,13 @@ ggplot(subset, aes(x=subset$FinalSites, y=subset$polyfreq)) + geom_point(shape=1
 
 
 
+###Once pyrad is done
+
+- the .nex output can be converted in pgdspider to several useful formats: 
+
+	1. to fasta to align to the genome with bowtie2
+	2. to SAM (index the SAM file for input into ANGSD)
+	3. BAM for ANGSD
   
   
   
