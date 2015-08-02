@@ -23,6 +23,10 @@ The filters that are probably the most influential are:
 ###Fst
 Apparently Fst estimates and PCA are both really sensitive to which SNPs end up in the final data set. Some (e.g. Roesti et al. 2012), suggest a MAF of no less than 0.25. 
 
+See this paper from Rasmus Nielsen's group: 
+
+http://www.genetics.org/content/early/2013/08/15/genetics.113.154740.full.pdf
+
 I will test how influential this is by running the following filters: 
 
 1. MAF 0.1
