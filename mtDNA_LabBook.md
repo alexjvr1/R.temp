@@ -405,6 +405,15 @@ Error: Least-square procedure to fit expected and observed mismatch distribution
 
 
 
+###Phylogenetic Trees
+
+Online platform for running MrBayes and RAXML: https://www.phylo.org/portal2/data!display.action?id=977502
+
+        User: ajvr
+        Pwd: Capybara69
+
+Online resource for making MrBayes blocks: https://131.204.120.103/srsantos/mrbayes_form/mc_action.php
+
 
 *Bayesian Skyline Plot*
 
