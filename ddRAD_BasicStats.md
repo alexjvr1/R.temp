@@ -6,6 +6,13 @@ I will mainly use adegenet and resources specified on their website:
 
 http://adegenet.r-forge.r-project.org/
 
+##Data conversion
+
+pgdSpider can do most conversions. 
+```
+/Users/alexjvr/Software/PGDSpider/PGDSpider_2.0.8.2
+java -Xmx1024m -Xms512m -jar PGDSpider2.jar
+```
 
 Working through the following tutorial: Analysing Genome wide SNPs using AdeGenet 
 http://adegenet.r-forge.r-project.org/files/tutorial-genomics.pdf
