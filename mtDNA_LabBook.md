@@ -405,10 +405,6 @@ Error: Least-square procedure to fit expected and observed mismatch distribution
 
 
 
-###Phylogenetic Trees
-
-
-
 
 *Bayesian Skyline Plot*
 
@@ -517,6 +513,12 @@ Online platform for running MrBayes and RAXML if needed: https://www.phylo.org/p
         Pwd: Capybara69
 
 
+File Conversions can be done in pgdSpider
+```
+cd Software/PGDSpider/PGDSpider_2.0.8.2
+java -Xmx1024m -Xms512m -jar PGDSpider2.jar
+```
+
 ###1.jModelTest
 
 1. Prepare a fasta alignment of the data
@@ -553,7 +555,9 @@ exe inputfile
 5. Open the .con.tre output in FigTree: (http://beast.bio.ed.ac.uk/figtree)
 
 
+###RAxML
 
+1. Convert the haplotype into 
 
 
 
