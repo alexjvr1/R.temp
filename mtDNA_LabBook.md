@@ -554,6 +554,7 @@ exe inputfile
 
 5. Open the .con.tre output in FigTree: (http://beast.bio.ed.ac.uk/figtree)
 
+*MB doesn't like the output being named anything other than "results". So remember to copy all the previous results into a folder before starting the new run. 
 
 ###RAxML
 
