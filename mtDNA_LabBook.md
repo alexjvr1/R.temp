@@ -535,9 +535,26 @@ Online platform for running MrBayes and RAXML if needed: https://www.phylo.org/p
 ###3.MrBayes
 
 1. Use pgdSpider to convert to Nexus format (if not already in Nexus)
-2. Write 
+2. Write mrbayes block using the following online resource: https://131.204.120.103/srsantos/mrbayes_form/mc_action.php
+2b. For partitioned data, see this tutorial & the MB manual: 
+            - http://mrbayes.sourceforge.net/wiki/index.php/Tutorial_3.2
+            - http://mrbayes.sourceforge.net/mb3.2_manual.pdf
+3. copy the input file into the folder with the MrBayes executable
+```
+/Applications/MrBayes
+```
 
-Online resource for making MrBayes blocks: https://131.204.120.103/srsantos/mrbayes_form/mc_action.php
+4. Start MrBayes command line & execute file
+```
+mb
+exe inputfile
+```
+
+5. Open the .con.tre output in FigTree: (http://beast.bio.ed.ac.uk/figtree)
+
+
+
+
 
 
 ####*cytb*
