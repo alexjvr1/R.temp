@@ -407,12 +407,7 @@ Error: Least-square procedure to fit expected and observed mismatch distribution
 
 ###Phylogenetic Trees
 
-Online platform for running MrBayes and RAXML: https://www.phylo.org/portal2/data!display.action?id=977502
 
-        User: ajvr
-        Pwd: Capybara69
-
-Online resource for making MrBayes blocks: https://131.204.120.103/srsantos/mrbayes_form/mc_action.php
 
 
 *Bayesian Skyline Plot*
@@ -511,8 +506,39 @@ Error: Least-square procedure to fit expected and observed mismatch distribution
 ##Phylogenetics
 
 1. Model Selection using jModelTest2 on Cipres
-2. ML tree using RXML
-3. Bayesian tree using MrBayes
+2. Haplotype data file
+3. ML tree using RXML
+4. Bayesian tree using MrBayes
+
+
+Online platform for running MrBayes and RAXML if needed: https://www.phylo.org/portal2/data!display.action?id=977502
+
+        User: ajvr
+        Pwd: Capybara69
+
+
+###1.jModelTest
+
+1. Prepare a fasta alignment of the data
+2. Upload on Cipres & run jModeltest2
+3. Determine the best model under AIC
+4. Check the difference between likelihoods for the top models
+5. Check the likelihood of GTR model (this is the only model implemented in RAxML)
+
+
+###2.HaplotypeFiles
+
+1. Convert fasta alignment to nexus format using pgdSpider
+2. Upload in dnaSP (this is only window based)
+3. Create haplotype file. This will write the haplotype file to the chosen folder, and output a list of samples assigned to each haplotype
+
+###3.MrBayes
+
+1. Use pgdSpider to convert to Nexus format (if not already in Nexus)
+2. Write 
+
+Online resource for making MrBayes blocks: https://131.204.120.103/srsantos/mrbayes_form/mc_action.php
+
 
 ####*cytb*
 
