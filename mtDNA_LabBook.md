@@ -538,6 +538,7 @@ java -Xmx1024m -Xms512m -jar PGDSpider2.jar
 
 1. Use pgdSpider to convert to Nexus format (if not already in Nexus)
 2. Write mrbayes block using the following online resource: https://131.204.120.103/srsantos/mrbayes_form/mc_action.php
+        - remember to start 2 runs simultaneously to assess split frequencies. Stop the run once split freq <0.01
 2b. For partitioned data, see this tutorial & the MB manual: 
             - http://mrbayes.sourceforge.net/wiki/index.php/Tutorial_3.2
             - http://mrbayes.sourceforge.net/mb3.2_manual.pdf
@@ -556,9 +557,28 @@ exe inputfile
 
 *MB doesn't like the output being named anything other than "results". So remember to copy all the previous results into a folder before starting the new run. 
 
-###RAxML
+###4.RAxML
 
-1. Convert the haplotype into 
+- The sequential version should be used for small data sets, small runs, and test runs. 
+- RAxML likelihood values are not directly comparable with other ML methods. Due to rounding errors (mostly) ML scores are different between different programs and even between different version of RAxML. However, this problem is avoided when bootstrapping across topologies. 
+
+
+The manual has lots of information in it: http://sco.h-its.org/exelixis/resource/download/NewManual.pdf
+
+1. Convert the haplotype into relaxed interleaved Phylip (Phylip for RAxML in pgdSpider)
+2. Start RAxML. It should be run from the folder with the executable. 
+
+/Users/alexjvr/Software/standard-RAxML-master
+
+```
+./raxmlHPC -h
+```
+
+
+
+options: 
+
+GTRGAMMA (best for <50 OTUs
 
 
 
