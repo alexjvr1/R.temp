@@ -582,8 +582,7 @@ raxmlHPC -s sequenceFileName -n outputFileName -m substitutionModel
 For the concatenated file
 ```
 
-raxmlHPC -s sequenceFileName -n outputFileName -m GTRGAMMA -b 38479 -f a 
-
+raxmlHPC -f a -x 23980 -p 93874 -# 1000 -m GTRGAMMA -s concat.phyml.txt -n concat.rxml 
 ```
 
 -b:  specify a random starting seed and turn on bootstrapping
