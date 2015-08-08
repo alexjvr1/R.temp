@@ -575,10 +575,24 @@ The manual has lots of information in it: http://sco.h-its.org/exelixis/resource
 ```
 
 
+```
+raxmlHPC -s sequenceFileName -n outputFileName -m substitutionModel
+```
+
+For the concatenated file
+```
+
+raxmlHPC -s sequenceFileName -n outputFileName -m GTRGAMMA -b 38479 -f a 
+
+```
+
+-b:  specify a random starting seed and turn on bootstrapping
+
+-f a: "-f" indicates the model, "a" is the model choice. In this case rapid Bootstrap analysis and search for best­scoring ML tree in one program run
 
 options: 
 
-GTRGAMMA (best for <50 OTUs
+GTRGAMMA (best for <50 OTUs)
 
 
 
