@@ -232,7 +232,7 @@ Cool to 4°C at a rate of 2°C/90sec.
 ***This can be run overnight. Most protocols opt for 30min at 23°C
 
 
-7. Pool and MinElute cleanup
+####7. Pool and MinElute cleanup
 1. Pool sets of 6 ligated samples together, for a total volume of 240ul
 2. Add 1200ul of buffer 1 in a deep well plate and mix with pooled samples. 
 3. Apply 720ul to the MinElute column. Repeat with the rest of the mixture. 
@@ -246,7 +246,7 @@ Cool to 4°C at a rate of 2°C/90sec.
 >> expect 550-650ng/ul  
 This is very high, but is inflated due to the adapter dimer.
 
-8. Size selection (caliper)
+####8. Size selection (caliper)
 1.	Prepare DNA to run on the caliper: 3ul DNA + 12ul water + 3ul Sample buffer = 18ul.
 (1ug max can be loaded, but it seems like the DNA yield is not more at these volumes).
 Prepare 2 x per library - the yield from 2 lanes per library is needed for sufficient library. 
@@ -263,7 +263,7 @@ Caliper		340 +/- 15% = avg. fragment size of 450bp
 
 
 
-9. PCR 
+####9. PCR 
 1. Collect 20ul of elute from the caliper. Add the two lanes together for a total volume of 40ul. If only one lane is used, make up the volume to 40ul using water.
 2. Make Master Mix III
 Reagent	1X (ul)
@@ -278,7 +278,7 @@ Water	32
 4. Run 14 PCR cycles: 98°C 30s/ 98°C 10s, 65°C 30s, 72°C 30s. 
 5. Leave AMPure beads on bench to warm to RT while PCR is running. 
 
-10. Final AMPure cleanup
+####10. Final AMPure cleanup
 **AMPure is needed to get rid of the large adapter dimer peak
 **For my libraries a cleanup of 1:1 followed by 0.8:1 is optimal. But this can be optimised for new species. 
 **Sample volumes should be measured before starting: since selection is based on bead to library ratios, clean-ups are very sensitive to variations in sample volume
@@ -290,7 +290,7 @@ AMPure protocol below:
 4. Follow with a 0.8 X bead clean up (40ul library : 32ul beads) **measure library volumes!
 5. Elute in 20ul water
 
-AMPure Protocol: 
+#####AMPure Protocol: 
 The smaller the ratio, the wider the range of fragments removed. 1:1 ratio removes <200bp, while 0.8:1.0 (beads:DNA) will remove larger fragments. 
 1. Leave AMPure beads on the bench for 30min to equilibrate to RT. 
 2. Make fresh 80% EtOH. (For 48 samples you'll need 20ml. i.e. 14ml Abs EtOH + 6ml H2O)
@@ -308,7 +308,7 @@ Add enough 80% EtOH to each well to cover the bead smear (~200ul). Incubate at R
 •	Incubate on bench for 5min. 
 8. Place on the magnetic plate for 2min. Remove 20ul DNA to a LoBind eppie. 
 
-11. Library QC
+####11. Library QC
 1. Measure DNA concentration using the Qubit (HS). 
 2. Assess peak using the BioAnalyzer (HS DNA chip). The final DNA concentration should be at least 1ng/ul.
 3. qPCR to determine the amount of ligated adapter
