@@ -57,5 +57,19 @@ SL_18|1338705|11886|0.89|1326819
 SL_19|1214306|10543|0.87|1203763
 
 
+Used pyRAD on the GDCserver: 
 
+```
+module load pyRAD/3.0.6
+
+pyrad -n
+```
  
+modify the params.txt file as in the pipeline
+
+Run pyrad in screen. Started at 23:33, 20 Aug 2015
+```
+screen -S pyradSE -L
+
+pyrad -p params.txt -s 234567
+```
