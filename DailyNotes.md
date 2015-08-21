@@ -67,7 +67,7 @@ pyrad -n
  
 modify the params.txt file as in the pipeline
 
-Run pyrad in screen. Started at 23:33, 20 Aug 2015
+Run pyrad in screen. Started at 23:33 - 12:00 (21 Aug 2015). ~12.5hrs
 ```
 screen -S pyradSE -L
 
