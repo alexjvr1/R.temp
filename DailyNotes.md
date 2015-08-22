@@ -73,3 +73,11 @@ screen -S pyradSE -L
 
 pyrad -p params.txt -s 234567
 ```
+
+The average depth for this run (due to low coverage in the HiSeq lanes) = 2-3
+Changed the minDepth to 2, and the min number of indivs per locus to 2, for the test run. 
+
+Remember to delete the .loci and the .stats files to rewrite the s7 output! 
+
+**Interesting: The polyfreq of the SE pops looks really similar to that of the Swiss populations! A bit unexpected. 
+
