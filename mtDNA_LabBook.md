@@ -732,6 +732,12 @@ For time calibration
     - Fossil? R. arvalis and R. temporaria split (Veith et al. 2003)
     - 
 
+Plan for BEAST analysis optimisation: 
+
+1. Test correlated vs uncorrelated molecular clock
+
+2. 
+
 
 
 ##Basic Statistics
