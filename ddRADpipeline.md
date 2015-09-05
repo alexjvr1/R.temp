@@ -396,6 +396,14 @@ screen -S TrimSubset -L
 for i in *.fq; do  java -jar /usr/local/trimmomatic/trimmomatic-0.32.jar SE $i $i.trim ILLUMINACLIP:/usr/local/trimmomatic/adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36; done
 ```
 
+Or on the FGCZ server: 
+
+```
+screen -S TrimSubset -L
+for i in *.fq; do  java -jar /usr/local/ngseq/src/Trimmomatic-0.33/trimmomatic-0.33.jar SE $i $i.trim ILLUMINACLIP:/usr/local/ngseq/src/Trimmomatic-0.33/adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36;done
+```
+
+
 Copy over to a new folder 
 ```
 mv *.trim pyrad/subsetTrim
