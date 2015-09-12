@@ -151,4 +151,4 @@ screen -S pyRADlarge -L
 pyrad -p params.txt -s 234567
 ```
 
-Run started: 11 Sept 2015 @ 17:17
+Run started: 12 Sept 2015 @ 16:30
