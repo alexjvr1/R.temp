@@ -160,9 +160,10 @@ Prepare 10ul per primer per library. i.e. 80ul per flowcell.
 
 Reagent	|1x	|1x (ul)	|55x (ul)|
 :-----|:---:|:---:|:---:|
-Cutsmart buffer |10x	|1x	|10.0	|550
-*Mse*I (10000U/ml)	|40U	|4.0	|220
+Cutsmart buffer (10x) |1x  |1.6		|88
+*Mse*I (10000U/ml)    |40U   |4.0	|220
 *Eco*RI (20000U/ml)	|40U|	2.0	|110
+Water (UHQ) | | 8.4 | 462
 
 2. Mix by vortexing and centrifuge briefly.
 3. Add 16ul of MM1 to each well 
