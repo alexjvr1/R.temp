@@ -218,10 +218,10 @@ The columns clean the Restriction Digest, but doesn't get rid of the adapter dim
 Reagent	|1X	|1X (ul)	|55X (ul)
 :---|:--:|:--:|:--:|
 Cutsmart 10x	|1x	|4.5	|247.5
-rATP 100mM	|	0.5	|27.5
-MSeI Adapter (10uM)		|1.6	|88
-T4 Ligase (2000U/ml)	|	0.2|	11.0
-Water + DNA	|||	36.6	
+rATP 100mM	||	0.5	|27.5
+MSeI Adapter (10uM)	|	|1.6	|88
+T4 Ligase (2000U/ml)	||	0.2|	11.0
+Water + DNA	||	36.6|	
 		*Total*|||6.8ul/sample	
  
 3. Add 6.8ul of MMII to each well containing 36.6ul DNA + water. Add 1.6ul of the EcoRI (1uM working soln) adapters to each corresponding sample well for a total volume of 45ul. 
