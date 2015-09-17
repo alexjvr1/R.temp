@@ -295,29 +295,54 @@ AMPure protocol below:
 
 #####AMPure Protocol: 
 The smaller the ratio, the wider the range of fragments removed. 1:1 ratio removes <200bp, while 0.8:1.0 (beads:DNA) will remove larger fragments. 
+
 1. Leave AMPure beads on the bench for 30min to equilibrate to RT. 
+
 2. Make fresh 80% EtOH. (For 48 samples you'll need 20ml. i.e. 14ml Abs EtOH + 6ml H2O)
+
 3. Add 1 volumes (176ul) of AMPure bead mix to each well. Mix by pipetting up and down 10 times. 
+
 4. Incubate on the bench for 5min at RT.
+
 5. Place on magnetic stand for 5 min.
+
 6. Carefully remove the supernatent and discard. 
+
 •	Remove liquid and discard. 
+
 •	Leave some liquid in the bottom rather than removing some beads
+
 5. Wash the beads 2x with 80% EtOH while still on the magnetic plate: 
+
 Add enough 80% EtOH to each well to cover the bead smear (~200ul). Incubate at RT  for 1min. Remove last EtOH with long tips. 
+
 6. Still on the magnetic plate, leave the plate to dry at RT for 5 - 10min. 
+
 7. Elute in 20ul water. 
+
 •	Mix by pipetting ~10 times each. 
+
 •	Incubate on bench for 5min. 
+
 8. Place on the magnetic plate for 2min. Remove 20ul DNA to a LoBind eppie. 
 
+
 ####11. Library QC
+
 1. Measure DNA concentration using the Qubit (HS). 
+
 2. Assess peak using the BioAnalyzer (HS DNA chip). The final DNA concentration should be at least 1ng/ul.
+
 3. qPCR to determine the amount of ligated adapter
 
 *** calculation for molarity from Qubit measure: 
+
 xng/ul x 10^6ul/1L x 1nmol/660ng x 1/N = nM  
+
 (where N = avg size in bp)  
-***Bioanalyzer: check the shape of the curve (should be steep) & that there are no small peaks (i.e. adapter dimer). Molarity and size can be measured by the Bioanalyzer.
+
+***Bioanalyzer: check the shape of the curve (should be steep) & that there are no small peaks (i.e. adapter dimer). Molarity 
+
+and size can be measured by the Bioanalyzer.
+
 FGCZ asks for at least 15ul of 2nM
