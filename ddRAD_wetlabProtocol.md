@@ -269,6 +269,7 @@ Caliper		340 +/- 15% = avg. fragment size of 450bp
 2. Make Master Mix III
 
 Reagent	|1X (ul)
+:--:|:--:
 Template DNA	|40
 Illumina Primer1 (5uM)	|8
 ABMod Primer (Ill2) (5uM)|	8
