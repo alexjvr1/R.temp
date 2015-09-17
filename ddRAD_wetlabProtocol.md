@@ -282,18 +282,31 @@ Water	|32
 5. Leave AMPure beads on bench to warm to RT while PCR is running. 
 
 ####10. Final AMPure cleanup
+
 **AMPure is needed to get rid of the large adapter dimer peak
+
 **For my libraries a cleanup of 1:1 followed by 0.8:1 is optimal. But this can be optimised for new species. 
-**Sample volumes should be measured before starting: since selection is based on bead to library ratios, clean-ups are very sensitive to variations in sample volume
-**If final libraries deviate from the optimal size, clean again with 0.7:1 AMPure selection. Be sure to measure the starting library volumes to use the appropriate volume of beads per sample. Elute in 20ul water. 
+
+**Sample volumes should be measured before starting: since selection is based on bead to library ratios, clean-ups are very 
+sensitive to variations in sample volume
+
+**If final libraries deviate from the optimal size, clean again with 0.7:1 AMPure selection. Be sure to measure the starting 
+library volumes to use the appropriate volume of beads per sample. Elute in 20ul water. 
+
 AMPure protocol below:
+
 1. Combine all PCR reactions.
+
 2. Use a 1X AMPure mix (i.e. 176ul library : 176ul beads) ***measure library volumes!
+
 3. Elute in 40ul water
+
 4. Follow with a 0.8 X bead clean up (40ul library : 32ul beads) **measure library volumes!
+
 5. Elute in 20ul water
 
 #####AMPure Protocol: 
+
 The smaller the ratio, the wider the range of fragments removed. 1:1 ratio removes <200bp, while 0.8:1.0 (beads:DNA) will remove larger fragments. 
 
 1. Leave AMPure beads on the bench for 30min to equilibrate to RT. 
