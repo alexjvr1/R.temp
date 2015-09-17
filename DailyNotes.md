@@ -190,3 +190,12 @@ pyrad -p params.txt -s 234567
 ```
 
 Run started: 12 Sept 2015 @ 16:30
+
+### 16 Sept
+
+I realised that I could probably split pyRAD s3 between the servers for them to run more quickly. I've moved 164 files (from edit/) over to gdcsrv2 (folder: pyRADlargeonGDC2) and am running these using 12 cores. 
+
+I started this on 17 Sept ~13:00
+
+
+
