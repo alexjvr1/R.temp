@@ -267,13 +267,14 @@ Caliper		340 +/- 15% = avg. fragment size of 450bp
 ####9. PCR 
 1. Collect 20ul of elute from the caliper. Add the two lanes together for a total volume of 40ul. If only one lane is used, make up the volume to 40ul using water.
 2. Make Master Mix III
-Reagent	1X (ul)
-Template DNA	40
-Illumina Primer1 (5uM)	8
-ABMod Primer (Ill2) (5uM)	8
-Phusion MM	88
-Water	32
-	176ul
+
+Reagent	|1X (ul)
+Template DNA	|40
+Illumina Primer1 (5uM)	|8
+ABMod Primer (Ill2) (5uM)|	8
+Phusion MM	|88
+Water	|32
+	| 176ul
 
 3. Split into 12 reactions of 13-14ul each. 
 4. Run 14 PCR cycles: 98°C 30s/ 98°C 10s, 65°C 30s, 72°C 30s. 
