@@ -709,26 +709,45 @@ I aligned 175 sequences (xx haplotypes + 2outgroups), 1076bp (448+628bp) alignme
 The most likely model using AIC for the Concated Dataset with outgroups: 
 
 Model selected: 
+
    Model = TrN+I+G
+
    partition = 010020
+
    -lnL = 3070.0758
+
    K = 103
+
    freqA = 0.2475 
+
    freqC = 0.3279 
+
    freqG = 0.1436 
+
    freqT = 0.2810 
+
    R(a) [AC] =  1.0000
+
    R(b) [AG] =  41.7920
+
    R(c) [AT] =  1.0000
+
    R(d) [CG] =  1.0000
+
    R(e) [CT] =  28.4984
+
    R(f) [GT] =  1.0000
+
    p-inv = 0.5830
+
    gamma shape = 0.7190 
-   
+
    
    BEGIN PAUP;
-Lset base=(0.2475 0.3279 0.1436 ) nst=6  rmat=(1.0000 41.7920 1.0000 1.0000 28.4984) rates=gamma shape=0.7190 ncat=4 pinvar=0.5830;
+
+Lset base=(0.2475 0.3279 0.1436 ) nst=6  rmat=(1.0000 41.7920 1.0000 1.0000 28.4984) rates=gamma shape=0.7190 ncat=4 
+pinvar=0.5830;
+
 END;
 
 
