@@ -1,8 +1,22 @@
 #Landscape Genetics MS (Aim MolEcol)
 
-##Introduction
+##Introduction 
 
-Lots of connectivity/landscape genetics data available across the flat areas, but we still don't understand connectivity across elevation. 
+- The distribution of genetic variation across a species range is determined by many factors
+- But one of the most important is dispersal and functional connectivity between populations. 
+- The distribution of genetic diversity has an affect on population fitness (ref), range dynamics (ref), and adaptive potential (ref). 
+- Understanding factors that influence dispersal will give us insight into the distribution of species (and genetic variation) across their geographically heterogeneous landscape. 
+
+
+- Lots of connectivity/landscape genetics data available across the flat areas, but we still don't understand connectivity across elevation. 
+- Studies of dispersal and connectivity across elevation is often challenging, and thus less studied, for two reasons 1) species often don't occur across a large elevational gradient, 2) this often includes the range edge, thus connectivity dynamics should take into account habitat quality
+- But it is interesting because it helps us identify factors in a complex (and often more natural) landscape. 
+
+
+- For amphibians, much work on lowland landscape genetics has identified open fields/agriculture, and large roads, and dense urban areas as barriers to movement. Forest cover is positively associated with movement. However, it is unclear how these findings translate to the elevational gradient. 
+
+
+Why is this important?
 
 - Variable connectivity across different gradients in the alps. 
 - Really high gene flow across elevation in Scotland. 
@@ -14,7 +28,9 @@ Other consideration is that high elevation = range edge. So we have to consider 
 Aim:
 To determine which landscape and evironmental characteristics affect connectivity across elevation and how this determines the distribution of genetic diversity.
 
-1. Topographic complexity are the main factors resulting in resistence in movement across elevation in the alps. (explains high gene flow in Scotland)
+1. Is functional connectivity different across different elevational gradients in the alps? 
+
+2. Topographic complexity are the main factors resulting in resistence in movement across elevation in the alps. (explains high gene flow in Scotland)
 
 2. Breeding site availability/quality determines the range edge.
 
@@ -22,6 +38,37 @@ To determine which landscape and evironmental characteristics affect connectivit
 
 
 ##M&M
+
+Q1/Compare genetic structure across different elevations in the Alps
+
+- ddRAD
+
+- filtering
+
+- Average genetic diversity
+
+- genetic diversity as a fxn of elevation
+
+- Genetic distance across elevation 
+
+
+Q2/ Which landscape features predict functional connectivity?
+
+Test the following: 
+
+
+
+
+Method: 
+
+
+
+Q3/ Does breeding site quality determine range edge?
+
+- Measured breeding site quality by:
+           - predicing the presence of predators (depth)
+           -  
+
 
 
 
