@@ -47,7 +47,11 @@ Sampling was conducted from March-July 2013. In total samples were collected fro
 DNA was extracted from tadpole tails using Qiagen BioSprint 96 DNA Blood Kit. Genome-wide genetic variation was assessed using single-end double digest Restriction Associated DNA (RAD) sequencing. Library preperation was conducted at the Genomic Diversity Center, Zurich following the protocol of Parchman *et al.* 2012 with modifications as detailed in the Supporting information xxx. Samples were individually labelled, with 48 samples pooled per library. Libraries were sequenced on an Illumina HiSeq 2500 v4 at the Functional Genomics Cetnter, Zurich (FGCZ). 
 
 *Bioinformatics pipeline*
-Raw data was demultiplexed using the process_radtags component , and filtered for adapter dimer using xxx. 
+Raw data was demultiplexed using the process_radtags component from the Stacks v xx pipeline (Catchen et al. 2013), and reads from samples that had been included in two sequencing lanes were merged. Samples were filtered for adapter dimer using xxx (ref). The remaining reads were de novo assembled using the pyRAD v3.0.6 pipeline (Eaton et al. xx). Non-stringent filtering thresholds were used during the de novo assembly, while the final SNP data set was filtered by applying different filtering parameters in VCFtools (ref). Filtering parameters in pyRAD: mindepth 5, min missing xx, heterozygosity was set very high..  One alignment threshold is specified for both within and between sample cluster alignments. This value was optimised with a subset of the data representing the geographic diversity of all the samples (Supplementary material xx). 
+
+####This bit is from Stervander et al. 2015. Check and adjust accordingly: 
+
+The data output from pyRAD was then further filtered using VCFtools. We filtered output so that it contained only loci i) in which all samples had been assigned 1-2 alleles, ii) which contained 1-10 SNPs, iii) which comprised =/<12 alleles. The rationale for these filters was to remove any loci in which individuals had been assigned >2 loci and or were hypervariable (but values were chosen arbitrarily after inspecting the data).   
 
 
 Q1/Compare genetic structure across different elevations in the Alps
