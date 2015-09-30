@@ -1,4 +1,6 @@
-#Landscape Genetics
+#Landscape Genetics MS (Aim MolEcol)
+
+##Introduction
 
 Lots of connectivity/landscape genetics data available across the flat areas, but we still don't understand connectivity across elevation. 
 
@@ -8,7 +10,7 @@ Lots of connectivity/landscape genetics data available across the flat areas, bu
 Other consideration is that high elevation = range edge. So we have to consider the meta-population dynamics. 
 - habitat quality (as measured by wetland/pond depth & ice-free period) affects colonisation
 
-
+###Final paragraph
 Aim:
 To determine which landscape and evironmental characteristics affect connectivity across elevation and how this determines the distribution of genetic diversity.
 
@@ -17,6 +19,34 @@ To determine which landscape and evironmental characteristics affect connectivit
 2. Breeding site availability/quality determines the range edge.
 
 3. Are regional patterns of connectivity indicative of the distribution of broad scale (phylogeographic-level) genetic diversity? 
+
+
+##M&M
+
+
+
+
+##Results
+
+
+
+
+
+##Discussion
+
+
+
+
+
+##Conclusion
+
+
+
+
+##Acknowledgements
+
+Janine Bolliger for GIS support and providing landscape data, WSL for access to Swiss land cover and evironmental data. 
+
 
 
 
