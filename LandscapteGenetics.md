@@ -47,7 +47,7 @@ Sampling was conducted from March-July 2013. In total samples were collected fro
 DNA was extracted from tadpole tails using Qiagen BioSprint 96 DNA Blood Kit. Genome-wide genetic variation was assessed using single-end double digest Restriction Associated DNA (RAD) sequencing. Library preperation was conducted at the Genomic Diversity Center, Zurich following the protocol of Parchman *et al.* 2012 with modifications as detailed in the Supporting information xxx. Samples were individually labelled, with 48 samples pooled per library. Libraries were sequenced on an Illumina HiSeq 2500 v4 at the Functional Genomics Cetnter, Zurich (FGCZ). 
 
 *Bioinformatics pipeline*
-
+Raw data was demultiplexed using the process_radtags component , and filtered for adapter dimer using xxx. 
 
 
 Q1/Compare genetic structure across different elevations in the Alps
