@@ -39,6 +39,17 @@ To determine which landscape and evironmental characteristics affect connectivit
 
 ##M&M
 
+###Sampling & Genetic data
+
+Sampling was conducted from March-July 2013. In total samples were collected from 44 sites across Switzerland; (1) 30 from the east, and (2) 14 from the south-west (Fig. 1, Table S1). These sites belong to the northern (1) and southern (2) Swiss mitochondrial lineages, as identified in Jasnen van Rensburg et al. xxx. A population was considered a breeding site where ponds were close together (xx distance??), or the whole area covered by a wetland. Euclidean distances between sites ranged from xx - xx overall (xx region 1; xx region 2). Sampling involved collecting eggs from 10-20 clutches, thus reducing the chances of collecting related individuals. Eggs were hatched and individuals were raised until Gossner stage xx before euthenising and preserving them in absolute ethanol. In total xx individuals were sampled. 
+
+*DNA extraction and library preparation*
+DNA was extracted from tadpole tails using Qiagen BioSprint 96 DNA Blood Kit. Genome-wide genetic variation was assessed using single-end double digest Restriction Associated DNA (RAD) sequencing. Library preperation was conducted at the Genomic Diversity Center, Zurich following the protocol of Parchman *et al.* 2012 with modifications as detailed in the Supporting information xxx. Samples were individually labelled, with 48 samples pooled per library. Libraries were sequenced on an Illumina HiSeq 2500 v4 at the Functional Genomics Cetnter, Zurich (FGCZ). 
+
+*Bioinformatics pipeline*
+
+
+
 Q1/Compare genetic structure across different elevations in the Alps
 
 - ddRAD
