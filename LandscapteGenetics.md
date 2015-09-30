@@ -10,9 +10,13 @@ Other consideration is that high elevation = range edge. So we have to consider 
 
 
 Aim:
-To determine which landscape and evironmental characteristics affect connectivity across elevation. 
+To determine which landscape and evironmental characteristics affect connectivity across elevation and how this determines the distribution of genetic diversity.
+
 1. Topographic complexity are the main factors resulting in resistence in movement across elevation in the alps. (explains high gene flow in Scotland)
+
 2. Breeding site availability/quality determines the range edge.
+
+3. Are regional patterns of connectivity indicative of the distribution of broad scale (phylogeographic-level) genetic diversity? 
 
 
 
