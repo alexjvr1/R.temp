@@ -56,6 +56,8 @@ The data output from pyRAD was then further filtered using VCFtools. We filtered
 
 Q1/Compare genetic structure across different elevations in the Alps
 
+Population structure and demographic history has been previously described.. ?? Publish this MS first??
+
 - Average genetic diversity
 
 - genetic diversity as a fxn of elevation
@@ -64,7 +66,7 @@ Q1/Compare genetic structure across different elevations in the Alps
 
 - Relatedness estimate within populations, and across elevation, compared to random combinations (Queller & Goodnight??)
 
-- 
+
 
 
 Q2/ Which landscape features predict functional connectivity?
