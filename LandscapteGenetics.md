@@ -63,6 +63,7 @@ Population structure and demographic history has been previously described.. ?? 
 - genetic diversity as a fxn of elevation
 
 - Genetic distance across elevation 
+           - IBD across elevation 
 
 - Relatedness estimate within populations, and across elevation, compared to random combinations (Queller & Goodnight??)
 
@@ -73,20 +74,24 @@ Q2/ Which landscape features predict functional connectivity?
 
 Test the following: 
 
-- IBD
-- 
+- Null hypothesis is IBD: Fst/1-Fst
 
 
+Method:
 
-Method: 
+1. ResistanceGA (Peterson et al. 2014)
 
+2. Gravity model as in Murphy et al. 2010
 
 
 Q3/ Does breeding site quality determine range edge?
 
 - Measured breeding site quality by:
-           - predicing the presence of predators (depth)
-           -  
+           - predicting the presence of predators (depth)
+
+Method
+
+- Gravity model (Murphy et al. 2010)
 
 
 
