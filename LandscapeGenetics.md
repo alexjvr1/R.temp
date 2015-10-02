@@ -1,5 +1,7 @@
 #Landscape Genetics MS (Aim MolEcol)
 
+- Using the gravity model approach from Murphy et al. 2010
+
 ##Introduction 
 
 - The distribution of genetic variation across a species range is determined by many factors
