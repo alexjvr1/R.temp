@@ -13,7 +13,7 @@ Our focal species is Rana temporaria, one of the most wide-spread anurans.
 This makes them an ideal candidate for studying adaptation 
 We know that there is a deep divergence between the Eastern and Western R. temporaria clades, which is likely to have occurred during the onset of the current cycle of climatic oscillations (0.7mya) (Palo et al. 2004). This is the same time that the R. temporaria radiation occurred (Veith et al. 2003?? is this the right ref?).
 The Western clade is characterised by high genetic diversity and population structure (Palo et al. 2004). It is suggested that much of this is due to cryptic refugia in central Europe during the last glacial maximum (ref). 
-In contrast, the Eastern clade is depauperate of genetic diversity. 
+In contrast, the Eastern clade has much less genetic diversity. 
 
 The aim of this study is to study the distribution of genetic variation in Rana temporaria at a fine-scale across Sweden and Switzerland, in order to understand the processes that have resulted in the current spatial genetic variation across the two temperature gradients. 
 
