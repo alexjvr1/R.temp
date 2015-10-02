@@ -138,3 +138,84 @@ Papers:
  
 
 3.
+
+
+##Code
+
+###Great circle distance between populations
+
+This code calculates the great circle distance. I then manipulated the data to select all population pairs >30km apart. The final output is a table: 
+
+Pop1 | Pop2| Dist
+:--:| :--:|:--:
+
+'''
+##Great circle distance between samples
+
+##Geographic distance between all sequenced R.temp CH samples
+##using package Rdist
+
+library(fields)
+#Import .csv with coordinates
+CH_RAD_coords_20151001
+
+#rdist.earth (in fields package) wants only long & lat
+CH_RAD_lon.lat <- cbind(CH_RAD_coords_20151001$Long., CH_RAD_coords_20151001$Lat.)
+CH_RAD_lon.lat
+
+#calculate great circle distances
+distance.matrix.CHRAD <- rdist.earth(CH_RAD_lon.lat)
+summary(distance.matrix.CHRAD)
+dim(distance.matrix.CHRAD)
+
+#and use only the lower half of the matrix
+upper.tri(distance.matrix.CHRAD)
+distance.matrix.CHRAD[lower.tri(distance.matrix.CHRAD)]<-NA
+distance.matrix.CHRAD
+
+#change from matrix to dataframe
+bli <- as.data.frame(distance.matrix.CHRAD)
+head(bli)
+colnames(bli) <- CH_RAD_coords_20151001$Site
+rownames(bli) <- CH_RAD_coords_20151001$Site
+
+bli[lower.tri(bli,diag=TRUE)]=NA  #Prepare to drop duplicates and meaningless information
+bli=as.data.frame(as.table(as.matrix(bli)))  #Turn into a 3-column table
+bli
+bli=na.omit(bli)  #Get rid of the junk we flagged above
+bli
+colnames(bli)<-c("site1", "site2", "dist(km)")
+head(bli)
+
+bli2 <- bli[sort(site2),]
+
+##write to csv
+write.csv(bli, file="distance.CHRAD.csv",row.names=F)
+
+
+
+
+#use melt to reorder the data ***This doesn't work for the comparison matrix, but useful for data with variable columns
+install.packages("reshape2")
+install.packages("reshape")
+library(reshape)
+library(reshape2)
+head(bli)
+summary(bli)
+bli2 <-na.omit(bli) #remove NAs
+head(bli2)
+summary(bli2)
+
+z<-as.data.frame(as.table(bli))
+
+test <- melt(bli2)
+head(test)
+tail(test)
+
+
+
+##write to csv
+write.csv(distance.matrix.CHRAD, file="distance.matrix.CHRAD.csv",row.names=F)
+summary(distance.matrix.CHRAD)
+dim(distance.matrix.CHRAD)
+'''
