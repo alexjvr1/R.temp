@@ -149,7 +149,7 @@ This code calculates the great circle distance. I then manipulated the data to s
 Pop1 | Pop2| Dist
 :--:| :--:|:--:
 
-'''
+```
 ##Great circle distance between samples
 
 ##Geographic distance between all sequenced R.temp CH samples
@@ -218,4 +218,4 @@ tail(test)
 write.csv(distance.matrix.CHRAD, file="distance.matrix.CHRAD.csv",row.names=F)
 summary(distance.matrix.CHRAD)
 dim(distance.matrix.CHRAD)
-'''
+```
