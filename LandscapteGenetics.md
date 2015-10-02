@@ -24,6 +24,11 @@ Why is this important?
 Other consideration is that high elevation = range edge. So we have to consider the meta-population dynamics. 
 - habitat quality (as measured by wetland/pond depth & ice-free period) affects colonisation
 
+
+Different methods in Landscape genetics (see Peterman 2014 for a nice breakdown)
+
+- 
+
 ###Final paragraph
 Aim:
 To determine which landscape and evironmental characteristics affect connectivity across elevation and how this determines the distribution of genetic diversity.
