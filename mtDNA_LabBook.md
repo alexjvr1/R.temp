@@ -779,6 +779,27 @@ Plan for BEAST analysis optimisation:
 2. 
 
 
+Methods:
+
+1. Import data set into Beauty
+
+2. Under "Taxa", select all the ingroups. Divergence dates will be calculated for each node as specified here
+
+3. Under "Sites" choose G+I if necessary. Unless one of the available codes are used, the xml file needs to be modified for this. Information on how to do this for all the different models can be found here: http://beast.bio.ed.ac.uk/substitution-model-code
+
+4&5. Clock: Here are 5 options. Tree: Here are 4 options. All combinations of these options should be run. 
+
+6. Priors: Set tree calibration under the priors
+
+7. MCMC: remember to change all the names.
+
+8. Keep track of all the likelihoods. 
+
+9. Import all outputs into Tracer. 
+
+10. 
+
+
 
 ##Basic Statistics
 
