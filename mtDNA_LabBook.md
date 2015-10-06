@@ -757,27 +757,18 @@ END;
 
 1. Beast
   - Using % calibration from literature
-  - Using a fossil calibration
-  
-
-For tree prior: 
-- Populations -> coalescent
-- across genera -> Birth-Death model
-
+  - Using a fossil calibration (Veith et al. 2003)
+       
 For time calibration
 - When there's a biogeographical calibration point, use a normal distribution 
 
 - possible calibration points for me:
+    
     - Biogeographical: E/W lineage split after last ice age
-    - Fossil? R. arvalis and R. temporaria split (Veith et al. 2003)
-    - 
-
-Plan for BEAST analysis optimisation: 
-
-1. Test correlated vs uncorrelated molecular clock
-
-2. 
-
+    
+    - Estimated time for R.temp species group (including R.arvalis & pyrenaica, exclu dalmatina) is 3.18 +/- 0.43 Mya. (Veith et al. 2003, Table 3)
+    
+    
 
 Methods:
 
@@ -785,7 +776,11 @@ Methods:
 
 2. Under "Taxa", select all the ingroups. Divergence dates will be calculated for each node as specified here
 
-3. Under "Sites" choose G+I if necessary. Unless one of the available codes are used, the xml file needs to be modified for this. Information on how to do this for all the different models can be found here: http://beast.bio.ed.ac.uk/substitution-model-code
+3. Under "Sites" choose GTR, Base-frequencies = empirical, G+I, 4 (as necessary). 
+
+Unless one of the available codes are used, the xml file needs to be modified for this. Information on how to do this for all the different models can be found here: http://beast.bio.ed.ac.uk/substitution-model-code
+
+** I tried to do this, but BEAST does not accept any modifications to the .xml file. I will run it with the above substitution model. 
 
 4&5. Clock: Here are 5 options. Tree: Here are 4 options. All combinations of these options should be run. 
 
