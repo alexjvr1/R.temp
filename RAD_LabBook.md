@@ -1667,19 +1667,19 @@ I've reduced the allowed amount of missing data to 100/530 (20%). I will analyse
 My task this week is to use the new CH530 dataset to work out how to do the following: 
 
 1. SNP filtering - what to filter & how to optimise this
-2. How many individuals per population until max information is reached?
+2. Summary stats (Heterozygosity, nucleotide diverstiy, etc)
+3. How many individuals per population until max information is reached?
 3. PCA
 4. Structure
 5. TESS
 6. AMOVA
 7. IBD
 8. F statistics
-9. Summary stats (Heterozygosity, nucleotide diverstiy, etc)
-10. PCAdapt
-11. Fst outlier
-12. EMMAX
-13. Multivariate analysis
-14. 
+9. PCAdapt
+10. Fst outlier
+11. EMMAX
+12. Multivariate analysis
+ 
 
 
 ####1. SNP filtering
@@ -1863,6 +1863,37 @@ Run Time = 40.00 seconds
 
 So, I lose 50% of the data, but I still have way more loci than I did with the subset data! (137 indivs, After filtering, kept 16478 out of a possible 25932 Sites). Can this be right? I suppose there are multiple SNPs per locus. How many loci are there? 
 at 94% clustering, assuming ~120bp final reads, the max number of SNPs per cluster is 7. This is pretty high. The default in pyRAD is 100SNPs allowed. I will have to check on this. 
+
+
+Finally, filter for within population HWE using a script recommended by Jon Puritz (in his SNPfiltering tutorial on GitHub)
+
+```
+curl -L -O https://github.com/jpuritz/dDocent/raw/master/scripts/filter_hwe_by_pop.pl
+chmod +x filter_hwe_by_pop.pl
+
+filter_hwe_by_pop.pl -v CHall436locmiss10.recode.vcf -p popmap530 -o CHall436locmiss10.HWE -h 0.001
+```
+No loci filtered for any of the populations. ** Christine doesn't filter for HWE, as this may remove interesting loci. 
+
+
+
+
+####2. Summary Statistics
+
+Nucleotide diversity
+
+We can calculate per site nucleotide divergence in vcftools
+```
+vcftools --vcf CHall436locmiss10.recode.vcf --site-pi --out CH436_pi
+```
+
+
+Heterozygosity
+Homozygosity
+HWE
+Fis
+
+
 
 And then I need to split the dataset up into CHN, CHS, and CH4grad. I can generate these by defining all the excluded individuals for s7 (line 17 in params.txt) for pyRAD. 
 
