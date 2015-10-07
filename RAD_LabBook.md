@@ -1664,7 +1664,7 @@ I've been running de Novo assembly on 530 CH individuals. It is possible to spli
 
 I've reduced the allowed amount of missing data to 100/530 (20%). I will analyse the data in subsets. 
 
-My task today is to use one of my old data sets (the subset data), to work out how to do the following: 
+My task this week is to use one of my old data sets (the subset data), to work out how to do the following: 
 
 1. SNP filtering - what to filter & how to optimise this
 2. How many individuals per population until max information is reached?
@@ -1679,6 +1679,29 @@ My task today is to use one of my old data sets (the subset data), to work out h
 11. Fst outlier
 12. EMMAX
 13. Multivariate analysis
+14. 
+
+
+####1. SNP filtering
+
+We're using VCFtools and filtering for the following things:
+
+1. Sequence quality
+2. MAF
+3. Missingness within individuals
+4. Missingness across loci (remember to do this with different subsets of the data)
+5. HWE within populations *** Think about this step before applying it to your data
+6. 
+
+In the end we want several datasets: 
+
+1. CHN
+2. CHS
+3. CHtotal
+4. CH_4gradients
+5. SE
+
+
 
 
 
