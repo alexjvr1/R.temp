@@ -1664,7 +1664,7 @@ I've been running de Novo assembly on 530 CH individuals. It is possible to spli
 
 I've reduced the allowed amount of missing data to 100/530 (20%). I will analyse the data in subsets. 
 
-My task this week is to use one of my old data sets (the subset data), to work out how to do the following: 
+My task this week is to use the new CH530 dataset to work out how to do the following: 
 
 1. SNP filtering - what to filter & how to optimise this
 2. How many individuals per population until max information is reached?
@@ -1701,7 +1701,63 @@ In the end we want several datasets:
 4. CH_4gradients
 5. SE
 
+First filter for MAF of 3 and sequence quality of 30 (I'm not filtering for genotyping rate at this point)
+
+```
+vcftools --vcf CHc94d6min530.vcf --mac 3 --recode --recode-INFO-all --out raw.530mac3
 
 
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf CHc94d6min530.vcf
+	--recode-INFO-all
+	--mac 3
+	--out raw.530mac3
+	--recode
+
+Eighth Header entry should be INFO: INFO    
+After filtering, kept 530 out of 530 Individuals
+Outputting VCF file...
+After filtering, kept 205921 out of a possible 334483 Sites
+Run Time = 90.00 seconds
+```
+
+Min Depth of 3 for the genotype
+
+```
+vcftools --vcf raw.530mac3.recode.vcf --minDP 3 --recode --recode-INFO-all --out raw.530mac3dp3
+
+
+```
+
+And now filter for individuals that sequenced badly
+
+Assess the amount of missing data
+```
+vcftools --vcf raw.530mac3dp3.recode.vcf --missing
+
+cat out.imiss
+```
+
+Draw a histogram of these results
+
+```
+mawk '!/IN/' out.imiss | cut -f5 > totalmissing
+gnuplot << \EOF 
+set terminal dumb size 120, 30
+set autoscale 
+unset label
+set title "Histogram of % missing data per individual"
+set ylabel "Number of Occurrences"
+set xlabel "% of missing data"
+#set yr [0:100000]
+binwidth=0.01
+bin(x,width)=width*floor(x/width) + binwidth/2.0
+plot 'totalmissing' using (bin( 1,binwidth)):(1.0) smooth freq with boxes
+pause -1
+EOF
+```
 
 
