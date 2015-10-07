@@ -1658,3 +1658,27 @@ H19 | 189469463
 H21 | 104792211
 
 
+###7 Oct
+
+I've been running de Novo assembly on 530 CH individuals. It is possible to split pyRAD steps 2-5 between servers. I've been using GDC servers 1 & 2. This reduces the time by ~50%
+
+I've reduced the allowed amount of missing data to 100/530 (20%). I will analyse the data in subsets. 
+
+My task today is to use one of my old data sets (the subset data), to work out how to do the following: 
+
+1. SNP filtering - what to filter & how to optimise this
+2. How many individuals per population until max information is reached?
+3. PCA
+4. Structure
+5. TESS
+6. AMOVA
+7. IBD
+8. F statistics
+9. Summary stats (Heterozygosity, nucleotide diverstiy, etc)
+10. PCAdapt
+11. Fst outlier
+12. EMMAX
+13. Multivariate analysis
+
+
+
