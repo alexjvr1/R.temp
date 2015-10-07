@@ -1864,7 +1864,7 @@ Run Time = 40.00 seconds
 So, I lose 50% of the data, but I still have way more loci than I did with the subset data! (137 indivs, After filtering, kept 16478 out of a possible 25932 Sites). Can this be right? I suppose there are multiple SNPs per locus. How many loci are there? 
 at 94% clustering, assuming ~120bp final reads, the max number of SNPs per cluster is 7. This is pretty high. The default in pyRAD is 100SNPs allowed. I will have to check on this. 
 
-And then I need to split the dataset up into CHN, CHS, and CH4grad. I can generate these by defining all the excluded individuals in s7 for pyRAD. 
+And then I need to split the dataset up into CHN, CHS, and CH4grad. I can generate these by defining all the excluded individuals for s7 (line 17 in params.txt) for pyRAD. 
 
 
 
