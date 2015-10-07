@@ -756,10 +756,11 @@ END;
 ##Date Divergence
 
 1. Beast
-  - Using % calibration from literature
+  - Using % calibration from literature (Veith et al. 2003 found equal rates among lineages. The expected rate is 1.3% per My)
   - Using a fossil calibration (Veith et al. 2003)
        
 For time calibration
+
 - When there's a biogeographical calibration point, use a normal distribution 
 
 - possible calibration points for me:
