@@ -1724,19 +1724,33 @@ After filtering, kept 205921 out of a possible 334483 Sites
 Run Time = 90.00 seconds
 ```
 
-Min Depth of 3 for the genotype
+Min Depth of 3 for the genotype **I already filter for minDP of 6 in the pyRAD run. I should decrease this to 3 to increase the number of loci! I need to rerun this pyRAD!
 
 ```
 vcftools --vcf raw.530mac3.recode.vcf --minDP 3 --recode --recode-INFO-all --out raw.530mac3dp3
 
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf raw.530mac3.recode.vcf
+	--recode-INFO-all
+	--minDP 3
+	--out raw.530mac3dp3
+	--recode
+
+After filtering, kept 530 out of 530 Individuals
+Outputting VCF file...
+After filtering, kept 205921 out of a possible 205921 Sites
+Run Time = 74.00 seconds
 
 ```
 
 And now filter for individuals that sequenced badly
 
-Assess the amount of missing data
+Assess the amount of missing data (note the change in the --missing command between v0.1.11 & 0.1.12b)
 ```
-vcftools --vcf raw.530mac3dp3.recode.vcf --missing
+vcftools --vcf raw.530mac3dp3.recode.vcf --missing-indv
 
 cat out.imiss
 ```
@@ -1745,6 +1759,7 @@ Draw a histogram of these results
 
 ```
 mawk '!/IN/' out.imiss | cut -f5 > totalmissing
+
 gnuplot << \EOF 
 set terminal dumb size 120, 30
 set autoscale 
@@ -1755,9 +1770,52 @@ set xlabel "% of missing data"
 #set yr [0:100000]
 binwidth=0.01
 bin(x,width)=width*floor(x/width) + binwidth/2.0
-plot 'totalmissing' using (bin( 1,binwidth)):(1.0) smooth freq with boxes
+plot 'totalmissing' using (bin( $1,binwidth)):(1.0) smooth freq with boxes
 pause -1
 EOF
 ```
+
+                                         Histogram of % missing data per individual
+  Number of Occurrences
+    30 ++--------------+--------------+---------------+---------------+---------------+--------------+--------------++
+       +               +              +               +        'totalmissing' using (bin( $1,binwidth)):(1.0) ****** +
+       |                                                                                                             |
+       |                                     **                                                                      |
+    25 ++                                    **                                                                     ++
+       |                                     **                                                                      |
+       |                   ***     ****   ** **                                                                      |
+       |                   * * ***** **   ** **                                                                      |
+    20 ++                  * * ** ** **   ** **                                                                     ++
+       |                   * * ** ** **   **********                                                                 |
+       |                  ** **** ** ** **** ** ** ****                                                              |
+       |                **** * ** ** **** ** ** ** * **                                                              |
+    15 ++               * ** * ** ** ** * ** ** ** * **                                                             ++
+       |                * ** * ** ** ** * ** ** ** * **                                                              |
+       |            ***** ** * ** ** ** * ** ** ** * ****                                           **               |
+       |            ** ** ** * ** ** ** * ** ** ** * ** *                                           **               |
+    10 ++           ** ** ** * ** ** ** * ** ** ** * ** *                                           **              ++
+       |            ** ** ** * ** ** ** * ** ** ** * ** **                                          **               |
+       |            ** ** ** * ** ** ** * ** ** ** * ** ****                                        **               |
+       |        *** ** ** ** * ** ** ** * ** ** ** * ** ** ****                                     **               |
+     5 ++ ******* * ** ** ** * ** ** ** * ** ** ** * ** ** ** *       **                            **              ++
+       |  * ** ** **** ** ** * ** ** ** * ** ** ** * ** ** ** ****    **                          ****               |
+       | ** ** ** * ** ** ** * ** ** ** * ** ** ** * ** ** ** * ** ** ***** ******* ***   *****   * **               |
+       **** ** ** * ** ** ** * ** ** ** * ** ** ** * ** ** ** * ********  ***  *  *** ***** * ***** ****             +
+     0 *************************************************************************************************------------++
+      0.4             0.5            0.6             0.7             0.8             0.9             1              1.1
+                                                      % of missing data
+
+Most of the missing data is below 70%. So I will make the cutoff 70% for now. 
+
+First create a list of all the individuals that will be removed. And look at the file
+```
+mawk '$5 > 0.7' out.imiss | cut -f1 > lowDP.indv
+
+cat lowDP.indv
+
+wc -l lowDP.indv
+```
+
+This will remove 95 individuals (of 530 ~18%)
 
 
