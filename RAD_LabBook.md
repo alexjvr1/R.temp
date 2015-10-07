@@ -1818,4 +1818,71 @@ wc -l lowDP.indv
 
 This will remove 95 individuals (of 530 ~18%)
 
+pozz, seeo, & orge are the only 3 populations that drop below 5 indivs/pop after filtering, so I will go ahead. 
 
+```
+vcftools --vcf raw.530mac3dp3.recode.vcf --remove lowDP.indv --recode --recode-INFO-all --out subset.imiss70
+
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf raw.530mac3dp3.recode.vcf
+	--exclude lowDP.indv
+	--recode-INFO-all
+	--out subset.imiss70
+	--recode
+
+Excluding individuals in 'exclude' list
+After filtering, kept 436 out of 530 Individuals
+Outputting VCF file...
+After filtering, kept 205921 out of a possible 205921 Sites
+Run Time = 57.00 seconds
+```
+
+And now I can filter for missing data and maf per locus. Previously I did this for 10% missing data. Let's see what happens with the overall dataset
+```
+vcftools --vcf subset.imiss70.recode.vcf --max-missing 0.10 --maf 0.05 --recode --recode-INFO-all --out CHall436locmiss10
+
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf subset.imiss70.recode.vcf
+	--recode-INFO-all
+	--maf 0.05
+	--max-missing 0.1
+	--out CHall436locmiss10
+	--recode
+
+After filtering, kept 436 out of 436 Individuals
+Outputting VCF file...
+After filtering, kept 100633 out of a possible 205921 Sites
+Run Time = 40.00 seconds
+```
+
+So, I lose 50% of the data, but I still have way more loci than I did with the subset data! (137 indivs, After filtering, kept 16478 out of a possible 25932 Sites). Can this be right? I suppose there are multiple SNPs per locus. How many loci are there? 
+
+Let's try this with only 50% missing data per individual (** 
+
+```
+vcftools --vcf raw.530mac3dp3.recode.vcf --missing-indv
+
+
+mawk '$5 > 0.5' out.imiss | cut -f1 > lowDP.indv
+
+cat lowDP.indv
+
+wc -l lowDP.indv
+
+vcftools --vcf raw.530mac3dp3.recode.vcf --remove lowDP.indv --recode --recode-INFO-all --out subset.imiss70
+
+vcftools --vcf subset.imiss70.recode.vcf --max-missing 0.10 --maf 0.05 --recode --recode-INFO-all --out CHall436locmiss10
+
+
+
+```
+
+
+
+And then I need to split the dataset up into CHN, CHS, and CH4grad
