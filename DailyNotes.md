@@ -246,3 +246,4 @@ This brings up a scree plot for CH530_K10
 
 It's not so clear to me what the K is from this plot. The authors suggest that (for the pcadapt fast run) K should be chosen just before K plateaus. So is this K=3? or K=7??
 
+
