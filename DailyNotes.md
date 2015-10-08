@@ -231,6 +231,14 @@ The optimal K needs to be chosen (number of latent factors). Do this by running 
 
 I ran the script for K 1-10
 
+And then adjust the Rscript from the pcadapt package to read the highest K run in R
+
+```
+R
+source("/Users/alexjvr/Software/pcadapt/PCAdaptPackage/Rscripts/Display_Sigma_K.R")
+```
+
+This brings up a scree plot for CH530_K10
 
 
 
