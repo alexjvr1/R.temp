@@ -241,4 +241,8 @@ source("/Users/alexjvr/Software/pcadapt/PCAdaptPackage/Rscripts/Display_Sigma_K.
 This brings up a scree plot for CH530_K10
 
 
+![alt_txt][screeplotK10]
+[screeplotK10]:https://cloud.githubusercontent.com/assets/12142475/10367838/ed6430a6-6dd2-11e5-8862-9d70d164e1d4.png
+
+It's not so clear to me what the K is from this plot. The authors suggest that (for the pcadapt fast run) K should be chosen just before K plateaus. So is this K=3? or K=7??
 
