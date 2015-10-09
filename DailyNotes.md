@@ -247,3 +247,10 @@ This brings up a scree plot for CH530_K10
 It's not so clear to me what the K is from this plot. The authors suggest that (for the pcadapt fast run) K should be chosen just before K plateaus. So is this K=3? or K=7??
 
 
+##Note 9 Oct 2015
+
+For some reason I have only 530 individuals in the last pyRAD run i.s.o the 826 that have already been sequence. Once the last lanes of sequencing are out, I will rerun the entire pyRAD pipeline from scratch (including demultiplexing, concatenating H10, H21-23 (all sequenced twice. We're paying only for H21). Check all the barcode files to make sure that they are updated to the latest sample orders!!
+
+
+
+
