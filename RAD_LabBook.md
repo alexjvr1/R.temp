@@ -1961,12 +1961,27 @@ Next task: basic stats using Adegenet
 https://github.com/thibautjombart/adegenet/wiki/Tutorials
 
 
+1. First I need to convert vcf to fstat (or structure or genpop..). I'm using pgdspider for this. I also want to include a list of the populations. 
 
+To get a list of all the names in the vcf file, use the following code
 
 ```
-
+#!/bin/bash
+set -eu
+set -o pipefail
+VCF="variants.vcf"
+INDIVIDUALS=$( fgrep -m 1 '#CHROM' "$VCF" | cut -f10- | tr '\t' '\n' )
+for IND in $INDIVIDUALS; do
+echo $IND
+done
 ```
 
+Run PGDSpider through the command line (The GUI failed after ~30min due to insufficient memory) 
+start 17:56 
+
+```
+java -Xmx1024m -Xms512m -jar PGDSpider2-cli.jar -inputfile /Users/alexjvr/phd_20150212/Analysis/ddRAD/CH530ddRAD/CHall436locmiss10.recode.vcf -inputformat VCF -outputfile /Users/alexjvr/phd_20150212/Analysis/ddRAD/CH530ddRAD/CH436.structure -outformat STRUCTURE -spid /Users/alexjvr/phd_20150212/Analysis/ddRAD/CH530ddRAD/vcftofstat.spid 
+```
 
 
 
