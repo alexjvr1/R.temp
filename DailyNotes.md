@@ -197,60 +197,7 @@ I realised that I could probably split pyRAD s3 between the servers for them to 
 
 I started this on 17 Sept ~13:00
 
-
-##8 OCT 2015
-
-Trying to run PCAdapt on my filtered SNPs (CH530)
-
-http://membres-timc.imag.fr/Michael.Blum/PCAdapt/pcadapt_markdown.html
-
-- I installed the package in Rstudio
-
-- I had to upgrade R for the package to run. See here for upgrading R: http://stackoverflow.com/questions/13656699/update-r-using-rstudio
-
-- Also installed the package in terminal since they suggest using pcadapt in terminal for >100 000 loci. 
-
-- my filtered dataset contains: 100633 sites (less loci, since multiple SNPs per locus)
-
-PCAdapt
-
-First convert my vcf file to pcadapt format
-
-```
-#in the folder with the input files:
-/Users/alexjvr/phd_20150212/Analysis/ddRAD/CH530ddRAD
-
-/Users/alexjvr/Software/pcadapt/PCAdaptPackage/vcf2pcadapt CHall436locmiss10.recode.vcf CH530filetered.pcadapt
-
-#Run PCAdapt fast
-
-/Users/alexjvr/Software/pcadapt/PCAdaptPackage/PCAdapt fast -i CH530filetered.pcadapt -K 4 -o CH530_K4
-```
-
-The optimal K needs to be chosen (number of latent factors). Do this by running several K's, and investigating the mean squared error as a function of K. The desired figures can be obtained by running the R script get_errors.R
-
-I ran the script for K 1-10
-
-And then adjust the Rscript from the pcadapt package to read the highest K run in R
-
-```
-R
-source("/Users/alexjvr/Software/pcadapt/PCAdaptPackage/Rscripts/Display_Sigma_K.R")
-```
-
-This brings up a scree plot for CH530_K10
-
-
-![alt_txt][screeplotK10]
-[screeplotK10]:https://cloud.githubusercontent.com/assets/12142475/10367838/ed6430a6-6dd2-11e5-8862-9d70d164e1d4.png
-
-It's not so clear to me what the K is from this plot. The authors suggest that (for the pcadapt fast run) K should be chosen just before K plateaus. So is this K=3? or K=7??
-
-
-##Note 9 Oct 2015
-
-For some reason I have only 530 individuals in the last pyRAD run i.s.o the 826 that have already been sequence. Once the last lanes of sequencing are out, I will rerun the entire pyRAD pipeline from scratch (including demultiplexing, concatenating H10, H21-23 (all sequenced twice. We're paying only for H21). Check all the barcode files to make sure that they are updated to the latest sample orders!!
-
+Everything was done by: 5 Oct 2015. ~3wks
 
 
 
