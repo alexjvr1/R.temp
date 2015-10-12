@@ -1928,6 +1928,74 @@ qplot(CH$Canton, CH$F, fill=factor((Elev.Class), levels=c("Low","Mid","High")), 
 ```
 
 
+Now I will try to read my data into R
+
+First convert it into plink and then recode: 
+```
+vcftools --vcf CHall436locmiss10.recode.vcf --out CH436.Final.plink --plink
+
+
+CFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf CHall436locmiss10.recode.vcf
+	--out CH436.Final.plink
+	--plink
+
+After filtering, kept 436 out of 436 Individuals
+Writing PLINK PED and MAP files ... 
+	PLINK: Only outputting biallelic loci.
+Done.
+After filtering, kept 100633 out of a possible 100633 Sites
+Run Time = 17.00 seconds
+
+
+plink --file CH436.Final.plink --recodeA
+
+
+Options in effect:
+	--file CH436.Final.plink
+	--recodeA
+
+99355 (of 99355) markers to be included from [ CH436.Final.plink.map ]
+Warning, found 436 individuals with ambiguous sex codes
+Writing list of these individuals to [ plink.nosex ]
+436 individuals read from [ CH436.Final.plink.ped ] 
+0 individuals with nonmissing phenotypes
+Assuming a disease phenotype (1=unaff, 2=aff, 0=miss)
+Missing phenotype value is also -9
+0 cases, 0 controls and 436 missing
+0 males, 0 females, and 436 of unspecified sex
+Before frequency and genotyping pruning, there are 99355 SNPs
+436 founders and 0 non-founders found
+Total genotyping rate in remaining individuals is -nan
+0 SNPs failed missingness test ( GENO > 1 )
+0 SNPs failed frequency test ( MAF < 0 )
+After frequency and genotyping pruning, there are 99355 SNPs
+After filtering, 0 cases, 0 controls and 436 missing
+After filtering, 0 males, 0 females, and 436 of unspecified sex
+Writing recoded file to [ plink.raw ] 
+
+```
+
+
+Now copy this over to the mac, and read into R as a genlight object. 
+```
+##Bash
+scp -r alexjvr@gdcsrv1.ethz.ch:/gdc_home4/alexjvr/CH530SNPfiltering/filteredforR/CH436.plink.raw .
+
+##R
+setwd("~/phd_20150212/Analysis/ddRAD/CH530ddRAD/basicstats")
+
+read.PLINK("CH436.plink.raw")
+```
+
+now we can use AdeGenet and Ape, etc. 
+
+
+
+
 ##8 OCT 2015
 
 Trying to run PCAdapt on my filtered SNPs (CH530)
@@ -2012,6 +2080,10 @@ start 17:56. Both the GUI and the command line keep running out of memory. So I 
 java -Xmx1024m -Xms512m -jar PGDSpider2-cli.jar -inputfile /Users/alexjvr/phd_20150212/Analysis/ddRAD/CH530ddRAD/CHall436locmiss10.recode.vcf -inputformat VCF -outputfile /Users/alexjvr/phd_20150212/Analysis/ddRAD/CH530ddRAD/CH436.structure -outformat STRUCTURE -spid /Users/alexjvr/phd_20150212/Analysis/ddRAD/CH530ddRAD/vcftofstat.spid 
 ```
 
+
+
+
+
 For the summary stats, Christine recommends the following: 
 
 - Try different parameters and see if it makes a difference. She looked mostly at missingness. 
@@ -2025,7 +2097,7 @@ In R, when trying different plots, the parameter variables can be written to the
 > sys.getenv ##Imports the variable in R and can use it to plot
 
 
-Use VCFtools to filter the data furher: 
+Use VCFtools to filter the data further: 
 
 
 
