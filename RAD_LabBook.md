@@ -1899,6 +1899,35 @@ And then I need to split the dataset up into CHN, CHS, and CH4grad. I can genera
 
 
 
+##12 Oct
+
+vcftools --het option calculates the Method of Moments inbreeding statistic: 
+
+https://www.cog-genomics.org/plink2/basic_stats
+
+```
+vcftools --vcf CHall436locmiss10.recode.vcf --het
+```
+
+Save the output as .csv and add population information in (elevation, class, canton). 
+
+Plot these results as F/pop in R. 
+
+Import the data set, and then: 
+
+```
+#Plot F (MOM)
+
+CH <- CH436.het.out
+
+
+require(ggplot2)
+qplot(CH$Canton, CH$F, fill=factor((Elev.Class), levels=c("Low","Mid","High")), data=CH, geom="boxplot", position="dodge") + xlab("Transect") + ylab("Method of Moments F statistic")+ ggtitle("Method of Moments F for each elevational transect in Switzerland") + scale_fill_manual(values=c("lightgoldenrod1","olivedrab2","royalblue"))+theme_bw()+theme(legend.title=element_blank())
+
+
+```
+
+
 ##8 OCT 2015
 
 Trying to run PCAdapt on my filtered SNPs (CH530)
@@ -1994,6 +2023,9 @@ For the summary stats, Christine recommends the following:
 In R, when trying different plots, the parameter variables can be written to the plot using the following command: 
 
 > sys.getenv ##Imports the variable in R and can use it to plot
+
+
+Use VCFtools to filter the data furher: 
 
 
 
