@@ -176,3 +176,44 @@ In this case there is no correlation
 
 ![alt_txt][input]
 [input]:https://cloud.githubusercontent.com/assets/12142475/8954956/556fffd0-35e9-11e5-8c5e-c32f458597ad.png
+
+
+
+
+
+##Basic stats that I'm working on 
+
+```
+##Basic stats
+
+##PCA
+library("ade4")
+library("adegenet")
+library("pegas")
+
+
+CH.plink <- read.PLINK("CH436.plink.raw") ##reads a plink file in as genlight object
+
+CH.plink #check that it is a genlight object
+
+indNames(CH.plink)
+
+CH436_pop.names <- read.table("~/phd_20150212/Analysis/ddRAD/CH530ddRAD/CH436_pop.names.csv", header=T, quote="\"") #read in the population names file
+CH436_pop.names.factors <- as.factor(CH436_pop.names$PopID) #and convert to a factor
+summary(CH436_pop.names)
+
+pop(CH.plink) <- (CH436_pop.names.factors) #assign population names from a text file
+pop(CH.plink)  ##and check that they are correct
+
+temp <- table(unlist(other(CH.plink)))
+barplot(temp,main="distribution of NoAlleles per locus",xlab="Number of Alleles",ylab="Number of sites",col=heat.colors(4))
+
+myFreq <- glMean(CH.plink)
+hist(myFreq, proba=T, col="gold", xlab="Allele Frequencies", main="Distribution of (2nd) allele frequencies")
+temp <- density(myFreq)
+lines(temp$x, temp$y,*1.8, lwd=3)
+
+
+```
+
+
