@@ -1977,11 +1977,25 @@ done
 ```
 
 Run PGDSpider through the command line (The GUI failed after ~30min due to insufficient memory) 
-start 17:56 
+start 17:56. Both the GUI and the command line keep running out of memory. So I will need to subsample markers. 
 
 ```
 java -Xmx1024m -Xms512m -jar PGDSpider2-cli.jar -inputfile /Users/alexjvr/phd_20150212/Analysis/ddRAD/CH530ddRAD/CHall436locmiss10.recode.vcf -inputformat VCF -outputfile /Users/alexjvr/phd_20150212/Analysis/ddRAD/CH530ddRAD/CH436.structure -outformat STRUCTURE -spid /Users/alexjvr/phd_20150212/Analysis/ddRAD/CH530ddRAD/vcftofstat.spid 
 ```
+
+For the summary stats, Christine recommends the following: 
+
+- Try different parameters and see if it makes a difference. She looked mostly at missingness. 
+
+- For PCA filter for missingness across loci and populations. Missingness can affect the PCA
+
+- for Fstats also filter for missingness. Missingness should only make the measures a bit more noisy. 
+
+In R, when trying different plots, the parameter variables can be written to the plot using the following command: 
+
+> sys.getenv ##Imports the variable in R and can use it to plot
+
+
 
 
 
