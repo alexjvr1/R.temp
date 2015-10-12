@@ -213,6 +213,17 @@ hist(myFreq, proba=T, col="gold", xlab="Allele Frequencies", main="Distribution 
 temp <- density(myFreq)
 lines(temp$x, temp$y,*1.8, lwd=3)
 
+##Pop structure
+pca1 <- glPca(CH.plink) ##This displays a barplot of the eigenvalues and asks the user for a number of retained principal components
+
+scatter(pca1, posi="bottomright") #scatter plot of PC 1& 2
+title("PCA of CH Rana temporaria, axes 1 and 2")
+
+#NJ tree
+library(ape)
+tre <- nj(dist(as.matrix(CH.plink)))
+tre
+
 
 ```
 
