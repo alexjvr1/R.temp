@@ -86,6 +86,10 @@ and on the GDCsrv1
 ```
 
 ```
+Running both on GDC now, since I can't run enough cores on fgcz. 
+
+Following the ddRAD_BasicStats protocol to filter the Bombina VCF file
+
 
 
 
