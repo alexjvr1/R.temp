@@ -12,21 +12,23 @@ Step 1 & 2 were conducted on fgcz server:
 
 I demultiplexed all samples using process_radtags
 
-'''
+```
 
-'''
+```
 
 and then trimmed using trimmomatic
 
-'''
+```
 
-'''
+```
 
 
 Then I split the dataset into 2: 99 to gdcsrv1 and 94 to fgcz. And started pyRAD s2345
 
 on FGCZ: 
-'''
+
+
+```
 
 /usr/local/ngseq/src/pyrad-3.0.61/pyrad/pyRAD.py -n
 
@@ -73,7 +75,17 @@ SEfgczC94                 ## 14. Prefix name for final output (no spaces)       
                        ## 35.opt.: use hierarchical clustering (def.=0, 1=yes)      (s6)
                        ## 36.opt.: repeat masking (def.=1='dust' method, 0=no)      (s3,s6)
 
-'''
+
+
+screen -S SEpyradfgcz
+/usr/local/ngseq/src/pyrad-3.0.61/pyrad/pyRAD.py -p params.txt -s 2345
+```
+
+and on the GDCsrv1
+
+```
+
+```
 
 
 
