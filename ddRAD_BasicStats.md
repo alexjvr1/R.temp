@@ -1,3 +1,9 @@
+##SNP filtering
+
+after the basic SNP filters, I need to filter the dataset more for all the basic stats, to get the best representation of the data. 
+
+Also to reduce the dataset so that the analyses don't take too long. 
+
 #Basic Statistics
 
 For an initial look at the data, summary stats, and population genetics. 
@@ -70,6 +76,33 @@ MAF30
 ![alt_txt][MAF30]
 [MAF30]:https://cloud.githubusercontent.com/assets/12142475/9013277/2d6f4152-37bb-11e5-9eb3-891c9c74816f.png
 
+
+And for the full CH dataset (19 Oct) 
+
+
+```
+vcftools --vcf subset.final.vcf --maf 0.25 --recode --recode-INFO-all --out subset.final.maf25
+```
+
+1. MAF 0.10 -> 72894 out of a possible 205921 loci, 436 indivs 
+2. MAF 0.25 -> 34747 out of a possible 205921, 436 indivs
+3. MAF 0.30 -> 26482 out of a possible 205921, 436 indivs
+
+
+Fst
+
+I need to first create a file for each population with all the individual names in the file. 
+
+-> in total 58 populations ranging in size from 1 (gdwe) -20 indivs. 
+
+And then code all the between population comparisions for Fst
+```
+vcftools --vcf MAFtest/CH530maf0.1.recode.vcf --weir-fst-pop abnd_pop --weir-fst-pop alpl_pop --weir-fst-pop apla_pop --weir-fst-pop bach_pop --weir-fst-pop bela_pop --weir-fst-pop bend_pop --weir-fst-pop birk_pop --weir-fst-pop bnnp_pop --weir-fst-pop boty_pop --weir-fst-pop buel_pop --weir-fst-pop cava_pop --weir-fst-pop csee_pop --weir-fst-pop egel_pop --weir-fst-pop ente_pop --weir-fst-pop fess_pop --weir-fst-pop flor_pop --weir-fst-pop forn_pop --weir-fst-pop full_pop --weir-fst-pop fuor_pop --weir-fst-pop gdwe_pop --weir-fst-pop gott_pop --weir-fst-pop grma_pop --weir-fst-pop grsh_pop --weir-fst-pop gruu_pop --weir-fst-pop hdns_pop --weir-fst-pop laun_pop --weir-fst-pop lucm_pop --weir-fst-pop magn_pop --weir-fst-pop mart_pop --weir-fst-pop mctn_pop --weir-fst-pop mgns_pop --weir-fst-pop moal_pop --weir-fst-pop moir_pop --weir-fst-pop muet_pop --weir-fst-pop munt_pop --weir-fst-pop oalp_pop --weir-fst-pop orge_pop --weir-fst-pop pizo_pop --weir-fst-pop pozz_pop --weir-fst-pop rade_pop --weir-fst-pop roes_pop --weir-fst-pop rotc_pop --weir-fst-pop sali_pop --weir-fst-pop scai_pop --weir-fst-pop seeo_pop --weir-fst-pop seji_pop --weir-fst-pop span_pop --weir-fst-pop stba_pop --weir-fst-pop stls_pop --weir-fst-pop tals_pop --weir-fst-pop tamv_pop --weir-fst-pop tana_pop --weir-fst-pop trim_pop  --weir-fst-pop trpa_pop --weir-fst-pop vilt_pop --weir-fst-pop vora_pop --weir-fst-pop wdji_pop --weir-fst-pop zeni_pop --out MAFtest/fst.maf.01
+```
+
+1. MAF 0.10 -> 72894 out of a possible 205921, 436 indivs -> WCglobal = 0.21745; WCweighted = 0.22775 
+2. MAF 0.25 -> 34747 out of a possible 205921, 436 indivs -> WCglobal = 0.25245; WCweighted = 0.25353
+3. MAF 0.30 -> 26482 out of a possible 205921, 436 indivs -> WCglobal = 0.25762; WCweighted = 0.25799
 
 
 
