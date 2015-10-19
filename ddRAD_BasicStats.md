@@ -105,6 +105,116 @@ vcftools --vcf MAFtest/CH530maf0.1.recode.vcf --weir-fst-pop abnd_pop --weir-fst
 3. MAF 0.30 -> 26482 out of a possible 205921, 436 indivs -> WCglobal = 0.25762; WCweighted = 0.25799
 
 
+So I will use the MAF 0.25 dataset. 
+
+
+Next: 
+
+1. Genetic diversity - CH, SE
+                     - per population
+                     - CHN, CHS
+2. Pairwise Fst (hierfstat)- CHall, SEall
+            - CHN, CHS
+            - Across elevation
+3. PCA for all of the above
+4. Unrooted dendrogram for all
+5. 
+
+Convert data to plink
+```
+vcftools --vcf CH436.final.vcf --out /gdc_home4/alexjvr/CH530SNPfiltering/filteredforPCA/CH436.final --plink
+plink --file CH436.final --out CH436.final.plink --recodeA
+
+
+
+Options in effect:
+	--file CH436.final
+	--out CH436.final.plink
+	--recodeA
+
+** For gPLINK compatibility, do not use '.' in --out **
+34700 (of 34700) markers to be included from [ CH436.final.map ]
+Warning, found 436 individuals with ambiguous sex codes
+Writing list of these individuals to [ CH436.final.plink.nosex ]
+436 individuals read from [ CH436.final.ped ] 
+0 individuals with nonmissing phenotypes
+Assuming a disease phenotype (1=unaff, 2=aff, 0=miss)
+Missing phenotype value is also -9
+0 cases, 0 controls and 436 missing
+0 males, 0 females, and 436 of unspecified sex
+Before frequency and genotyping pruning, there are 34700 SNPs
+436 founders and 0 non-founders found
+Total genotyping rate in remaining individuals is 0.379948
+0 SNPs failed missingness test ( GENO > 1 )
+0 SNPs failed frequency test ( MAF < 0 )
+After frequency and genotyping pruning, there are 34700 SNPs
+After filtering, 0 cases, 0 controls and 436 missing
+After filtering, 0 males, 0 females, and 436 of unspecified sex
+Writing recoded file to [ CH436.final.plink.raw ] 
+
+```
+
+436 individuals
+
+34700 loci
+
+This is a huge amount of data. So the best is to subsample this down to 5000-10 000 loci, otherwise the analyses just take too long to run: 
+
+This can be done in PLINK
+```
+plink --file --thin-count 5000 --out CH436.5000.final
+```
+this only works in Plink 1.9, so no idea how to fix this. 
+
+In stead, I will create two smaller datasets: CHN and CHS. 
+
+I can do this in pyRAD, by rerunning s67. 
+
+
+
+##EMMAX test
+
+I will try to run EMMAX, using elevation i.s.o temp for the first test: 
+
+Tutorial: 
+
+http://genetics.cs.ucla.edu/emmax/install.html
+
+And Victoria Sork also sent a tutorial 
+
+Create the plink files and transfer to the mac: 
+
+```
+plink --file CH436.final --recode12 --output-missing-genotype 0 --transpose --out CH436emmax
+
+
+scp -r alexjvr@gdcsrv1.ethz.ch:/gdc_home4/alexjvr/CH530SNPfiltering/filteredforPCA/CH436emmax* .
+```
+
+And create a phenotype file:
+
+famID, indivID, phenotype (elevation in my case)
+
+Make sure everything is in the same folder
+
+Generate an IBS kinship matrix in emmax
+```
+/Users/alexjvr/Applications/emmax-beta-07Mar2010/emmax-kin -v -h -s -d 10 CH436emmax
+```
+
+
+
+Copy over to the mac: 
+And copy the .raw file over to the mac
+```
+scp -r alexjvr@gdcsrv1.ethz.ch:/gdc_home4/alexjvr/CH530SNPfiltering/filteredforPCA/CH436.final.plink.raw .
+```
+
+
+
+
+
+
 
 
 ##Data conversion
@@ -116,6 +226,8 @@ For the subset data (input for the second command is the .ped file from the firs
 vcftools --vcf subset.Final.vcf --out subset.Final.plink --plink
 plink --file subsetFinal.plink --out subsetFinalraw.plink --recodeA
 ```
+
+
 
 
 Output for my data
