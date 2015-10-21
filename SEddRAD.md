@@ -238,4 +238,20 @@ In the meantime, I will continue to look at the populations after filtering for 
 
 ```
 vcftools --vcf SE193mac3.recode.vcf --remove lowDP.indiv --recode --recode-INFO-all --out SE.imiss50
+
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf SE193mac3.recode.vcf
+	--exclude lowDP.indiv
+	--recode-INFO-all
+	--out SE.imiss50
+	--recode
+
+Excluding individuals in 'exclude' list
+After filtering, kept 138 out of 193 Individuals
+Outputting VCF file...
+After filtering, kept 46506 out of a possible 46506 Sites
+Run Time = 6.00 seconds
 ```
