@@ -10,16 +10,17 @@ Then I will start a pyRAD run with the aim to have data to present at the end of
 
 Step 1 & 2 were conducted on fgcz server: 
 
-I demultiplexed all samples using process_radtags
+I demultiplexed all samples using process_radtags (generic code)
 
 ```
-
+/usr/local/ngseq/stow/stacks-1.28/bin/process_radtags -i gzfastq -f /srv/gstore4users/p1795/HiSeq_20150703_RUN199/20150703.A-H10_R1.fastq.gz  -o ./demultiplexed/H10 -y fastq -b ./barcodes/H10_barcodes --disable_rad_check -r -D
 ```
 
 and then trimmed using trimmomatic
 
 ```
-
+screen -S TrimSubset -L
+for i in *.fq; do  java -jar /usr/local/ngseq/src/Trimmomatic-0.33/trimmomatic-0.33.jar SE $i $i.trim ILLUMINACLIP:/usr/local/ngseq/src/Trimmomatic-0.33/adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36;done
 ```
 
 
@@ -84,7 +85,8 @@ screen -S SEpyradfgcz
 and on the GDCsrv1
 
 ```
-
+module load pyRAD3.0.6
+pyrad -p params.txt -s 234567
 ```
 Running both on GDC now, since I can't run enough cores on fgcz. 
 
