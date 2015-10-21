@@ -171,6 +171,11 @@ In stead, I will create two smaller datasets: CHN and CHS.
 I can do this in pyRAD, by rerunning s67. 
 
 
+#Subset data: Pop genetics & Adaptation
+
+
+
+
 
 ##EMMAX test
 
