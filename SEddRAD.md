@@ -387,6 +387,15 @@ Weir and Cockerham mean Fst estimate: 0.021277
 Weir and Cockerham weighted Fst estimate: 0.039893
 ```
 
+Skane: SF, Ho
+```
+vcftools --vcf SE.imiss50.recode.vcf --weir-fst-pop
+
+Weir and Cockerham mean Fst estimate: 0.0088461
+Weir and Cockerham weighted Fst estimate: 0.025573
+```
+
+
 And overall for SE
 ```
 vcftools --vcf SE.imiss50.recode.vcf --weir-fst-pop Upp_K.pop --weir-fst-pop Upp_O.pop --weir-fst-pop Gra.pop --weir-fst-pop LT1.pop --weir-fst-pop LT2.pop --weir-fst-pop LT3.pop --weir-fst-pop KirL.pop --weir-fst-pop KirG.pop --weir-fst-pop FIN.pop --weir-fst-pop DE_B.pop --weir-fst-pop DE_K.pop --weir-fst-pop DE_W.pop --out SE.fst
@@ -400,4 +409,104 @@ Weir and Cockerham weighted Fst estimate: 0.4069
 
 
 
+
+And the same thing after filtering the vcf for MAF 0.25
+```
+vcftools --vcf subset.final.vcf --maf 0.25 --recode --recode-INFO-all --out subset.final.maf25
+
+Parameters as interpreted:
+	--vcf SE.imiss50.recode.vcf
+	--recode-INFO-all
+	--maf 0.25
+	--out SE.final.maf0.25
+	--recode
+
+After filtering, kept 138 out of 138 Individuals
+Outputting VCF file...
+After filtering, kept 8182 out of a possible 46506 Sites
+Run Time = 3.00 seconds
+```
+
+So now we're down to only 8000 SNPs. If I rerun the Fst data: 
+Germany: DE_B, K, W 
+```
+--vcf subset.final.maf25.recode.vcf --weir-fst-pop DE_B.pop --weir-fst-pop DE_K.pop --weir-fst-pop DE_W.pop --out DE.fst
+
+After filtering, kept 138 out of 138 Individuals
+Outputting Weir and Cockerham Fst estimates.
+Weir and Cockerham mean Fst estimate: 0.02488
+Weir and Cockerham weighted Fst estimate: 0.044847
+After filtering, kept 46506 out of a possible 46506 Sites
+```
+
+
+Kiruna: KirG, L 
+```
+vcftools --vcf subset.final.maf25.recode.vcf --weir-fst-pop KirL.pop --weir-fst-pop KirG.pop --out Kir.fst
+
+Weir and Cockerham mean Fst estimate: 0.044349
+Weir and Cockerham weighted Fst estimate: 0.072487
+```
+
+
+
+Kir & Fin: KirG, L, FIN
+```
+vcftools --vcf subset.final.maf25.recode.vcf --weir-fst-pop KirL.pop --weir-fst-pop KirG.pop --weir-fst-pop FIN.pop --out Kir.FIN.fst
+
+Weir and Cockerham mean Fst estimate: 0.088804
+Weir and Cockerham weighted Fst estimate: 0.11858
+```
+
+
+
+Lulea: LT1,2,3
+```
+vcftools --vcf subset.final.maf25.recode.vcf --weir-fst-pop LT1.pop --weir-fst-pop LT2.pop --weir-fst-pop LT3.pop --out Lulea.fst
+
+Weir and Cockerham mean Fst estimate: 0.054745
+Weir and Cockerham weighted Fst estimate: 0.073497
+```
+
+
+
+Uppsala: UppK, O, Gra -
+```
+vcftools --vcf subset.final.maf25.recode.vcf --weir-fst-pop Upp_K.pop --weir-fst-pop Upp_O.pop --weir-fst-pop Gra.pop --out Uppsala.fst
+
+Weir and Cockerham mean Fst estimate: 0.083389
+Weir and Cockerham weighted Fst estimate: 0.11299
+```
+
+
+Umea: Um.Gr, Taf  -
+```
+ vcftools --vcf subset.final.maf25.recode.vcf --weir-fst-pop Um.Gr.pop --weir-fst-pop Um.Taf.pop --out Umea.fst
+
+Weir and Cockerham mean Fst estimate: 0.021277
+Weir and Cockerham weighted Fst estimate: 0.039893
+```
+
 Skane: SF, Ho
+```
+vcftools --vcf subset.final.maf25.recode.vcf --weir-fst-pop
+
+Weir and Cockerham mean Fst estimate: 0.0088461
+Weir and Cockerham weighted Fst estimate: 0.025573
+```
+
+
+And overall for SE
+```
+vcftools --vcf subset.final.maf25.recode.vcf --weir-fst-pop Upp_K.pop --weir-fst-pop Upp_O.pop --weir-fst-pop Gra.pop --weir-fst-pop LT1.pop --weir-fst-pop LT2.pop --weir-fst-pop LT3.pop --weir-fst-pop KirL.pop --weir-fst-pop KirG.pop --weir-fst-pop FIN.pop --weir-fst-pop DE_B.pop --weir-fst-pop DE_K.pop --weir-fst-pop DE_W.pop --out SE.fst
+
+
+Weir and Cockerham mean Fst estimate: 0.29046
+Weir and Cockerham weighted Fst estimate: 0.4069
+```
+
+
+
+
+
+
