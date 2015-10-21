@@ -220,11 +220,22 @@ Upp_O07.fq.trim
 
 Populations that will drop out: 
 
-Um_UT3 (3/5)
+Um_UT3 (3/5)  - Umea
 
-SL (19/19)
+SL (19/19)  - Skane
 
-LT2 (7/10)
+LT2 (7/10)  - Lulea
+ 
+Hö (14/20) - Skane
 
-Ho (14/20)
+If I change the cut-off to 0.7 or 0.8, less individuals are filtered. It seems like SL is the worst population. This seems to be because H23 hiseq lane was poorly sequenced. I have a rerun of this data. So I should concatenate the samples for this and rerun pyrad. 
 
+SL is a population from Skone. I need to check the Hö run as well: they're also mostly from H23. 
+
+If this is sorted out, then the dataset should be complete. 
+
+In the meantime, I will continue to look at the populations after filtering for 0.5 missingness: 
+
+```
+vcftools --vcf SE193mac3.recode.vcf --remove lowDP.indiv --recode --recode-INFO-all --out SE.imiss50
+```
