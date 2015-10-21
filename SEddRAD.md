@@ -314,3 +314,90 @@ cat final.indiv
 This is a hack. I have to figure out how to actually get a list of sample names from these files... 
 
 But now I can use this to generate a population file. 
+
+
+##Fst
+
+Check for global Fst using vcftools
+
+1. make files containing all the individual names for all the populations
+
+DE_B.pop  DE_W.pop  Gra.pop  KirG.pop  LT1.pop  LT3.pop  Um.Gr.pop   Upp_K.pop
+DE_K.pop  FIN.pop   Ho.pop   KirL.pop  LT2.pop  SF.pop   Um.Taf.pop  Upp_O.pop
+
+So, I will check for a global Fst, and then within each region: 
+
+
+Germany: DE_B, K, W 
+```
+--vcf SE.imiss50.recode.vcf --weir-fst-pop DE_B.pop --weir-fst-pop DE_K.pop --weir-fst-pop DE_W.pop --out DE.fst
+
+After filtering, kept 138 out of 138 Individuals
+Outputting Weir and Cockerham Fst estimates.
+Weir and Cockerham mean Fst estimate: 0.02488
+Weir and Cockerham weighted Fst estimate: 0.044847
+After filtering, kept 46506 out of a possible 46506 Sites
+```
+
+
+Kiruna: KirG, L 
+```
+vcftools --vcf SE.imiss50.recode.vcf --weir-fst-pop KirL.pop --weir-fst-pop KirG.pop --out Kir.fst
+
+Weir and Cockerham mean Fst estimate: 0.044349
+Weir and Cockerham weighted Fst estimate: 0.072487
+```
+
+
+
+Kir & Fin: KirG, L, FIN
+```
+--vcf SE.imiss50.recode.vcf --weir-fst-pop KirL.pop --weir-fst-pop KirG.pop --weir-fst-pop FIN.pop --out Kir.FIN.fst
+
+Weir and Cockerham mean Fst estimate: 0.088804
+Weir and Cockerham weighted Fst estimate: 0.11858
+```
+
+
+
+Lulea: LT1,2,3
+```
+--vcf SE.imiss50.recode.vcf --weir-fst-pop LT1.pop --weir-fst-pop LT2.pop --weir-fst-pop LT3.pop --out Lulea.fst
+
+Weir and Cockerham mean Fst estimate: 0.054745
+Weir and Cockerham weighted Fst estimate: 0.073497
+```
+
+
+
+Uppsala: UppK, O, Gra -
+```
+vcftools --vcf SE.imiss50.recode.vcf --weir-fst-pop Upp_K.pop --weir-fst-pop Upp_O.pop --weir-fst-pop Gra.pop --out Uppsala.fst
+
+Weir and Cockerham mean Fst estimate: 0.083389
+Weir and Cockerham weighted Fst estimate: 0.11299
+```
+
+
+Umea: Um.Gr, Taf  -
+```
+ vcftools --vcf SE.imiss50.recode.vcf --weir-fst-pop Um.Gr.pop --weir-fst-pop Um.Taf.pop --out Umea.fst
+
+Weir and Cockerham mean Fst estimate: 0.021277
+Weir and Cockerham weighted Fst estimate: 0.039893
+```
+
+And overall for SE
+```
+vcftools --vcf SE.imiss50.recode.vcf --weir-fst-pop Upp_K.pop --weir-fst-pop Upp_O.pop --weir-fst-pop Gra.pop --weir-fst-pop LT1.pop --weir-fst-pop LT2.pop --weir-fst-pop LT3.pop --weir-fst-pop KirL.pop --weir-fst-pop KirG.pop --weir-fst-pop FIN.pop --weir-fst-pop DE_B.pop --weir-fst-pop DE_K.pop --weir-fst-pop DE_W.pop --out SE.fst
+
+
+Weir and Cockerham mean Fst estimate: 0.29046
+Weir and Cockerham weighted Fst estimate: 0.4069
+```
+
+
+
+
+
+Skane: SF, Ho
