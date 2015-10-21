@@ -255,3 +255,62 @@ Outputting VCF file...
 After filtering, kept 46506 out of a possible 46506 Sites
 Run Time = 6.00 seconds
 ```
+Convert to plink format & transfer everything to the mac. 
+
+```
+vcftools --vcf SE.imiss50.recode.vcf --out SE138.final --plink
+plink --file SE138.final --out SE138.final.plink --recodeA
+
+
++++ PLINK 1.9 is now available! See above website for details +++ 
+
+Writing this text to log file [ SE138.final.plink.log ]
+Analysis started: Wed Oct 21 12:03:43 2015
+
+Options in effect:
+	--file SE138.final
+	--out SE138.final.plink
+	--recodeA
+
+** For gPLINK compatibility, do not use '.' in --out **
+45741 (of 45741) markers to be included from [ SE138.final.map ]
+Warning, found 138 individuals with ambiguous sex codes
+Writing list of these individuals to [ SE138.final.plink.nosex ]
+138 individuals read from [ SE138.final.ped ] 
+0 individuals with nonmissing phenotypes
+Assuming a disease phenotype (1=unaff, 2=aff, 0=miss)
+Missing phenotype value is also -9
+0 cases, 0 controls and 138 missing
+0 males, 0 females, and 138 of unspecified sex
+Before frequency and genotyping pruning, there are 45741 SNPs
+138 founders and 0 non-founders found
+Total genotyping rate in remaining individuals is 0.789138
+0 SNPs failed missingness test ( GENO > 1 )
+0 SNPs failed frequency test ( MAF < 0 )
+After frequency and genotyping pruning, there are 45741 SNPs
+After filtering, 0 cases, 0 controls and 138 missing
+After filtering, 0 males, 0 females, and 138 of unspecified sex
+Writing recoded file to [ SE138.final.plink.raw ] 
+
+Analysis finished: Wed Oct 21 12:03:47 2015
+```
+
+
+Type this in terminal on the computer where the data will be transferred to
+```
+scp -r alexjvr@gdcsrv1.ethz.ch:SE193filtering/* .
+```
+
+make a file with all the population names. This can be obtained with mawk: 
+
+```
+mawk ‘$5 < 0.5’ out.imiss | cut -f1 > final.indiv
+
+wc -l final.indiv
+
+cat final.indiv
+```
+
+This is a hack. I have to figure out how to actually get a list of sample names from these files... 
+
+But now I can use this to generate a population file. 
