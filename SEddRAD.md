@@ -220,3 +220,11 @@ Upp_O07.fq.trim
 
 Populations that will drop out: 
 
+Um_UT3 (3/5)
+
+SL (19/19)
+
+LT2 (7/10)
+
+Ho (14/20)
+
