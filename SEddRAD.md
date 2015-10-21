@@ -90,7 +90,60 @@ pyrad -p params.txt -s 234567
 ```
 Running both on GDC now, since I can't run enough cores on fgcz. 
 
-Following the ddRAD_BasicStats protocol to filter the Bombina VCF file
+
+All SNPs called on 21 Oct 2015 (8 days for 193 samples across 2 clusters)
+
+Following the ddRAD_pipeline protocol to filter the Bombina VCF file: 
+
+First keep only SNPs that have been genotyped in 50% of individuals, with MAC of 3
+
+```
+vcftools --vcf SEpyradGDCc94.vcf --max-missing 0.5 --mac 3 --recode --recode-INFO-all --out SE193mac3
+
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf SEpyradGDCc94.vcf
+	--recode-INFO-all
+	--mac 3
+	--max-missing 0.5
+	--out SE193mac3
+	--recode
+
+Eighth Header entry should be INFO: INFO    
+After filtering, kept 193 out of 193 Individuals
+Outputting VCF file...
+After filtering, kept 46506 out of a possible 807731 Sites
+Run Time = 39.00 seconds
+```
+Keepign 46500 loci
+
+Look at the per individual missingness
+```
+vcftools --vcf SE193mac3.recode.vcf --missing-indv
+
+mawk '!/IN/' out.imiss | cut -f5 > totalmissing
+
+gnuplot << \EOF 
+set terminal dumb size 120, 30
+set autoscale 
+unset label
+set title "Histogram of % missing data per individual"
+set ylabel "Number of Occurrences"
+set xlabel "% of missing data"
+#set yr [0:100000]
+binwidth=0.01
+bin(x,width)=width*floor(x/width) + binwidth/2.0
+plot 'totalmissing' using (bin( $1,binwidth)):(1.0) smooth freq with boxes
+pause -1
+EOF
+```
+
+
+
+
+
 
 
 
