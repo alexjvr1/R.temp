@@ -145,10 +145,78 @@ EOF
 [imissSE]:https://cloud.githubusercontent.com/assets/12142475/10632183/f55d7a96-77e2-11e5-8234-28759fd4bc0f.png
 
 
+So most of the missingness seems to be <50%. But I need to check which individuals will drop out (and if whole populations are dropping out). 
 
+For a 50% missingness threshold
 
+```
+mawk ‘$5 > 0.5’ out.imiss | cut -f1 > lowDP.indiv
 
+wc -l lowDP.indiv
+```
 
+So this drop 57 individuals. 
 
+Let's see who they are:
+```
+cat lowDP.indiv
 
+F20.fq.trim
+F24.fq.trim
+F25.fq.trim
+F28.fq.trim
+F30.fq.trim
+Gra02.fq.trim
+Ho_03.fq.trim
+Ho_04.fq.trim
+Ho_05.fq.trim
+Ho_06.fq.trim
+Ho_07.fq.trim
+Ho_09.fq.trim
+Ho_10.fq.trim
+Ho_11.fq.trim
+Ho_13.fq.trim
+Ho_14.fq.trim
+Ho_15.fq.trim
+Ho_16.fq.trim
+Ho_17.fq.trim
+Ho_18.fq.trim
+LT1_10.fq.trim
+LT2_01.fq.trim
+LT2_02.fq.trim
+LT2_03.fq.trim
+LT2_05.fq.trim
+LT2_07.fq.trim
+LT2_08.fq.trim
+LT2_09.fq.trim
+LT3_03.fq.trim
+LT3_05.fq.trim
+LT3_08.fq.trim
+SL_01.fq.trim
+SL_02.fq.trim
+SL_03.fq.trim
+SL_04.fq.trim
+SL_05.fq.trim
+SL_06.fq.trim
+SL_07.fq.trim
+SL_08.fq.trim
+SL_09.fq.trim
+SL_10.fq.trim
+SL_11.fq.trim
+SL_12.fq.trim
+SL_13.fq.trim
+SL_14.fq.trim
+SL_15.fq.trim
+SL_16.fq.trim
+SL_17.fq.trim
+SL_18.fq.trim
+SL_19.fq.trim
+Um_Gr03.fq.trim
+Um_UT3_06.fq.trim
+Um_UT3_09.fq.trim
+Um_UT3_20.fq.trim
+Upp_O07.fq.trim
+```
+
+Populations that will drop out: 
 
