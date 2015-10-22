@@ -537,6 +537,16 @@ Weir and Cockerham weighted Fst estimate: 0.42914
 
 ```
 
+##colours for unrooted dendrogram in Adobe illustrator
+
+Yellow: FFCC66
+
+Green: 009933
+
+Blue: 0099CC
+
+Light Blue: 99CCFF
+
 
 
 
