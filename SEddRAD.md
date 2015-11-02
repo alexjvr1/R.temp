@@ -564,6 +564,12 @@ Hö 08 (H22 + H25)
 Hö 19 (H23 + H25)
 Hö 20 (H23 + H25)
 
+And the following two plates had 2 runs each: 
+
+H22 & H23
+
+So: SL & Hö are affected. 
+
 Country|Population| n |lat | long
 :---:|:---:|:--:|:--:|:--:
 Germany|B|10|52.4647|10.0844
