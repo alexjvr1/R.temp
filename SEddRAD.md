@@ -593,6 +593,28 @@ Finland North|F	|10|69.04445|	20.804544
 
 
 
+Samples in the cluster optimisation: 
+
+Pop| Samples
+:--:|:--:
+DE_B |01 + 02
+DE_K| 01 + 02
+DE_W | 01 + 02
+Skåne_Hö |01 + 02
+Skåne_SF|01 + 02
+Skåne_SL|
+Uppsala_Gra |03 + 04
+Uppsala_K|01 + 02
+Uppsala_O|01 + 04
+Um_Gr| 01 + 02
+Um_Taf| 01 + 02
+Luleå_LT1| 01 + 02
+Luleå_LT2| 04 + 06
+Luleå_LT3| 01 + 02
+Kir_G| 01 + 02
+Kir_L | 01 + 02
+FIN | 21-23, 29
+
 
 
 
