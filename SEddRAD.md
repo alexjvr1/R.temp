@@ -549,6 +549,48 @@ Light Blue: 99CCFF
 
 
 
+###SessionII
+
+1. Arrange all samples and data
+2. concatenate samples as needed
+3. Choose subset with which to test pyRAD clustering threshold
+4. Run pyRAD tests clustering 90-98%
+
+
+There are 193 Swedish samples. Samples for which there are two runs: 
+
+Hö 01 (H23 + H25)
+Hö 08 (H22 + H25)
+Hö 19 (H23 + H25)
+Hö 20 (H23 + H25)
+
+Country|Population| n |lat | long
+:---:|:---:|:--:|:--:|:--:
+Germany|B|10|52.4647|10.0844
+|K|  |52.55825	|9.362521
+|W|  |	52.589665|	10.144619
+Skåne |SF|	|55.55757|	13.63819
+|skåne1|	|55.722889	|13.286917
+|skåne3||	55.8585|	13.763833
+Uppsala |Gra||	59.877851|	17.667242
+|Ko||	59.890968|	17.242389
+|O||	60.178358|	17.854461
+Umeå |Gro||	63.791632|	20.367129
+|UT3||	63.658281|	20.29822
+|H||	63.757558|	20.406117
+|Taf||	63.830139|	20.486056
+Luleå|LT1||	65.684418|	22.212979
+|LT2||	65.749836|	21.601634
+|LT3||	65.582783|	22.31932
+Gällivare/Kiruna|G||	67.111307|	20.656016
+|L1||	67.051924|	21.22396
+Finland North|F	||69.04445|	20.804544
+
+
+
+
+
+
 
 
 
