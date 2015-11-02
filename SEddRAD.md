@@ -557,7 +557,7 @@ Light Blue: 99CCFF
 4. Run pyRAD tests clustering 90-98%
 
 
-There are 193 Swedish samples. Samples for which there are two runs: 
+There are 193 Swedish samples from 19 populations, 7 latitudes. Samples for which there are two runs: 
 
 Hö 01 (H23 + H25)
 Hö 08 (H22 + H25)
@@ -567,24 +567,26 @@ Hö 20 (H23 + H25)
 Country|Population| n |lat | long
 :---:|:---:|:--:|:--:|:--:
 Germany|B|10|52.4647|10.0844
-Germany|K|  |52.55825	|9.362521
-Germany|W|  |	52.589665|	10.144619
-Skåne |SF|	|55.55757|	13.63819
-Skåne|skåne1|	|55.722889	|13.286917
-Skåne|skåne3||	55.8585|	13.763833
-Uppsala |Gra||	59.877851|	17.667242
-Uppsala|Ko||	59.890968|	17.242389
-Uppsala|O||	60.178358|	17.854461
-Umeå |Gro||	63.791632|	20.367129
-Umeå|UT3||	63.658281|	20.29822
-Umeå|H||	63.757558|	20.406117
-Umeå|Taf||	63.830139|	20.486056
-Luleå|LT1||	65.684418|	22.212979
-Luleå|LT2||	65.749836|	21.601634
-Luleå|LT3||	65.582783|	22.31932
-Gällivare/Kiruna|G||	67.111307|	20.656016
-Gällivare/Kiruna|L1||	67.051924|	21.22396
-Finland North|F	||69.04445|	20.804544
+Germany|K| 10 |52.55825	|9.362521
+Germany|W|  10|	52.589665|	10.144619
+Skåne |SF|10	|55.55757|	13.63819
+Skåne|skåne1 (Hö)|20	|55.722889	|13.286917
+Skåne|skåne3 (SL)|19|	55.8585|	13.763833
+Uppsala |Gra|10|	59.877851|	17.667242
+Uppsala|Ko|10|	59.890968|	17.242389
+Uppsala|O|10|	60.178358|	17.854461
+Umeå |Gro|10|	63.791632|	20.367129
+Umeå|UT3|4|	63.658281|	20.29822
+Umeå|Taf|10|	63.830139|	20.486056
+Luleå|LT1|10|	65.684418|	22.212979
+Luleå|LT2|10|	65.749836|	21.601634
+Luleå|LT3|10|	65.582783|	22.31932
+Gällivare/Kiruna|G|10|	67.111307|	20.656016
+Gällivare/Kiruna|L1|10|	67.051924|	21.22396
+Finland North|F	|10|69.04445|	20.804544
+
+
+
 
 
 
