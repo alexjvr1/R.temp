@@ -606,7 +606,7 @@ DE_K| 01 + 02
 DE_W | 01 + 02
 Skåne_Hö |01 + 02
 Skåne_SF|01 + 02
-Skåne_SL|
+Skåne_SL| 01 + 02
 Uppsala_Gra |03 + 04
 Uppsala_K|01 + 02
 Uppsala_O|01 + 04
@@ -619,7 +619,9 @@ Kir_G| 01 + 02
 Kir_L | 01 + 02
 FIN | 21-23, 29
 
+**Samples were chosen as those that had not dropped out during the test run. (Most of the dropout was likely because I didn't concatenate the repeated lanes/samples)
 
+**For SL, samples were chosen at random, since non-concatenated samples were used for this whole population during the test run. 
 
 
 
