@@ -560,8 +560,12 @@ Light Blue: 99CCFF
 There are 193 Swedish samples from 19 populations, 7 latitudes. Samples for which there are two runs: 
 
 Hö 01 (H23 + H25)
+
 Hö 08 (H22 + H25)
+
+Hö 12 (H23 - lost in cleanup + H20)
 Hö 19 (H23 + H25)
+
 Hö 20 (H23 + H25)
 
 And the following two plates had 2 runs each: 
