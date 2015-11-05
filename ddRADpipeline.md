@@ -409,6 +409,11 @@ Copy over to a new folder
 mv *.trim pyrad/subsetTrim
 ```
 
+and gzip all files
+```
+gzip pyrad/subsetTrim/*
+```
+
 
 
 ####6. *Filter for read length*
