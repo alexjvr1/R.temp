@@ -100,6 +100,11 @@ scp -r folder/*.txt alexjvr@gdcsrv1.ethz.ch:~/
 ls -l arce* | wc -l
 ```
 
+####Folder size
+```
+du -h FOLDER
+```
+
 
 ####Screen options
 If anything runs for more than a few mins, it is useful to run it through "screen". 
@@ -603,6 +608,30 @@ start the run
 ```
 /usr/local/ngseq/src/pyrad-3.0.4/pyRAD -p params.txt -s 23456
 ```
+
+**if some of the samples have already been run: 
+
+1. copy all .edit and .derep files to an "edits" folder
+
+2. copy all files from the clust.94 files to a new folder
+
+3. remove the dereplicated samples from the samples folder
+
+make a list of all the dereplicated samples
+```
+rename .trim.edit .trim *.trim.edit
+
+ls > samples1.done.txt
+
+rename .trim .trim.edit *.trim
+```
+
+move the textfile into the samples folder and from the samples folder run:
+```
+for file in $(cat samples1.done.txt); do mv "$file" /gdc_home4/alexjvr/FstQst/samples.1/; done
+```
+
+
 
 params.txt file as optimised for H02 *R.temp* data. 
 
