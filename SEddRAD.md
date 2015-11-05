@@ -693,6 +693,12 @@ pyrad -p params.txt -s 234567
 
 on GDCsrv 2 at 17:00
 
+Keeping track of memory usage during the different steps
+
+Step 2||Step 3||Step 4|| Step 5 || Step 6
+:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:
+VIRT|RES|VIRT|RES|VIRT|RES|VIRT|RES|VIRT|RES
+425M*x|25M*x|3500-5000M*x|1.2-1.5G*x|||||||2500M|2.1G
 
 
 
