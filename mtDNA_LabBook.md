@@ -557,6 +557,14 @@ exe inputfile
 
 *MB doesn't like the output being named anything other than "results". So remember to copy all the previous results into a folder before starting the new run. 
 
+
+20151109
+
+- Ran mb with 1x10^7 generations for concatenated dataset
+
+- Default heating on chains
+
+
 ###4.RAxML
 
 - The sequential version should be used for small data sets, small runs, and test runs. 
