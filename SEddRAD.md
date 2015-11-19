@@ -706,7 +706,7 @@ VIRT|RES|VIRT|RES|VIRT|RES|VIRT|RES|VIRT|RES
 
 I can use the runs from the full dataset, and run s67 with DE samples excluded. The exclusion option is only for s7. But I need to exclude samples at s6 (across sample clustering). 
 
-Set up new pyrad run by copying edits/ and clustxx/ to 9xSE folders. These data can be deleted afterwards. 
+Set up new pyrad run by moving edits/ and clustxx/ to 9xSE folders. The DE samples will be kept in the folders in the origial run (i.e 91/, 92/, etc.). These data can be moved back to the original folders afterwards. 
 
 
 
