@@ -708,7 +708,9 @@ I can use the runs from the full dataset, and run s67 with DE samples excluded. 
 
 Set up new pyrad run by moving edits/ and clustxx/ to 9xSE folders. The DE samples will be kept in the folders in the origial run (i.e 91/, 92/, etc.). These data can be moved back to the original folders afterwards. 
 
-- I deleted the DE samples by mistake, so I will need to rerun these during the final SE run. 
+- I deleted the DE samples by mistake, so I will need to rerun these during the final SE run.
+
+- I may have to rerun these samples for .98 clustering as this had not completed writing the output files before I moved the /edits and /clust.98 folders: 
 
 
 Start the first SE only pyRAD (.90 clustering) on gdcsrv2. 19 NOV 10:45
