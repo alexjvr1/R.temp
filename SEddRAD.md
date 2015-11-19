@@ -702,3 +702,12 @@ VIRT|RES|VIRT|RES|VIRT|RES|VIRT|RES|VIRT|RES
 
 
 
+##excluding DE populations  19Nov
+
+I can use the runs from the full dataset, and run s67 with DE samples excluded. The exclusion option is only for s7. But I need to exclude samples at s6 (across sample clustering). 
+
+Set up new pyrad run by copying edits/ and clustxx/ to 9xSE folders. These data can be deleted afterwards. 
+
+
+
+
