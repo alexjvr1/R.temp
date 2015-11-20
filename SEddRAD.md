@@ -922,7 +922,7 @@ Interpretation:
 
 1. No real difference between SE and SE + DE datasets
 
-2. 0.94 clustering seems optimal (based on Fig. 4 & 5)
+2. 0.94 or 0.95 looks like the optimal clustering threshold. 
 
 
 
