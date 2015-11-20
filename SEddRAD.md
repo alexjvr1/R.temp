@@ -713,7 +713,157 @@ Set up new pyrad run by moving edits/ and clustxx/ to 9xSE folders. The DE sampl
 - I may have to rerun these samples for .98 clustering as this had not completed writing the output files before I moved the /edits and /clust.98 folders: 
 
 
-Start the first SE only pyRAD (.90 clustering) on gdcsrv2. 19 NOV 10:45
+Start the first SE only pyRAD (.90 clustering) on gdcsrv2. 19 NOV 10:45. 
+
+All completed on 20 Nov ~11:00. 
+
+##Optimisation: plots
+
+To check what the optimal clustering threshold is, I plotted the following parameters. 
+
+1. He vs cluster  (stats/Pi_*)
+
+2. Error vs cluster (stats/Pi_*)
+
+3. nloci vs cluster (stats/SExxx)
+
+4. % polymorphism (stats/s5_*)
+
+5. n filtered paralogs (stats/s5* -> f2loci-f1loci)
+
+
+I export everything to an excel file (SE_pyRADopt_20151120)
+
+Import into R, and run the following code: 
+
+```
+##PyRAD opt
+
+#import data sheet 1: HEvsclustering
+
+
+library(ggplot2)
+install.packages("reshape2")
+library(reshape2)
+
+rm(list=ls())       #clear the workspace
+library(reshape2)    #package for reshaping the data
+library(ggplot2)
+ 
+## Het & error
+SE_allHE <- read.csv("SE_allHE_20151120.csv")
+
+head(SE_allHE)
+
+
+data<-melt(SE_allHE[,3:12])  #3:10 selects just the columns that we're interested in (nloci_90 to nloci_99)
+
+head(data)
+figure<-ggplot(data,aes(x=variable,y=value))+geom_boxplot()
+figure
+
+##nloci vs cluster SEall
+
+SE_allnloci <- read.csv("SE_nloci_20151120.csv")
+
+head(SE_allnloci)
+
+data<-melt(SE_allnloci[,3:12])  #3:10 selects just the columns that we're interested in (nloci_90 to nloci_99)
+
+head(data)
+figure<-ggplot(data,aes(x=variable,y=value))+geom_boxplot()
+figure
+
+##npoly vs cluster
+
+SE_allnpoly <- read.csv("SE_npoly_20151120.csv")
+
+head(SE_allnpoly)
+
+data<-melt(SE_allnpoly[,63:72])  #3:10 selects just the columns that we're interested in (nloci_90 to nloci_99)
+
+head(data)
+figure<-ggplot(data,aes(x=variable,y=value))+geom_boxplot()
+figure
+
+##paralogs vs cluster SEall
+
+SE_allnpoly <- read.csv("SE_npoly_20151120.csv")
+
+head(SE_allnpoly)
+
+data<-melt(SE_allnpoly[,33:42])  #3:10 selects just the columns that we're interested in (nloci_90 to nloci_99)
+
+head(data)
+figure<-ggplot(data,aes(x=variable,y=value))+geom_boxplot()
+figure
+
+## Het & error SE only
+SE_allHE <- read.csv("SEonly_HE_20151120.csv")
+
+head(SE_allHE)
+#order the data by the header: df[,oder(names(df))]
+
+data<-melt(SE_allHE[,3:12])  #3:10 selects just the columns that we're interested in (nloci_90 to nloci_99)
+
+head(data)
+figure<-ggplot(data,aes(x=variable,y=value))+geom_boxplot()
+figure
+
+##nloci vs cluster SEonly
+
+SE_allnloci <- read.csv("SEonly_nloci_20151120.csv")
+
+head(SE_allnloci)
+
+data<-melt(SE_allnloci[,3:11])  #3:10 selects just the columns that we're interested in (nloci_90 to nloci_99)
+
+head(data)
+figure<-ggplot(data,aes(x=variable,y=value))+geom_boxplot()
+figure
+
+##npoly vs cluster SEonly
+
+SE_allnpoly1 <- read.csv("SEonly_paralogs_20151120.csv")
+
+head(SE_allnpoly1)
+
+SE_allnpoly <- SE_allnpoly1[,order(names(SE_allnpoly1))] #order the data by the header
+
+head(SE_allnpoly)
+
+
+data<-melt(SE_allnpoly[,61:70])  #3:10 selects just the columns that we're interested in (nloci_90 to nloci_99)
+
+head(data)
+
+figure<-ggplot(data,aes(x=variable,y=value))+geom_boxplot()
+figure
+
+##paralogs vs cluster SEonly
+
+SE_allnpoly1 <- read.csv("SEonly_paralogs_20151120.csv")
+
+head(SE_allnpoly1)
+
+SE_allnpoly <- SE_allnpoly1[,order(names(SE_allnpoly1))] #order the data by the header
+
+head(SE_allnpoly)
+
+
+data<-melt(SE_allnpoly[,51:60])  #3:10 selects just the columns that we're interested in (nloci_90 to nloci_99)
+
+head(data)
+
+figure<-ggplot(data,aes(x=variable,y=value))+geom_boxplot()
+figure
+
+
+
+
+
+```
+
 
 
 
