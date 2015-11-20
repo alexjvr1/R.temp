@@ -864,31 +864,65 @@ figure
 
 ```
 
+##SE all ponds
+
+1. Het vs clusters
 
 ![alt txt][SEall.1]
 [SEall.1]:https://cloud.githubusercontent.com/assets/12142475/11308878/fcb30d2e-8fc0-11e5-8e0f-fc9737970033.png
 
+2. Error vs clusters
+
 ![alt txt][SEall.2]
 [SEall.2]:https://cloud.githubusercontent.com/assets/12142475/11308881/fcb8c458-8fc0-11e5-9f3a-d81780a1e816.png
+
+3. nloci vs clusters
+
 ![alt txt][SEall.3]
 [SEall.3]:https://cloud.githubusercontent.com/assets/12142475/11308876/fcb1d490-8fc0-11e5-84c1-dc1fde654313.png
+
+4. % polymorphism vs clusters
+
 ![alt txt][SEall.4]
 [SEall.4]:https://cloud.githubusercontent.com/assets/12142475/11308877/fcb2f488-8fc0-11e5-862a-d6066f5fefbf.png
+
+5. n filtered paralogs vs clusters 
 ![alt txt][SEall.5]
 [SEall.5]:https://cloud.githubusercontent.com/assets/12142475/11308879/fcb3ad2e-8fc0-11e5-8d5e-2ae73b087a1d.png
+
+##only SE ponds (no DE)
+
+1. Het vs clusters
 
 ![alt txt][SE.1]
 [SE.1]:https://cloud.githubusercontent.com/assets/12142475/11308880/fcb584aa-8fc0-11e5-86b5-0356ced3509f.png
 
+2. Error vs clusters
+
 ![alt txt][SE.2]
 [SE.2]:https://cloud.githubusercontent.com/assets/12142475/11308884/fccadd78-8fc0-11e5-8eaf-9cec41290b86.png
+
+3. nloci vs clusters
+
 ![alt txt][SE.3]
 [SE.3]:https://cloud.githubusercontent.com/assets/12142475/11308883/fcca8b48-8fc0-11e5-9a20-9e87d3ef1f56.png
+
+4. % polymorphism vs clusters
+
 ![alt txt][SE.4]
 [SE.4]:https://cloud.githubusercontent.com/assets/12142475/11308882/fcc7d920-8fc0-11e5-8397-4c5ac806a5cd.png
+
+5. n paralogs removed vs clusters
+
 ![alt txt][SE.5]
 [SE.5]:https://cloud.githubusercontent.com/assets/12142475/11308885/fccada08-8fc0-11e5-9541-6e19bfc06a8f.png
 
+
+Interpretation: 
+
+1. No real difference between SE and SE + DE datasets
+
+2. 0.94 clustering seems optimal (based on Fig. 4 & 5)
 
 
 
