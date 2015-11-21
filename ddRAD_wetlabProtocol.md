@@ -203,7 +203,7 @@ The columns clean the Restriction Digest, but doesn't get rid of the adapter dim
 
 ####5. Normalise samples
 
-1. Determine the DNA concentration of each cleaned digest using Qubit dsDNA BR (1ul)
+1. Determine the DNA concentration of each cleaned digest using Qubit dsDNA HS (1ul)
 2. Normalise the samples (100-300ng/sample is optimal)
 
 *NB* This step is essential for ensuring even representation of samples in the sequencing. 
