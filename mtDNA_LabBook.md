@@ -859,3 +859,65 @@ Ref for MEGA6:
 
 Tamura K, Stecher G, Peterson D, Filipski A, Kumar S (2013) MEGA6: Molecular Evolutionary Genetics Analysis version 6.0. *Molecular Biology and Evolution*, 30, 2725-2729.
 
+
+
+##BIO352: student project
+
+Aim: 
+
+- Characterise the contact zone in CH
+
+    1. Where is the contact zone between CHN & CHS?
+    
+    2. Where are the brown haplotypes from? 
+    
+    3. How is CHS related to the Italian populations? 
+    
+    4. What is the genetic diversity between CHN/CHS and the contact zone?
+    
+    5. What is the demographic history of CHN vs CHS?
+    
+    
+    
+Method:
+
+- Sequence cytb of additional samples from the populations in the contact zone
+
+- Sequence additional populations
+
+Total: 2 plates = 182 sequences
+
+
+##Populations to sequence
+
+1. 
+
+2. 
+
+3. 
+
+4. 
+
+5. 
+
+
+
+
+##Analyses
+
+1. Sequence alignment
+
+2. Haplotype network
+
+3. RAxML/BEAST??
+
+4. nucleotide diversity
+
+5. mismatch distribution (demographic history)
+
+6. AMOVA
+
+
+
+
+
