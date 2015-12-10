@@ -173,9 +173,10 @@ Do the same for cytb
 Draw a haplotype network of the combined datasets using TCS
 ```
 Input for TCS: 
-Need Nexus file which can be obtained from dnaSP. Export as Nexus (Options Nexus old version, CR+LF(PC))
-    - Have to manually delete all the returns from the file. I haven't yet figured out how to get the correct file format. 
-    - TCS is very finicky with it's input format. 
+Need Phylip or nexus file for the input. Convert fasta file with PGDspider. 
+    - TCS is very finicky with it's input format.
+    
+    - TCS is affected by missing data, so be sure to exclude all missing data from the input file!
     
 Final file for COXI (full dataset): 11_COX1_CH_SE_Vences_full_20150619.nex (this already has the nord12 & mjos07 samples deleted, and has samples after rusc06 - samples after rusc06 were omitted in many of the COX1 files)
 And the graph is saved under the same name. 
