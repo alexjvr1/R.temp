@@ -1,11 +1,39 @@
 #BIO352 mtDNA project
 
-Phylogeography of R.temporaria in Switzerland
+##Phylogeography of R.temporaria in Switzerland
 
-1. Where was southern CH colonised from?
+###1. Where was southern CH colonised from?
 
-2. Where are the contact zones between CHN & CHS?
+    - Stefani et al. 2012 has cytb & COX1 sequences. 
+    
+    - Phylogenetic trees of COX1 with Stefani et al. + european samples
+    
+    - Due to little phylogenetic support when using only COXI, we wanted to include cytb sequences in a concatenated dataset. We sequenced 3 cytb sequences (from the COX1 haplotypes). However, it transpires that the Stefani et al. data is difficult to disentangle, i.e. find the cytb + COX1 haplotype per sample. I will email them to ask. 
+    
+    - We found sequences from Teacher et al. 2009 & Veith et al. xx for the cytb comparison. 
 
-3. What is the genetic diversity between CHN, CHS, and the contact zones? 
+###2. Where are the contact zones between CHN & CHS?
+
+    - We sequenced additional samples and populations for cytb using the Vences et al. primers. 
+    
+    - We drew a haplotype network using TCS
+    
+    - Map the proportion of each haplotype on the Swiss map for a visual representation of where the contact zone is. 
+
+###3. What is the genetic diversity between CHN, CHS, and the contact zones? 
+
+    - Haplotype diversity
+    
+    - nucleotide diversity
+    
+    - Compare with Stefani et al. 2012 (and other papers??)
+  
+    - AMOVA to look at within and between population variation
+
+###4. What is the demographic history of CHN vs CHS? 
+
+    - Mismatch distribution of all Southern, all northern, and all brown haplotypes
+
+
 
 
