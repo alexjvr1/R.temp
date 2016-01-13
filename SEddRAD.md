@@ -995,6 +995,21 @@ Filter loci which aren't scored in >0.5 of the samples, and that have a MAC of 3
 ```
 vcftools --vcf SEFinalc94d6m4p3.vcf --max-missing 0.5 --mac 3 --recode --recode-INFO-all --out SE0.94.s1.1
 
+Parameters as interpreted:
+	--vcf SEFinalc94d6m4p3.vcf
+	--recode-INFO-all
+	--mac 3
+	--max-missing 0.5
+	--out SE0.94.s1.1
+	--recode
+
+Eighth Header entry should be INFO: INFO    
+After filtering, kept 193 out of 193 Individuals
+Outputting VCF file...
+After filtering, kept 71862 out of a possible 1300946 Sites
+Run Time = 96.00 seconds
+
+
 
 ```
 
@@ -1039,9 +1054,32 @@ EOF
 ![alt txt][imissSE0.95]
 [imissSE0.95]:https://cloud.githubusercontent.com/assets/12142475/12292043/07ccee06-b9eb-11e5-9777-368b353461e0.png
 
+
+Redo this, but with the first filter step included
 ```
-#Decide to remove indivs with >0.8 missing data
+[alexjvr@gdcsrv1 0.95Filtered]$ vcftools --vcf SEFinalc95d6m4p3.vcf --max-missing 0.5 --mac 3 --recode --recode-INFO-all --out SE0.95.s1
+
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf SEFinalc95d6m4p3.vcf
+	--recode-INFO-all
+	--mac 3
+	--max-missing 0.5
+	--out SE0.95.s1
+	--recode
+
+Eighth Header entry should be INFO: INFO    
+After filtering, kept 193 out of 193 Individuals
+Outputting VCF file...
+After filtering, kept 55836 out of a possible 1239284 Sites
+Run Time = 89.00 seconds
 
 
+vcftools --vcf SE0.95.s.2.recode.vcf --missing-indv 
 
+and draw plot
 ```
+
+
