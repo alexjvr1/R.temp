@@ -984,6 +984,11 @@ EOF
 
 ```
 
+![alt txt][imissSE]
+[imissSE]:
+
+
+
 0.95
 ```
 [alexjvr@gdcsrv1 0.95Filtered]$ vcftools --vcf SEFinalc95d6m4p3.vcf --minDP 3 --recode --recode-INFO-all --out SE0.95_s1
@@ -1022,3 +1027,5 @@ EOF
 
 
 ```
+![alt txt][imissSE]
+[imissSE]:
