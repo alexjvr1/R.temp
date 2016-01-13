@@ -988,6 +988,15 @@ EOF
 [imissSE0.94]:https://cloud.githubusercontent.com/assets/12142475/12292015/dc8eb77e-b9ea-11e5-91da-83434fe215ff.png
 
 
+There is quite a large amount of missing data. I will include the first filter step (which I removed initially) and rerun the missingness test.
+
+Filter loci which aren't scored in >0.5 of the samples, and that have a MAC of 3
+
+```
+vcftools --vcf SEFinalc94d6m4p3.vcf --max-missing 0.5 --mac 3 --recode --recode-INFO-all --out SE0.94.s1.1
+
+
+```
 
 0.95
 ```
@@ -1030,4 +1039,9 @@ EOF
 ![alt txt][imissSE0.95]
 [imissSE0.95]:https://cloud.githubusercontent.com/assets/12142475/12292043/07ccee06-b9eb-11e5-9777-368b353461e0.png
 
+```
+#Decide to remove indivs with >0.8 missing data
 
+
+
+```
