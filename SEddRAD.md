@@ -1,4 +1,4 @@
-#SE ddRAD data
+|#SE ddRAD data
 
 13 Oct 2015
 
@@ -1082,4 +1082,52 @@ vcftools --vcf SE0.95.s.2.recode.vcf --missing-indv
 and draw plot
 ```
 
+That looks a lot better. Most missing data <0.5
 
+![alt txt][imissSE0.95.2]
+[imissSE0.95.2]https://cloud.githubusercontent.com/assets/12142475/12292043/07ccee06-b9eb-11e5-9777-368b353461e0.png
+
+```
+mawk '$5 > 0.5' out.imiss | cut -f1 > lowDP.indiv
+
+wc -l lowDP.indiv
+```
+
+35 indivs will be removed. 
+
+|Name|
+|:--:|
+|DE_B07.fq.trim|
+|DE_B09.fq.trim|
+|DE_K06.fq.trim|
+|F20.fq.trim|
+|F24.fq.trim|
+|F25.fq.trim|
+|F28.fq.trim|
+|F30.fq.trim|
+|Gra02.fq.trim|
+|Ho_06cat.fq.trim|
+|Ho_09cat.fq.trim|
+|LT1_10.fq.trim|
+|LT2_01.fq.trim|
+|LT2_02.fq.trim|
+|LT2_03.fq.trim|
+|LT2_05.fq.trim|
+|LT2_07.fq.trim|
+|LT2_08.fq.trim|
+|LT2_09.fq.trim|
+|LT3_03.fq.trim|
+|LT3_05.fq.trim|
+|LT3_08.fq.trim|
+|SL_06cat.fq.trim|
+|SL_08cat.fq.trim|
+|SL_13cat.fq.trim|
+|SL_15cat.fq.trim|
+|Um_Gr03.fq.trim|
+|Um_Taf09.fq.trim|
+|Um_UT3_06.fq.trim|
+|Um_UT3_09.fq.trim|
+|Um_UT3_16.fq.trim|
+|Um_UT3_20.fq.trim|
+|Upp_O05.fq.trim|
+|Upp_O07.fq.trim|
