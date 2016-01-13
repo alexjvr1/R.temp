@@ -926,9 +926,99 @@ Interpretation:
 
 
 
+##SNP filtering results
+
+I ran pyrad on the full SE dataset at clustering threshold of 0.94 and 0.95. 
+
+The final numbers of loci (filtering methods below): 
+
+0.94 =
+
+filtered 0.94 = 
+
+0.95 =
+
+0.95 filtered
+
+
+###SNP filtering
+
+
+0.94
+```
+[alexjvr@gdcsrv1 0.94Filtered]$ vcftools --vcf SEFinalc94d6m4p3.vcf --minDP 3 --recode --recode-INFO-all --out SE0.94_s1
+
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf SEFinalc94d6m4p3.vcf
+	--recode-INFO-all
+	--minDP 3
+	--out SE0.94_s1
+	--recode
+
+Eighth Header entry should be INFO: INFO    
+After filtering, kept 193 out of 193 Individuals
+Outputting VCF file...
+After filtering, kept 1300946 out of a possible 1300946 Sites
+Run Time = 402.00 seconds
+
+mawk '!/IN/' out.imiss | cut -f5 > totalmissing
+
+gnuplot << \EOF 
+set terminal dumb size 120, 30
+set autoscale 
+unset label
+set title "Histogram of % missing data per individual"
+set ylabel "Number of Occurrences"
+set xlabel "% of missing data"
+#set yr [0:100000]
+binwidth=0.01
+bin(x,width)=width*floor(x/width) + binwidth/2.0
+plot 'totalmissing' using (bin( $1,binwidth)):(1.0) smooth freq with boxes
+pause -1
+EOF
 
 
 
+```
+
+0.95
+```
+[alexjvr@gdcsrv1 0.95Filtered]$ vcftools --vcf SEFinalc95d6m4p3.vcf --minDP 3 --recode --recode-INFO-all --out SE0.95_s1
+
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf SEFinalc95d6m4p3.vcf
+	--recode-INFO-all
+	--minDP 3
+	--out SE0.95_s1
+	--recode
+
+Eighth Header entry should be INFO: INFO    
+After filtering, kept 193 out of 193 Individuals
+Outputting VCF file...
+After filtering, kept 1239284 out of a possible 1239284 Sites
+Run Time = 346.00 seconds
+
+mawk '!/IN/' out.imiss | cut -f5 > totalmissing
+
+gnuplot << \EOF 
+set terminal dumb size 120, 30
+set autoscale 
+unset label
+set title "Histogram of % missing data per individual"
+set ylabel "Number of Occurrences"
+set xlabel "% of missing data"
+#set yr [0:100000]
+binwidth=0.01
+bin(x,width)=width*floor(x/width) + binwidth/2.0
+plot 'totalmissing' using (bin( $1,binwidth)):(1.0) smooth freq with boxes
+pause -1
+EOF
 
 
-
+```
