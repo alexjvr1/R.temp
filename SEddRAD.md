@@ -1,4 +1,4 @@
-|#SE ddRAD data
+#SE ddRAD data
 
 13 Oct 2015
 
@@ -1131,3 +1131,63 @@ wc -l lowDP.indiv
 |Um_UT3_20.fq.trim|
 |Upp_O05.fq.trim|
 |Upp_O07.fq.trim|
+
+
+```
+ vcftools --vcf SE0.95.s2.recode.vcf --remove lowDP.indiv --recode --recode-INFO-all --out SE0.95_miss
+ 
+ After filtering, kept 159 out of 193 Individuals
+Outputting VCF file...
+After filtering, kept 55836 out of a possible 55836 Sites
+
+#Filter for 5% genotyping rate and MAF of 5%
+
+vcftools --vcf SE0.95_miss.recode.vcf --max-missing 0.05 --maf 0.05 --recode --recode-INFO-all --out SE0.95_miss.geno
+
+After filtering, kept 159 out of 159 Individuals
+Outputting VCF file...
+After filtering, kept 27396 out of a possible 55836 Sites
+
+#Filter for 50% genotyping rate and MAF of 5%: SE0.95_miss.geno50
+After filtering, kept 27396 out of a possible 55836 Sites
+
+#Filter for 75% genotyping rate and MAF of 5%: SE0.95_miss.geno75
+After filtering, kept 10117 out of a possible 55836 Sites
+
+#Filter for 80% genotyping rate and MAF of 5%: SE0.95_miss.geno80
+After filtering, kept 6870 out of a possible 55836 Sites
+
+#Filter for 95% genotyping rate and MAF of 5%: SE0.95_miss.geno95
+After filtering, kept 1100 out of a possible 55836 Sites
+
+```
+
+End up with ~10000 loci genotyped for 75% of individuals at 95% clustering threshold
+
+
+Now I will calculate 
+
+1. PCA
+
+
+
+2. Structure
+
+
+
+3. Heterozygosity
+
+
+
+4. Fst
+
+
+
+5. IBD
+
+
+
+6. Ne
+
+
+
