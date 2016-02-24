@@ -115,3 +115,7 @@ q + theme(axis.text.x=element_text(angle = 90, hjust = 0))
 
 ```
 
+![alt_txt][npoly.CH530]
+[npoly.CH530]:https://cloud.githubusercontent.com/assets/12142475/13290688/13c34af2-db15-11e5-8f31-939bb4acddd4.png
+
+
