@@ -1,3 +1,7 @@
+alexjvr@euler.ethz.ch
+W465.Smq
+
+
 #CH samples
 
 Data organisation and analyses
