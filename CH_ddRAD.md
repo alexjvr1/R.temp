@@ -119,3 +119,20 @@ q + theme(axis.text.x=element_text(angle = 90, hjust = 0))
 [npoly.CH530]:https://cloud.githubusercontent.com/assets/12142475/13290794/84bc9cf4-db15-11e5-97c9-2986a48ed4bb.png
 
 
+#SNP calling
+
+I'm calling SNPs on the Euler server. I did this in Dec for ~500 samples, but I didn't copy the data across in time and it got deleted! So there are 519 samples for which I need the clust.94/ and edit/ files. Once I have that, I can decide on subgroups for which to call SNPs. (There will probably be little overlap of loci across all lanes, so subsets will be better to work with). 
+
+The data that still needs pyrad run are found here: 
+
+/gdc_home4/alexjvr/CHFinal.batch2.todo
+
+Data already processed: 
+
+/gdc_home4/alexjvr/CHFinalSamples
+
+
+
+
+
+
