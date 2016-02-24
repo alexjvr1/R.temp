@@ -96,3 +96,22 @@ wise|	9
 zeni|	10
 
 
+##CH530
+
+Looking at the level of polymorphism according to canton and elevation. This is for a recommendation for Daniel Lee Jeffries from EPFL, who is sequencing the Rana temporaria genome. 
+
+```
+require(ggplot2)
+
+###Heterozygosity plot
+
+CH530.poly <- read.csv("pyRAD530.polyfreq_20160224.v2.csv")
+
+CH530.poly$Site <- factor(CH530.poly$Site, levels=CH530.poly$Site)  #Makes Site and ordered factor, so that ggplot doesn't automatically sort the data before plotting
+
+q <- qplot(Site, poly, fill=factor((Elev.Class), levels=c("Low","Mid","High")), data=CH530.poly, geom="boxplot", position="dodge") + scale_fill_manual(values=c("yellow","green","blue"))+theme_bw()+theme(legend.title=element_blank())
+
+q + theme(axis.text.x=element_text(angle = 90, hjust = 0))
+
+```
+
