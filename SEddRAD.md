@@ -1165,6 +1165,47 @@ After filtering, kept 1100 out of a possible 55836 Sites
 End up with ~10000 loci genotyped for 75% of individuals at 95% clustering threshold
 
 
+##Basic stats
+
+I'm using the filtered SE file: 
+
+/gdc_home4/alexjvr/SEFinalSamples/pyRAD95/outfiles/0.95Filtered/SE0.95_miss.geno75
+
+10117 sites
+
+I've copied this onto the mac @ /Users/alexjvr/phd_20150212/Analysis/ddRAD/SEddRAD/SE0.95_20160302/
+
+
+###Adegenet tutorial "Basic population genetics"
+
+Adegenet needs a genind input. This can be created by converting vcf to genepop using pgdspider. 
+
+Population information can be input in the spid file in pgdspider. To get information on which individuals are in the vcf file: 
+```
+
+
+##and then replace the header in the vcf file 
+
+
+#make the new indiv file
+bcftools query -l SE0.95_miss.geno75.recode.vcf  ##list of the individuals
+nano SE159.newnames.txt  ##paste the new list into a file
+
+#and replace the header in the vcf file
+
+bcftools reheader SE0.95_miss.geno75.recode.vcf.gz  -s SE159.newnames.txt -o SE0.95.newnames.vcf.gz
+
+#unzip the vcf file and check that the indivs are correct
+
+gunzip SE0.95.newnames.vcf.gz
+bcftools query -l SE0.95.newnames.vcf
+
+
+
+
+
+```
+
 Now I will calculate 
 
 1. PCA
