@@ -1200,11 +1200,13 @@ bcftools reheader SE0.95_miss.geno75.recode.vcf.gz  -s SE159.newnames.txt -o SE0
 gunzip SE0.95.newnames.vcf.gz
 bcftools query -l SE0.95.newnames.vcf
 
-
-
-
-
 ```
+
+Download the new file to the mac. 
+
+Convert to genepop using pgdspider and the new pop file that you created (pop.csv)
+
+
 
 Now I will calculate 
 
