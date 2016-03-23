@@ -498,6 +498,23 @@ Error: Least-square procedure to fit expected and observed mismatch distribution
 
 *BSP*
 
+For the Bayesian skyline plot, I will use the same settings as in Stefani et al. 2012 & in Vences et al. 2013. 
+
+**Remember to use all of the sequences in the data for the demographic analyses. Beast needs this to determine the likelihood of finding the same sequence again. I.e. if non-redundant data is used, Beast will assume that 
+
+1. Set the partitions in the data (load up mtDNA_CONCAT_20150921_strict_const.CH.xml). 
+2. Set the evolutionary model as found in jModelTest. In this case, the Tamura Nei model is chosen (http://www.robertlanfear.com/partitionfinder/news/): TN93, Base freq "estimated", G + I, 4 gamma catagories. 
+3. **The Yang96 and SRD06 models are to specify the evolution of different sites in the codon. But since I haven't specified protein coding regions, this is not applicable here. 
+4. Set the clock model to "strict", and "1.0". The "estimate box is to estimate the rate of the other genes relative to one". Otherwise set the rate based on what the known rate is and what the x-axis scale should be. i.e. the average 2% divergence is pairwise (2%/base/my), thus /2 -> 1%. And if we want this in years -> 0.01 / 1Mil = 1x10^-8
+5. Trees: choose Coalescent: BSP. Number of groups: reduce to avoid over-parameterisation. 
+5. Run the analysis: 10Mil gen. Sample every 1000gen. 
+
+
+
+
+
+
+
 
 
 ##Phylogenetics
@@ -767,6 +784,10 @@ END;
 1. Beast
   - Using % calibration from literature (Veith et al. 2003 found equal rates among lineages. The expected rate is 1.3% per My)
   - Using a fossil calibration (Veith et al. 2003)
+  
+  See this tutorial: http://www.justinbagley.org/123/beast-and-the-beast-basics-molecular-clocks-and-how-to-input-rates-into-beast
+  
+  
        
 For time calibration
 
@@ -792,6 +813,8 @@ remember the:
 
 1. CHS/CHN split
 2. E/W split
+3. R.temp from other sp. split
+
 
 
 
