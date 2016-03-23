@@ -778,7 +778,25 @@ For time calibration
     
     - Estimated time for R.temp species group (including R.arvalis & pyrenaica, exclu dalmatina) is 3.18 +/- 0.43 Mya. (Veith et al. 2003, Table 3)
     
-    
+Step 1: 
+
+Test strict vs relaxed clock. This is usually the first step. Run all the beast model combinations, upload into tracer, and run a model comparison. 
+
+However, in the BEAST2 book, they suggest that intra-species rates should always be strict. This is because variation (as picked up by the other models) would be due to stochastic variation rather than actual rate differences between individuals. Also, since less data is available (fewer haplotypes), it is better to use a simplified model. 
+
+Step 2: 
+
+Once the molecular clock has been chosen, test the different evolutionary models against each other. 
+
+remember the: 
+
+1. CHS/CHN split
+2. E/W split
+
+
+
+
+
 
 Methods:
 
