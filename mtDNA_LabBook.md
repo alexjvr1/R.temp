@@ -71,6 +71,19 @@ My own data will be named H48-59.
 The naming assignments are kept in: cytb+COX1_HaplotypeAssignments_20150618.xlsx
 
 
+###*Final cytb Datasets v2*
+
+I generated more cytb data (project student Mathieu Robin, Dec 2015). And this needs to be added to the data I have available. After cleaning sequences: 
+
+- 448bp cytb for 285 CH (57 pops)
+- 331bp cytb for 285 CH (57pops), 601 Vences et al. 2013 (106 pops)
+- Haplotypes: 331bp, xx haplotypes (concatenated with Vences et al. 2013 data). 
+- 
+For the Haplotype data: 
+
+I will name my haplotypes H
+
+
 
 
 
