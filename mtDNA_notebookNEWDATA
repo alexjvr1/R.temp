@@ -25,16 +25,15 @@ The aim of this study is to study the distribution of genetic variation in Rana 
 
 
 
-Drew a map of the sampling locations using R & Adobe Illustrator. 
+In stead of a sampling map, I'm drawing a map with the distribution of haplotypes as pie charts
 
-- Could draw the map in gray i.s.o colour
-- for code see on GitHub: alexjvr1/R.temp/SamplingMap_Europe.md
+- for code see on GitHub: alexjvr1/R.temp/PieChartsonMap_R.md
 
 
-Excel sheet of sample data: 
+Excel sheet of data: 
 
-SampledLocalities_coords_20150615.xlsx (up to date as of 17 June 2015)
-
+mtDNA.allCHcytb.gps.haplo_20160406.csv (up to date as of 6 April 2016)
+/Users/alexjvr/Syncplicity/hp_1_PhD_AJvR_20130101/1_Thesis/Chapter 2_Phylogeography/Analyses/April2016_Analyses
 
 
 ##Generating the data
