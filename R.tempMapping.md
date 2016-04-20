@@ -1,5 +1,13 @@
 #R.temp Mapping
 
+##Rerun April 2016
+
+I am retrying the mapping at UCLA with both Alan's genome and the newly available transcriptome. 
+
+I am using the SE dataset for the initial run. 
+
+###Mapping to Alan's R.temp genome
+
 I am optimising the mapping and SNP calling protocol for R.temporaria using the draft genome from Alan Brelsford. 
 The deNovo assembly takes >1 day per lane to run, and needs to be rerun as samples are added to the dataset. 
 
@@ -29,7 +37,7 @@ http://www.ebi.ac.uk/training/sites/ebi.ac.uk.training/files/materials/2014/1402
 
 ###1. Align to the genome
 
-Start 13:24 end 14:37 
+Start 20 April 2016 @ 10:05 end  
 ```
 bwa index Rtk43.fa
 ```
@@ -117,5 +125,16 @@ BUT my demultiplexed files seem much smaller than they're supposed to be. I shou
 And then I need to call SNPs
 
 I will use FreeBayes
+
+
+###Mapping to the transcriptome. 
+
+The R. temporaria transcriptome was published in 2015: 
+
+A de novo Assembly of the Common Frog (Rana temporaria) Transcriptome and Comparison of Transcription Following Exposure to Ranavirus and Batrachochytrium dendrobatidis
+
+Price *et al.* 2015, PLoS One
+
+
 
 
