@@ -71,7 +71,13 @@ I also have access to one of the nodes (arranged through Ken Shimitzu) for compu
 Most of the computing power is at the GDC. I have access to the servers there for data storage and computing for a nominal fee. 
         ssh alexjvr@gdcsrv1.ethz.ch
         pwd jk.W3.mm
+        
+####create an alias
 
+i.s.o typing out the path everytime. e.g. for gatk on the gdc server
+```
+gatk -T CallableLoci -R ref/human_g1k_b37_20.fasta -L 20 -I bams/trio-calling/NA12877_wgs_20.bam -o sandbox/NA12877_wgs_20.bam.callableLoci.bed -summary sandbox/NA12877_wgs_20.bam.callableLoci.summary
+```
 
 ####To secure copy files
 
