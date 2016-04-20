@@ -37,7 +37,7 @@ http://www.ebi.ac.uk/training/sites/ebi.ac.uk.training/files/materials/2014/1402
 
 ###1. Align to the genome
 
-Start 20 April 2016 @ 10:05 end  
+1hour on GDCsrv1
 ```
 bwa index Rtk43.fa
 ```
@@ -48,9 +48,9 @@ Rtk43.fa.amb  Rtk43.fa.ann  Rtk43.fa.bwt  Rtk43.fa.pac  Rtk43.fa.sa
 
 Align the demultiplexed individuals to the indexed genome. 
 This is for one individual
-Start: 14:50 end 23:52
+Start: 11:26
 ```
-bwa aln Rtk43.fa demultiplexed/abnd_01_H4.fq.gz > Rt.abnd01.sai
+bwa aln Rtk43.fa.gz /gdc_home4/alexjvr/SEFinalSamples/SEsamples_193.19/F21.fq.trim > Rt.F21.sai
 ```
 
 To align all the individuals
