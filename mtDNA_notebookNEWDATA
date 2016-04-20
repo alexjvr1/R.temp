@@ -640,6 +640,8 @@ As outgroups, I'm using R.italica, R.iberica, R.arvalis, R.pyrenaica sequences f
 
 I aligned 60 sequences (57 haplotypes + 2CH and 1SE representatives of the Vences haplotypes), and cut them down to 331bp alignment. 
 
+**This was changed in April 2016 to 63 haplotypes. An additional 5 CH haplotypes were added from the newly sequenced data. 
+jModelTest was rerun on the new dataset. The new model under AIC is shown. This is only slightly different to the model from before. 
 
 
 *jModelTest*
@@ -649,38 +651,38 @@ I aligned 60 sequences (57 haplotypes + 2CH and 1SE representatives of the Vence
 
 The most likely model using AIC for cytb with outgroups: 
 
-Model = TIM3+I+G
-
-partition = 0.12032
-
--lnL = 1369.6723
-
-K = 126
-
-freqA = 0.2435
-
-freqC = 0.3402
-
-freqG = 0.1084
-
-freqT = 0.3079
-
-R(a) [AC] = 0.3124 
-
-R(a) [AG] = 34.8455
-
-R(a) [AT] = 1.0000
-
-R(a) [CG] = 0.3124
-
-R(a) [CT] = 15.4882
-
-R(a) [GT] = 1.0000
-
-p-inv = 0.4510
-
-gamma shape = 0.7200
-
+Model selected: 
+   Model = TIM3+I+G
+   
+   partition = 012032
+   
+   -lnL = 1396.0579
+   
+   K = 134
+   
+   freqA = 0.2421 
+   
+   freqC = 0.3392 
+   
+   freqG = 0.1101 
+   
+   freqT = 0.3086 
+   
+   R(a) [AC] =  0.3104
+   
+   R(b) [AG] =  33.9513
+   
+   R(c) [AT] =  1.0000
+   
+   R(d) [CG] =  0.3104
+   
+   R(e) [CT] =  15.8661
+   
+   R(f) [GT] =  1.0000
+   
+   p-inv = 0.4340
+   
+   gamma shape = 0.7060 
 
 
 ####*COX1*
