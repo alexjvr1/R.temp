@@ -50,7 +50,7 @@ Rtk43.fa.amb  Rtk43.fa.ann  Rtk43.fa.bwt  Rtk43.fa.pac  Rtk43.fa.sa
 
 Align the demultiplexed individuals to the indexed genome. 
 This is for one individual
-Start: 11:26
+~108min
 ```
 bwa aln Rtk43.fa.gz /gdc_home4/alexjvr/SEFinalSamples/SEsamples_193.19/F21.fq.trim > Rt.F21.sai
 ```
@@ -64,7 +64,7 @@ bwa aln Rtk43.fa demultiplexed/*.fq.gz > Rt.*.sai
 
 Convert to sam format
 ```
-bwa samse Rtk43.fa Rt.abnd09.sai demultiplexed/abnd_09_H5.fq.gz > Rt.abnd09.sai.sam
+bwa samse Rtk43.fa.gz Rt.abnd09.sai demultiplexed/abnd_09_H5.fq.gz > Rt.abnd09.sai.sam
 
 #I got an error message when running this for all abnd01-09. And all the files are exactly the same size. I'm not sure whether this is right or not
 
@@ -144,7 +144,21 @@ samtools flagstat Rt.F21.bam.sorted
 And on one of the CH data (vora_01)
 
 ```
+samtools flagstat Rt.vora01.bam.sorted
 
+3758034 + 0 in total (QC-passed reads + QC-failed reads)
+0 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+795577 + 0 mapped (21.17% : N/A)
+0 + 0 paired in sequencing
+0 + 0 read1
+0 + 0 read2
+0 + 0 properly paired (N/A : N/A)
+0 + 0 with itself and mate mapped
+0 + 0 singletons (N/A : N/A)
+0 + 0 with mate mapped to a different chr
+0 + 0 with mate mapped to a different chr (mapQ>=5)
 ```
 
 So I need to relax the initial parameters.
