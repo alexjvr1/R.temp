@@ -30,6 +30,8 @@ Overview of a pipeline is here:
 
 http://www.ebi.ac.uk/training/sites/ebi.ac.uk.training/files/materials/2014/140217_AgriOmics/dan_bolser_snp_calling.pdf
 
+**use bwa-mem
+
 1. Align
   - Index genome
 2. SNP calling
@@ -91,7 +93,7 @@ samtools import Rtk43.fa.fai Rt.abnd01.sai.sam Rt.abnd01.sai.bam
 
 And then sort the BAM file (1min)
 ```
-samtools sort Rt.H2.bam Rt.H2.bam.sorted
+samtools sort Rt.H2.bam -o Rt.H2.bam.sorted
 ```
 
 And last, we need Samtools to index the BAM file (10s)
@@ -115,8 +117,35 @@ the idxstats command
 samtools idxstats Rt.abnd03.sai.bam.sorted.bam
 ```
 
-###Problem
-I'm only getting ~100 000 sequences mapped. For some reason only ~500 000 reads were used to start with (this is already 1/7 of the 3.5mil reads). And then I'm only mapping 19% of these reads..   
+###Results
+
+I used the demultiplexed & trimmed reads from both of the following samples: 
+
+SE data (F21)
+
+```
+samtools flagstat Rt.F21.bam.sorted
+
+2374365 + 0 in total (QC-passed reads + QC-failed reads)
+0 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+420707 + 0 mapped (17.72% : N/A)
+0 + 0 paired in sequencing
+0 + 0 read1
+0 + 0 read2
+0 + 0 properly paired (N/A : N/A)
+0 + 0 with itself and mate mapped
+0 + 0 singletons (N/A : N/A)
+0 + 0 with mate mapped to a different chr
+0 + 0 with mate mapped to a different chr (mapQ>=5)
+```
+
+And on one of the CH data (vora_01)
+
+```
+
+```
 
 So I need to relax the initial parameters.
 
