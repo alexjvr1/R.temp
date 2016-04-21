@@ -161,14 +161,6 @@ samtools flagstat Rt.vora01.bam.sorted
 0 + 0 with mate mapped to a different chr (mapQ>=5)
 ```
 
-So I need to relax the initial parameters.
-
-BUT my demultiplexed files seem much smaller than they're supposed to be. I should have ~3.5mil reads per sample, but there is only ~500 000 in each. So on top of getting a low mapping success, I'm starting with far fewer reads than I should! What went wrong with the demultiplexing? I will have to redo this step to check what the problem is. 
-
-And then I need to call SNPs
-
-I will use FreeBayes
-
 
 ###Mapping to the transcriptome. 
 
@@ -177,6 +169,31 @@ The R. temporaria transcriptome was published in 2015:
 A de novo Assembly of the Common Frog (Rana temporaria) Transcriptome and Comparison of Transcription Following Exposure to Ranavirus and Batrachochytrium dendrobatidis
 
 Price *et al.* 2015, PLoS One
+
+
+
+###Mapping to the *Nanorana parkeri* genome
+
+Sun *et al.* 2015, PNAS Published the genome of a from *Nanorana parkeri*. 
+
+According to the paper 
+
+1. ~50% of the genome comprised TE
+
+2. ~11Mb of amphibina specific conserved elements (when compared with Xenopus tropicalis)
+
+3. Substantial blocks of homologous synteny with rare inter- or intrachromosomal rearrangements between Xenopus and Nanorana. 
+
+Genome size ~2.3Gb
+
+I will map my sequences to Nanorana as a test. 
+
+NCBI Bioproject accession nr: PRJNA243398
+
+
+
+
+
 
 
 
