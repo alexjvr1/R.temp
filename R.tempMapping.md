@@ -207,7 +207,10 @@ Time to index:
 bwa index GCA_000935625.1_ASM93562v1_genomic.fna.gz
 ```
 
-
+Align F21 and vora01 to the indexed genome
+```
+bwa aln GCA_000935625.1_ASM93562v1_genomic.fna.gz /gdc_home4/alexjvr/SE.CH.mapping/F21.fq.trim > Nan.F21.sai
+```
 
 
 
