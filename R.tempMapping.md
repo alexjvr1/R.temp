@@ -190,8 +190,22 @@ I will map my sequences to Nanorana as a test.
 
 NCBI Bioproject accession nr: PRJNA243398
 
+```
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA_000935625.1_ASM93562v1/* .
+```
 
+I'm running this on GDCsrv1
 
+** I'm not sure which file I need to use. A description can be found here: http://www.ncbi.nlm.nih.gov/genome/doc/ftpfaq/
+
+But this has not clarified anything for me. 
+
+I'm starting with the fasta file
+
+Time to index: 
+```
+bwa index GCA_000935625.1_ASM93562v1_genomic.fna.gz
+```
 
 
 
