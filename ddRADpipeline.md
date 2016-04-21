@@ -76,6 +76,8 @@ Most of the computing power is at the GDC. I have access to the servers there fo
 
 i.s.o typing out the path everytime. e.g. for gatk on the gdc server
 ```
+alias gatk="java -Xmx2g -jar /usr/local/gatk-protected-3.4-20150626/executable/GenomeAnalysisTK.jar"
+
 gatk -T CallableLoci -R ref/human_g1k_b37_20.fasta -L 20 -I bams/trio-calling/NA12877_wgs_20.bam -o sandbox/NA12877_wgs_20.bam.callableLoci.bed -summary sandbox/NA12877_wgs_20.bam.callableLoci.summary
 ```
 
