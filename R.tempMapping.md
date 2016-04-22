@@ -251,3 +251,10 @@ F21
 0 + 0 with mate mapped to a different chr
 0 + 0 with mate mapped to a different chr (mapQ>=5)
 ```
+
+
+##Ask Sorel: 
+
+How to improve mapping to Nanorana genome? 
+
+How is the transcriptome mapping going? 
