@@ -176,6 +176,8 @@ Price *et al.* 2015, PLoS One
 
 Sun *et al.* 2015, PNAS Published the genome of a from *Nanorana parkeri*. 
 
+From a different family to *R.temp* (Dicroglossidae vs Ranidae), but seem to be fairly closely related: Pyron & Wiens 2011 MPE
+
 According to the paper 
 
 1. ~50% of the genome comprised TE
