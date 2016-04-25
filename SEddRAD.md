@@ -1085,7 +1085,7 @@ and draw plot
 That looks a lot better. Most missing data <0.5
 
 ![alt txt][imissSE0.95.2]
-[imissSE0.95.2]:https://cloud.githubusercontent.com/assets/12142475/12292043/07ccee06-b9eb-11e5-9777-368b353461e0.png
+[imissSE0.95.2]:https://cloud.githubusercontent.com/assets/12142475/12295136/5494ec70-b9ff-11e5-8adc-279cdacdb2c0.png
 
 ```
 mawk '$5 > 0.5' out.imiss | cut -f1 > lowDP.indiv
