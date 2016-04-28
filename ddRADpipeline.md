@@ -1217,6 +1217,14 @@ Started both runs on Thurs 28 April @15:30
 
 
 
+##Build a Ref sequence from de novo data. 
+
+Another thing I could do to improve SNP calling, is to create a reference sequence based on the sequences from my own data.
+
+1. Use a phylip or nexus file output from pyRAD to create a concensus sequence.
+
+***Be sure to insert NNN inbetween the loci, because the order is fake. 
+
 
 
 ####1. *Optimisation of parameters*
