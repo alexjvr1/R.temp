@@ -1195,6 +1195,30 @@ Run Time = 3.00 seconds
 ```
 
 
+##The effect of Depth on pyRAD
+
+Evan (https://www.eeb.ucla.edu/Faculty/Shaffer/mccartney.htm) suggests that I can check the effect of depth on calling heterozygotes (i.e. at what depth do I get the correct number of Heterozygotes called?). 
+
+1. I should plot He & nucleotide diversity vs depth. 
+
+2. Rerun pyRAD with different depth parameters and test the effect
+
+
+I will do this with the SE dataset. I'll run pyRAD for a minDP of 6 (already run), 10, 20. 
+
+1. Create new params.txt files
+
+2. Run pyRAD s45678
+
+Started both runs on Thurs 28 April @15:30
+
+
+
+
+
+
+
+
 ####1. *Optimisation of parameters*
 ####2. *QC: sample dropout*
 
