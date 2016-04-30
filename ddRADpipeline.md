@@ -776,6 +776,15 @@ ggplot(subset, aes(x=subset$FinalSites, y=subset$polyfreq)) + geom_point(shape=1
 4. Sample dropout between populations
 
 
+##There's some suggestion that readDepth might be important in pyRAD
+
+- I will test for the effect of minDP in pyRAD on nucleotide diversity and heterozygosity. 
+
+- Het is calculated from the polyfreq stat (2pq)
+
+Run pyRAD (for SE193 dataset) for MinDP 10 & 20 (minDP 6 already run). 
+
+
 
 
 ###Once pyrad is done
