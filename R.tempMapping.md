@@ -171,6 +171,128 @@ A de novo Assembly of the Common Frog (Rana temporaria) Transcriptome and Compar
 Price *et al.* 2015, PLoS One
 
 
+He sent me a link to the unannotated genome: 
+
+https://dl.dropboxusercontent.com/u/13818137/Trinity.fasta
+
+I'll use the same two samples to map to the transcriptome: 
+
+Time: 210.343seconds
+```
+bwa index R.temp.trancriptome.fas
+```
+output: 
+Rtk.Tcript.indexed.amb  Rtk.Tcript.indexed.ann  Rtk.Tcript.indexed.bwt  Rtk.Tcript.indexed.pac  Rtk.Tcript.indexed.sa
+
+
+
+Align the demultiplexed individuals to the indexed genome. 
+This is for one individual
+~108min
+```
+  bwa aln R.temp.trancriptome.fas /gdc_home4/alexjvr/SE.CH.mapping/vora_01.fq.trim > Rt.tcript.vora01.sai
+
+bwa aln R.temp.trancriptome.fas /gdc_home4/alexjvr/SE.CH.mapping/vora09.fq.trim > Rt.tcript.F21.sai
+```
+
+
+Convert to sam format
+```
+bwa samse R.temp.trancriptome.fas Rt.tcript.vora01.sai /gdc_home4/alexjvr/SE.CH.mapping/vora_01.fq.trim > Rt.tcript.vora01.sai.sam
+
+bwa samse R.temp.trancriptome.fas Rt.tcript.F21.sai /gdc_home4/alexjvr/SE.CH.mapping/F21.fq.trim > Rt.tcript.F21.sai.sam
+```
+
+Now I have to use samtools
+
+First, index the genome (this only needs to be done once) (~2min)
+```
+samtools faidx R.temp.trancriptome.fas
+```
+
+Next, convert SAM to BAM files. (A BAM file is just a binary version of a SAM files) (1min)
+```
+samtools import R.temp.trancriptome.fas.fai Rt.tcript.vora01.sai.sam Rt.tcript.vora01.sai.bam
+
+samtools import R.temp.trancriptome.fas.fai Rt.tcript.F21.sai.sam Rt.tcript.F21.sai.bam
+```
+
+And then sort the BAM file (1min)
+```
+samtools sort Rt.tcript.vora01.sai.bam -o Rt.tcript.vora01.sai.bam.sorted
+
+samtools sort Rt.tcript.F21.sai.bam -o Rt.tcript.F21.sai.bam.sorted
+
+```
+
+And last, we need Samtools to index the BAM file (10s)
+```
+samtools index Rt.tcript.vora01.sai.bam.sorted
+
+samtools index Rt.tcript.F21.sai.bam.sorted
+```
+
+Now I need to check the output of the alignments. 
+1. What proportion of the sequences mapped?
+2. What's the comparison between samples?
+3. 
+
+For basic statistics use the flagstat command
+```
+samtools flagstat Rt.tcript.vora01.sai.bam.sorted
+```
+
+OR
+the idxstats command
+```
+samtools idxstats Rt.tcript.vora01.sai.bam.sorted
+```
+
+###Results
+
+I used the demultiplexed & trimmed reads from the following samples: 
+
+SE data (F21)
+
+```
+samtools flagstat Rt.tcript.F21.sai.bam.sorted
+
+2374365 + 0 in total (QC-passed reads + QC-failed reads)
+0 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+343643 + 0 mapped (14.47% : N/A)
+0 + 0 paired in sequencing
+0 + 0 read1
+0 + 0 read2
+0 + 0 properly paired (N/A : N/A)
+0 + 0 with itself and mate mapped
+0 + 0 singletons (N/A : N/A)
+0 + 0 with mate mapped to a different chr
+0 + 0 with mate mapped to a different chr (mapQ>=5)
+```
+
+And on one of the CH data (vora_01)
+
+```
+samtools flagstat Rt.tcript.vora01.sai.bam.sorted
+
+3758034 + 0 in total (QC-passed reads + QC-failed reads)
+0 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+503348 + 0 mapped (13.39% : N/A)
+0 + 0 paired in sequencing
+0 + 0 read1
+0 + 0 read2
+0 + 0 properly paired (N/A : N/A)
+0 + 0 with itself and mate mapped
+0 + 0 singletons (N/A : N/A)
+0 + 0 with mate mapped to a different chr
+0 + 0 with mate mapped to a different chr (mapQ>=5)
+```
+
+
 
 ###Mapping to the *Nanorana parkeri* genome
 
@@ -253,8 +375,6 @@ F21
 ```
 
 
-##Ask Sorel: 
+##Transcriptome mapping
 
-How to improve mapping to Nanorana genome? 
 
-How is the transcriptome mapping going? 
