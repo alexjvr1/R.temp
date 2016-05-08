@@ -82,13 +82,57 @@ Plot:
 ```
 3. Average depth per site vs nucleotide diversity
 ```
+vcftools --vcf CHDepthtest.MinDP10.vcf --site-mean-depth --recode-INFO-all  ##this information is not in the vcf file! I guess it gets removed by pyRAD, which only outputs the SNP information... 
+
+vcftools --vcf CHDepthtest.MinDP10.vcf --site-pi --recode-INFO-all
+```
+
+Write column 3 to a new file called freq.pi. Move this to gdcsrv to draw a histogram in bash: 
+
+/gdc_home4/alexjvr/DepthTest/CH.plots
 
 
 ```
+cat out.sites.pi | awk '{print $3}' > freq.pi
+
+scp freq.pi alexjvr@gdcsrv1.ethz.ch:/gdc_home4/alexjvr/DepthTest/CH.plots/
+
+
+gnuplot << \EOF 
+set terminal dumb size 120, 30
+set autoscale 
+unset label
+set title "Histogram of nucleotide diversity per locus"
+set ylabel "Number of Occurrences"
+set xlabel "nucleotide diversity"
+binwidth=0.01
+bin(x,width)=width*floor(x/width) + binwidth/2.0
+plot 'freq.pi' using (bin( $1,binwidth)):(1.0) smooth freq with boxes
+pause -1
+EOF
+```
+
+MinDP10 
+
+![alt_txt][CH.DP10_site-pi]
+[CH.DP10_site-pi]:https://cloud.githubusercontent.com/assets/12142475/15096083/694e993c-149e-11e6-8934-cf5ffb21feb1.png
+
+
+MinDP15
+
+![alt_txt][CH.DP15_site-pi]
+[CH.DP15_site-pi]:https://cloud.githubusercontent.com/assets/12142475/15096085/6f2191d4-149e-11e6-9170-ab624d220d50.png
+
+
+
 
 To check how much the depth filter makes a difference in pyRAD: 
 
 compare avg depth per site vs nucleotide diversity for n10 dataset, filtered for n15 coverage, to pyRAD-ru n15 coverage
+
+```
+
+```
 
 
 4. Average depth per site vs Heterozygosity
