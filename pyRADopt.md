@@ -6,6 +6,13 @@
   
 2. MinDP
 
+pyRAD uses the ML method from Lynch et al. 2008 to jointly estimate nucleotide heterozygosity and error for every base across a stack. 
+
+This is estimated per stack within an individual to call homozygotes/ heterozygotes. 
+
+The method seems robust from ~6-8x coverage, unless error rates are really high, or nucleotide diversity is very low. 
+
+
   Checks: nucleotide diversity vs depth, Ho vs He at different depths
   
   
@@ -53,6 +60,52 @@ minDP 20 (gdcsrv2)
 I'm using 55 individuals randomly chosen from the FstQst sample folder. 
 
 I've transferred these to Euler & will run MinDP10, MinDP15, MinDP20 for these
+
+**These ran on GDCsrv. and vcftools/bcftools will be run on the mac. 
+/Users/alexjvr/2016RADAnalysis/pyRADopt/input
+
+Plot: 
+
+1. average depth per individual vs nucleotide diversity
+
+```
+
+
+```
+
+
+2. Average depth per individual vs Heterozygosity
+
+```
+
+
+```
+3. Average depth per site vs nucleotide diversity
+```
+
+
+```
+
+To check how much the depth filter makes a difference in pyRAD: 
+
+compare avg depth per site vs nucleotide diversity for n10 dataset, filtered for n15 coverage, to pyRAD-ru n15 coverage
+
+
+4. Average depth per site vs Heterozygosity
+```
+
+```
+
+5. Ho vs He at Depth10 vs Depth 15
+```
+
+```
+ 
+
+
+
+
+
 
 ###BV
 
