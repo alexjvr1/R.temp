@@ -125,6 +125,13 @@ MinDP15
 
 
 
+The good news is that the nucleotide frequency distributions look exactly the same at both depths. 
+
+(Note the number on the side to show the difference in the number of loci) 
+
+But, there are some sites that have a very high nucleotide diversity: ~1.0. Clearly this is from incorrectly clustered loci. I could either filter these out by setting a parameter in pyRAD, or after the fact, with VCFtools. 
+
+Since all the pyRAD runs have been completed, I will do this after the fact. 
 
 To check how much the depth filter makes a difference in pyRAD: 
 
