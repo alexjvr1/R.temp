@@ -131,7 +131,96 @@ The good news is that the nucleotide frequency distributions look exactly the sa
 
 But, there are some sites that have a very high nucleotide diversity: ~1.0. Clearly this is from incorrectly clustered loci. I could either filter these out by setting a parameter in pyRAD, or after the fact, with VCFtools. 
 
-Since all the pyRAD runs have been completed, I will do this after the fact. 
+Since all the pyRAD runs have been completed, I will do this after the fact: 
+
+Filter for MAC 3
+
+```
+vcftools --vcf CHDepthtest.MinDP10.vcf --mac 3 recode-INFO-all --out s1.CH.DP10
+
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf CHDepthtest.MinDP10.vcf
+	--recode-INFO-all
+	--mac 3
+	--out s1.CH.DP10
+	--recode
+
+Eighth Header entry should be INFO: INFO    
+After filtering, kept 55 out of 55 Individuals
+Outputting VCF file...
+After filtering, kept 115033 out of a possible 301652 Sites
+Run Time = 12.00 seconds
+```
+
+and draw the graphs
+
+
+```
+vcftools --vcf s1.CH.DP10.recode.vcf --missing-indv
+
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf s1.CH.DP10.recode.vcf
+	--missing-indv
+
+After filtering, kept 55 out of 55 Individuals
+Outputting Individual Missingness
+After filtering, kept 115033 out of a possible 115033 Sites
+Run Time = 2.00 seconds
+
+mawk '!/IN/' out.imiss | cut -f5 > totalmissing
+gnuplot << \EOF 
+set terminal dumb size 120, 30
+set autoscale 
+unset label
+set title "Histogram of % missing data per individual"
+set ylabel "Number of Occurrences"
+set xlabel "% of missing data"
+#set yr [0:100000]
+binwidth=0.01
+bin(x,width)=width*floor(x/width) + binwidth/2.0
+plot 'totalmissing' using (bin( $1,binwidth)):(1.0) smooth freq with boxes
+pause -1
+EOF
+```
+
+![alt_txt][CH.DP10.mac3]
+[CH.DP10.mac3]:
+
+```
+
+vcftools --vcf CHDepthtest.MinDP10.vcf --max-missing 0.5 --recode --recode-INFO-all --out s2CH.DP10
+
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf CHDepthtest.MinDP10.vcf
+	--recode-INFO-all
+	--max-missing 0.5
+	--out s2CH.DP10
+	--recode
+
+Eighth Header entry should be INFO: INFO    
+After filtering, kept 55 out of 55 Individuals
+Outputting VCF file...
+After filtering, kept 23077 out of a possible 301652 Sites
+Run Time = 8.00 seconds
+```
+
+
+
+![alt_txt][CH.DP10.maxmissing0.5]
+[CH.DP10.maxmissing0.5]:
+
+
+
+
 
 To check how much the depth filter makes a difference in pyRAD: 
 
