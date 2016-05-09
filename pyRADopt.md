@@ -131,6 +131,18 @@ The good news is that the nucleotide frequency distributions look exactly the sa
 
 But, there are some sites that have a very high nucleotide diversity: ~1.0. Clearly this is from incorrectly clustered loci. I could either filter these out by setting a parameter in pyRAD, or after the fact, with VCFtools. 
 
+The amount of missing data per individual for the unfiltered dataset: 
+
+DP10
+
+![alt_txt][CH.DP10_missing]
+[CH.DP10_missing]:https://cloud.githubusercontent.com/assets/12142475/15125545/4f5eef6e-15e2-11e6-8bc9-871283b67267.png
+
+DP15
+![alt_txt][CH.DP15_missing]
+[CH.DP15_missing]:https://cloud.githubusercontent.com/assets/12142475/15125550/503a3768-15e2-11e6-9942-fad8a57c836c.png
+
+
 Since all the pyRAD runs have been completed, I will do this after the fact: 
 
 Filter for MAC 3
@@ -190,7 +202,7 @@ EOF
 ```
 
 ![alt_txt][CH.DP10.mac3]
-[CH.DP10.mac3]:
+[CH.DP10.mac3]:https://cloud.githubusercontent.com/assets/12142475/15125546/4f848828-15e2-11e6-9f02-5c2618828071.png
 
 ```
 
@@ -216,7 +228,7 @@ Run Time = 8.00 seconds
 
 
 ![alt_txt][CH.DP10.maxmissing0.5]
-[CH.DP10.maxmissing0.5]:
+[CH.DP10.maxmissing0.5]:https://cloud.githubusercontent.com/assets/12142475/15125549/501e6790-15e2-11e6-9a7b-ea867c1a5427.png
 
 
 
