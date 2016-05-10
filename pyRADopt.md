@@ -139,6 +139,7 @@ DP10
 [CH.DP10_missing]:https://cloud.githubusercontent.com/assets/12142475/15125545/4f5eef6e-15e2-11e6-8bc9-871283b67267.png
 
 DP15
+
 ![alt_txt][CH.DP15_missing]
 [CH.DP15_missing]:https://cloud.githubusercontent.com/assets/12142475/15125550/503a3768-15e2-11e6-9942-fad8a57c836c.png
 
@@ -231,6 +232,261 @@ Run Time = 8.00 seconds
 [CH.DP10.maxmissing0.5]:https://cloud.githubusercontent.com/assets/12142475/15125549/501e6790-15e2-11e6-9a7b-ea867c1a5427.png
 
 
+
+###Individual-level plots
+
+These are based on the s3* and s5* outputs from pyRAD (/stats). 
+
+I copied these data to .csv file on the mac and created the following plots in R: 
+
+##Mean Depth vs nucleotide diversity
+
+![alt_txt][MinDP10.plot1]
+[MinDP10.plot1]:https://cloud.githubusercontent.com/assets/12142475/15132316/32189cf4-160d-11e6-9677-4dd8530c92c1.png
+
+
+![alt_txt][MinDP10.plot2]
+[MinDP10.plot2]:https://cloud.githubusercontent.com/assets/12142475/15132315/321867b6-160d-11e6-82e1-f01e568d57ee.png
+
+![alt_txt][MinDP15.plot1]
+[MinDP15.plot1]:https://cloud.githubusercontent.com/assets/12142475/15132320/321a9b94-160d-11e6-9010-8c1b16a84e7a.png
+
+![alt_txt][MinDP15.plot2]
+[MinDP15.plot2]:https://cloud.githubusercontent.com/assets/12142475/15132318/32195a0e-160d-11e6-8d30-bcdbe12a5dbf.png
+
+
+## Mean depth vs SD
+
+![alt_txt][MinDP10.plot3]
+[MinDP10.plot3]:https://cloud.githubusercontent.com/assets/12142475/15132317/3218c56c-160d-11e6-93ce-c3925968d323.png
+
+![alt_txt][MinDP15.plot3]
+[MinDP15.plot3]:https://cloud.githubusercontent.com/assets/12142475/15132319/321a89ec-160d-11e6-8468-29cf93e2de17.png
+
+
+
+
+
+R-code 
+```
+##pyRADopt
+##plot polyfreq vs Depth minDP10
+
+setwd("/Users/alexjvr/2016RADAnalysis/pyRADopt")
+
+CH.MinDP10 <- read.csv("CH.Depth.n10.csv", header=T)
+head(CH.MinDP10)
+summary(CH.MinDP10)
+
+##this qplot works
+#qplot(x = CH.MinDP10$d.9.me, y = CH.MinDP10$poly, data=CH.MinDP10, geom=c("point", "smooth"), method="lm", formula=y~x, xlab="avg mean depth >9x per indiv", ylab="avg nucleotide diversity per indiv")
+
+#install.packages("ggplot2")
+library(ggplot2)
+
+df <- data.frame(x = CH.MinDP10$d.9.me)
+df$y <- CH.MinDP10$poly
+
+?ggplot
+
+p <- ggplot(data=df, aes(x=x, y=y)) +
+  geom_smooth(method="lm", se=F, color="black", formula= y~x) +
+  geom_point()
+p
+
+p <- p + xlab("average depth per indiv (>9x)") + ylab("average nucleotide diversity per indiv") + ggtitle("CH.DP10: mean depth x polyfreq")
+p
+
+
+lm_eqn <- function(df){
+  m <- lm(y~x, df);
+  eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,
+                   list(a = format(coef(m)[1], digits =2),
+                        b = format(coef(m)[2], digits =2),
+                        r2 = format(summary(m)$r.squared, digits =3)))
+  as.character(as.expression(eq));
+}
+
+summary(m)
+
+p1 <- p + geom_text(size=7, x = 30, y = 0.0054, label = lm_eqn(df), parse =T) ##x & y = position on graph
+p1
+
+
+
+##limiting the x or y axis will remove some of the datapoints. But the df needs to be re-defined to calculate the regression formula. 
+p3 <- p1 + xlim(25, 35) 
+p3
+
+
+##CH.DP10: mean depth x polyfreq (DP >25)
+
+#subset the data
+
+CH.DP10.24x <- subset(CH.MinDP10, d.9.me >= 25, 
+                      select=c("d.9.me", "poly"))
+
+summary(CH.DP10.24x)
+
+df <- data.frame(x = CH.DP10.24x$d.9.me)
+df$y <- CH.DP10.24x$poly
+
+
+p <- ggplot(data=df, aes(x=x, y=y)) +
+  geom_smooth(method="lm", se=F, color="black", formula= y~x) +
+  geom_point()
+p
+
+p <- p + xlab("average depth per indiv (>9x)") + ylab("average nucleotide diversity per indiv") + ggtitle("CH.DP10: mean depth (>25x) x polyfreq")
+p
+
+
+lm_eqn <- function(df){
+  m <- lm(y~x, df);
+  eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,
+                   list(a = format(coef(m)[1], digits =2),
+                        b = format(coef(m)[2], digits =2),
+                        r2 = format(summary(m)$r.squared, digits =3)))
+  as.character(as.expression(eq));
+}
+
+summary(m)
+
+p1 <- p + geom_text(size=7, x = 32.5, y = 0.0047, label = lm_eqn(df), parse =T) ##x & y = position on graph
+p1
+
+##Relationship between Depth & Variance?
+
+df <- data.frame(x=CH.MinDP10$d.9.me)
+df$y <- CH.MinDP10$d.9.sd
+
+p <- ggplot(data=df, aes(x=x, y=y)) +
+  geom_smooth(method="lm", se=F, color="black", formula= y~x) +
+  geom_point()
+p
+
+p <- p + xlab("average depth per indiv (>9x)") + ylab("Standard Dev") + ggtitle("CH.DP10: mean depth (>9x) x SD of Depth")
+p
+
+
+lm_eqn <- function(df){
+  m <- lm(y~x, df);
+  eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,
+                   list(a = format(coef(m)[1], digits =2),
+                        b = format(coef(m)[2], digits =2),
+                        r2 = format(summary(m)$r.squared, digits =3)))
+  as.character(as.expression(eq));
+}
+
+summary(m)
+
+p1 <- p + geom_text(size=7, x = 25, y = 120, label = lm_eqn(df), parse =T) ##x & y = position on graph
+p1
+
+###############################
+###############################
+##And plot minDP15
+
+CH.MinDP15 <- read.csv("CH.Depth.n15.csv", header=T)
+head(CH.MinDP15)
+summary(CH.MinDP15)
+
+df <- data.frame(x = CH.MinDP15$d.14.me)
+df$y <- CH.MinDP15$poly
+
+
+p <- ggplot(data=df, aes(x=x, y=y)) +
+  geom_smooth(method="lm", se=F, color="black", formula= y~x) +
+  geom_point()
+p
+
+p <- p + xlab("average depth per indiv (>14x)") + ylab("average nucleotide diversity per indiv") + ggtitle("CH.DP15: mean depth x polyfreq")
+p
+
+
+lm_eqn <- function(df){
+  m <- lm(y~x, df);
+  eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,
+                   list(a = format(coef(m)[1], digits =2),
+                        b = format(coef(m)[2], digits =2),
+                        r2 = format(summary(m)$r.squared, digits =3)))
+  as.character(as.expression(eq));
+}
+
+summary(m)
+
+p1 <- p + geom_text(size=7, x = 45, y = 0.0055, label = lm_eqn(df), parse =T) ##x & y = position on graph
+p1
+
+
+
+##limiting the x or y axis will remove some of the datapoints. But the df needs to be re-defined to calculate the regression formula. 
+p3 <- p1 + xlim(25, 35) 
+p3
+
+##########################
+##########################
+
+##poly10 vs poly15
+
+dfn10.n15 <- read.csv("CH.Depth.n10.15.csv")
+
+df <- df <- data.frame(x = dfn10.n15$poly.n10)
+df$y <- dfn10.n15$poly.n15
+
+
+p <- ggplot(data=df, aes(x=x, y=y)) +
+  geom_smooth(method="lm", se=F, color="black", formula= y~x) +
+  geom_point()
+p
+
+p <- p + xlab("nucleotide div (>9x)") + ylab("nucleotide div (>14x)") + ggtitle("Nucleotide diversity per indiv at 10x vs 15x")
+p
+
+
+lm_eqn <- function(df){
+  m <- lm(y~x, df);
+  eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,
+                   list(a = format(coef(m)[1], digits =2),
+                        b = format(coef(m)[2], digits =2),
+                        r2 = format(summary(m)$r.squared, digits =3)))
+  as.character(as.expression(eq));
+}
+
+summary(m)
+
+p1 <- p + geom_text(size=7, x = 0.0044, y = 0.0057, label = lm_eqn(df), parse =T) ##x & y = position on graph
+p1
+
+
+##Relationship between Depth & Variance at n15?
+
+df <- data.frame(x=CH.MinDP15$d.14.me)
+df$y <- CH.MinDP15$d.14.sd
+
+p <- ggplot(data=df, aes(x=x, y=y)) +
+  geom_smooth(method="lm", se=F, color="black", formula= y~x) +
+  geom_point()
+p
+
+p <- p + xlab("average depth per indiv (>14x)") + ylab("Standard Dev") + ggtitle("CH.DP15: mean depth (>14x) x SD of Depth")
+p
+
+
+lm_eqn <- function(df){
+  m <- lm(y~x, df);
+  eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,
+                   list(a = format(coef(m)[1], digits =2),
+                        b = format(coef(m)[2], digits =2),
+                        r2 = format(summary(m)$r.squared, digits =3)))
+  as.character(as.expression(eq));
+}
+
+summary(m)
+
+p1 <- p + geom_text(size=7, x = 37, y = 150, label = lm_eqn(df), parse =T) ##x & y = position on graph
+p1
+```
 
 
 
