@@ -23,7 +23,7 @@ The method seems robust from ~6-8x coverage, unless error rates are really high,
   I'm not sure how I can correct for this. 
   
   
-##Clustering Threshold
+##1. Clustering Threshold
 
 Run pyRAD for a subset of individuals (a good representation of the genetic diversity in the population). 
 
@@ -36,13 +36,21 @@ Use the output from the stats/Pi_* file to create the plots.
 
 
 
-##Depth
+##2. Depth
 
 UCLA groups found that the He/Ho tend more towards convergence when a higher minDP is used (i.e. minimum number of reads clustered across individuals.) 
 
 To test whether my data show the same effect I will run minDP 6, 10, 20 initially. 
 
 PyRAD needs to be run from s2. If I subset the samples that have already run (edits/ & clust.94/), it doesn't work. 
+
+
+1. Compare nDepth vs nucleotide diversity (output from pyRAD) within and between pyRAD runs
+
+2. As suggested (below) subset data to ~2Mil reads per individual, and rerun pyRAD. Compare nucleotide diversity between runs & to total depth. 
+
+https://groups.google.com/forum/#!topic/pyrad-users/1VvKPnaSOHI
+
 
 ###SE
 
