@@ -513,8 +513,219 @@ compare avg depth per site vs nucleotide diversity for n10 dataset, filtered for
 ```
 
 5. Ho vs He at Depth10 vs Depth 15
+
+There seem to be 
+ 
+ 
+MinDP10
+
+![alt_txt][He.Ho.10]
+[He.Ho.10]:https://cloud.githubusercontent.com/assets/12142475/15153135/f5375d5e-168c-11e6-9c3f-61639d383ec4.png
+
+ 
+
+MinDP15
+
+![alt_txt][He.Ho.15]
+[He.Ho.15]:https://cloud.githubusercontent.com/assets/12142475/15153134/f5337932-168c-11e6-96ca-308040490932.png
+
+
+
+
+
+Derive Ho & He using Plink
+
+1. Filter VCF file for MAC & max-missing
+
+2. Convert to plink
+
+3. use Plink to obtain HWE output
+
+4. copy to mac & use R to plot graphs
+
+```
+vcftools --vcf CHDepthtest.MinDP15.vcf --mac 3 --recode --recode-INFO-all --out s1.CH.DP15
+
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf CHDepthtest.MinDP15.vcf
+	--recode-INFO-all
+	--mac 3
+	--out s1.CH.DP15
+	--recode
+
+Eighth Header entry should be INFO: INFO    
+After filtering, kept 55 out of 55 Individuals
+Outputting VCF file...
+After filtering, kept 57074 out of a possible 154042 Sites
+Run Time = 6.00 seconds
+
+
+vcftools --vcf s1.CH.DP15.recode.vcf --max-missing 0.5 --recode --recode-INFO-all --out s2.CH.DP15
+
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf s1.CH.DP15.recode.vcf
+	--recode-INFO-all
+	--max-missing 0.5
+	--out s2.CH.DP15
+	--recode
+
+After filtering, kept 55 out of 55 Individuals
+Outputting VCF file...
+After filtering, kept 7918 out of a possible 57074 Sites
+Run Time = 2.00 seconds
+
+
+vcftools --vcf s2.CH.DP15.recode.vcf --plink --out HWE/s2.CH.DP15
+
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf s2.CH.DP15.recode.vcf
+	--out HWE/s2.CH.DP15
+	--plink
+
+After filtering, kept 55 out of 55 Individuals
+Writing PLINK PED and MAP files ... 
+	PLINK: Only outputting biallelic loci.
+Done.
+After filtering, kept 7918 out of a possible 7918 Sites
+Run Time = 0.00 seconds
+
+plink --file s2CHDP10 --hardy
+
+@----------------------------------------------------------@
+|        PLINK!       |     v1.07      |   10/Aug/2009     |
+|----------------------------------------------------------|
+|  (C) 2009 Shaun Purcell, GNU General Public License, v2  |
+|----------------------------------------------------------|
+|  For documentation, citation & bug-report instructions:  |
+|        http://pngu.mgh.harvard.edu/purcell/plink/        |
+@----------------------------------------------------------@
+
+Web-based version check ( --noweb to skip )
+Connecting to web...  OK, v1.07 is current
+
++++ PLINK 1.9 is now available! See above website for details +++ 
+
+Writing this text to log file [ plink.log ]
+Analysis started: Tue May 10 05:19:24 2016
+
+Options in effect:
+	--file s2CHDP10
+	--hardy
+
+22652 (of 22652) markers to be included from [ s2CHDP10.map ]
+Warning, found 55 individuals with ambiguous sex codes
+These individuals will be set to missing ( or use --allow-no-sex )
+Writing list of these individuals to [ plink.nosex ]
+55 individuals read from [ s2CHDP10.ped ] 
+0 individuals with nonmissing phenotypes
+Assuming a disease phenotype (1=unaff, 2=aff, 0=miss)
+Missing phenotype value is also -9
+0 cases, 0 controls and 55 missing
+0 males, 0 females, and 55 of unspecified sex
+Before frequency and genotyping pruning, there are 22652 SNPs
+55 founders and 0 non-founders found
+Writing Hardy-Weinberg tests (founders-only) to [ plink.hwe ] 
+2180 markers to be excluded based on HWE test ( p <= 0.001 )
+	0 markers failed HWE test in cases
+	0 markers failed HWE test in controls
+Total genotyping rate in remaining individuals is 0.668754
+0 SNPs failed missingness test ( GENO > 1 )
+0 SNPs failed frequency test ( MAF < 0 )
+After frequency and genotyping pruning, there are 20472 SNPs
+After filtering, 0 cases, 0 controls and 55 missing
+After filtering, 0 males, 0 females, and 55 of unspecified sex
 ```
 
+Plot in R:
+```
+###Plot HWE from plink generated output
+##I want to plot per locus He vs Ho for n10 and n15 on the same plot
+
+##Generated data in Plink (--hardy)
+##output is *.hwe, with several columns. 
+##2/SNP, 3/TEST (filter for ALL), 6/Genotype count, 7/Ho, 8/He, 9/P-value for HWE
+
+
+setwd("/Users/alexjvr/2016RADAnalysis/pyRADopt/input/HWE")
+df.n10 <- read.table("CHDP10.plink.hwe", header = T)
+summary(df.n10)
+head(df.n10)
+
+
+df.n10.v2 <- subset(df.n10, TEST=="ALL", select=SNP:E.HET.)
+head(df.n10.v2)
+summary(df.n10.v2)
+
+library(ggplot2)
+
+df.n10.3 <- df.n10.v2[with(df.n10.v2, order(E.HET.)),]##sort by E.HET
+head(df.n10.3)
+
+df.n10.3$Nr <- c(1:22652)##Add column numbered 1:22646 for the sorted SNPs
+head(df.n10.3)
+
+##plot O.HET & E.HET vs SNPnr
+
+library(ggplot2)
+
+df1<-data.frame(x=df.n10.3$Nr,y=df.n10.3$O.HET.)
+df2<-data.frame(x=df.n10.3$Nr,y=df.n10.3$E.HET.)
+
+ggplot(df1,aes(x,y))+geom_line(aes(color="O.HET."))+
+  geom_line(data=df2,aes(color="E.HET"))+
+  labs(color="Obs vs Exp Het")
+
+
+##################
+#######Same for CH.DP15
+
+
+df.n15 <- read.table("CHDP15.hwe", header = T)
+summary(df.n15)
+head(df.n15)
+
+
+df.n15.v2 <- subset(df.n15, TEST=="ALL", select=SNP:E.HET.)
+head(df.n15.v2)
+summary(df.n15.v2)
+
+library(ggplot2)
+
+df.n15.3 <- df.n15.v2[with(df.n15.v2, order(E.HET.)),]##sort by E.HET
+head(df.n15.3)
+
+df.n15.3$Nr <- c(1:7830)##Add column numbered 1:22646 for the sorted SNPs
+head(df.n15.3)
+
+##plot O.HET & E.HET vs SNPnr
+
+library(ggplot2)
+
+df1<-data.frame(x=df.n15.3$Nr,y=df.n15.3$O.HET.)
+df2<-data.frame(x=df.n15.3$Nr,y=df.n15.3$E.HET.)
+
+ggplot(df1,aes(x,y))+geom_line(aes(color="O.HET."))+
+  geom_line(data=df2,aes(color="E.HET"))+
+  labs(color="Obs vs Exp Het, CH.MinDP15")
+
+
+#############################
+##plot O.HET vs E.HET
+
+p2 <- ggplot(df.n15.3, aes(x=df.n15.3$E.HET.,y=df.n15.3$O.HET.)) + geom_line() + ylab("E.HET.") + xlab("O.HET")
+p2
+
+
+                                                     
 ```
  
 
