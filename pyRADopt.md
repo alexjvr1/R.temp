@@ -76,21 +76,9 @@ Plot:
 
 1. average depth per individual vs nucleotide diversity
 
-```
-
-
-```
-
-
-2. Average depth per individual vs Heterozygosity
-
-```
-
-
-```
-
-
-3. Average depth per site vs nucleotide diversity
+2. Average depth per site vs nucleotide diversity
+ 
+This isn't possible, because we can't get per locus depth estimates easily from pyRAD
 ```
 vcftools --vcf CHDepthtest.MinDP10.vcf --site-mean-depth --recode-INFO-all  ##this information is not in the vcf file! I guess it gets removed by pyRAD, which only outputs the SNP information... 
 
@@ -520,7 +508,7 @@ compare avg depth per site vs nucleotide diversity for n10 dataset, filtered for
 
 5. Ho vs He at Depth10 vs Depth 15
 
-O.Het varies greatly at different E.Het. One cocern is the number of SNPs with Ho > 0.5. 
+O.Het varies greatly at different E.Het. I'm concerned about the number of SNPs with Ho > 0.5, but not sure how to sensibly filter for this. 
  
  
 MinDP10
