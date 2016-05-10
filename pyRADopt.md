@@ -88,6 +88,8 @@ Plot:
 
 
 ```
+
+
 3. Average depth per site vs nucleotide diversity
 ```
 vcftools --vcf CHDepthtest.MinDP10.vcf --site-mean-depth --recode-INFO-all  ##this information is not in the vcf file! I guess it gets removed by pyRAD, which only outputs the SNP information... 
@@ -500,8 +502,12 @@ p1
 
 To check how much the depth filter makes a difference in pyRAD: 
 
-compare avg depth per site vs nucleotide diversity for n10 dataset, filtered for n15 coverage, to pyRAD-ru n15 coverage
 
+
+- It's not very easy to get the per locus depth estimates from pyRAD. The per individual counts are collapsed in the /cluster files. The concensus sequences from each individual are then clustered across individuals. 
+
+
+compare avg depth per site vs nucleotide diversity for n10 dataset, filtered for n15 coverage, to pyRAD n15 coverage
 ```
 
 ```
@@ -514,7 +520,7 @@ compare avg depth per site vs nucleotide diversity for n10 dataset, filtered for
 
 5. Ho vs He at Depth10 vs Depth 15
 
-There seem to be 
+O.Het varies greatly at different E.Het. One cocern is the number of SNPs with Ho > 0.5. 
  
  
 MinDP10
