@@ -6,7 +6,7 @@
   
 2. MinDP
 
-pyRAD uses the ML method from Lynch et al. 2008 to jointly estimate nucleotide heterozygosity and error for every base across a stack. 
+pyRAD uses the ML method from Lynch et al. 2008 to jointly estimate nucleotide heterozygosity and error for every base across a stack. .
 
 This is estimated per stack within an individual to call homozygotes/ heterozygotes. 
 
@@ -157,7 +157,7 @@ Since all the pyRAD runs have been completed, I will do this after the fact:
 Filter for MAC 3
 
 ```
-vcftools --vcf CHDepthtest.MinDP10.vcf --mac 3 recode-INFO-all --out s1.CH.DP10
+vcftools --vcf CHDepthtest.MinDP10.vcf --mac 3 --recode --recode-INFO-all --out s1.CH.DP10
 
 VCFtools - v0.1.12b
 (C) Adam Auton and Anthony Marcketta 2009
