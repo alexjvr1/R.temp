@@ -56,11 +56,295 @@ https://groups.google.com/forum/#!topic/pyrad-users/1VvKPnaSOHI
 
 I'm using the 36 pyRADopt individuals. 
 
-minDP 6 
 
 minDP 10 (gdcsrv1)
 
-minDP 20 (gdcsrv2)
+minDP 15 (gdcsrv2)
+
+
+Copy s3. and s5. outputs from both minDP10 and minDP15 outputs from pyRAD into an excel file. 
+
+Use R to draw some graphs; mainly to see the effect of depth on nulceotide diversity: 
+
+![alt_txt][Fig1]
+[Fig1]:https://cloud.githubusercontent.com/assets/12142475/15202838/abe31612-17b2-11e6-9f05-2b1930daae03.png
+
+![alt_txt][Fig2]
+[Fig2]:https://cloud.githubusercontent.com/assets/12142475/15202839/abe43ace-17b2-11e6-852c-561a6e6fc130.png
+
+![alt_txt][Fig3]
+[Fig3]:https://cloud.githubusercontent.com/assets/12142475/15202841/abee76d8-17b2-11e6-8c18-587137e1e1c3.png
+
+![alt_txt][Fig4]
+[Fig4]:https://cloud.githubusercontent.com/assets/12142475/15202840/abed663a-17b2-11e6-808c-9819f50e4cce.png
+
+![alt_txt][Fig5]
+[Fig5]:https://cloud.githubusercontent.com/assets/12142475/15202837/abe07006-17b2-11e6-9b21-feaebea44028.png
+
+
+
+
+R code
+
+This code plots MinDP10 and MinDP15 together on most graphs. The code for CH plots independent datasets. 
+```
+##pyRADopt: SE dataset - Final code
+##plot polyfreq vs Depth minDP10
+
+setwd("/Users/alexjvr/2016RADAnalysis/pyRADopt")
+
+SE.MinDP <- read.csv("SE.Depth.n10.15.csv", header=T)
+head(SE.MinDP)
+summary(SE.MinDP)
+
+
+#install.packages("ggplot2")
+library(ggplot2)
+library(reshape2)
+library()
+
+##########################################
+##Depth vs polyfreq: SEMinDP10 and MinDP15
+
+head(SE.MinDP)
+
+p1 <- data.frame(x=SE.MinDP$d.9.me, y=SE.MinDP$poly.n10)
+
+lm_eqn1 <- function(p1){
+  m <- lm(y~x, p1);
+  eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,
+                   list(a = format(coef(m)[1], digits =2),
+                        b = format(coef(m)[2], digits =2),
+                        r2 = format(summary(m)$r.squared, digits =3)))
+  as.character(as.expression(eq));
+}
+
+p2 <- data.frame(x=SE.MinDP$d.14.me, y=SE.MinDP$poly.n15)
+
+lm_eqn2 <- function(p2){
+  m <- lm(y~x, p2);
+  eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,
+                   list(a = format(coef(m)[1], digits =2),
+                        b = format(coef(m)[2], digits =2),
+                        r2 = format(summary(m)$r.squared, digits =3)))
+  as.character(as.expression(eq));
+}
+lm_eqn2
+
+
+
+zz <- melt(list(p1=p1, p2=p2), id.vars="x")
+zz
+p <- ggplot(zz, aes(x=x, y=value, color = L1)) +
+  geom_point() + 
+  geom_smooth(data=subset(zz, L1 %in% c("p1")), method="lm", se=T, color="black", formula= y~x) +
+  geom_smooth(data=subset(zz, L1 %in% c("p2")), method="lm", se=T, color="black", formula= y~x) +
+  scale_color_manual("Dataset", values =c("p1" = "darkgreen", "p2"="blue"), labels=c("MinDP10", "MinDP15"))
+p
+
+p <- p + xlab("Mean Sequencing Depth per Indiv") + ylab("Average Nucleotide diversity") + ggtitle("SE: Mean Depth x Nucleotide Diversity")
+p
+
+plot2 <- p + geom_text(size=3, x = 30, y = 0.0047, label = lm_eqn1(p1), colour="black", parse =T) + 
+  geom_text(size=3, x = 45, y = 0.0047, label = lm_eqn2(p2), colour = "black", parse =T)
+
+plot2
+
+
+########################
+########################
+
+##Depth vs variance: SEMinDP10 and MinDP15
+
+head(SE.MinDP)
+
+p1 <- data.frame(x=SE.MinDP$d.9.me, y=SE.MinDP$d.9.sd)
+
+lm_eqn1 <- function(p1){
+  m <- lm(y~x, p1);
+  eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,
+                   list(a = format(coef(m)[1], digits =2),
+                        b = format(coef(m)[2], digits =2),
+                        r2 = format(summary(m)$r.squared, digits =3)))
+  as.character(as.expression(eq));
+}
+
+p2 <- data.frame(x=SE.MinDP$d.14.me, y=SE.MinDP$d.14.sd)
+
+lm_eqn2 <- function(p2){
+  m <- lm(y~x, p2);
+  eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,
+                   list(a = format(coef(m)[1], digits =2),
+                        b = format(coef(m)[2], digits =2),
+                        r2 = format(summary(m)$r.squared, digits =3)))
+  as.character(as.expression(eq));
+}
+
+zz <- melt(list(p1=p1, p2=p2), id.vars="x")
+zz
+p <- ggplot(zz, aes(x=x, y=value, color = L1)) +
+  geom_point() + 
+  geom_smooth(data=subset(zz, L1 %in% c("p1")), method="lm", se=T, color="black", formula= y~x) +
+  geom_smooth(data=subset(zz, L1 %in% c("p2")), method="lm", se=T, color="black", formula= y~x) +
+  scale_color_manual("Dataset", values =c("p1" = "darkgreen", "p2"="blue"), labels=c("MinDP10", "MinDP15"))
+p
+
+p <- p + xlab("Mean Sequencing Depth per Indiv") + ylab("Standard Dev") + ggtitle("SE: Mean Depth x SD of Depth")
+p
+
+plot2 <- p + geom_text(size=5, x = 45, y = 200, label = lm_eqn1(p1), colour="black", parse =T) + 
+  geom_text(size=3, x = 30, y = 150, label = lm_eqn2(p2), colour = "black", parse =T)
+
+plot2
+
+
+
+
+##########################
+##########################
+
+##poly10 vs poly15
+
+dfn10.n15 <- read.csv("SE.Depth.n10.15.csv")
+
+df <- data.frame(x = dfn10.n15$poly.n10)
+df$y <- dfn10.n15$poly.n15
+
+
+p <- ggplot(data=df, aes(x=x, y=y)) +
+  geom_smooth(method="lm", se=T, color="black", formula= y~x) +
+  geom_point()
+p
+
+p <- p + xlab("nucleotide div (>9x)") + ylab("nucleotide div (>14x)") + ggtitle("SE: Nucleotide diversity per indiv at 10x vs 15x")
+p
+
+
+lm_eqn <- function(df){
+  m <- lm(y~x, df);
+  eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,
+                   list(a = format(coef(m)[1], digits =2),
+                        b = format(coef(m)[2], digits =2),
+                        r2 = format(summary(m)$r.squared, digits =3)))
+  as.character(as.expression(eq));
+}
+
+summary("m")
+
+p1 <- p + geom_text(size=4, x = 0.0035, y = 0.0047, label = lm_eqn(df), parse =T) ##x & y = position on graph
+p1
+
+
+#########################################
+#########################################
+###Plot HWE from plink generated output
+##I want to plot per locus He vs Ho for n10 and n15 on the same plot
+
+##Generated data in Plink (--hardy)
+##output is *.hwe, with several columns. 
+##2/SNP, 3/TEST (filter for ALL), 6/Genotype count, 7/Ho, 8/He, 9/P-value for HWE
+
+
+setwd("/Users/alexjvr/2016RADAnalysis/pyRADopt/SE.tests/")
+df.n10 <- read.table("SE.DP10.hwe", header = T)
+summary(df.n10)
+head(df.n10)
+
+
+df.n10.v2 <- subset(df.n10, TEST=="ALL", select=SNP:E.HET.)
+head(df.n10.v2)
+summary(df.n10.v2)
+
+library(ggplot2)
+
+df.n10.3 <- df.n10.v2[with(df.n10.v2, order(E.HET.)),]##sort by E.HET
+head(df.n10.3)
+
+df.n10.3$Nr <- c(1:24825)##Add column numbered 1:22646 for the sorted SNPs
+head(df.n10.3)
+
+df.n15 <- read.table("SE.DP15.hwe", header = T)
+summary(df.n15)
+head(df.n15)
+
+
+df.n15.v2 <- subset(df.n15, TEST=="ALL", select=SNP:E.HET.)
+head(df.n15.v2)
+summary(df.n15.v2)
+
+library(ggplot2)
+
+df.n15.3 <- df.n15.v2[with(df.n15.v2, order(E.HET.)),]##sort by E.HET
+head(df.n15.3)
+
+df.n15.3$Nr <- c(1:13044)##Add column numbered 1:22646 for the sorted SNPs
+head(df.n15.3)
+
+##plot O.HET & E.HET vs SNPnr
+
+#MinDP10 
+library(ggplot2)
+
+df1<-data.frame(x=df.n10.3$Nr,y=df.n10.3$O.HET.)
+df2<-data.frame(x=df.n10.3$Nr,y=df.n10.3$E.HET.)
+
+ggplot(df1,aes(x,y))+geom_point(aes(color="O.HET."))+
+  geom_point(data=df2,aes(color="E.HET"))+
+  labs(color="Key") +
+  ylab("Heterozygosity") +
+  xlab("variant") +
+  ggtitle("SE_MinDP10: Observed vs Expected Het")
+
+#MinDP15
+library(ggplot2)
+
+df1<-data.frame(x=df.n15.3$Nr,y=df.n15.3$O.HET.)
+df2<-data.frame(x=df.n15.3$Nr,y=df.n15.3$E.HET.)
+
+ggplot(df1,aes(x,y))+geom_point(aes(color="O.HET."))+
+  geom_point(data=df2,aes(color="E.HET"))+
+  labs(color="Key") +
+  ylab("Heterozygosity") +
+  xlab("variant") +
+  ggtitle("SE_MinDP15: Observed vs Expected Het")
+
+
+###########################################  
+###Plot He vs Ho frequencies
+
+library(ggplot2)
+library(reshape2)
+
+HET10 <- data.frame(x=df.n10.3$O.HET., y=df.n10.3$E.HET.)
+HET15 <- data.frame(x=df.n15.3$O.HET., y=df.n15.3$E.HET.)
+head(HET10)
+
+HETm10 <- melt(HET10, variable.name = "Obs.Exp", value.name = "MinDP10Het_value")
+HETm15 <- melt(HET15, variable.name = "Obs.Exp", value.name = "MinDP15Het_value")
+#head(HETm15)
+
+#HETall <- merge(HETm10, HETm15, by="Obs.Exp")
+
+plot.freq <- ggplot(HET10) +
+  geom_freqpoly(data=HETm10, aes(x = MinDP10Het_value, lty= Obs.Exp), binwidth=0.01, size=1, colour="darkgreen") +
+  geom_freqpoly(data=HETm15, aes(x = MinDP15Het_value, lty= Obs.Exp), binwidth=0.01, size=1, colour = "blue") +
+  ylab("Frequency") +
+  xlab("Heterozygosity") +
+  ggtitle("SE: Frequency of Obs vs Expected Het")
+
+plot.freq
+
+#code for Key doesn't work
+#scale_colour_discrete(name = "Dataset", breaks = c("HETm10$value", "HETm15$value"),
+#                      labels=c("minDP10", "minDP15")) +
+# scale_linetype_discrete(name = "Heterozygosity", breaks = c("HETm10$variable", "HETm15$variable"), 
+#                        labels=c("O.HET", "E.HET"))
+
+#values =c("HETm10" = "darkgreen", "HETm15"="blue"), labels=c("MinDP10", "MinDP15"))
+
+
+```
+
 
 
 ###CH
