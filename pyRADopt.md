@@ -524,23 +524,23 @@ I copied these data to .csv file on the mac and created the following plots in R
 ** The plots are created with the scripts from SE, but for individual datasets the CH scripts can be used (below)
 
 
-![alt_txt][Fig1]
-[Fig1]:https://cloud.githubusercontent.com/assets/12142475/15226301/070cb8a2-1837-11e6-8407-a67ec9f18dea.png
+![alt_txt][plot1]
+[plot1]:https://cloud.githubusercontent.com/assets/12142475/15226301/070cb8a2-1837-11e6-8407-a67ec9f18dea.png
 
-![alt_txt][Fig2]
-[Fig2]:https://cloud.githubusercontent.com/assets/12142475/15226298/070511d8-1837-11e6-9f24-d4c187b8d646.png
+![alt_txt][plot2]
+[plot2]:https://cloud.githubusercontent.com/assets/12142475/15226298/070511d8-1837-11e6-9f24-d4c187b8d646.png
 
-![alt_txt][Fig3]
-[Fig3]:https://cloud.githubusercontent.com/assets/12142475/15226297/07047336-1837-11e6-801b-262064cbebfe.png
+![alt_txt][plot3]
+[plot3]:https://cloud.githubusercontent.com/assets/12142475/15226297/07047336-1837-11e6-801b-262064cbebfe.png
 
-![alt_txt][Fig4]
-[Fig4]:https://cloud.githubusercontent.com/assets/12142475/15226299/0707d846-1837-11e6-8253-41f20618f5a3.png
+![alt_txt][plot4]
+[plot4]:https://cloud.githubusercontent.com/assets/12142475/15226299/0707d846-1837-11e6-8253-41f20618f5a3.png
 
-![alt_txt][Fig5]
-[Fig5]:https://cloud.githubusercontent.com/assets/12142475/15226302/070d9286-1837-11e6-8c0f-bd908c7832a9.png
+![alt_txt][plot5]
+[plot5]:https://cloud.githubusercontent.com/assets/12142475/15226302/070d9286-1837-11e6-8c0f-bd908c7832a9.png
 
-![alt_txt][Fig]
-[Fig6]:https://cloud.githubusercontent.com/assets/12142475/15226300/070a867c-1837-11e6-8bc5-8f06db1b2fd5.png
+![alt_txt][plot6]
+[plot6]:https://cloud.githubusercontent.com/assets/12142475/15226300/070a867c-1837-11e6-8bc5-8f06db1b2fd5.png
 
 
 
