@@ -521,29 +521,28 @@ These are based on the s3* and s5* outputs from pyRAD (/stats).
 
 I copied these data to .csv file on the mac and created the following plots in R: 
 
-##Mean Depth vs nucleotide diversity
-
-![alt_txt][MinDP10.plot1]
-[MinDP10.plot1]:https://cloud.githubusercontent.com/assets/12142475/15132316/32189cf4-160d-11e6-9677-4dd8530c92c1.png
+** The plots are created with the scripts from SE, but for individual datasets the CH scripts can be used (below)
 
 
-![alt_txt][MinDP10.plot2]
-[MinDP10.plot2]:https://cloud.githubusercontent.com/assets/12142475/15132315/321867b6-160d-11e6-82e1-f01e568d57ee.png
+![alt_txt][Fig1]
+[Fig1]:https://cloud.githubusercontent.com/assets/12142475/15226301/070cb8a2-1837-11e6-8407-a67ec9f18dea.png
 
-![alt_txt][MinDP15.plot1]
-[MinDP15.plot1]:https://cloud.githubusercontent.com/assets/12142475/15132320/321a9b94-160d-11e6-9010-8c1b16a84e7a.png
+![alt_txt][Fig2]
+[Fig2]:https://cloud.githubusercontent.com/assets/12142475/15226298/070511d8-1837-11e6-9f24-d4c187b8d646.png
 
-![alt_txt][MinDP15.plot2]
-[MinDP15.plot2]:https://cloud.githubusercontent.com/assets/12142475/15132318/32195a0e-160d-11e6-8d30-bcdbe12a5dbf.png
+![alt_txt][Fig3]
+[Fig3]:https://cloud.githubusercontent.com/assets/12142475/15226297/07047336-1837-11e6-801b-262064cbebfe.png
+
+![alt_txt][Fig4]
+[Fig4]:https://cloud.githubusercontent.com/assets/12142475/15226299/0707d846-1837-11e6-8253-41f20618f5a3.png
+
+![alt_txt][Fig5]
+[Fig5]:https://cloud.githubusercontent.com/assets/12142475/15226302/070d9286-1837-11e6-8c0f-bd908c7832a9.png
+
+![alt_txt][Fig]
+[Fig6]:https://cloud.githubusercontent.com/assets/12142475/15226300/070a867c-1837-11e6-8bc5-8f06db1b2fd5.png
 
 
-## Mean depth vs SD
-
-![alt_txt][MinDP10.plot3]
-[MinDP10.plot3]:https://cloud.githubusercontent.com/assets/12142475/15132317/3218c56c-160d-11e6-93ce-c3925968d323.png
-
-![alt_txt][MinDP15.plot3]
-[MinDP15.plot3]:https://cloud.githubusercontent.com/assets/12142475/15132319/321a89ec-160d-11e6-8468-29cf93e2de17.png
 
 
 
