@@ -8,7 +8,7 @@
 
 pyRAD uses the ML method from Lynch et al. 2008 to jointly estimate nucleotide heterozygosity and error for every base across a stack. .
 
-This is estimated per stack within an individual to call homozygotes/ heterozygotes. 
+This is estimated per stack withinq an individual to call homozygotes/ heterozygotes. 
 
 The method seems robust from ~6-8x coverage, unless error rates are really high, or nucleotide diversity is very low. 
 
