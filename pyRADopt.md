@@ -1119,3 +1119,63 @@ first jobs together.
 ```
 
 
+##Final decisions: 
+
+1. Clustering threshold optimisation NB
+
+2. When comparable nucleotide diversity is needed, subsample the .edits file and rerun pyRAD. 
+
+
+For the Phylogeography dataset, I need to have comparable nucleotide diversity. This is how I'm preparing this dataset (called Phylo.subset):
+
+copy all the .edits files for the CH230.Phylo dataset to alexjvr@gdcsrv1.ethz.ch:~/CH.Phylogenetics/edits/
+
+from the CHcomplete/edits/ folder
+```
+xargs -a Phy.edit.txt cp -t ~/CH.Phylogenomics/edits/
+
+```
+
+4 samples were missing, so I ran pyRAD -s 2 for these: 
+
+cava_01, cava_02, jagg_01, moir_07
+
+Once all the .edits files are in one folder, wc all the fasta lines: 
+```
+grep -c ^'>' *edit
+```
+
+This prints out the number of reads obtained for each sample. I'll subsample the data to have only 2Mil reads per sample, and then run pyRAD -s 34567 for this new dataset. 
+
+In R, compare the average number of reads per population: 
+
+```
+setwd("~/2016RADAnalysis/1_Phylo/Phylo230.subset")
+
+##I've created a file with the filtered readcounts from all the .edits files
+
+f1 <- read.csv(file = "edits.readcount.csv", header = T)
+
+#library(ggplot2)
+
+boxplot(f1$readcount~f1$pop, data = f1, varwidth=T, par(cex.axis=0.8), las=2, main="Avg reads per population")
+
+```
+
+It seems like, apart from birk, most populations have pretty similar read counts. There is some fine-scale variation.
+
+![alt_txt][edits.reads]
+[edits.reads]:https://cloud.githubusercontent.com/assets/12142475/15373650/7e8ebc54-1cfb-11e6-98b7-3c9e637225c6.png
+
+
+
+Based on this, I will subsample the .edits files to 2Mil reads, and rerun pyRAD with the subset data. 
+
+```
+
+
+```
+
+
+
+
