@@ -1170,12 +1170,12 @@ It seems like, apart from birk, most populations have pretty similar read counts
 
 
 Based on this, I will subsample the .edits files to 2Mil reads, and rerun pyRAD with the subset data. 
-
+Use a perl script (random_sequence_sample.pl). Which I've uploaded on gdc (and the mac). 
 ```
-
-
+chmod 755 
+for i in *.fq.trim.edit; do perl random_sequence_sample.pl -i $i -o subset/$i.subset.edit -n 2000000; done
 ```
-
+started 13:51
 
 
 
