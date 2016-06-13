@@ -795,7 +795,8 @@ END;
 
 1. Beast
   - Using % calibration from literature (Veith et al. 2003 found equal rates among lineages. The expected rate is 1.3% per My)
-  - Using a fossil calibration (Veith et al. 2003)
+  - This rate was also used by Veith et al. 2012
+  - Rate to use: 0.014 subst/site/My
   
   See this tutorial: http://www.justinbagley.org/123/beast-and-the-beast-basics-molecular-clocks-and-how-to-input-rates-into-beast
   
@@ -845,7 +846,11 @@ Unless one of the available codes are used, the xml file needs to be modified fo
 
 ** I tried to do this, but BEAST does not accept any modifications to the .xml file. I will run it with the above substitution model. 
 
-4&5. Clock: Here are 5 options. Tree: Here are 4 options. All combinations of these options should be run. 
+4&5. Clock: use strict clock with a rate of 0.014 Tree: Here are 4 options. All combinations of these options should be run. 
+
+**see this link: http://www.justinbagley.org/123/beast-and-the-beast-basics-molecular-clocks-and-how-to-input-rates-into-beast
+
+**A rate given in percentage = pairwise divergence between two lineages. Per lineage rate = %/2. And for Beast input, turn in into a rate, i.e. /100. 
 
 6. Priors: Set tree calibration under the priors
 
@@ -855,7 +860,7 @@ Unless one of the available codes are used, the xml file needs to be modified fo
 
 9. Import all outputs into Tracer. 
 
-10. 
+10. Test the best model under AIC using 1000 bootstrap replicates. 
 
 
 
