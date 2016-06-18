@@ -421,6 +421,12 @@ Error: Least-square procedure to fit expected and observed mismatch distribution
 
 *Bayesian Skyline Plot*
 
+I ran BSP for all three datasets using a strict molecular clock with a rate of 0.014 (as per Stefani et al. 2012). 
+
+BSP worked for only one of the datasets. 
+
+There's a problem with using Tracer v1.6.0. This just never runs the BSP analysis. So I installed v1.4.0
+
 
 
 ####*COX1
