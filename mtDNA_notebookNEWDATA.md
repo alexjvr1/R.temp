@@ -18,7 +18,7 @@ In contrast, the Eastern clade has much less genetic diversity.
 
 The aim of this study is to study the distribution of genetic variation in Rana temporaria at a fine-scale across Sweden and Switzerland, in order to understand the processes that have resulted in the current spatial genetic variation across the two temperature gradients. 
 
-1. Reconstruct the fine-scale re-colonisation history of Switzerland and Sweden
+1. Reconstruct the fine-scale re-colonisation history of Switzerland
 2. Characterise geographic distribution of genetic diversity across these similar environmental gradients. 
 
 
@@ -811,6 +811,12 @@ END;
        
 For time calibration
 
+This is a good resource: 
+
+http://download.springer.com/static/pdf/730/bok%253A978-1-4939-3618-2.pdf?originUrl=http%3A%2F%2Flink.springer.com%2Fbook%2F10.1007%2F978-1-4939-3618-2&token2=exp=1466446027~acl=%2Fstatic%2Fpdf%2F730%2Fbok%25253A978-1-4939-3618-2.pdf%3ForiginUrl%3Dhttp%253A%252F%252Flink.springer.com%252Fbook%252F10.1007%252F978-1-4939-3618-2*~hmac=931a5f255eed9d39d36fed8f9f2dfcbf4bfe508fd13a96f2061e1dac7516edbf
+
+
+
 - When there's a biogeographical calibration point, use a normal distribution 
 
 - possible calibration points for me:
@@ -861,9 +867,16 @@ Unless one of the available codes are used, the xml file needs to be modified fo
 
 8. Keep track of all the likelihoods. 
 
-9. Import all outputs into Tracer. 
+9. Import all outputs into Tracer to check for convergence
 
-10. 
+    - Tracer v1.5 (Drummond & Rambaut 2007) was used to ensure that the markov chains had reached stationarity by examining the effective sample size (ESS) and determine the number of generations of burn-in (this can be seen in the Trace plots in Tracer). 
+
+10. Determine the optimal model using model comparison (AIC) in Tracer. The model with the lowest likelihood was chosen. 
+
+11. Combine runs (log & tree files) using logcombiner, a package distributed with BEAST. 
+
+
+12. 
 
 
 
