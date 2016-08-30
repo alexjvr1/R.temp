@@ -66,7 +66,7 @@ I also have access to one of the nodes (arranged through Ken Shimitzu) for compu
 
         ssh alexjvr@fgcz-transfer.uzh.ch
         ssh alexjvr@fgcz-c-047
-        pwd Platypu&6.
+        pwd Bombin@15
 
 Most of the computing power is at the GDC. I have access to the servers there for data storage and computing for a nominal fee. 
         ssh alexjvr@gdcsrv1.ethz.ch
