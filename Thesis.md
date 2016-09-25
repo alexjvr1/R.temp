@@ -20,10 +20,10 @@ Adaptation to local environment.
     
     
 Chapter 1: Review of genomics for use in non-model organisms. 
-Chapter 2: Phylogeography of R. temporaria in the Alps
+Chapter 2: Phylogeography of R. temporaria in the Alps and genomics of adaptation at a contact zone
 Chapter 3: Population genomics of R. temporaria in Scandinavia
-Chapter 4: Population genomics of R. temporaria in the Alps
-Chapter 5: Adaptation to temperature across elevation and latitude: a comparative study of a wide spread amphibian species. 
+Chapter 4: Population genomics of R. temporaria in the Alps & landscape genetics
+Chapter 5: Adaptation to temperature across elevation and latitude: a comparative study of a wide spread amphibian species. OR Fst-Qst analysis
 
 
 #Conclusion. 
