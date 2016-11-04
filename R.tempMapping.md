@@ -53,8 +53,19 @@ Filter SNPs
 1hour on GDCsrv1
 ```
 bwa index Rtk43.fa
-output: Rtk43.fa.amb Rtk43.fa.ann Rtk43.fa.bwt Rtk43.fa.pac Rtk43.fa.sa
 ```
+output: 
+
+Rtk43.fa.amb 
+
+Rtk43.fa.ann 
+
+Rtk43.fa.bwt 
+
+Rtk43.fa.pac 
+
+Rtk43.fa.sa
+
 Align the demultiplexed individuals to the indexed genome. This is for one individual ~108min
 ```
 bwa aln Rtk43.fa.gz /gdc_home4/alexjvr/SEFinalSamples/SEsamples_193.19/F21.fq.trim > Rt.F21.sai
@@ -171,6 +182,27 @@ These inividuals should describe the variation all across Switzerland.
 
 On fgcz47: /srv/kenlab/alexjvr_p1795/CHmapping
 
+1. index the genome 
+
+Few mins on fgcz47
+
+```
+bwa index Rtk43.fa
+```
+output: 
+
+Rtk43.fa.amb 
+
+Rtk43.fa.ann 
+
+Rtk43.fa.bwt 
+
+Rtk43.fa.pac 
+
+Rtk43.fa.sa
+
+2. Map multiple samples: 
+
 script: 
 ```
 for i; do
@@ -185,6 +217,59 @@ Real time: 311.058 sec; CPU: 3032.208 sec  per sample
 find -type f -name "*fq.trim.gz" -exec ./script {} +
 ```
 
+
+Convert to sam format
+```
+bwa samse Rtk43.fa.gz Rt.abnd09.sai demultiplexed/abnd_09_H5.fq.gz > Rt.abnd09.sai.sam
+
+#I got an error message when running this for all abnd01-09. And all the files are exactly the same size. I'm not sure whether this is right or not
+
+[bwa_aln_core] convert to sequence coordinate... 3.17 sec
+[bwa_aln_core] refine gapped alignments... 0.89 sec
+[bwa_aln_core] print alignments... 0.56 sec
+[bwa_aln_core] 262144 sequences have been processed.
+[bwa_aln_core] convert to sequence coordinate... 3.11 sec
+[bwa_aln_core] refine gapped alignments... 0.89 sec
+[bwa_aln_core] print alignments... 0.55 sec
+[bwa_aln_core] 524288 sequences have been processed.
+[fread] Unexpected end of file
+```
+
+Now I have to use samtools
+
+First, index the genome (this only needs to be done once) (~2min)
+```
+samtools faidx Rtk43.fa
+```
+Next, convert SAM to BAM files. (A BAM file is just a binary version of a SAM files) (1min)
+
+```
+samtools import Rtk43.fa.fai Rt.abnd01.sai.sam Rt.abnd01.sai.bam
+```
+
+And then sort the BAM file (1min)
+
+```
+samtools sort Rt.H2.bam -o Rt.H2.bam.sorted
+```
+
+And last, we need Samtools to index the BAM file (10s)
+
+```
+samtools index Rt.H2.bam.sorted.bam
+```
+Now I need to check the output of the alignments. 1. What proportion of the sequences mapped? 2. What's the comparison between samples? 3.
+
+For basic statistics use the flagstat command
+
+```
+samtools flagstat Rt.abnd03.sai.bam.sorted.bam
+```
+OR the idxstats command
+```
+samtools idxstats Rt.abnd03.sai.bam.sorted.bam
+```
+Results
 
 
 
