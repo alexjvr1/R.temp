@@ -109,6 +109,9 @@ And then sort the BAM file (1min)
 
 ```
 samtools sort Rt.H2.bam -o Rt.H2.bam.sorted
+
+#for multiple files
+for i in *.bam; do samtools sort -@10 "${i}" "${i}".sorted; done
 ```
 
 And last, we need Samtools to index the BAM file (10s)
