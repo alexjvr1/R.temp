@@ -118,6 +118,8 @@ And last, we need Samtools to index the BAM file (10s)
 
 ```
 samtools index Rt.H2.bam.sorted.bam
+
+for i in *.sorted.bam; do samtools index "${i}"; done
 ```
 Now I need to check the output of the alignments. 1. What proportion of the sequences mapped? 2. What's the comparison between samples? 3.
 
