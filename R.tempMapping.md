@@ -279,6 +279,23 @@ Results
 
 
 
+#8Feb 2017: Map all samples to the genome
+
+Based on the results before, I found that mapping was really improved when using bwa_mem. In the end I will end up with pretty much the 
+same number of loci called in the dataset compared with de Novo assembly, but I should have a lot more confidence in the call. And there 
+should be less problems with the alignments. 
+
+I'm transferring all the samples from Beelzebufo onto the fgcz server for mapping: 
+
+Location: Beelzebufo/CHcomplete/demultiplexed_trim_H/samples.trim_CH1027/
+
+Size: 221Gb
+
+rsync started: 8Feb 10:21
+```
+rsync -r samples.trim_CH1027 fgcz47:/srv/kenlab/alexjvr_p1795/CHall/
+
+```
 
 
 ###Mapping to the transcriptome.
