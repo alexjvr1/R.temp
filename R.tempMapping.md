@@ -297,6 +297,13 @@ rsync -r samples.trim_CH1027 fgcz47:/srv/kenlab/alexjvr_p1795/CHall/
 
 ```
 
+Map a batch of 260 individuals
+```
+for i in $(ls /srv/kenlab/alexjvr_p1795/CHall/samples.trim_CH1027/batch1/*); do bwa mem -t 5 Rtk43.fa "${i}" > "${i}.sai"; done
+```
+Started 9 Feb 7:26 (expected end = Sat 7:00)
+
+
 
 ###Mapping to the transcriptome.
 
