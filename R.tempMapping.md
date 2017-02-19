@@ -303,6 +303,32 @@ for i in $(ls /srv/kenlab/alexjvr_p1795/CHall/samples.trim_CH1027/batch1/*); do 
 ```
 Started 9 Feb 7:26 (expected end = Sat 7:00)
 
+convert to .bam and delete all the sam files
+```
+for i in $(ls *sai); do samtools import Rtk43.fa.fai "${i}" "${i}".bam; done
+
+```
+
+sort and index. 
+```
+for i in $(ls *bam); do samtools sort -@10 "${i}" "${i}".sorted; done
+
+for i in $(ls *bam); do samtools index "${i}"; done
+```
+
+This generates *.bam and *.bam.bai files. The .bai file is a companion file to the .bam. 
+
+
+####Freebayes
+
+Located on the fgcz47 server: /usr/local/ngseq/src/freebayes/
+
+```
+
+
+```
+
+
 
 
 ###Mapping to the transcriptome.
