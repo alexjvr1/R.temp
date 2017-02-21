@@ -319,9 +319,40 @@ for i in $(ls *bam); do samtools index "${i}"; done
 This generates *.bam and *.bam.bai files. The .bai file is a companion file to the .bam. 
 
 
+When I check the mapping, I get extremely high mapping rates: 
+
+```
+samtools flagstat zeni_11.fq.trim.gz.sai.bam.sorted.bam
+
+5349830 + 0 in total (QC-passed reads + QC-failed reads)
+0 + 0 secondary
+779367 + 0 supplementary
+0 + 0 duplicates
+5021655 + 0 mapped (93.87%:-nan%)
+0 + 0 paired in sequencing
+0 + 0 read1
+0 + 0 read2
+0 + 0 properly paired (-nan%:-nan%)
+0 + 0 with itself and mate mapped
+0 + 0 singletons (-nan%:-nan%)
+0 + 0 with mate mapped to a different chr
+0 + 0 with mate mapped to a different chr (mapQ>=5)
+
+```
+
+Singletons 
+
 ####Freebayes
 
 Located on the fgcz47 server: /usr/local/ngseq/src/freebayes/
+
+Tutorials from Erik
+https://github.com/ekg/alignment-and-variant-calling-tutorial
+
+http://clavius.bc.edu/~erik/CSHL-advanced-sequencing/freebayes-tutorial.html
+
+
+And from the BAG2016 workshop: 
 
 ```
 
