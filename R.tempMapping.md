@@ -340,7 +340,11 @@ samtools flagstat zeni_11.fq.trim.gz.sai.bam.sorted.bam
 
 ```
 
-Singletons 
+This decreases to about 40% mapping rate when I filter for mapping quality of 30. Christine doesn't do any filtering on the bam files before running freebayes. (Only mark-duplicates, which I can't do with the ddRAD data). 
+
+So I will run freebayes as is on the unfiltered bam files.
+
+
 
 ####Freebayes
 
@@ -352,14 +356,39 @@ https://github.com/ekg/alignment-and-variant-calling-tutorial
 http://clavius.bc.edu/~erik/CSHL-advanced-sequencing/freebayes-tutorial.html
 
 
-And from the BAG2016 workshop: 
+And from the BAG2016 workshop: /Users/alexjvr/2016RADAnalysis/bag2016/tuesday
+
+For input files, make sure the bam files are sorted and indexed. To check whether the file is sorted: 
+SO:coordinate shows that its sorted. 
+```
+samtools view -H abnd_01.fq.trim.gz.sai.bam.sorted.bam |head
+
+@HD	VN:1.3	SO:coordinate
+@SQ	SN:scaffold1.1|size15254	LN:15254
+@SQ	SN:scaffold2.1|size11579	LN:11579
+@SQ	SN:scaffold3.1|size10991	LN:10991
+@SQ	SN:scaffold4.1|size12417	LN:12417
+@SQ	SN:scaffold5.1|size10895	LN:10895
+@SQ	SN:scaffold6.1|size10551	LN:10551
+@SQ	SN:scaffold7.1|size9739	LN:9739
+@SQ	SN:scaffold8.1|size15096	LN:15096
+@SQ	SN:scaffold9.1|size15729	LN:15729
 
 ```
 
 
+To run many bam files, first create a file with all the .bam names
+```
+ls *sorted.bam > bam.files.txt
 ```
 
+And run this with freebayes on fgcz4:
+```
+/usr/local/ngseq/src/freebayes/bin/freebayes -f Rtk43.fa --no-complex --use-best-n-alleles 4 --min-base-quality 3 --min-mapping-quality 20 --no-population-priors --hwe-priors-off -dd -L zeni.bamfiles.txt  > zeni.vcf 2>&1 |tail -10000 |tee failure.txt
+```
 
+-dd: generates information for debugging
+2>&1 |tail -10000 |tee failure.txt  : writes the failure to a text file. 
 
 
 ###Mapping to the transcriptome.
