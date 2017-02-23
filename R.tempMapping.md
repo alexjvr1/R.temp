@@ -376,12 +376,12 @@ samtools view -H abnd_01.fq.trim.gz.sai.bam.sorted.bam |head
 
 ```
 
-
-To run many bam files, first create a file with all the .bam names
+Rename all the files
 ```
-ls *sorted.bam > bam.files.txt
-```
+for i in *.fq.trim.gz.sai.bam.sorted.bam; do mv -v -- "$i" "${i%.fq.trim.gz.sai.bam.sorted.bam}.bam"; done
 
+for i in *.fq.trim.gz.sai.bam.sorted.bam.bai; do mv -v -- "$i" "${i%.fq.trim.gz.sai.bam.sorted.bam.bai}.bai"; done
+```
 
 Add reading group information to all the samples. This can be done during the bwa mem step already, but I didn't realise that while I was mapping. However, there's a Picard tool with which to replace or add new reading group information. 
 ```
@@ -395,9 +395,15 @@ Picard's AddOrRemoveReadGroups.jar is a useful tool for editing the RG.
 java -jar /usr/local/ngseq/src/picard-tools-2.6/picard.jar AddOrReplaceReadGroups I=zeni_02.fq.trim.gz.sai.bam.sorted.bam O=zeni_02.bam RGID=zeni.02 RGLB=lib1 RGPL=illumina RGPU=unit1 RGSM=zeni.02
 ```
 
-For all files: 
+Add RG to all files: 
 ```
 
+```
+
+
+To run many bam files, first create a file with all the .bam names
+```
+ls *sorted.bam > bam.files.txt
 ```
 
 
