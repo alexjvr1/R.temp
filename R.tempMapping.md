@@ -382,6 +382,25 @@ To run many bam files, first create a file with all the .bam names
 ls *sorted.bam > bam.files.txt
 ```
 
+
+Add reading group information to all the samples. This can be done during the bwa mem step already, but I didn't realise that while I was mapping. However, there's a Picard tool with which to replace or add new reading group information. 
+```
+bwa mem -aM -R "@RG\tID:Seq01\tSM:Seq01\tPL:ILLUMINA\tPI:330" Refgen Seq01.fastq > Seq01.sam 
+```
+
+Importantly, the RG ID needs to be unique for Freebayes to work. The sample name (SM) doesn't matter. 
+
+Picard's AddOrRemoveReadGroups.jar is a useful tool for editing the RG. 
+```
+java -jar /usr/local/ngseq/src/picard-tools-2.6/picard.jar AddOrReplaceReadGroups I=zeni_02.fq.trim.gz.sai.bam.sorted.bam O=zeni_02.bam RGID=zeni.02 RGLB=lib1 RGPL=illumina RGPU=unit1 RGSM=zeni.02
+```
+
+For all files: 
+```
+
+```
+
+
 And run this with freebayes on fgcz4:
 ```
 /usr/local/ngseq/src/freebayes/bin/freebayes -f Rtk43.fa --no-complex --use-best-n-alleles 4 --min-base-quality 3 --min-mapping-quality 20 --no-population-priors --hwe-priors-off -dd -L zeni.bamfiles.txt  > zeni.vcf 2>&1 |tail -10000 |tee failure.txt
@@ -389,6 +408,18 @@ And run this with freebayes on fgcz4:
 
 -dd: generates information for debugging
 2>&1 |tail -10000 |tee failure.txt  : writes the failure to a text file. 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ###Mapping to the transcriptome.
