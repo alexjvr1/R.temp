@@ -417,10 +417,65 @@ And run this with freebayes on fgcz4:
 
 
 
+I can't seem to get freebayes to run on the server. I keep getting a segmentation fault
+```
+loading fasta reference Rtk43.fa
+Opening BAM fomat alignment input file: abnd_01.bam.RG ...
+ done
+Number of ref seqs: 2391569
+Number of target regions: 0
+no sample list file given, reading sample names from bam file
+found 1 samples in BAM file
+Segmentation fault
+```
+
+I ran the the same analysis as a test on my mac. The versions of freebayes is slightly different: 
+```
+server = version: v1.0.2-29-g41c1313
+Mac = version:  v1.0.2-dirty
+```
+
+After reading a bit it seemed like there might be a problem with the amount of memory or "handles" available (not really sure what this is). Some people suggested changing ulimit to unlimit. But checking this for my mac and the server, it seems like there should be plenty of resources allocated on the server. Certainly more than on my mac.
+
+```
+ulimit -a 
+##shows all ulimit specifications for the system. These can be changed using the shown commands in brackets. 
+
+server: 
+core file size          (blocks, -c) 0
+data seg size           (kbytes, -d) unlimited
+scheduling priority             (-e) 0
+file size               (blocks, -f) unlimited
+pending signals                 (-i) 4136232
+max locked memory       (kbytes, -l) 64
+max memory size         (kbytes, -m) unlimited
+open files                      (-n) 65536
+pipe size            (512 bytes, -p) 8
+POSIX message queues     (bytes, -q) 819200
+real-time priority              (-r) 0
+stack size              (kbytes, -s) 8192
+cpu time               (seconds, -t) unlimited
+max user processes              (-u) 4136232
+virtual memory          (kbytes, -v) unlimited
+file locks                      (-x) unlimited
+```
 
 
+```
+mac:
+core file size          (blocks, -c) 0
+data seg size           (kbytes, -d) unlimited
+file size               (blocks, -f) unlimited
+max locked memory       (kbytes, -l) unlimited
+max memory size         (kbytes, -m) unlimited
+open files                      (-n) 256
+pipe size            (512 bytes, -p) 1
+stack size              (kbytes, -s) 8192
+cpu time               (seconds, -t) unlimited
+max user processes              (-u) 709
+virtual memory          (kbytes, -v) unlimited
 
-
+```
 
 
 
