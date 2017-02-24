@@ -397,7 +397,7 @@ java -jar /usr/local/ngseq/src/picard-tools-2.6/picard.jar AddOrReplaceReadGroup
 
 Add RG to all files: 
 ```
-
+for i in *.bam; do java -jar /usr/local/ngseq/src/picard-tools-2.6/picard.jar AddOrReplaceReadGroups I=${i} O=${i}.RG RGID=${i} RGLB=lib1 RGPL=illumina RGPU=unit1 RGSM=${i}; done
 ```
 
 
