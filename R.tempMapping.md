@@ -407,7 +407,7 @@ ls *sorted.bam > bam.files.txt
 ```
 
 
-And run this with freebayes on fgcz4:
+And run this with freebayes on fgcz47:
 ```
 /usr/local/ngseq/src/freebayes/bin/freebayes -f Rtk43.fa --no-complex --use-best-n-alleles 4 --min-base-quality 3 --min-mapping-quality 20 --no-population-priors --hwe-priors-off -dd -L zeni.bamfiles.txt  > zeni.vcf 2>&1 |tail -10000 |tee failure.txt
 ```
@@ -478,8 +478,24 @@ virtual memory          (kbytes, -v) unlimited
 ```
 
 
+###GATK
 
+I'll try to run variant calling with GATK i.s.o freebayes because I can't get Freebayes to work on the server. 
 
+First I need to create a dictionary for my reference fasta file: 
+
+```
+java -jar /usr/local/ngseq/src/picard-tools-2.6/picard.jar CreateSequenceDictionary R=Rtk43.fa O=Rtk43.dict
+```
+
+And then do a test run using on of the sorted bam files. 
+```
+java -jar /usr/local/ngseq/src/GenomeAnalysisTK_3.6/GenomeAnalysisTK.jar -R Rtk43.fa -T HaplotypeCaller -I abnd_01.bam.RG.bam
+```
+
+I can choose between haplotype caller or unifiedGenotyper. I still have to figure out which one will be best, but at least it looks like this is running. 
+
+Then I should also create a merged bam file, so that I need only one index file. This should reduce the memory needed to read in the index file: 1 vs ~1000. 
 
 
 
