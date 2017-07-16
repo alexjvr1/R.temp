@@ -1,4 +1,44 @@
-##How to map pie-charts in R
+## How to map pie-charts in R
+
+#### Final pie charts
+
+This is the final code I used: July 2017
+
+
+
+```
+setwd("/Users/alexjvr/2016RADAnalysis/PhDManuscripts")
+
+cytb <- read.csv("mtDNA.cytb.gps.haplo_20170714.csv", header=T)
+
+colours<-c(col2alpha("purple3",alpha=0.75),col2alpha("plum3",alpha=0.75),col2alpha("darkgreen"
+,alpha=0.75),col2alpha("yellowgreen",alpha=0.75),col2alpha("tan4",alpha=0.75),col2alpha("burly
+wood3",alpha=0.75))  ##colours are read in the order that the haplotypes are specified below
+
+new.coords<-LatLon2XY.centered(CH,lat=cytb$lat,lon=cytb$long,zoom=zoom) #calculates new coordinates for all points
+cytb$newX<-as.vector(new.coords$newX) #slightly messy way of adding new coordinates to your dataframe
+cytb$newY<-as.vector(new.coords$newY)
+
+pdf(file="mtDNA.finalpies.20170716.pdf")
+PlotOnStaticMap(CHgray,destfile=map1.n)
+history()
+for (i in 1:dim(cytb)[1])
+{
+  floating.pie(xpos=cytb$newX[i],ypos=cytb$newY[i],x=c(cytb$H1[i]+0.000000000001,cytb$H1.2[i]+0.000000000001,cytb$H2[i]+0.000000000001,cytb$H2.2[i]+0.0000000001,cytb$brown[i]+0.000000001,cytb$brown2[i]+0.000000001),
+               radius=cytb$Num[i]*2,col=colours)
+}
+dev.off()
+
+##use adobe illustrator to add pies to topo map
+```
+
+
+
+
+
+### older code
+
+
 I used this to map haplotypes on a map of Switzerland
 ```
 require(ggplot2)
