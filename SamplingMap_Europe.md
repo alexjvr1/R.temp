@@ -1,14 +1,14 @@
-#Maps in R
+# Maps in R
 1. Drawing basic maps
 2. Drawing maps with elevation
 3. Samples on map
 
-###Good tutorials here: 
+### Good tutorials here: 
 1. http://www.milanor.net/blog/?p=534
 2. **MolecularEcologist Tutorial:  http://www.molecularecologist.com/2012/09/making-maps-with-r/  
 3. **good for raster data: http://pakillo.github.io/R-GIS-tutorial/#intro   
 
-###Install the following packages:
+### Install the following packages:
 
 ```
 library(sp)  # classes for spatial data
@@ -19,7 +19,7 @@ library(rgeos)
 # and their dependencies
 ```
 
-###1. Draw a map of Europe
+### 1. Draw a map of Europe
 
 ```
 library(maps)
@@ -28,7 +28,7 @@ map(database="world", xlim=c(-10,40), ylim=c(29,75), col="gray90", fill=TRUE)
 ```
 
 
-###2. Draw colour map of Switzerland and Sweden with elevation
+### 2. Draw colour map of Switzerland and Sweden with elevation
 
 ```
 require(spatial.tools)
@@ -44,13 +44,15 @@ plot(elevation, col = rainbow(25, alpha = 0.35), add = TRUE)
 Or change the country code to `<SE>` for Sweden, and change the country in line 7. 
 
 ![alt txt][CH_alt]
+
 [CH_alt]: https://cloud.githubusercontent.com/assets/12142475/8160284/a5d19b84-136e-11e5-8d58-e30d28a3b42d.png
 
 ![alt txt][SE_alt]
+
 [SE_alt]:https://cloud.githubusercontent.com/assets/12142475/8160326/efc2bb2e-136e-11e5-915e-7868f7c6c90c.png
 
 
-###3. Map sample locations
+### 3. Map sample locations
 To map on the elevation map: 
   1. Read in a coordinate file
   2. Plot the data
@@ -58,8 +60,9 @@ To map on the elevation map:
   
 A coordinate file would look something like this:
 
+![alt_txt][coordfile]
 
-https://cloud.githubusercontent.com/assets/12142475/8162714/5781b6e2-137f-11e5-847d-b9721ca49c4b.png
+[coordfile]:https://cloud.githubusercontent.com/assets/12142475/8162714/5781b6e2-137f-11e5-847d-b9721ca49c4b.png
 
 
 ```
@@ -116,7 +119,7 @@ And we'd like the elevational scales to be the same for the two maps.
 plot(elevation, col = (rainbow(25, start=0, end=0.375, alpha = 0.3)), legend = TRUE, main = "Sweden")
 ```
 
-##Map of Sweden -> scaled and .pdf
+## Map of Sweden -> scaled and .pdf
 This should be the script needed to:
 1. Read in data
 2. Draw the Sweden map with a scaled (elevation) graph (0.375*CH)
@@ -147,7 +150,7 @@ dev.off()
 
 
 
-##Draw maps with different coloured samples
+## Draw maps with different coloured samples
 
 If the different classes of samples need to be different colours (e.g. elevation or population)
 
@@ -155,7 +158,7 @@ This is a good tutorial: https://sites.google.com/site/manabusakamoto/home/r-tut
 
 
 
-##Sampling map mtDNA - grayscale
+## Sampling map mtDNA - grayscale
 ```
 library(sp)  # classes for spatial data
 library(raster)  # grids, rasters
@@ -198,10 +201,11 @@ plot(CH_coords, pch = 20, cex = 1, col=Colour, add = TRUE)
 ```
 
 ![alt txt][sequenced_20150722_alt]
+
 [sequenced_20150722_alt]:https://cloud.githubusercontent.com/assets/12142475/8824560/3fea82c4-3077-11e5-8cea-74ec31c7c34a.png
 
 
-##add text
+## add text
 
 And if you want to add labels to the sites, use the text() option
 
@@ -257,4 +261,5 @@ text(CH_coords, labels=CH_coords$Site, cex=0.6)
 ```
 
 ![alt txt][subset_alt]
+
 [subset_alt]:https://cloud.githubusercontent.com/assets/12142475/8824708/94418bfa-3078-11e5-8bbd-c087297f808a.png
